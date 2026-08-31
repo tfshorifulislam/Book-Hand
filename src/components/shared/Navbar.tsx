@@ -1,47 +1,25 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
-import { Search, User } from "lucide-react"
-
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+import { Search, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { SidebarTrigger } from "../ui/sidebar"
 import { ThemeToggle } from "../theme-provider/ThemeToggle"
-
-const navItems = [
-    {
-        title: "Home",
-        href: "/",
-    },
-    {
-        title: "Explore",
-        href: "/explore",
-    },
-    {
-        title: "About",
-        href: "/about",
-    },
-    {
-        title: "Contact",
-        href: "/contact",
-    },
-]
+import { AvatarDropdown } from "./Avatar"
 
 export function NavigationBar() {
+    const [showMobileSearch, setShowMobileSearch] = useState(false)
+
     return (
         <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
             <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
 
                 <div className="relative flex h-14 items-center justify-between rounded-2xl border bg-background/95 px-3 shadow-sm">
 
+                    {/* Left */}
                     <div className="flex items-center gap-2">
-
 
                         <SidebarTrigger
                             className="hidden size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:flex"
@@ -61,53 +39,72 @@ export function NavigationBar() {
                         </Link>
                     </div>
 
+                    {/* Desktop Search */}
+                    <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 md:block lg:max-w-md">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
-                    <NavigationMenu className="absolute left-1/2 hidden -translate-x-1/2 md:flex">
-                        <NavigationMenuList className="gap-0.5 rounded-xl p-1">
-                            {navItems.map((item) => (
-                                <NavigationMenuItem key={item.href}>
-                                    <NavigationMenuLink
-                                        render={<Link href={item.href} />}
-                                        className={`${navigationMenuTriggerStyle()} h-9 rounded-lg px-4 text-sm font-medium text-muted-foreground transition-all hover:bg-background hover:text-foreground`}
-                                    >
-                                        {item.title}
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
-                            ))}
-                        </NavigationMenuList>
-                    </NavigationMenu>
+                            <Input
+                                type="search"
+                                placeholder="Search books, authors..."
+                                className="h-9 rounded-xl border-muted bg-muted/40 pl-9 pr-4 text-sm shadow-none transition-all focus-visible:bg-background focus-visible:ring-1"
+                            />
+                        </div>
+                    </div>
 
+                    {/* Right */}
+                    <div className="flex items-center gap-3">
 
-                    <div className="flex items-center gap-1.5">
-
-                        {/* Search */}
+                        {/* Mobile Search Button */}
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                            className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:hidden"
+                            onClick={() => setShowMobileSearch(!showMobileSearch)}
                             aria-label="Search"
                         >
-                            <Search className="size-4.25" />
+                            {showMobileSearch ? (
+                                <X className="size-4" />
+                            ) : (
+                                <Search className="size-4" />
+                            )}
                         </Button>
 
+                        {/* Theme */}
                         <ThemeToggle />
 
                         {/* Profile */}
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            className="size-9 rounded-xl bg-background transition-all hover:bg-muted hidden md:flex"
+                        <div
+                            className="hidden size-9 rounded-xl bg-background transition-all hover:bg-muted md:flex"
                             aria-label="Profile"
                         >
-                            <User className="size-4.25" />
-                        </Button>
+                            <AvatarDropdown />
 
-                        {/* Mobile Sidebar Trigger */}
-                        <SidebarTrigger
-                            className="flex size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:hidden"
-                        />
+                        </div>
+
+                        {/* Mobile Sidebar */}
+                        <div className="relative flex size-9 items-center justify-center rounded-xl border bg-background transition-colors hover:bg-muted md:hidden">
+                            <SidebarTrigger />
+                        </div>
 
                     </div>
+
+                    {/* Mobile Search Bar */}
+                    {showMobileSearch && (
+                        <div className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur-xl md:hidden">
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+
+                                <Input
+                                    autoFocus
+                                    type="search"
+                                    placeholder="Search books, authors..."
+                                    className="h-10 rounded-xl bg-muted/40 pl-9 pr-4 shadow-none focus-visible:bg-background"
+                                />
+                            </div>
+                        </div>
+                    )}
+
                 </div>
             </div>
         </header>
