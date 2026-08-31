@@ -5,6 +5,7 @@ import ReduxProvider from "@/redux/provider";
 import { NavigationBar } from "@/components/shared/Navbar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { ThemeProvider } from "@/components/theme-provider/theme-provider";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -21,21 +22,30 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${inter.className} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ReduxProvider>
-          <SidebarProvider>
-            <AppSidebar />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
 
-            <NavigationBar />
+          <ReduxProvider>
+            <SidebarProvider>
+              <AppSidebar />
 
-            <main>
-              {children}
-            </main>
+              <NavigationBar />
+
+              <main>
+                {children}
+              </main>
 
 
-          </SidebarProvider>
-        </ReduxProvider>
+            </SidebarProvider>
+          </ReduxProvider>
+
+        </ThemeProvider>
       </body>
     </html>
   );

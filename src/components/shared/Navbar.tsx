@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
 import { SidebarTrigger } from "../ui/sidebar"
+import { ThemeToggle } from "../theme-provider/ThemeToggle"
 
 const navItems = [
     {
@@ -39,10 +40,9 @@ export function NavigationBar() {
 
                 <div className="relative flex h-14 items-center justify-between rounded-2xl border bg-background/95 px-3 shadow-sm">
 
-                    {/* Left */}
                     <div className="flex items-center gap-2">
 
-                        {/* Desktop Sidebar Trigger */}
+
                         <SidebarTrigger
                             className="hidden size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:flex"
                         />
@@ -51,7 +51,7 @@ export function NavigationBar() {
                             href="/"
                             className="group flex items-center gap-2"
                         >
-                            <div className="flex size-8 items-center justify-center rounded-lg bg-foreground text-sm font-bold text-background transition-transform group-hover:scale-105">
+                            <div className="flex size-8 items-center justify-center rounded-lg bg-amber-600 text-sm font-bold text-white transition-transform group-hover:scale-105">
                                 B
                             </div>
 
@@ -61,9 +61,9 @@ export function NavigationBar() {
                         </Link>
                     </div>
 
-                    {/* Center Navigation */}
+
                     <NavigationMenu className="absolute left-1/2 hidden -translate-x-1/2 md:flex">
-                        <NavigationMenuList className="gap-0.5 rounded-xl border bg-muted/40 p-1">
+                        <NavigationMenuList className="gap-0.5 rounded-xl p-1">
                             {navItems.map((item) => (
                                 <NavigationMenuItem key={item.href}>
                                     <NavigationMenuLink
@@ -77,7 +77,7 @@ export function NavigationBar() {
                         </NavigationMenuList>
                     </NavigationMenu>
 
-                 
+
                     <div className="flex items-center gap-1.5">
 
                         {/* Search */}
@@ -90,7 +90,9 @@ export function NavigationBar() {
                             <Search className="size-4.25" />
                         </Button>
 
-                      
+                        <ThemeToggle />
+
+                        {/* Profile */}
                         <Button
                             variant="outline"
                             size="icon"
@@ -100,7 +102,7 @@ export function NavigationBar() {
                             <User className="size-4.25" />
                         </Button>
 
-                       
+                        {/* Mobile Sidebar Trigger */}
                         <SidebarTrigger
                             className="flex size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:hidden"
                         />
