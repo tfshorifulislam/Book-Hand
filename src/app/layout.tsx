@@ -3,9 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/redux/provider";
 import { NavigationBar } from "@/components/shared/Navbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const inter = Inter({
-  weight:["400", "500", "600", "700" ,"800", "900"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   subsets: ["latin"]
 })
 
@@ -22,12 +24,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ReduxProvider>
+          <SidebarProvider>
+            <AppSidebar />
 
-          <NavigationBar />
+            <NavigationBar />
 
-          <main>
-            {children}
-          </main>
+            <main>
+              {children}
+            </main>
+
+
+          </SidebarProvider>
         </ReduxProvider>
       </body>
     </html>

@@ -1,102 +1,113 @@
 "use client"
 
 import Link from "next/link"
-import { Menu, Search, User } from "lucide-react"
+import { Search, User } from "lucide-react"
 
 import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
+    NavigationMenu,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
+import { SidebarTrigger } from "../ui/sidebar"
 
 const navItems = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Explore",
-    href: "/explore",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-  },
+    {
+        title: "Home",
+        href: "/",
+    },
+    {
+        title: "Explore",
+        href: "/explore",
+    },
+    {
+        title: "About",
+        href: "/about",
+    },
+    {
+        title: "Contact",
+        href: "/contact",
+    },
 ]
 
 export function NavigationBar() {
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
+    return (
+        <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
+            <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
 
-       
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-bold tracking-tight"
-        >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground text-background">
-            S
-          </div>
+                <div className="relative flex h-14 items-center justify-between rounded-2xl border bg-background/95 px-3 shadow-sm">
 
-          <span className="hidden text-lg sm:block">
-            BookHand
-          </span>
-        </Link>
+                    {/* Left */}
+                    <div className="flex items-center gap-2">
 
-       
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="gap-1">
-            {navItems.map((item) => (
-              <NavigationMenuItem key={item.href}>
-                <NavigationMenuLink
-                  render={<Link href={item.href} />}
-                  className={navigationMenuTriggerStyle()}
-                >
-                  {item.title}
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+                        {/* Desktop Sidebar Trigger */}
+                        <SidebarTrigger
+                            className="hidden size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:flex"
+                        />
 
-       
-        <div className="flex items-center gap-2">
+                        <Link
+                            href="/"
+                            className="group flex items-center gap-2"
+                        >
+                            <div className="flex size-8 items-center justify-center rounded-lg bg-foreground text-sm font-bold text-background transition-transform group-hover:scale-105">
+                                B
+                            </div>
 
-         
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full"
-          >
-            <Search className="h-4 w-4" />
-          </Button>
+                            <span className="hidden text-base font-bold tracking-tight sm:block">
+                                BookHand
+                            </span>
+                        </Link>
+                    </div>
 
-          {/* Profile */}
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full"
-          >
-            <User className="h-4 w-4" />
-          </Button>
+                    {/* Center Navigation */}
+                    <NavigationMenu className="absolute left-1/2 hidden -translate-x-1/2 md:flex">
+                        <NavigationMenuList className="gap-0.5 rounded-xl border bg-muted/40 p-1">
+                            {navItems.map((item) => (
+                                <NavigationMenuItem key={item.href}>
+                                    <NavigationMenuLink
+                                        render={<Link href={item.href} />}
+                                        className={`${navigationMenuTriggerStyle()} h-9 rounded-lg px-4 text-sm font-medium text-muted-foreground transition-all hover:bg-background hover:text-foreground`}
+                                    >
+                                        {item.title}
+                                    </NavigationMenuLink>
+                                </NavigationMenuItem>
+                            ))}
+                        </NavigationMenuList>
+                    </NavigationMenu>
 
+                 
+                    <div className="flex items-center gap-1.5">
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full md:hidden"
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-    </header>
-  )
+                        {/* Search */}
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+                            aria-label="Search"
+                        >
+                            <Search className="size-4.25" />
+                        </Button>
+
+                      
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="size-9 rounded-xl bg-background transition-all hover:bg-muted hidden md:flex"
+                            aria-label="Profile"
+                        >
+                            <User className="size-4.25" />
+                        </Button>
+
+                       
+                        <SidebarTrigger
+                            className="flex size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:hidden"
+                        />
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    )
 }
