@@ -4,9 +4,6 @@ import "./globals.css";
 import ReduxProvider from "@/redux/provider";
 import { NavigationBar } from "@/components/shared/Navbar";
 
-
-
-
 const inter = Inter({
   weight:["400", "500", "600", "700" ,"800", "900"],
   subsets: ["latin"]
