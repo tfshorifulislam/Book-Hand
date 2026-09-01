@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${inter.className} h-full antialiased`}
       suppressHydrationWarning
-    >
+      lang="en"
+      className={`${inter.className} h-full antialiased`}>
+        
       <body className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"

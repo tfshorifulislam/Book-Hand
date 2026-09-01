@@ -19,12 +19,7 @@ export function NavigationBar() {
                 <div className="relative flex h-14 items-center justify-between rounded-2xl border bg-background/95 px-3 shadow-sm">
 
                     {/* Left */}
-                    <div className="flex items-center gap-2">
-
-                        <SidebarTrigger
-                            className="hidden size-9 rounded-xl text-muted-foreground transition-all hover:bg-muted hover:text-foreground md:flex"
-                        />
-
+                    <div>
                         <Link
                             href="/"
                             className="group flex items-center gap-2"
