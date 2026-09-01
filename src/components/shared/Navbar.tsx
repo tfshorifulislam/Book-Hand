@@ -16,7 +16,7 @@ export function NavigationBar() {
         <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
             <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
 
-                <div className="relative flex h-14 items-center justify-between rounded-2xl border bg-background/95 px-3 shadow-sm">
+                <div className="relative flex h-14 items-center justify-between rounded-lg border bg-background/95 px-3">
 
                     {/* Left */}
                     <div>
@@ -34,7 +34,7 @@ export function NavigationBar() {
                         </Link>
                     </div>
 
-                    {/* Desktop Search */}
+                  
                     <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 md:block lg:max-w-md">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -42,7 +42,7 @@ export function NavigationBar() {
                             <Input
                                 type="search"
                                 placeholder="Search books, authors..."
-                                className="h-9 rounded-xl border-muted bg-muted/40 pl-9 pr-4 text-sm shadow-none transition-all focus-visible:bg-background focus-visible:ring-1"
+                                className="h-9 rounded-lg border-muted bg-muted/40 pl-9 pr-4 text-sm shadow-none transition-all focus-visible:bg-background focus-visible:ring-1"
                             />
                         </div>
                     </div>

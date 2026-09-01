@@ -26,10 +26,10 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "BookHand",
       logo: <FaBookOpenReader className="text-emerald-700 dark:text-emerald-500" />,
       hoverLogo: <SidebarTrigger />,
-      plan: "Enterprise",
+      plan: "Buy & Sell Books",
     },
     {
       name: "Acme Corp.",
