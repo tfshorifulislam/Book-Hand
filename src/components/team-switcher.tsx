@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -9,8 +8,6 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar"
-
-import { PanelLeft } from "lucide-react"
 
 export function TeamSwitcher({
   teams,
@@ -25,7 +22,6 @@ export function TeamSwitcher({
   const { state } = useSidebar()
 
   const [activeTeam] = React.useState(teams[0])
-  const [isHovered, setIsHovered] = React.useState(false)
 
   if (!activeTeam) {
     return null
@@ -37,46 +33,36 @@ export function TeamSwitcher({
     <SidebarMenu>
       <SidebarMenuItem>
         <div
-          className={`
-            flex w-full items-center
-            ${isCollapsed ? "justify-center" : "justify-between"}
-          `}
+          className={`flex w-full items-center
+            ${isCollapsed ? "justify-center" : "justify-between"}`}
         >
 
           <div
-            className={`
-              flex min-w-0 items-center
-              ${isCollapsed ? "justify-center" : "gap-2"}
-            `}
-          >
-            {/* Logo */}
+            className={`flex min-w-0 items-center
+              ${isCollapsed ? "justify-center" : "gap-2"}`}>
+
             <div
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="
-                flex size-8 shrink-0
-                cursor-default
-                items-center justify-center
-                rounded-lg
-                bg-sidebar-primary
-                text-sidebar-primary-foreground
-                transition-all duration-200
-              "
+              className={`group flex size-8 shrink-0 items-center justify-center rounded-lg
+                ${isCollapsed ? "cursor-pointer" : ""}`}
             >
-              {/* Normal Logo */}
-              {!isHovered ?
+              {isCollapsed ? (
+                <>
+
+                  <div className="flex size-5 items-center justify-center group-hover:hidden">
+                    {activeTeam.logo}
+                  </div>
+
+
+                  <div className="hidden size-5 items-center justify-center group-hover:flex">
+                    {activeTeam.hoverLogo}
+                  </div>
+                </>
+              ) : (
+
                 <div className="flex size-5 items-center justify-center">
                   {activeTeam.logo}
                 </div>
-                :
-
-                <div className="flex size-5 items-center justify-center">
-                  {activeTeam.hoverLogo}
-                </div>
-
-              }
-
-              
+              )}
             </div>
 
 
@@ -93,39 +79,13 @@ export function TeamSwitcher({
             )}
           </div>
 
-          {/* Sidebar Trigger */}
+         
           {!isCollapsed && (
             <SidebarTrigger
-              className="
-                ml-auto
-                size-8
-                shrink-0
-                rounded-lg
-                text-muted-foreground
-                transition-colors
-                hover:bg-sidebar-accent
-                hover:text-foreground
-              "
-            >
-              <PanelLeft className="size-4" />
-            </SidebarTrigger>
-          )}
-
-          {/* Trigger when Sidebar is collapsed */}
-          {isCollapsed && (
-            <SidebarTrigger
-              className="
-                absolute
-                inset-0
-                size-full
-                rounded-lg
-                opacity-0
-              "
-            />
+              className="ml-auto size-8 shrink-0 rounded-lg text-muted-foreground transition-colo hover:bg-sidebar-accent hover:text-foreground" />
           )}
         </div>
       </SidebarMenuItem>
     </SidebarMenu>
   )
 }
-

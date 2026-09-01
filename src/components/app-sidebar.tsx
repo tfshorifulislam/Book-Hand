@@ -14,7 +14,8 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+import { AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+import { FaBookOpenReader } from "react-icons/fa6"
 
 // This is sample data.
 const data = {
@@ -26,7 +27,7 @@ const data = {
   teams: [
     {
       name: "Acme Inc",
-      logo: (<GalleryVerticalEndIcon/>),
+      logo: <FaBookOpenReader className="text-emerald-700 dark:text-emerald-500" />,
       hoverLogo: <SidebarTrigger />,
       plan: "Enterprise",
     },
