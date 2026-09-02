@@ -8,15 +8,15 @@ import { Input } from "@/components/ui/input"
 import { SidebarTrigger } from "../ui/sidebar"
 import { ThemeToggle } from "../theme-provider/ThemeToggle"
 import { AvatarDropdown } from "./Avatar"
-import { authClient } from "@/lib/auth-client"
 import SignInButton from "../Auth/SigIn_Button"
 import SignUpButton from "../Auth/SignUp_Button"
+import { RootState } from "@/redux/store"
+import { useSelector } from "react-redux"
 
 export function NavigationBar() {
     const [showMobileSearch, setShowMobileSearch] = useState(false)
 
-    const { data: session } = authClient.useSession();
-    const user = session?.user;
+    const user = useSelector((state: RootState) => state.user.user);
 
     return (
         <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">

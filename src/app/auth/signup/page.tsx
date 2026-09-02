@@ -1,10 +1,13 @@
+"use client"
 
-const SignUpPage = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+import { SignupForm } from "@/components/Auth/signup-form"
 
-export default SignUpPage;
+export default function SignupPage() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6 md:p-10">
+      <div className="flex w-full max-w-sm flex-col gap-6">
+        <SignupForm />
+      </div>
+    </div>
+  )
+}
