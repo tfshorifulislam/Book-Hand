@@ -2,6 +2,8 @@
 
 import { Provider } from "react-redux";
 import { store } from "./store";
+import AuthSync from "@/app/auth/AuthSync";
+
 
 export default function ReduxProvider({
   children,
@@ -10,6 +12,7 @@ export default function ReduxProvider({
 }) {
   return (
     <Provider store={store}>
+      <AuthSync />
       {children}
     </Provider>
   );
