@@ -2,7 +2,7 @@
 
 import { Provider } from "react-redux";
 import { store } from "./store";
-import AuthSync from "@/app/auth/AuthSync";
+import AuthSync from "@/components/Auth/AuthSync";
 
 
 export default function ReduxProvider({
