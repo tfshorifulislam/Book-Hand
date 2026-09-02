@@ -8,9 +8,15 @@ import { Input } from "@/components/ui/input"
 import { SidebarTrigger } from "../ui/sidebar"
 import { ThemeToggle } from "../theme-provider/ThemeToggle"
 import { AvatarDropdown } from "./Avatar"
+import { authClient } from "@/lib/auth-client"
+import SignInButton from "../Auth/SigIn_Button"
+import SignUpButton from "../Auth/SignUp_Button"
 
 export function NavigationBar() {
     const [showMobileSearch, setShowMobileSearch] = useState(false)
+
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
 
     return (
         <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
@@ -34,7 +40,7 @@ export function NavigationBar() {
                         </Link>
                     </div>
 
-                  
+
                     <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 md:block lg:max-w-md">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -49,39 +55,46 @@ export function NavigationBar() {
 
                     {/* Right */}
                     <div className="flex items-center gap-3">
+                        {
+                            user ?
+                                <>
+                                    {/* Mobile Search Button */}
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:hidden"
+                                        onClick={() => setShowMobileSearch(!showMobileSearch)}
+                                        aria-label="Search"
+                                    >
+                                        {showMobileSearch ? (
+                                            <X className="size-4" />
+                                        ) : (
+                                            <Search className="size-4" />
+                                        )}
+                                    </Button>
 
-                        {/* Mobile Search Button */}
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:hidden"
-                            onClick={() => setShowMobileSearch(!showMobileSearch)}
-                            aria-label="Search"
-                        >
-                            {showMobileSearch ? (
-                                <X className="size-4" />
-                            ) : (
-                                <Search className="size-4" />
-                            )}
-                        </Button>
+                                    {/* Theme */}
+                                    <ThemeToggle />
 
-                        {/* Theme */}
-                        <ThemeToggle />
+                                    {/* Profile */}
+                                    <div
+                                        className="hidden size-9 rounded-xl bg-background transition-all hover:bg-muted md:flex"
+                                        aria-label="Profile">
+                                        <AvatarDropdown />
 
-                        {/* Profile */}
-                        <div
-                            className="hidden size-9 rounded-xl bg-background transition-all hover:bg-muted md:flex"
-                            aria-label="Profile"
-                        >
-                            <AvatarDropdown />
+                                    </div>
 
-                        </div>
-
-                        {/* Mobile Sidebar */}
-                        <div className="relative flex size-9 items-center justify-center rounded-xl border bg-background transition-colors hover:bg-muted md:hidden">
-                            <SidebarTrigger />
-                        </div>
-
+                                    {/* Mobile Sidebar */}
+                                    <div className="relative flex size-9 items-center justify-center rounded-xl border bg-background transition-colors hover:bg-muted md:hidden">
+                                        <SidebarTrigger />
+                                    </div>
+                                </>
+                                :
+                                <div className="flex gap-2">
+                                    <SignInButton />
+                                    <SignUpButton />
+                                </div>
+                        }
                     </div>
 
                     {/* Mobile Search Bar */}
