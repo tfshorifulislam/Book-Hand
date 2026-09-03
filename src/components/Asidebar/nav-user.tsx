@@ -20,19 +20,14 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { authClient } from "@/lib/auth-client"
 
 import { RootState } from "@/redux/store"
-import {
-  BadgeCheckIcon,
-  BellIcon,
-  ChevronsUpDownIcon,
-  CreditCardIcon,
-  LogOutIcon,
-  SparklesIcon,
-} from "lucide-react"
+import { ChevronsUpDownIcon, LogOutIcon, } from "lucide-react"
 import { useSelector } from "react-redux"
 
 export function NavUser() {
+
   const user = useSelector((state: RootState) => state.user.user)
   const { isMobile } = useSidebar()
 
@@ -40,8 +35,12 @@ export function NavUser() {
     return null
   }
 
-  const firstLetter =
-    user.name?.trim().charAt(0).toUpperCase() || "U"
+  const firstLetter = user.name?.trim().charAt(0).toUpperCase() || "U";
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    alert('Logged out successfully');
+  }
 
   return (
     <SidebarMenu>
@@ -106,35 +105,10 @@ export function NavUser() {
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <SparklesIcon />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-
-            <DropdownMenuSeparator />
-
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheckIcon />
-                Account
-              </DropdownMenuItem>
-
-              <DropdownMenuItem>
-                <CreditCardIcon />
-                Billing
-              </DropdownMenuItem>
-
-              <DropdownMenuItem>
-                <BellIcon />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem variant="destructive">
+            <DropdownMenuItem
+              variant="destructive"
+              onClick={handleLogout}
+            >
               <LogOutIcon />
               Log out
             </DropdownMenuItem>
