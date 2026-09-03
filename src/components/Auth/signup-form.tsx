@@ -19,14 +19,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { authClient } from "@/lib/auth-client"
 import { useRouter } from "next/navigation";
-
-
-type SignupFormData = {
-  fullName: string
-  email: string
-  password: string
-  confirmPassword: string
-}
+import { SignupFormData } from "../../../Types/SignupFormData_Types";
 
 
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
@@ -45,7 +38,6 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       email: data.email,
       password: data.password,
     });
-
 
 
     if (error) {

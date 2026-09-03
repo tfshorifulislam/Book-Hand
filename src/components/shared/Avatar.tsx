@@ -17,11 +17,16 @@ import {
 
 import { useSelector } from "react-redux"
 import type { RootState } from "@/redux/store"
+import { authClient } from "@/lib/auth-client"
 
 export function AvatarDropdown() {
   const user = useSelector((state: RootState) => state?.user?.user)
 
   const firstLetter = user?.name?.trim().charAt(0).toUpperCase() || "U"
+  const handleLogout = async () => {
+    await authClient.signOut();
+    alert('Logged out successfully');
+  }
 
   return (
     <DropdownMenu>
@@ -67,7 +72,9 @@ export function AvatarDropdown() {
         <DropdownMenuSeparator />
 
         <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem
+            onClick={handleLogout}
+            variant="destructive">
             Log out
           </DropdownMenuItem>
         </DropdownMenuGroup>

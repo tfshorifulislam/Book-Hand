@@ -1,3 +1,4 @@
+'use client';
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -17,11 +18,31 @@ import {
 import { Input } from "@/components/ui/input"
 import { FaGoogle } from "react-icons/fa"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { SignupFormData } from "../../../Types/SignupFormData_Types";
+import { authClient } from "@/lib/auth-client";
 
-export function LoginForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
+
+  const { register, handleSubmit } = useForm<SignupFormData>();
+  const router = useRouter();
+
+  const onSubmit = async (data: SignupFormData) => {
+    const { data: user, error } = await authClient.signIn.email({
+      email: data.email,
+      password: data.password,
+    })
+
+    if (error) {
+      alert(error.message);
+    }
+    else {
+      alert('Logged in successfully');
+      router.push('/');
+    };
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -32,7 +53,9 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <FieldGroup>
               <Field>
                 <Button variant="outline" type="button">
@@ -46,6 +69,7 @@ export function LoginForm({
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
+                {...register('email', { required: true })}
                   id="email"
                   type="email"
                   placeholder="you@example.com"
@@ -62,7 +86,12 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  {...register('password', { required: true })}
+                  id="password"
+                  type="password"
+                  required
+                />
               </Field>
               <Field>
                 <Button
