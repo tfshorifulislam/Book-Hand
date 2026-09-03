@@ -32,7 +32,7 @@ export function AvatarDropdown() {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/logout`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`,
         {
           method: "POST",
           credentials: "include",
