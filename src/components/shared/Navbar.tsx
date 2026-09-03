@@ -44,7 +44,7 @@ export function NavigationBar() {
                     {
                         user &&
                         <>
-                            <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 md:block lg:max-w-md">
+                            <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 lg:block lg:max-w-md">
                                 <div className="relative">
                                     <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
@@ -67,7 +67,7 @@ export function NavigationBar() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground md:hidden"
+                                        className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
                                         onClick={() => setShowMobileSearch(!showMobileSearch)}
                                         aria-label="Search"
                                     >

@@ -61,10 +61,6 @@ export function AvatarDropdown() {
           </DropdownMenuItem>
 
           <DropdownMenuItem>
-            Billing
-          </DropdownMenuItem>
-
-          <DropdownMenuItem>
             Settings
           </DropdownMenuItem>
         </DropdownMenuGroup>

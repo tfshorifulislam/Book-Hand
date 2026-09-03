@@ -42,6 +42,18 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
       router.push('/');
     };
   }
+  // GOOGLE LOGIN;
+  const signIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: process.env.NEXT_PUBLIC_FRONTEND_URL,
+    })
+
+    if (error) {
+      alert(error.message)
+      return
+    }
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -58,7 +70,10 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
           >
             <FieldGroup>
               <Field>
-                <Button variant="outline" type="button">
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={signIn}>
                   <FaGoogle />
                   Login with Google
                 </Button>
@@ -69,7 +84,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
-                {...register('email', { required: true })}
+                  {...register('email', { required: true })}
                   id="email"
                   type="email"
                   placeholder="you@example.com"
