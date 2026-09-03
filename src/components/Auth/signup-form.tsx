@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,6 +18,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { authClient } from "@/lib/auth-client"
+import { useRouter } from "next/navigation";
 
 
 type SignupFormData = {
@@ -32,6 +32,7 @@ type SignupFormData = {
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
 
   const { register, handleSubmit } = useForm<SignupFormData>();
+  const router = useRouter();
 
   const onSubmit = async (data: SignupFormData) => {
 
@@ -51,6 +52,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       alert(error.message);
     } else {
       alert('Account created successfully');
+      router.push('/');
     }
 
     console.log(user, error);

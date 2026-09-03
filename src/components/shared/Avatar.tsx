@@ -15,22 +15,61 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { useSelector } from "react-redux"
+import type { RootState } from "@/redux/store"
+
 export function AvatarDropdown() {
+  const user = useSelector((state: RootState) => state?.user?.user)
+
+  const firstLetter = user?.name?.trim().charAt(0).toUpperCase() || "U"
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full"><Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar></Button>} />
-      <DropdownMenuContent className="w-32">
+      <DropdownMenuTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full p-1"
+          >
+            <Avatar className="size-9">
+              <AvatarImage
+                src={user?.image || undefined}
+                alt={user?.name || "User"}
+              />
+
+              <AvatarFallback className="font-medium">
+                {firstLetter}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        }
+      />
+
+      <DropdownMenuContent
+        align="end"
+        className="w-48"
+      >
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>
+            Profile
+          </DropdownMenuItem>
+
+          <DropdownMenuItem>
+            Billing
+          </DropdownMenuItem>
+
+          <DropdownMenuItem>
+            Settings
+          </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
+
         <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+          <DropdownMenuItem variant="destructive">
+            Log out
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
