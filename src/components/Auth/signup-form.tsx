@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
 import { useForm } from "react-hook-form"
-import { authClient } from "@/lib/auth-client"
 import { useRouter } from "next/navigation";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
 
@@ -27,28 +26,41 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
 
-  const onSubmit = async (data: SignupFormData) => {
+  const onSubmit = async (values: SignupFormData) => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/auth/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.fullName,
+            email: values.email,
+            password: values.password,
+          }),
+        }
+      );
 
-    if (data.password !== data.confirmPassword) {
-      alert('passwords do not match');
-    };
+      const data = await response.json();
 
-    const { data: user, error } = await authClient.signUp.email({
-      name: data.fullName,
-      email: data.email,
-      password: data.password,
-    });
+      if (!response.ok) {
+        console.log(data.message);
+        return;
+      }
 
+      console.log("Signup successful:", data);
 
-    if (error) {
-      alert(error.message);
-    } else {
-      alert('Account created successfully');
-      router.push('/');
+      const { accessToken, refreshToken } = data.data;
+
+      console.log("Access Token:", accessToken);
+      console.log("Refresh Token:", refreshToken);
+    } catch (error) {
+      console.error("Signup error:", error);
     }
+  };
 
-    console.log(user, error);
-  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
