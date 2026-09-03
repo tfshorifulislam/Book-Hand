@@ -16,13 +16,7 @@ import {
 import { AudioLinesIcon, Heart, Library, PlusCircle, Settings, ShoppingBag, TerminalIcon, UserRound, BookOpen, Home, } from "lucide-react"
 import { FaBookOpenReader } from "react-icons/fa6"
 
-
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   teams: [
     {
       name: "BookHand",
@@ -92,6 +86,8 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  
+
   return (
     <Sidebar collapsible="icon" {...props} variant="floating">
       <SidebarHeader>
@@ -101,7 +97,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
