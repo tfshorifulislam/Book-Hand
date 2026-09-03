@@ -29,9 +29,10 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
   const onSubmit = async (values: SignupFormData) => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/signup",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup`,
         {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -51,11 +52,8 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       }
 
       console.log("Signup successful:", data);
+      router.push("/");
 
-      const { accessToken, refreshToken } = data.data;
-
-      console.log("Access Token:", accessToken);
-      console.log("Refresh Token:", refreshToken);
     } catch (error) {
       console.error("Signup error:", error);
     }

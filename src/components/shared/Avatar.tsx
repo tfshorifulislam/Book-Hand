@@ -15,17 +15,45 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import type { RootState } from "@/redux/store"
-import { authClient } from "@/lib/auth-client"
+import { clearUser } from "@/redux/features/user/userSlice"
+import { useRouter } from "next/navigation"
 
 export function AvatarDropdown() {
-  const user = useSelector((state: RootState) => state?.user?.user)
+  const user = useSelector((state: RootState) => state.user.user)
 
-  const firstLetter = user?.name?.trim().charAt(0).toUpperCase() || "U"
+  const dispatch = useDispatch()
+  const router = useRouter()
+
+  const firstLetter =
+    user?.name?.trim().charAt(0).toUpperCase() || "U"
+
   const handleLogout = async () => {
-    await authClient.signOut();
-    alert('Logged out successfully');
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      )
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        console.error(data.message)
+        return
+      }
+
+      dispatch(clearUser())
+
+      console.log("Logout successful:", data)
+
+      router.push("/")
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
   }
 
   return (
@@ -70,7 +98,8 @@ export function AvatarDropdown() {
         <DropdownMenuGroup>
           <DropdownMenuItem
             onClick={handleLogout}
-            variant="destructive">
+            variant="destructive"
+          >
             Log out
           </DropdownMenuItem>
         </DropdownMenuGroup>
