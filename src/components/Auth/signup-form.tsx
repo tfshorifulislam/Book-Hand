@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,11 +17,45 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link";
+import { useForm } from "react-hook-form"
+import { authClient } from "@/lib/auth-client"
 
-export function SignupForm({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+
+type SignupFormData = {
+  fullName: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
+
+export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
+
+  const { register, handleSubmit } = useForm<SignupFormData>();
+
+  const onSubmit = async (data: SignupFormData) => {
+
+    if (data.password !== data.confirmPassword) {
+      alert('passwords do not match');
+    };
+
+    const { data: user, error } = await authClient.signUp.email({
+      name: data.fullName,
+      email: data.email,
+      password: data.password,
+    });
+
+
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert('Account created successfully');
+    }
+
+    console.log(user, error);
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -30,15 +66,20 @@ export function SignupForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="name">Full Name</FieldLabel>
-                <Input id="name" type="text" placeholder="John Doe" required />
+                <Input
+                  {...register('fullName')}
+                  id="name"
+                  type="text" placeholder="John Doe"
+                  required />
               </Field>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
+                  {...register('email')}
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -49,13 +90,23 @@ export function SignupForm({
                 <Field className="grid grid-cols-2 gap-4">
                   <Field>
                     <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <Input id="password" type="password" required />
+                    <Input
+                      {...register('password')}
+                      id="password"
+                      type="password"
+                      required
+                    />
                   </Field>
                   <Field>
                     <FieldLabel htmlFor="confirm-password">
                       Confirm Password
                     </FieldLabel>
-                    <Input id="confirm-password" type="password" required />
+                    <Input
+                      {...register('confirmPassword')}
+                      id="confirm-password"
+                      type="password"
+                      required
+                    />
                   </Field>
                 </Field>
                 <FieldDescription>

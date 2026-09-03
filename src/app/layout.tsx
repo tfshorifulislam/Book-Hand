@@ -11,7 +11,7 @@ import {
   SidebarInset,
 } from "@/components/ui/sidebar"
 
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/Asidebar/app-sidebar"
 import { ThemeProvider } from "@/components/theme-provider/theme-provider"
 
 const inter = Inter({
