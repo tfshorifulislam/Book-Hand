@@ -23,9 +23,13 @@ import { useForm } from "react-hook-form";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
 import { setUser } from "@/redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
+
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
@@ -68,8 +72,10 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   };
 
   //google login 
-  const handleGoogleLogin = () => {
-    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/google`);
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -128,9 +134,12 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               </Field>
               <Field>
                 <Button
+                  disabled={loading}
                   className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                   type="submit">
-                  Login
+                  {loading
+                    ? "Logging in..."
+                    : "Login"}
                 </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <Link href="/auth/signup">Sign up</Link>

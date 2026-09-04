@@ -21,9 +21,12 @@ import { useRouter } from "next/navigation";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/features/user/userSlice";
+import { useState } from "react";
 
 
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
+
+      const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
@@ -126,9 +129,12 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
               </Field>
               <Field>
                 <Button
+                disabled={loading}
                   className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                   type="submit">
-                  Create Account
+                  {loading
+                    ? "Signing up..."
+                    : "Sign Up"}
                 </Button>
                 <FieldDescription className="text-center">
                   Already have an account? <Link href="/auth/signin">Sign in</Link>

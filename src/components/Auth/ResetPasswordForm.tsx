@@ -80,7 +80,7 @@ export default function ResetPasswordForm() {
             setConfirmPassword("");
 
             setTimeout(() => {
-                router.push("/auth/login");
+                router.push("/auth/signin");
             }, 2000);
         } catch (error) {
             console.error(
