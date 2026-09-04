@@ -35,41 +35,39 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
   const router = useRouter();
   const dispatch = useDispatch();
 
+
+
   const onSubmit = async (values: SignupFormData) => {
+    setLoading(true);
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json", },
-          body: JSON.stringify({
-            email: values.email,
-            password: values.password,
-          }),
-        }
-      );
+      const { data, error } = await authClient.signIn.email({
+        email: values.email,
+        password: values.password,
+      });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.log(data.message);
+      if (error) {
+        console.error("Login error:", error.message);
         return;
       }
 
-      dispatch(
-        setUser({
-          id: data?.data?.user?.id,
-          name: data?.data?.user?.name,
-        })
-      );
-
       console.log("Login successful:", data);
-      router.push("/");
 
+
+      if (data?.user) {
+        dispatch(setUser(data.user));
+      }
+
+    
+      router.push("/");
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Something went wrong:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
+
 
   //google login 
   const handleGoogleLogin = async () => {
@@ -134,7 +132,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               </Field>
               <Field>
                 <Button
-                  disabled={loading}
+                  // disabled={loading}
                   className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                   type="submit">
                   {loading
