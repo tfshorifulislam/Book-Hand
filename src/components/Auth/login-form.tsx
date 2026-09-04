@@ -21,12 +21,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
+import { setUser } from "@/redux/features/user/userSlice";
+import { useDispatch } from "react-redux";
 
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values: SignupFormData) => {
     try {
@@ -50,6 +53,13 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
         console.log(data.message);
         return;
       }
+
+      dispatch(
+        setUser({
+          id: data.data.user.id,
+          name: data.data.user.name,
+        })
+      );
 
       console.log("Login successful:", data);
       router.push("/");

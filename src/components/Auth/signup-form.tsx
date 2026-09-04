@@ -19,12 +19,15 @@ import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/features/user/userSlice";
 
 
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values: SignupFormData) => {
     try {
@@ -50,6 +53,13 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
         console.log(data.message);
         return;
       }
+
+      dispatch(
+        setUser({
+          id: data.data.user.id,
+          name: data.data.user.name,
+        })
+      )
 
       console.log("Signup successful:", data);
       router.push("/");
