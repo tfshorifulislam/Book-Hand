@@ -5,8 +5,8 @@ const HeroRight = () => {
         <div>
             <Image
                 src="/book.png"
-                width={650}
-                height={650}
+                width={700}
+                height={700}
                 alt='book'
             />
         </div>
