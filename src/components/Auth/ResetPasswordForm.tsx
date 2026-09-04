@@ -3,8 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "../ui/button";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { authClient } from "@/lib/auth-client";
 
 export default function ResetPasswordForm() {
     const router = useRouter();
@@ -33,9 +32,7 @@ export default function ResetPasswordForm() {
         }
 
         if (newPassword.length < 8) {
-            setError(
-                "Password must be at least 8 characters long."
-            );
+            setError("Password must be at least 8 characters long.");
             return;
         }
 
@@ -47,34 +44,19 @@ export default function ResetPasswordForm() {
         try {
             setLoading(true);
 
-            const response = await fetch(
-                `${BASE_URL}/api/auth/reset-password`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        token,
-                        newPassword,
-                    }),
-                }
-            );
+            const { error } = await authClient.resetPassword({
+                newPassword,
+                token,
+            });
 
-            const data = await response.json();
-
-            if (!response.ok) {
+            if (error) {
                 setError(
-                    data?.message ||
-                        "Failed to reset password."
+                    error.message || "Failed to reset password."
                 );
                 return;
             }
 
-            setMessage(
-                data?.message ||
-                    "Password has been reset successfully."
-            );
+            setMessage("Password has been reset successfully.");
 
             setNewPassword("");
             setConfirmPassword("");
@@ -83,10 +65,7 @@ export default function ResetPasswordForm() {
                 router.push("/auth/signin");
             }, 2000);
         } catch (error) {
-            console.error(
-                "Reset password error:",
-                error
-            );
+            console.error("Reset password error:", error);
 
             setError(
                 "Something went wrong. Please try again."
@@ -126,9 +105,7 @@ export default function ResetPasswordForm() {
                             type="password"
                             value={newPassword}
                             onChange={(e) =>
-                                setNewPassword(
-                                    e.target.value
-                                )
+                                setNewPassword(e.target.value)
                             }
                             placeholder="Enter new password"
                             className="w-full rounded-md border px-3 py-2 outline-none"
@@ -149,9 +126,7 @@ export default function ResetPasswordForm() {
                             type="password"
                             value={confirmPassword}
                             onChange={(e) =>
-                                setConfirmPassword(
-                                    e.target.value
-                                )
+                                setConfirmPassword(e.target.value)
                             }
                             placeholder="Confirm new password"
                             className="w-full rounded-md border px-3 py-2 outline-none"
@@ -174,7 +149,7 @@ export default function ResetPasswordForm() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer w-full"
+                        className="w-full cursor-pointer bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
                     >
                         {loading
                             ? "Resetting..."

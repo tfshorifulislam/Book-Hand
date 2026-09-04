@@ -1,9 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { authClient } from "@/lib/auth-client";
 import { FormEvent, useState } from "react";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("");
@@ -24,36 +23,18 @@ export default function ForgotPasswordPage() {
 
         try {
             setLoading(true);
+            const { error } = await authClient.requestPasswordReset({
+                email,
+                redirectTo: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/auth/reset-password`
+            });
 
-            const response = await fetch(
-                `${BASE_URL}/api/auth/forgot-password`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email,
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                setError(
-                    data?.message ||
-                        "Something went wrong. Please try again."
-                );
+            if (error) {
+                setError(error.message || 'Someting went wrong.');
                 return;
-            }
+            };
 
-            setMessage(
-                data?.message ||
-                    "If an account exists with this email, a password reset link has been sent."
-            );
+            setMessage('Password reseet link has been sent to your email.')
 
-            setEmail("");
         } catch (error) {
             console.error("Forgot password error:", error);
 
@@ -95,9 +76,7 @@ export default function ForgotPasswordPage() {
                             id="email"
                             type="email"
                             value={email}
-                            onChange={(e) =>
-                                setEmail(e.target.value)
-                            }
+                            onChange={(e) =>setEmail(e.target.value)}
                             placeholder="Enter your email"
                             className="w-full rounded-md border px-3 py-2 outline-none"
                             disabled={loading}
