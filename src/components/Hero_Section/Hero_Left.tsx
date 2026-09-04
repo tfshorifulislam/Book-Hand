@@ -1,4 +1,4 @@
-import React from "react";
+
 import { ArrowRight, BookOpen, ShieldCheck, Users } from "lucide-react";
 import { Button } from "../ui/button";
 
