@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 const FindRightBookSection = () => {
     return (
         <section className="relative w-full overflow-hidden">
-           
+
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{ backgroundImage: "url('/boog-bg.jpg')" }}
@@ -40,24 +40,24 @@ const FindRightBookSection = () => {
                 </div>
 
                 <div className="mx-auto mt-8 max-w-2xl">
-                    <div className="relative flex flex-1 items-center gap-3">
+                    <div className="flex w-full flex-col gap-3 sm:flex-row">
+                        <div className="relative flex-1">
+                            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
 
-                        <Search className="absolute left-4 h-5 w-5 text-muted-foreground" />
-
-                        <Input
-                            type="search"
-                            placeholder="Search by book title, author, ISBN..."
-                            className="h-12 border bg-background pl-12 pr-4 text-sm shadow-sm"
-                        />
+                            <Input
+                                type="search"
+                                placeholder="Search by book title, author, ISBN..."
+                                className="h-12 w-full border bg-background pl-12 pr-4 text-sm"
+                            />
+                        </div>
 
                         <Button
                             size="lg"
-                            className="h-12 cursor-pointer bg-emerald-700 px-6 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                            className="h-12 w-full cursor-pointer bg-emerald-700 px-6 text-white hover:bg-emerald-600 sm:w-auto dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
                         >
                             Search
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
-
                     </div>
                 </div>
 
