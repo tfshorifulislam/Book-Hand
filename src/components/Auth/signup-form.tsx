@@ -106,7 +106,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
                 />
               </Field>
               <Field>
-                <Field className="grid grid-cols-2 gap-4">
+                <Field className="grid sm:grid-cols-2 gap-4">
                   <Field>
                     <FieldLabel htmlFor="password">Password</FieldLabel>
                     <Input
