@@ -20,12 +20,17 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { authClient } from "@/lib/auth-client"
+import { clearUser } from "@/redux/features/user/userSlice"
 
 import { RootState } from "@/redux/store"
 import { ChevronsUpDownIcon, LogOutIcon, } from "lucide-react"
-import { useSelector } from "react-redux"
+import { useRouter } from "next/navigation"
+import { useDispatch, useSelector } from "react-redux"
 
 export function NavUser() {
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const user = useSelector((state: RootState) => state.user.user)
   console.log("NavUser user:", user)
@@ -36,6 +41,13 @@ export function NavUser() {
   }
 
   const firstLetter = user.name?.trim().charAt(0).toUpperCase() || "U";
+
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    dispatch(clearUser())
+    router.push('/auth/signin');
+  }
 
   return (
     <SidebarMenu>
@@ -101,6 +113,7 @@ export function NavUser() {
             <DropdownMenuSeparator />
 
             <DropdownMenuItem
+              onClick={handleLogout}
               variant="destructive"
             >
               <LogOutIcon />

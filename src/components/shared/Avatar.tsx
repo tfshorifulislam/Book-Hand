@@ -22,18 +22,17 @@ import { useRouter } from "next/navigation"
 import { authClient } from "@/lib/auth-client"
 
 export function AvatarDropdown() {
-  const user = useSelector((state: RootState) => state.user.user)
-
-  const dispatch = useDispatch()
-  const router = useRouter()
-
-  const firstLetter =
-    user?.name?.trim().charAt(0).toUpperCase() || "U"
+  
+  const dispatch = useDispatch();
+  const router = useRouter();
+  
+  const user = useSelector((state: RootState) => state.user.user);
+  const firstLetter = user?.name?.trim().charAt(0).toUpperCase() || "U";
 
   const handleLogout = async () => {
     await authClient.signOut();
     dispatch(clearUser())
-    router.push('/auth/singin');
+    router.push('/auth/signin');
   }
 
   return (
