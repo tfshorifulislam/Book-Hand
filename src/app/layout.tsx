@@ -13,6 +13,7 @@ import {
 import { AppSidebar } from "@/components/Asidebar/app-sidebar"
 import { ThemeProvider } from "@/components/theme-provider/theme-provider"
 import { NavigationBar } from "@/components/Navbar_Components/NavigationBar"
+import SmoothScroll from "@/components/shared/SmoothScroll"
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -34,6 +35,9 @@ export default function RootLayout({
       className={`${inter.className} h-full antialiased`}
     >
       <body className="min-h-full">
+
+        <SmoothScroll/>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
