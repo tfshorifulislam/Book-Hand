@@ -7,7 +7,7 @@ const HeroLeft = () => {
         <div className="max-w-2xl">
            
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm font-medium shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-green-500" />
+                <span className="h-2 w-2 rounded-full bg-emerald-700" />
                 <span className="text-muted-foreground">
                     Built for university students
                 </span>
@@ -15,7 +15,7 @@ const HeroLeft = () => {
 
            
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Find Your <span className="text-emerald-700">Next Book.</span>
+                Find Your <span className="text-emerald-700 dark:text-emerald-500">Next Book.</span>
                 <span className="mt-2 block text-muted-foreground">
                     Give Your Old Books a New Home.
                 </span>
