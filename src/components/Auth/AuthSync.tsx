@@ -51,6 +51,7 @@ export default function AuthSync() {
                     setUser({
                         id: data?.data?.user?.id,
                         name: data?.data?.user?.name,
+                        image: data?.data?.user?.image,
                     })
                 );
             } catch (error) {
