@@ -109,9 +109,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                   Login with Google
                 </Button>
               </Field>
-              <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
-                Or continue with
-              </FieldSeparator>
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-border" />
+
+                <span className="text-xs text-muted-foreground">
+                  Or continue with
+                </span>
+
+                <div className="h-px flex-1 bg-border" />
+              </div>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
@@ -125,12 +131,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <Link
-                    href="/auth/forgot-password"
-                    className="ml-auto text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
+
                 </div>
                 <Input
                   {...register('password', { required: true })}
@@ -138,10 +139,19 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                   type="password"
                   required
                 />
+
+                <div className="flex">
+                  <Link
+                    href="/auth/forgot-password"
+                    className="ml-auto text-sm underline-offset-4 hover:underline"
+                  >
+                    Forgot your password?
+                  </Link>
+                </div>
+
               </Field>
               <Field>
                 <Button
-                  // disabled={loading}
                   className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                   type="submit">
                   {loading
