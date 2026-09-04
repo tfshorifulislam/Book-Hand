@@ -4,7 +4,6 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 
 import ReduxProvider from "@/redux/provider"
-import { NavigationBar } from "@/components/shared/Navbar"
 
 import {
   SidebarProvider,
@@ -13,6 +12,7 @@ import {
 
 import { AppSidebar } from "@/components/Asidebar/app-sidebar"
 import { ThemeProvider } from "@/components/theme-provider/theme-provider"
+import { NavigationBar } from "@/components/Navbar_Components/NavigationBar"
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
