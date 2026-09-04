@@ -37,9 +37,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
         {
           method: "POST",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json", },
           body: JSON.stringify({
             email: values.email,
             password: values.password,
@@ -56,8 +54,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
       dispatch(
         setUser({
-          id: data.data.user.id,
-          name: data.data.user.name,
+          id: data?.data?.user?.id,
+          name: data?.data?.user?.name,
         })
       );
 
@@ -69,7 +67,10 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
     }
   };
 
-
+  //google login 
+  const handleGoogleLogin = () => {
+    router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/google`);
+  };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -87,6 +88,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
             <FieldGroup>
               <Field>
                 <Button
+                  onClick={handleGoogleLogin}
                   variant="outline"
                   type="button"
                 >

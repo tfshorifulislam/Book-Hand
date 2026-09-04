@@ -13,18 +13,15 @@ export default function AuthSync() {
     useEffect(() => {
         const getMe = async () => {
             try {
-                // প্রথমে current access token দিয়ে user নেওয়ার চেষ্টা
-                let response = await fetch(
-                    `${BASE_URL}/api/me`,
+                let response = await fetch(`${BASE_URL}/api/me`,
                     {
                         credentials: "include",
                     }
                 );
 
-                // Access token expired হলে refresh করবো
+               
                 if (response.status === 401) {
-                    const refreshResponse = await fetch(
-                        `${BASE_URL}/api/auth/refresh`,
+                    const refreshResponse = await fetch(`${BASE_URL}/api/auth/refresh`,
                         {
                             method: "POST",
                             credentials: "include",
@@ -36,10 +33,7 @@ export default function AuthSync() {
                         return;
                     }
 
-                    // নতুন access token cookie পাওয়ার পর
-                    // আবার /me call
-                    response = await fetch(
-                        `${BASE_URL}/api/me`,
+                    response = await fetch(`${BASE_URL}/api/me`,
                         {
                             credentials: "include",
                         }
@@ -55,8 +49,8 @@ export default function AuthSync() {
 
                 dispatch(
                     setUser({
-                        id: data.data.user.id,
-                        name: data.data.user.name,
+                        id: data?.data?.user?.id,
+                        name: data?.data?.user?.name,
                     })
                 );
             } catch (error) {

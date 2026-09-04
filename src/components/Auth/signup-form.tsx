@@ -31,14 +31,11 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
 
   const onSubmit = async (values: SignupFormData) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup`,
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup`,
         {
           method: "POST",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: {"Content-Type": "application/json", },
           body: JSON.stringify({
             name: values.fullName,
             email: values.email,
