@@ -21,40 +21,45 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
-import { authClient } from "@/lib/auth-client";
+
 
 export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
 
-  const onSubmit = async (data: SignupFormData) => {
-    const { data: user, error } = await authClient.signIn.email({
-      email: data.email,
-      password: data.password,
-    })
+  const onSubmit = async (values: SignupFormData) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+        }
+      );
 
-    if (error) {
-      alert(error.message);
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.log(data.message);
+        return;
+      }
+
+      console.log("Login successful:", data);
+      router.push("/");
+
+    } catch (error) {
+      console.error("Login error:", error);
     }
-    else {
-      alert('Logged in successfully');
-      router.push('/');
-    };
-  }
-  // GOOGLE LOGIN;
-  const signIn = async () => {
-    const { data, error } = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: process.env.NEXT_PUBLIC_FRONTEND_URL,
-    })
+  };
 
-    if (error) {
-      alert(error.message)
-      return
-    }
 
-  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -74,7 +79,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={signIn}>
+                >
                   <FaGoogle />
                   Login with Google
                 </Button>
