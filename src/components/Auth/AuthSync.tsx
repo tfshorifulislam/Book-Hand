@@ -3,64 +3,29 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, clearUser } from "@/redux/features/user/userSlice";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { authClient } from "@/lib/auth-client";
 
 export default function AuthSync() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getMe = async () => {
-            try {
-                let response = await fetch(`${BASE_URL}/api/me`, {
-                    method: "GET",
-                    credentials: "include",
-                    cache: "no-store",
-                });
+  const { data: session, isPending } = authClient.useSession();
 
-                if (response.status === 401) {
-                    const refreshResponse = await fetch(
-                        `${BASE_URL}/api/auth/refresh`,
-                        {
-                            method: "POST",
-                            credentials: "include",
-                        }
-                    );
+  useEffect(() => {
+    if (isPending) return;
 
-                    if (!refreshResponse.ok) {
-                        dispatch(clearUser());
-                        return;
-                    }
+    if (session?.user) {
+      dispatch(
+        setUser({
+          id: session.user.id,
+          name: session.user.name,
+          email: session.user.email,
+          image: session.user.image,
+        })
+      );
+    } else {
+      dispatch(clearUser());
+    }
+  }, [session, isPending, dispatch]);
 
-                    response = await fetch(`${BASE_URL}/api/me`, {
-                        method: "GET",
-                        credentials: "include",
-                        cache: "no-store",
-                    });
-                }
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    dispatch(clearUser());
-                    return;
-                }
-
-                dispatch(
-                    setUser({
-                        id: data.data.user.id,
-                        name: data.data.user.name,
-                        image: data.data.user.image,
-                    })
-                );
-            } catch (error) {
-                console.error("Auth sync error:", error);
-                dispatch(clearUser());
-            }
-        };
-
-        getMe();
-    }, [dispatch]);
-
-    return null;
+  return null;
 }

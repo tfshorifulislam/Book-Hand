@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from "react-redux"
 import type { RootState } from "@/redux/store"
 import { clearUser } from "@/redux/features/user/userSlice"
 import { useRouter } from "next/navigation"
+import { authClient } from "@/lib/auth-client"
 
 export function AvatarDropdown() {
   const user = useSelector((state: RootState) => state.user.user)
@@ -30,30 +31,9 @@ export function AvatarDropdown() {
     user?.name?.trim().charAt(0).toUpperCase() || "U"
 
   const handleLogout = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`,
-        {
-          method: "POST",
-          credentials: "include",
-        }
-      )
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        console.error(data.message)
-        return
-      }
-
-      dispatch(clearUser())
-
-      console.log("Logout successful:", data)
-
-      router.push("/")
-    } catch (error) {
-      console.error("Logout error:", error)
-    }
+    await authClient.signOut();
+    dispatch(clearUser())
+    router.push('/auth/singin');
   }
 
   return (

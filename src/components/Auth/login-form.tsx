@@ -55,11 +55,18 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
 
       if (data?.user) {
-        dispatch(setUser(data.user));
+        dispatch(
+          setUser({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+            image: data.user.image,
+          })
+        );
       }
 
-    
       router.push("/");
+
     } catch (error) {
       console.error("Something went wrong:", error);
     } finally {
@@ -74,6 +81,8 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
     const data = await authClient.signIn.social({
       provider: "google",
     });
+
+    console.log('google login data', data);
   };
 
   return (

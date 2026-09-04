@@ -22,50 +22,55 @@ import { SignupFormData } from "../../../Types/SignupFormData_Types";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/features/user/userSlice";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 
 export function SignupForm({ className, ...props }: React.ComponentProps<"div">) {
 
-      const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
   const dispatch = useDispatch();
 
   const onSubmit = async (values: SignupFormData) => {
+    if (values.password !== values.confirmPassword) {
+      alert("Password doesn't match");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/signup`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {"Content-Type": "application/json", },
-          body: JSON.stringify({
-            name: values.fullName,
-            email: values.email,
-            password: values.password,
-          }),
-        }
-      );
+      const { data, error } = await authClient.signUp.email({
+        name: values.fullName,
+        email: values.email,
+        password: values.password,
+      });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.log(data.message);
+      if (error) {
+        console.error("Signup error:", error.message);
         return;
       }
 
-      dispatch(
-        setUser({
-          id: data.data.user.id,
-          name: data.data.user.name,
-        })
-      )
-
       console.log("Signup successful:", data);
+
+      if (data?.user) {
+        dispatch(
+          setUser({
+            id: data.user.id,
+            name: data.user.name,
+            email: data.user.email,
+            image: data.user.image,
+          })
+        );
+      }
       router.push("/");
 
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error("Something went wrong:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -129,7 +134,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
               </Field>
               <Field>
                 <Button
-                disabled={loading}
+                  disabled={loading}
                   className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                   type="submit">
                   {loading
