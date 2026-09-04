@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { FormEvent, useState } from "react";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -115,15 +116,15 @@ export default function ForgotPasswordPage() {
                         </p>
                     )}
 
-                    <button
+                    <Button
                         type="submit"
                         disabled={loading}
-                        className="w-full rounded-md bg-black px-4 py-2 text-white disabled:opacity-50"
+                        className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer w-full"
                     >
                         {loading
                             ? "Sending..."
                             : "Send Reset Link"}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

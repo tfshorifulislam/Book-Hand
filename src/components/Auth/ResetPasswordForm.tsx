@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "../ui/button";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -170,15 +171,15 @@ export default function ResetPasswordForm() {
                         </p>
                     )}
 
-                    <button
+                    <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
+                        className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer w-full"
                     >
                         {loading
                             ? "Resetting..."
                             : "Reset Password"}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>
