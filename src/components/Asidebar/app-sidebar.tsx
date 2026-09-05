@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar"
 import { AudioLinesIcon, Heart, Library, PlusCircle, Settings, ShoppingBag, TerminalIcon, UserRound, BookOpen, Home, } from "lucide-react"
 import { FaBookOpenReader } from "react-icons/fa6"
+import { motion } from 'motion/react'
 
 const data = {
   teams: [
@@ -86,20 +87,26 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  
+
 
   return (
-    <Sidebar collapsible="icon" {...props} variant="floating">
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <Sidebar collapsible="icon" {...props} variant="floating">
+        <SidebarHeader>
+          <TeamSwitcher teams={data.teams} />
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.navMain} />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser />
+        </SidebarFooter>
+        <SidebarRail />
+      </Sidebar>
+    </motion.div>
   )
 }
