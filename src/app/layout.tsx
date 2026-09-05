@@ -14,6 +14,7 @@ import { AppSidebar } from "@/components/Asidebar/app-sidebar"
 import { ThemeProvider } from "@/components/theme-provider/theme-provider"
 import { NavigationBar } from "@/components/Navbar_Components/NavigationBar"
 import SmoothScroll from "@/components/shared/SmoothScroll"
+import { Footer } from "@/components/Footer/Footer"
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -36,7 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full">
 
-        <SmoothScroll/>
+        <SmoothScroll />
 
         <ThemeProvider
           attribute="class"
@@ -46,17 +47,18 @@ export default function RootLayout({
         >
           <ReduxProvider>
             <SidebarProvider>
-             
+
               <AppSidebar />
 
               <SidebarInset className="min-w-0">
-               
+
                 <NavigationBar />
 
                 <main className="flex flex-1 w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
                   {children}
                 </main>
-
+                <Footer />
+                
               </SidebarInset>
             </SidebarProvider>
           </ReduxProvider>
