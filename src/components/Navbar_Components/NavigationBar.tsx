@@ -22,7 +22,7 @@ export function NavigationBar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
         >
-            <header className="sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
+            <header className="sticky top-0 left-0 right-0 z-50 w-full bg-background/70 backdrop-blur-xl">
                 <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
                     <div className="relative flex h-14 items-center justify-between rounded-lg border bg-background/95 px-3">
 

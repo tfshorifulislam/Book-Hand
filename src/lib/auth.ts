@@ -2,6 +2,8 @@ import { betterAuth } from "better-auth";
 import { Pool } from "pg";
 import nodemailer from "nodemailer";
 import { resetPasswordEmail } from "@/components/emails/resetPasswordEmail";
+import { multiSession } from "better-auth/plugins"
+
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -28,6 +30,12 @@ export const auth = betterAuth({
         expiresIn: 60 * 60 * 24 * 7,
         updateAge: 60 * 60 * 24,
     },
+
+    plugins: [
+        multiSession({
+            maximumSessions: 2
+        })
+    ],
 
     emailAndPassword: {
         enabled: true,
