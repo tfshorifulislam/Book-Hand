@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const auth = betterAuth({
-    baseURL: process.env.NEXT_PUBLIC_FRONTEND_URL,
+    baseURL: process.env.BETTER_AUTH_URL,
 
     trustedOrigins: [
         process.env.NEXT_PUBLIC_FRONTEND_URL!,
@@ -23,6 +23,11 @@ export const auth = betterAuth({
     database: new Pool({
         connectionString: process.env.DATABASE_URL,
     }),
+
+    session: {
+        expiresIn: 60 * 60 * 24 * 7,
+        updateAge: 60 * 60 * 24,
+    },
 
     emailAndPassword: {
         enabled: true,
@@ -46,4 +51,5 @@ export const auth = betterAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         },
     },
+
 });
