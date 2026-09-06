@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Review, ReviewCard } from "./ReviewCard";
+import type { Review } from "./ReviewCard";
+import { ReviewCard } from "./ReviewCard";
 
 type ReviewRowProps = {
   reviews: Review[];
@@ -16,32 +17,34 @@ export function ReviewRow({
     ...reviews,
     ...reviews,
     ...reviews,
+    ...reviews,
   ];
 
+  const isLeft = direction === "left";
+
   return (
-    <motion.div
-      className="flex w-max gap-3 sm:gap-4 md:gap-6"
-      initial={{
-        x: direction === "left" ? "0%" : "-25%",
-      }}
-      animate={{
-        x:
-          direction === "left"
-            ? ["0%", "-25%"]
-            : ["-25%", "0%"],
-      }}
-      transition={{
-        duration: 20,
-        ease: "linear",
-        repeat: Infinity,
-      }}
-    >
-      {duplicatedReviews.map((review, index) => (
-        <ReviewCard
-          key={`${direction}-${review.id}-${index}`}
-          review={review}
-        />
-      ))}
-    </motion.div>
+    <div className="w-full overflow-hidden">
+      <motion.div
+        className="flex w-max gap-3 sm:gap-4 md:gap-6"
+        animate={{
+          x: isLeft
+            ? ["0px", "-1080px"]
+            : ["-1080px", "0px"],
+        }}
+        transition={{
+          duration: 25,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+      >
+        {duplicatedReviews.map((review, index) => (
+          <ReviewCard
+            key={`${direction}-${review.id}-${index}`}
+            review={review}
+          />
+        ))}
+      </motion.div>
+    </div>
   );
 }
