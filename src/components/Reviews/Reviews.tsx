@@ -1,9 +1,9 @@
 "use client";
 
-import { Quote, Star } from "lucide-react";
-import { motion } from "motion/react";
+import { ReviewRow } from "./ReviewRow";
+import type { Review } from "./ReviewCard";
 
-const reviews = [
+const reviews: Review[] = [
   {
     id: 1,
     name: "Rahim Ahmed",
@@ -56,7 +56,14 @@ const reviews = [
 
 export function Reviews() {
   const firstRow = reviews.slice(0, 3);
+
   const secondRow = reviews.slice(3, 6);
+
+  const thirdRow = [
+    reviews[1],
+    reviews[2],
+    reviews[3],
+  ];
 
   return (
     <section className="w-full overflow-hidden py-20 md:py-28">
@@ -78,153 +85,62 @@ export function Reviews() {
           </p>
         </div>
 
-        {/* Reviews */}
+        {/* Review Rows */}
         <div className="relative mt-16 space-y-6 overflow-hidden">
 
           {/* Left Fade */}
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-20 bg-linear-to-r from-background to-transparent md:w-32" />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-0
+              top-0
+              z-20
+              h-full
+              w-20
+              bg-linear-to-r
+              from-background
+              to-transparent
+              md:w-32
+            "
+          />
 
           {/* Right Fade */}
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-20 bg-linear-to-l from-background to-transparent md:w-32" />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              right-0
+              top-0
+              z-20
+              h-full
+              w-20
+              bg-linear-to-l
+              from-background
+              to-transparent
+              md:w-32
+            "
+          />
 
-          {/* ================= ROW 1 ================= */}
-          <motion.div
-            className="flex w-max gap-6"
-            animate={{
-              x: ["0%", "-25%"],
-            }}
-            transition={{
-              duration: 20,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            {[...firstRow, ...firstRow, ...firstRow].map(
-              (review, index) => (
-                <ReviewCard
-                  key={`row1-${review.id}-${index}`}
-                  review={review}
-                />
-              )
-            )}
-          </motion.div>
+          {/* Row 1 */}
+          <ReviewRow
+            reviews={firstRow}
+            direction="left"
+          />
 
-          {/* ================= ROW 2 ================= */}
-          <motion.div
-            className="flex w-max gap-6"
-            initial={{
-              x: "-25%",
-            }}
-            animate={{
-              x: ["-25%", "0%"],
-            }}
-            transition={{
-              duration: 20,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            {[...secondRow, ...secondRow, ...secondRow].map(
-              (review, index) => (
-                <ReviewCard
-                  key={`row2-${review.id}-${index}`}
-                  review={review}
-                />
-              )
-            )}
-          </motion.div>
+          {/* Row 2 */}
+          <ReviewRow
+            reviews={secondRow}
+            direction="right"
+          />
 
+          {/* Row 3 */}
+          <ReviewRow
+            reviews={thirdRow}
+            direction="left"
+          />
         </div>
       </div>
     </section>
-  );
-}
-
-function ReviewCard({
-  review,
-}: {
-  review: (typeof reviews)[number];
-}) {
-  return (
-    <div
-      className="
-        w-[320px]
-        shrink-0
-        rounded-2xl
-        border
-        bg-background
-        p-6
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-lg
-        sm:w-[360px]
-        lg:w-[380px]
-      "
-    >
-      {/* Rating + Quote */}
-      <div className="flex items-center justify-between">
-
-        {/* Yellow Stars */}
-        <div className="flex gap-1">
-          {Array.from({ length: review.rating }).map((_, index) => (
-            <Star
-              key={index}
-              className="size-4 fill-yellow-400 text-yellow-400"
-            />
-          ))}
-        </div>
-
-        <Quote className="size-8 text-muted-foreground/15" />
-      </div>
-
-      {/* Review - Exactly 3 line height */}
-      <p
-        className="
-          mt-6
-          h-[72px]
-          overflow-hidden
-          text-sm
-          leading-6
-          text-muted-foreground
-        "
-      >
-        “{review.review}”
-      </p>
-
-      {/* User */}
-      <div className="mt-7 flex items-center gap-3">
-
-        {/* Avatar */}
-        <div
-          className="
-            flex
-            size-11
-            shrink-0
-            items-center
-            justify-center
-            rounded-full
-            border
-            bg-muted
-            text-sm
-            font-semibold
-          "
-        >
-          {review.name.charAt(0)}
-        </div>
-
-        {/* User Info */}
-        <div>
-          <h4 className="text-sm font-semibold">
-            {review.name}
-          </h4>
-
-          <p className="text-xs text-muted-foreground">
-            {review.role}
-          </p>
-        </div>
-
-      </div>
-    </div>
   );
 }
