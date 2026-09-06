@@ -20,7 +20,7 @@ export function ReviewRow({
 
   return (
     <motion.div
-      className="flex w-max gap-6"
+      className="flex w-max gap-3 sm:gap-4 md:gap-6"
       initial={{
         x: direction === "left" ? "0%" : "-25%",
       }}
