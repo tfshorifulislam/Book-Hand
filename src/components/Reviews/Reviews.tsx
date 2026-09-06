@@ -64,7 +64,7 @@ export function Reviews() {
 
         {/* Heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-sm sm:tracking-widest">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground sm:text-xs md:text-sm">
             Community Stories
           </span>
 
@@ -72,14 +72,14 @@ export function Reviews() {
             What Our Users Say
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground sm:mt-4 sm:text-base">
             Hear from readers and sellers who are part of the Book Hand
             community.
           </p>
         </div>
 
-        {/* Reviews */}
-        <div className="relative mt-10 overflow-hidden sm:mt-12 md:mt-16">
+        {/* Review Slider */}
+        <div className="relative mt-10 w-full sm:mt-12 md:mt-16">
 
           {/* Left Fade */}
           <div
@@ -88,14 +88,14 @@ export function Reviews() {
               absolute
               inset-y-0
               left-0
-              z-20
-              w-8
+              z-10
+              w-6
               bg-linear-to-r
               from-background
               to-transparent
-              sm:w-14
-              md:w-24
-              lg:w-32
+              sm:w-12
+              md:w-20
+              lg:w-28
             "
           />
 
@@ -106,31 +106,27 @@ export function Reviews() {
               absolute
               inset-y-0
               right-0
-              z-20
-              w-8
+              z-10
+              w-6
               bg-linear-to-l
               from-background
               to-transparent
-              sm:w-14
-              md:w-24
-              lg:w-32
+              sm:w-12
+              md:w-20
+              lg:w-28
             "
           />
 
-          <div className="space-y-4 sm:space-y-5 md:space-y-6">
-
-            {/* Row 1 */}
+          <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
             <ReviewRow
               reviews={firstRow}
               direction="left"
             />
 
-            {/* Row 2 */}
             <ReviewRow
               reviews={secondRow}
               direction="right"
             />
-
           </div>
         </div>
       </div>
