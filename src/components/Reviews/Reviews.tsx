@@ -59,39 +59,79 @@ export function Reviews() {
   const secondRow = reviews.slice(3, 6);
 
   return (
-    <section className="w-full overflow-hidden py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="w-full overflow-hidden py-16 sm:py-20 md:py-28">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* Heading */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-sm sm:tracking-widest">
             Community Stories
           </span>
 
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
             What Our Users Say
           </h2>
 
-          <p className="mt-4 text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
             Hear from readers and sellers who are part of the Book Hand
             community.
           </p>
         </div>
 
-        <div className="relative mt-16 space-y-6 overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-20 bg-linear-to-r from-background to-transparent md:w-32" />
+        {/* Reviews */}
+        <div className="relative mt-10 overflow-hidden sm:mt-12 md:mt-16">
 
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-20 bg-linear-to-l from-background to-transparent md:w-32" />
-
-          {/* Row 1 */}
-          <ReviewRow
-            reviews={firstRow}
-            direction="left"
+          {/* Left Fade */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-y-0
+              left-0
+              z-20
+              w-8
+              bg-linear-to-r
+              from-background
+              to-transparent
+              sm:w-14
+              md:w-24
+              lg:w-32
+            "
           />
 
-          {/* Row 2 */}
-          <ReviewRow
-            reviews={secondRow}
-            direction="right"
+          {/* Right Fade */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-y-0
+              right-0
+              z-20
+              w-8
+              bg-linear-to-l
+              from-background
+              to-transparent
+              sm:w-14
+              md:w-24
+              lg:w-32
+            "
           />
+
+          <div className="space-y-4 sm:space-y-5 md:space-y-6">
+
+            {/* Row 1 */}
+            <ReviewRow
+              reviews={firstRow}
+              direction="left"
+            />
+
+            {/* Row 2 */}
+            <ReviewRow
+              reviews={secondRow}
+              direction="right"
+            />
+
+          </div>
         </div>
       </div>
     </section>
