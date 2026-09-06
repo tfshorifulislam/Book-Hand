@@ -16,73 +16,90 @@ export function ReviewCard({
   return (
     <div
       className="
-        w-[320px]
+        w-[280px]
         shrink-0
-        rounded-2xl
+        rounded-xl
         border
         bg-background
-        p-6
+        p-4
         transition-all
         duration-300
         hover:-translate-y-1
         hover:shadow-lg
-        sm:w-[360px]
+
+        sm:w-[320px]
+        sm:rounded-2xl
+        sm:p-5
+
+        md:w-[360px]
+        md:p-6
+
         lg:w-[380px]
       "
     >
       {/* Rating + Quote */}
       <div className="flex items-center justify-between">
-        <div className="flex gap-1">
+        <div className="flex gap-0.5 sm:gap-1">
           {Array.from({ length: review.rating }).map((_, index) => (
             <Star
               key={index}
-              className="size-4 fill-yellow-400 text-yellow-400"
+              className="size-3.5 fill-yellow-400 text-yellow-400 sm:size-4"
             />
           ))}
         </div>
 
-        <Quote className="size-8 text-muted-foreground/15" />
+        <Quote className="size-6 text-muted-foreground/15 sm:size-8" />
       </div>
 
       {/* Review */}
       <p
         className="
-          mt-6
+          mt-4
           h-[72px]
           overflow-hidden
-          text-sm
+          text-xs
           leading-6
           text-muted-foreground
+
+          sm:mt-5
+          sm:text-sm
+
+          md:mt-6
         "
       >
         “{review.review}”
       </p>
 
       {/* User */}
-      <div className="mt-7 flex items-center gap-3">
+      <div className="mt-5 flex items-center gap-3 sm:mt-7">
         <div
           className="
             flex
-            size-11
+            size-9
             shrink-0
             items-center
             justify-center
             rounded-full
             border
             bg-muted
-            text-sm
+            text-xs
             font-semibold
+
+            sm:size-10
+            sm:text-sm
+
+            md:size-11
           "
         >
           {review.name.charAt(0)}
         </div>
 
-        <div>
-          <h4 className="text-sm font-semibold">
+        <div className="min-w-0">
+          <h4 className="truncate text-xs font-semibold sm:text-sm">
             {review.name}
           </h4>
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-[11px] text-muted-foreground sm:text-xs">
             {review.role}
           </p>
         </div>
