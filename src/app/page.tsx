@@ -5,7 +5,7 @@ import { FAQ } from "@/components/shared/FAQ";
 
 const page = () => {
   return (
-    <div>
+    <div className="mx-auto max-w-7xl">
       <HeroMain />
       <FindRightBookSection />
       <HowItWorks />

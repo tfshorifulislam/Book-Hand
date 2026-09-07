@@ -1,9 +1,8 @@
-import React from 'react';
 
 const BooksPage = () => {
     return (
         <div>
-            
+            this is book page
         </div>
     );
 };

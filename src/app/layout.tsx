@@ -28,10 +28,9 @@ export default function RootLayout({
   children,
 }: LayoutProps<"/">) {
   return (
-    <html
-      suppressHydrationWarning
-      lang="en"
-      className={`${inter.className} h-full antialiased`}
+    <html className={`${inter.className} h-full antialiased`}
+    lang="en"
+    suppressHydrationWarning
     >
       <body className="min-h-full">
 
@@ -45,21 +44,15 @@ export default function RootLayout({
         >
 
           <SidebarProvider>
-
             <AppSidebar />
-
             <SidebarInset className="min-w-0">
-
               <NavigationBar />
-
-              <main className="flex flex-1 w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+              <main className="flex flex-1 w-full">
                 {children}
               </main>
               <Footer />
-
             </SidebarInset>
           </SidebarProvider>
-
         </ThemeProvider>
       </body>
     </html>
