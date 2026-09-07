@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar"
 
 import type { LucideIcon } from "lucide-react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 export function NavMain({
@@ -37,11 +38,16 @@ export function NavMain({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 tooltip={item.title}
-                render={<a href={item.url} />}
-                className={`${isActive
-                    ? "bg-accent text-accent-foreground font-medium"
-                    : ""
-                  }`}
+                render={
+                  <Link
+                    href={item.url}
+                    className={
+                      isActive
+                        ? "bg-accent text-accent-foreground font-medium"
+                        : ""
+                    }
+                  />
+                }
               >
                 {Icon && <Icon />}
                 <span>{item.title}</span>
