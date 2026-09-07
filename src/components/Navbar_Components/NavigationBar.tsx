@@ -26,28 +26,24 @@ export function NavigationBar() {
 
                         <Logo />
 
-                        {pending ? (
-                            <div className="flex items-center gap-3">
-                               
-                                <div className="hidden h-9 w-48 animate-pulse rounded-md bg-muted md:block" />
+                       {pending ? (
+    <div className="flex items-center gap-3">
+        <div className="hidden h-9 w-48 animate-pulse rounded-md bg-muted md:block" />
 
-                                <div className="flex items-center gap-2">
-                                    <div className="h-9 w-9 animate-pulse rounded-full bg-muted" />
-                                    <div className="h-9 w-9 animate-pulse rounded-full bg-muted" />
-                                </div>
-                            </div>
-                        ) : user ? (
-                            <>
-                                <DesktopSearch />
-                                <NavigationActions isLoggedIn={true} />
-                            </>
-                        ) : (
-                            <div className="flex gap-2">
-                                <SignInButton />
-                                <SignUpButton />
-                            </div>
-                        )}
-
+        <div className="h-9 w-9 animate-pulse rounded-full bg-muted" />
+        <div className="h-9 w-9 animate-pulse rounded-full bg-muted" />
+    </div>
+) : user ? (
+    <>
+        <DesktopSearch />
+        <NavigationActions isLoggedIn={true} />
+    </>
+) : (
+    <div className="flex gap-2">
+        <SignInButton />
+        <SignUpButton />
+    </div>
+)}
                     </div>
                 </div>
             </header>
