@@ -23,13 +23,13 @@ import {
 import { authClient, useSession } from "@/lib/auth-client"
 import { ChevronsUpDownIcon, LogOutIcon, } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { User } from "../../../Types/user_type"
 
 export function NavUser() {
   const router = useRouter();
 
 
-  const { data: user } = useSession<User>()
+  const { data } = useSession()
+  const user = data?.user;
 
   const { isMobile } = useSidebar()
 
