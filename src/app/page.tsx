@@ -1,7 +1,6 @@
 import FindRightBookSection from "@/components/Find_Right_Book_Section/FindRightBookSection";
 import HeroMain from "@/components/Hero_Section/Hero_Main";
 import { HowItWorks } from "@/components/How_It_Works/HowItWorks";
-import { Reviews } from "@/components/Reviews/Reviews";
 import { FAQ } from "@/components/shared/FAQ";
 
 const page = () => {
@@ -10,7 +9,6 @@ const page = () => {
       <HeroMain />
       <FindRightBookSection />
       <HowItWorks />
-      <Reviews />
       <FAQ />
     </div>
   );
