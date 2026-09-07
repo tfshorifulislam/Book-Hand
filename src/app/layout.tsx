@@ -3,8 +3,6 @@ import { Inter } from "next/font/google"
 
 import "./globals.css"
 
-import ReduxProvider from "@/redux/provider"
-
 import {
   SidebarProvider,
   SidebarInset,
@@ -45,23 +43,23 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ReduxProvider>
-            <SidebarProvider>
 
-              <AppSidebar />
+          <SidebarProvider>
 
-              <SidebarInset className="min-w-0">
+            <AppSidebar />
 
-                <NavigationBar />
+            <SidebarInset className="min-w-0">
 
-                <main className="flex flex-1 w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-                  {children}
-                </main>
-                <Footer />
-                
-              </SidebarInset>
-            </SidebarProvider>
-          </ReduxProvider>
+              <NavigationBar />
+
+              <main className="flex flex-1 w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+                {children}
+              </main>
+              <Footer />
+
+            </SidebarInset>
+          </SidebarProvider>
+
         </ThemeProvider>
       </body>
     </html>

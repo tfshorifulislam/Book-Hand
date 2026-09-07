@@ -1,20 +1,19 @@
 "use client"
 
-import { useSelector } from "react-redux"
 import { motion } from "motion/react";
 
-import { RootState } from "@/redux/store"
 import SignInButton from "../Auth/SigIn_Button"
 import SignUpButton from "../Auth/SignUp_Button"
 
 import { Logo } from "./Logo"
 import { DesktopSearch } from "./DesktopSearch"
 import { NavigationActions } from "./NavigationActions"
+import { useSession } from "@/lib/auth-client";
 
 export function NavigationBar() {
 
-    const user = useSelector((state: RootState) => state.user.user)
-
+    const { data } = useSession()
+    const user = data?.user;
 
     return (
         <motion.div
@@ -26,23 +25,20 @@ export function NavigationBar() {
                 <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
                     <div className="relative flex h-14 items-center justify-between rounded-lg border bg-background/95 px-3">
 
-
                         <Logo />
-
 
                         {user && <DesktopSearch />}
 
 
-
-                        {user ? (
-                            <NavigationActions isLoggedIn={true} />
-                        ) : (
-                            <div className="flex gap-2">
-                                <SignInButton />
-                                <SignUpButton />
-                            </div>
-                        )}
-
+                        {user ?
+                            (
+                                <NavigationActions isLoggedIn={true} />
+                            ) : (
+                                <div className="flex gap-2">
+                                    <SignInButton />
+                                    <SignUpButton />
+                                </div>
+                            )}
                     </div>
                 </div>
             </header>

@@ -20,20 +20,17 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { authClient } from "@/lib/auth-client"
-import { clearUser } from "@/redux/features/user/userSlice"
-
-import { RootState } from "@/redux/store"
+import { authClient, useSession } from "@/lib/auth-client"
 import { ChevronsUpDownIcon, LogOutIcon, } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useDispatch, useSelector } from "react-redux"
+import { User } from "../../../Types/user_type"
 
 export function NavUser() {
   const router = useRouter();
-  const dispatch = useDispatch();
 
-  const user = useSelector((state: RootState) => state.user.user)
-  console.log("NavUser user:", user)
+
+  const { data: user } = useSession<User>()
+
   const { isMobile } = useSidebar()
 
   if (!user) {
@@ -45,7 +42,6 @@ export function NavUser() {
 
   const handleLogout = async () => {
     await authClient.signOut();
-    dispatch(clearUser())
     router.push('/auth/signin');
   }
 

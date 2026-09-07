@@ -15,23 +15,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { useSelector, useDispatch } from "react-redux"
-import type { RootState } from "@/redux/store"
-import { clearUser } from "@/redux/features/user/userSlice"
 import { useRouter } from "next/navigation"
-import { authClient } from "@/lib/auth-client"
+import { authClient, useSession } from "@/lib/auth-client"
 
 export function AvatarDropdown() {
-  
-  const dispatch = useDispatch();
+
+
   const router = useRouter();
-  
-  const user = useSelector((state: RootState) => state.user.user);
+
+  const { data } = useSession()
+  const user = data?.user;
   const firstLetter = user?.name?.trim().charAt(0).toUpperCase() || "U";
 
   const handleLogout = async () => {
     await authClient.signOut();
-    dispatch(clearUser())
     router.push('/auth/signin');
   }
 
