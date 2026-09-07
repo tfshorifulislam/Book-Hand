@@ -1,7 +1,7 @@
 
 const BooksPage = () => {
     return (
-        <div>
+        <div className="mx-auto max-w-7xl">
             this is book page
         </div>
     );

@@ -7,7 +7,7 @@ const HeroMain = () => {
     return (
         <section className="w-full">
             <div
-                className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 py-10 sm:px-6 md:gap-12 md:py-16 lg:grid-cols-2 lg:px-8 lg:py-20 " >
+                className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 py-10 md:py-16 lg:py-20 px-4 md:px-6" >
 
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
