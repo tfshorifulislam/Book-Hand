@@ -13,7 +13,6 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
-  FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { FaGoogle } from "react-icons/fa"
@@ -21,8 +20,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
-import { setUser } from "@/redux/features/user/userSlice";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
@@ -33,9 +30,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
-  const dispatch = useDispatch();
-
-
 
   const onSubmit = async (values: SignupFormData) => {
     setLoading(true);
@@ -52,18 +46,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
       }
 
       console.log("Login successful:", data);
-
-
-      if (data?.user) {
-        dispatch(
-          setUser({
-            id: data.user.id,
-            name: data.user.name,
-            email: data.user.email,
-            image: data.user.image,
-          })
-        );
-      }
 
       router.push("/");
 

@@ -19,8 +19,6 @@ import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation";
 import { SignupFormData } from "../../../Types/SignupFormData_Types";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/features/user/userSlice";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
@@ -31,9 +29,9 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
 
   const { register, handleSubmit } = useForm<SignupFormData>();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const onSubmit = async (values: SignupFormData) => {
+
     if (values.password !== values.confirmPassword) {
       alert("Password doesn't match");
       return;
@@ -49,22 +47,11 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
       });
 
       if (error) {
-        console.error("Signup error:", error.message);
+        console.error("Signup error:", error);
         return;
       }
 
       console.log("Signup successful:", data);
-
-      if (data?.user) {
-        dispatch(
-          setUser({
-            id: data.user.id,
-            name: data.user.name,
-            email: data.user.email,
-            image: data.user.image,
-          })
-        );
-      }
       router.push("/");
 
     } catch (error) {
