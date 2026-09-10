@@ -123,9 +123,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                         <SelectItem value="bangla">
                                             Bangla
                                         </SelectItem>
-                                        <SelectItem value="hindi">
-                                            Hindi
-                                        </SelectItem>
+                                        
                                         <SelectItem value="other">
                                             Other
                                         </SelectItem>
@@ -230,7 +228,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             <Button
                                 type="submit"
                                 size="lg"
-                                className="min-w-40"
+                                className="min-w-40 bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
                             >
                                 List Book for Sale
                             </Button>

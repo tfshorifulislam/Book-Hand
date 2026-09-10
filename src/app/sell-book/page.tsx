@@ -3,6 +3,7 @@
 import SellBookForm from "@/components/Sell_Book/SellBookForm";
 import { uploadImage } from "@/lib/uploadImage";
 import { SellBookFormData } from "../../../Types/SellBookFormData";
+import { sellBook } from "@/actions/sellBook";
 
 const SellBookPage = () => {
 
@@ -16,28 +17,16 @@ const SellBookPage = () => {
             console.log(imageUrl);
 
 
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sell-book`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
-                        title: data.title,
-                        author: data.author,
-                        category: data.category,
-                        language: data.language,
-                        description: data.description,
-                        price: data.price,
-                        condition: data.condition,
-                        coverImage: imageUrl,
-                    }),
-                }
-            );
-
-            const result = await res.json();
+            const result = await sellBook({
+                title: data.title,
+                author: data.author,
+                category: data.category,
+                language: data.language,
+                description: data.description,
+                price: data.price,
+                condition: data.condition,
+                coverImage: imageUrl,
+            });
 
             console.log(result);
         } catch (error) {
