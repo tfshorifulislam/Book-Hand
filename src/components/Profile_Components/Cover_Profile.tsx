@@ -13,7 +13,7 @@ const CoverProfile = ({ user }: CoverProfileProps) => {
                 <Image
                     width={2000}
                     height={500}
-                    src="/cover.png"
+                    src="/bg.jpg"
                     alt="Profile cover"
                     className="aspect-4/1 w-full rounded-lg object-cover md:rounded-xl"
                 />
