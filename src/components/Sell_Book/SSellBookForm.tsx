@@ -20,13 +20,23 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
 
-const SellBookPage = () => {
+type SellBookFormData = {
+    title: string;
+    author: string;
+    category: string;
+    language: string;
+    description: string;
+    coverImage: string;
+    price: number;
+    condition: string;
+};
 
-    const { register, handleSubmit } = useForm();
+type SellBookFormProps = {
+    onSubmit: (data: SellBookFormData) => void;
+};
 
-    const sumbit = () => {
-        const image = process.env.IMAGEBB_API
-    }
+const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
+    const { register, handleSubmit } = useForm<SellBookFormData>();
 
     return (
         <div className="mx-auto w-full max-w-4xl px-4 py-8 md:px-6 md:py-12">
@@ -34,6 +44,7 @@ const SellBookPage = () => {
                 <h1 className="text-3xl font-bold tracking-tight">
                     Sell Your Book
                 </h1>
+
                 <p className="mt-2 text-muted-foreground">
                     Add your book details and create a listing to sell it.
                 </p>
@@ -42,6 +53,7 @@ const SellBookPage = () => {
             <Card>
                 <CardHeader>
                     <CardTitle>Book Information</CardTitle>
+
                     <CardDescription>
                         Provide some basic information about the book.
                     </CardDescription>
@@ -49,40 +61,39 @@ const SellBookPage = () => {
 
                 <CardContent>
                     <form
-                        onSubmit={handleSubmit(sumbit)}
-                        className="space-y-8">
-
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-8"
+                    >
                         {/* Book Information */}
                         <div className="grid gap-6 md:grid-cols-2">
-
                             <div className="space-y-2">
-                                <Label htmlFor="title">
-                                    Book Title
-                                </Label>
+                                <Label htmlFor="title">Book Title</Label>
+
                                 <Input
                                     id="title"
-                                    name="title"
                                     placeholder="e.g. Clean Code"
+                                    {...register("title")}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="author">
-                                    Author
-                                </Label>
+                                <Label htmlFor="author">Author</Label>
+
                                 <Input
                                     id="author"
-                                    name="author"
                                     placeholder="e.g. Robert C. Martin"
+                                    {...register("author")}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="category">
-                                    Category
-                                </Label>
+                                <Label htmlFor="category">Category</Label>
 
-                                <Select name="category">
+                                <Select
+                                    onValueChange={(value) => {
+                                        // react-hook-form এর জন্য পরে Controller ব্যবহার করতে পারো
+                                    }}
+                                >
                                     <SelectTrigger id="category">
                                         <SelectValue placeholder="Select category" />
                                     </SelectTrigger>
@@ -111,11 +122,9 @@ const SellBookPage = () => {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="language">
-                                    Language
-                                </Label>
+                                <Label htmlFor="language">Language</Label>
 
-                                <Select name="language">
+                                <Select>
                                     <SelectTrigger id="language">
                                         <SelectValue placeholder="Select language" />
                                     </SelectTrigger>
@@ -136,7 +145,6 @@ const SellBookPage = () => {
                                     </SelectContent>
                                 </Select>
                             </div>
-
                         </div>
 
                         <div className="space-y-2">
@@ -146,9 +154,9 @@ const SellBookPage = () => {
 
                             <Textarea
                                 id="description"
-                                name="description"
                                 placeholder="Write a short description about the book..."
                                 className="min-h-32 resize-none"
+                                {...register("description")}
                             />
                         </div>
 
@@ -160,9 +168,9 @@ const SellBookPage = () => {
 
                             <Input
                                 id="coverImage"
-                                name="coverImage"
                                 type="url"
                                 placeholder="https://example.com/book-cover.jpg"
+                                {...register("coverImage")}
                             />
 
                             <p className="text-xs text-muted-foreground">
@@ -183,19 +191,18 @@ const SellBookPage = () => {
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2">
-
                                 <div className="space-y-2">
-                                    <Label htmlFor="price">
-                                        Price
-                                    </Label>
+                                    <Label htmlFor="price">Price</Label>
 
                                     <Input
                                         id="price"
-                                        name="price"
                                         type="number"
                                         min="0"
                                         step="1"
                                         placeholder="e.g. 450 BDT"
+                                        {...register("price", {
+                                            valueAsNumber: true,
+                                        })}
                                     />
                                 </div>
 
@@ -204,7 +211,7 @@ const SellBookPage = () => {
                                         Book Condition
                                     </Label>
 
-                                    <Select name="condition">
+                                    <Select>
                                         <SelectTrigger id="condition">
                                             <SelectValue placeholder="Select condition" />
                                         </SelectTrigger>
@@ -228,9 +235,7 @@ const SellBookPage = () => {
                                         </SelectContent>
                                     </Select>
                                 </div>
-
                             </div>
-
                         </div>
 
                         {/* Submit */}
@@ -243,7 +248,6 @@ const SellBookPage = () => {
                                 List Book for Sale
                             </Button>
                         </div>
-
                     </form>
                 </CardContent>
             </Card>
@@ -251,4 +255,4 @@ const SellBookPage = () => {
     );
 };
 
-export default SellBookPage;
+export default SellBookForm;
