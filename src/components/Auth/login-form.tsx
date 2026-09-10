@@ -60,6 +60,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
 
   //google login 
   const handleGoogleLogin = async () => {
+    console.log('click button')
     const data = await authClient.signIn.social({
       provider: "google",
     });
