@@ -1,0 +1,244 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+
+const SellBookPage = () => {
+    return (
+        <div className="mx-auto w-full max-w-4xl px-4 py-8 md:px-6 md:py-12">
+            <div className="mb-8">
+                <h1 className="text-3xl font-bold tracking-tight">
+                    Sell Your Book
+                </h1>
+                <p className="mt-2 text-muted-foreground">
+                    Add your book details and create a listing to sell it.
+                </p>
+            </div>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Book Information</CardTitle>
+                    <CardDescription>
+                        Provide some basic information about the book.
+                    </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                    <form className="space-y-8">
+
+                        {/* Book Information */}
+                        <div className="grid gap-6 md:grid-cols-2">
+
+                            <div className="space-y-2">
+                                <Label htmlFor="title">
+                                    Book Title
+                                </Label>
+                                <Input
+                                    id="title"
+                                    name="title"
+                                    placeholder="e.g. Clean Code"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="author">
+                                    Author
+                                </Label>
+                                <Input
+                                    id="author"
+                                    name="author"
+                                    placeholder="e.g. Robert C. Martin"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="category">
+                                    Category
+                                </Label>
+
+                                <Select name="category">
+                                    <SelectTrigger id="category">
+                                        <SelectValue placeholder="Select category" />
+                                    </SelectTrigger>
+
+                                    <SelectContent>
+                                        <SelectItem value="programming">
+                                            Programming
+                                        </SelectItem>
+                                        <SelectItem value="engineering">
+                                            Engineering
+                                        </SelectItem>
+                                        <SelectItem value="business">
+                                            Business
+                                        </SelectItem>
+                                        <SelectItem value="science">
+                                            Science
+                                        </SelectItem>
+                                        <SelectItem value="mathematics">
+                                            Mathematics
+                                        </SelectItem>
+                                        <SelectItem value="other">
+                                            Other
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="language">
+                                    Language
+                                </Label>
+
+                                <Select name="language">
+                                    <SelectTrigger id="language">
+                                        <SelectValue placeholder="Select language" />
+                                    </SelectTrigger>
+
+                                    <SelectContent>
+                                        <SelectItem value="english">
+                                            English
+                                        </SelectItem>
+                                        <SelectItem value="bangla">
+                                            Bangla
+                                        </SelectItem>
+                                        <SelectItem value="hindi">
+                                            Hindi
+                                        </SelectItem>
+                                        <SelectItem value="other">
+                                            Other
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label htmlFor="description">
+                                Book Description
+                            </Label>
+
+                            <Textarea
+                                id="description"
+                                name="description"
+                                placeholder="Write a short description about the book..."
+                                className="min-h-32 resize-none"
+                            />
+                        </div>
+
+                        {/* Cover Image */}
+                        <div className="space-y-2">
+                            <Label htmlFor="coverImage">
+                                Cover Image URL
+                            </Label>
+
+                            <Input
+                                id="coverImage"
+                                name="coverImage"
+                                type="url"
+                                placeholder="https://example.com/book-cover.jpg"
+                            />
+
+                            <p className="text-xs text-muted-foreground">
+                                Add an image URL for the book cover.
+                            </p>
+                        </div>
+
+                        {/* Listing Information */}
+                        <div className="border-t pt-8">
+                            <div className="mb-6">
+                                <h2 className="text-lg font-semibold">
+                                    Selling Information
+                                </h2>
+
+                                <p className="text-sm text-muted-foreground">
+                                    Tell buyers about the condition and price.
+                                </p>
+                            </div>
+
+                            <div className="grid gap-6 md:grid-cols-2">
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="price">
+                                        Price
+                                    </Label>
+
+                                    <Input
+                                        id="price"
+                                        name="price"
+                                        type="number"
+                                        min="0"
+                                        step="1"
+                                        placeholder="e.g. 450 BDT"
+                                    />
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="condition">
+                                        Book Condition
+                                    </Label>
+
+                                    <Select name="condition">
+                                        <SelectTrigger id="condition">
+                                            <SelectValue placeholder="Select condition" />
+                                        </SelectTrigger>
+
+                                        <SelectContent>
+                                            <SelectItem value="new">
+                                                New
+                                            </SelectItem>
+                                            <SelectItem value="like-new">
+                                                Like New
+                                            </SelectItem>
+                                            <SelectItem value="good">
+                                                Good
+                                            </SelectItem>
+                                            <SelectItem value="fair">
+                                                Fair
+                                            </SelectItem>
+                                            <SelectItem value="poor">
+                                                Poor
+                                            </SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {/* Submit */}
+                        <div className="flex justify-end pt-6">
+                            <Button
+                                type="submit"
+                                size="lg"
+                                className="min-w-40"
+                            >
+                                List Book for Sale
+                            </Button>
+                        </div>
+
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    );
+};
+
+export default SellBookPage;
