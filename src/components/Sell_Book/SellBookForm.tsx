@@ -19,17 +19,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useForm } from "react-hook-form";
-
-type SellBookFormData = {
-    title: string;
-    author: string;
-    category: string;
-    language: string;
-    description: string;
-    coverImage: string;
-    price: number;
-    condition: string;
-};
+import { SellBookFormData } from "../../../Types/SellBookFormData";
+;
 
 type SellBookFormProps = {
     onSubmit: (data: SellBookFormData) => void;
@@ -89,11 +80,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             <div className="space-y-2">
                                 <Label htmlFor="category">Category</Label>
 
-                                <Select
-                                    onValueChange={(value) => {
-                                        // react-hook-form এর জন্য পরে Controller ব্যবহার করতে পারো
-                                    }}
-                                >
+                                <Select>
                                     <SelectTrigger id="category">
                                         <SelectValue placeholder="Select category" />
                                     </SelectTrigger>
@@ -163,18 +150,18 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                         {/* Cover Image */}
                         <div className="space-y-2">
                             <Label htmlFor="coverImage">
-                                Cover Image URL
+                                Cover Image
                             </Label>
 
                             <Input
                                 id="coverImage"
-                                type="url"
-                                placeholder="https://example.com/book-cover.jpg"
+                                type="file"
+                                accept="image/*"
                                 {...register("coverImage")}
                             />
 
                             <p className="text-xs text-muted-foreground">
-                                Add an image URL for the book cover.
+                                Upload a clear image of the book cover.
                             </p>
                         </div>
 
