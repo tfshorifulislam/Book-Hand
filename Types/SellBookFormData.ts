@@ -4,7 +4,7 @@ export type SellBookFormData = {
     category: string;
     language: string;
     description: string;
-    coverImage: string;
+    coverImage: FileList;
     price: number;
     condition: string;
 }
