@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   BookOpen,
   Globe2,
@@ -28,10 +27,11 @@ const BookInfo = ({
 }: BookInfoProps) => {
   return (
     <div className="min-w-0">
-      <div className="flex flex-wrap items-center gap-2">
+      {/* Badges */}
+      <div className="flex flex-wrap items-center gap-2.5">
         <Badge
           variant="secondary"
-          className="gap-1 rounded-full px-3 py-1"
+          className="gap-1.5 rounded-full border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400"
         >
           <Tag className="size-3.5" />
           {book.category}
@@ -39,60 +39,66 @@ const BookInfo = ({
 
         <Badge
           variant="outline"
-          className="rounded-full px-3 py-1 text-emerald-600"
+          className="rounded-full border-emerald-200 bg-emerald-50/50 px-3.5 py-1.5 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400"
         >
           {status}
         </Badge>
       </div>
 
-      <h1 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+      {/* Title */}
+      <h1 className="mt-6 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
         {book.title}
       </h1>
 
-      <p className="mt-4 flex items-center gap-2 text-lg text-muted-foreground">
-        <UserRound className="size-5" />
+      {/* Author */}
+      <p className="mt-4 flex items-center gap-2.5 text-lg text-muted-foreground">
+        <span className="flex size-8 items-center justify-center rounded-full bg-muted">
+          <UserRound className="size-4" />
+        </span>
         {book.author}
       </p>
 
-      <div className="my-7 h-px bg-border" />
+      {/* Divider */}
+      <div className="my-8 h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
 
+      {/* Info Cards */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <InfoCard
-          icon={<BookOpen className="size-5 text-emerald-600" />}
+          icon={<BookOpen className="size-5 text-emerald-600 dark:text-emerald-400" />}
           label="Condition"
           value={condition}
         />
 
         <InfoCard
-          icon={<Globe2 className="size-5 text-emerald-600" />}
+          icon={<Globe2 className="size-5 text-emerald-600 dark:text-emerald-400" />}
           label="Language"
           value={book.language}
         />
 
         <InfoCard
-          icon={<Tag className="size-5 text-emerald-600" />}
+          icon={<Tag className="size-5 text-emerald-600 dark:text-emerald-400" />}
           label="Category"
           value={book.category}
         />
       </div>
 
-      <div className="mt-8 rounded-2xl border bg-muted/30 p-5">
-        <p className="text-sm text-muted-foreground">
+      {/* Price Section */}
+      <div className="mt-8 overflow-hidden rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50 via-emerald-50/80 to-transparent p-6 dark:border-emerald-800/60 dark:from-emerald-950/50 dark:via-emerald-950/30 dark:to-transparent">
+        <p className="text-sm font-medium text-emerald-700/70 dark:text-emerald-400/70">
           Selling price
         </p>
-
-        <p className="mt-1 text-4xl font-bold tracking-tight text-emerald-600">
+        <p className="mt-2 text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-400">
           ৳{price}
         </p>
       </div>
 
+      {/* Description */}
       {book.description && (
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold">
+        <div className="mt-10">
+          <h2 className="text-xl font-semibold tracking-tight">
             About this book
           </h2>
-
-          <p className="mt-3 max-w-3xl leading-7 text-muted-foreground">
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
             {book.description}
           </p>
         </div>
@@ -109,19 +115,17 @@ type InfoCardProps = {
 
 const InfoCard = ({ icon, label, value }: InfoCardProps) => {
   return (
-    <Card className="border shadow-none">
-      <CardContent className="p-4">
-        <div className="mb-3">{icon}</div>
-
-        <p className="text-xs text-muted-foreground">
-          {label}
-        </p>
-
-        <p className="mt-1 truncate font-semibold">
-          {value}
-        </p>
-      </CardContent>
-    </Card>
+    <div className="group rounded-xl border border-border/60 bg-card p-4 transition-all duration-200 hover:border-emerald-200 hover:shadow-sm dark:hover:border-emerald-800">
+      <div className="mb-3 rounded-lg bg-emerald-50 p-2 size-fit dark:bg-emerald-950">
+        {icon}
+      </div>
+      <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        {label}
+      </p>
+      <p className="mt-1 truncate font-semibold text-foreground">
+        {value}
+      </p>
+    </div>
   );
 };
 
