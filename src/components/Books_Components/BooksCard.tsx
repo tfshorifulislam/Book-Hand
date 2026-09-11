@@ -3,26 +3,28 @@ import { BookListing } from "../../../Types/Book_Listing";
 import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, } from "lucide-react";
 
 type Props = {
     item: BookListing;
 };
 
 const BooksCard = async ({ item }: Props) => {
-
     const user = await auth.api.getSession({
-        headers: await headers()
-    })
+        headers: await headers(),
+    });
 
     const isOwnListing = user?.user?.id === item.seller.id;
-    const profileUrl = isOwnListing ? '/profile' : `/profile/${item.seller.id}`;
+    const profileUrl = isOwnListing ? "/profile" : `/profile/${item.seller.id}`;
 
     return (
-        <div
-
-            className="group w-full overflow-hidden rounded-xl border bg-background transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <Card className="group overflow-hidden border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
             {/* Cover Image */}
-            <div className="relative aspect-3/2 overflow-hidden bg-muted ">
+            <div className="relative aspect-3/2  bg-muted">
                 <Image
                     src={item.book.coverImage}
                     alt={item.book.title}
@@ -31,70 +33,78 @@ const BooksCard = async ({ item }: Props) => {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Condition */}
-                <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-medium capitalize text-white backdrop-blur-sm">
-                    {item.condition}
-                </span>
+                {/* Condition Badge */}
+                <div className="absolute left-3 top-3">
+                    <Badge
+                        variant="secondary"
+                        className="border-0 bg-black/70 text-white backdrop-blur-sm dark:bg-white/90 dark:text-black"
+                    >
+                        {item.condition}
+                    </Badge>
+                </div>
             </div>
 
             {/* Content */}
-            <div className="p-4">
+            <CardContent className="flex flex-1 flex-col gap-3 p-4 pb-0">
                 {/* Category */}
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-emerald-600">
+                <Badge variant="outline" className="w-fit border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400">
                     {item.book.category}
-                </p>
+                </Badge>
 
-                {/* Title */}
-                <h3 className="line-clamp-1 text-lg font-semibold tracking-tight">
-                    {item.book.title}
-                </h3>
-
-                {/* Author */}
-                <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">
-                    by {item.book.author}
-                </p>
+                {/* Title & Author */}
+                <div className="space-y-1">
+                    <h3 className="line-clamp-1 text-base font-semibold leading-snug tracking-tight">
+                        {item.book.title}
+                    </h3>
+                    <p className="line-clamp-1 text-sm text-muted-foreground">
+                        by {item.book.author}
+                    </p>
+                </div>
 
                 {/* Seller */}
                 <Link
                     href={profileUrl}
-                    className="mt-4 -m-1.5 flex items-center gap-2.5 rounded-lg p-1.5 transition-colors hover:bg-muted"
+                    className="flex items-center gap-2.5 rounded-lg p-1.5 -mx-1.5 transition-colors hover:bg-muted"
                 >
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-700">
-                        {item.seller.name?.charAt(0).toUpperCase() || "U"}
-                    </div>
-
-                    <div className="min-w-0">
+                    <Avatar size="sm">
+                        <AvatarFallback className="bg-emerald-100 text-xs font-semibold text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+                            {item.seller.name?.charAt(0).toUpperCase() || "U"}
+                        </AvatarFallback>
+                    </Avatar>
+                    <div className="min-w-0 flex-1">
                         <p className="text-[11px] text-muted-foreground">
                             Sold by
                         </p>
-
                         <p className="truncate text-sm font-medium">
                             {item.seller.name}
                         </p>
                     </div>
                 </Link>
+            </CardContent>
 
-                {/* Footer */}
-                <div className="mt-4 flex items-center justify-between border-t pt-4">
-                    <div>
-                        <p className="text-[11px] text-muted-foreground">
-                            Price
-                        </p>
-
-                        <p className="text-xl font-bold tracking-tight">
-                            ৳{item.price}
-                        </p>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="rounded-md px-4 py-2 bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
-                    >
-                        View
-                    </button>
+            {/* Footer */}
+            <CardFooter className="flex items-center justify-between gap-4 border-t border-border/50 p-4">
+                <div>
+                    <p className="text-[11px] text-muted-foreground">
+                        Price
+                    </p>
+                    <p className="text-xl font-bold tracking-tight">
+                        ৳{item.price}
+                    </p>
                 </div>
-            </div>
-        </div>
+
+                <Button
+                    variant="default"
+                    size="sm"
+                    nativeButton={false}
+                    render={<Link href={`/books/${item.id}`} />}
+                    className="bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-500"
+                >
+                    View Details
+                    <ArrowRight className="ml-1 size-3.5" />
+                </Button>
+            </CardFooter>
+        </Card>
     );
 };
 
