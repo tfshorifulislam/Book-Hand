@@ -7,15 +7,15 @@ type BookCoverProps = {
 
 const BookCover = ({ title, coverImage }: BookCoverProps) => {
   return (
-    <div className="lg:sticky lg:top-24">
-      <div className="overflow-hidden rounded-2xl border bg-muted shadow-sm">
-        <div className="relative aspect-[3/4]">
+    <div className="w-full">
+      <div className="mx-auto rounded-2xl border bg-muted shadow-sm">
+        <div className="relative aspect-3/4 rounded-2xl">
           <Image
             src={coverImage || "/book-placeholder.png"}
             alt={title}
             fill
             priority
-            className="object-cover"
+            className="rounded-2xl object-cover"
           />
         </div>
       </div>
