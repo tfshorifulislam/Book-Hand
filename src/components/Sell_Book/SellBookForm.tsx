@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { motion } from "motion/react";
 import {
     Select,
     SelectContent,
@@ -23,7 +24,7 @@ import { Controller, useForm } from "react-hook-form";
 import { SellBookFormData } from "../../../Types/SellBookFormData";
 
 type SellBookFormProps = {
-    onSubmit: (data: SellBookFormData) => void;
+    onSubmit: (data: SellBookFormData) => Promise<void>;
 };
 
 const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
@@ -31,194 +32,268 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
         register,
         handleSubmit,
         control,
-    } = useForm<SellBookFormData>();
+        reset,
+        formState: { isSubmitting },
+    } = useForm<SellBookFormData>({
+        defaultValues: {
+            title: "",
+            author: "",
+            category: "",
+            language: "",
+            description: "",
+            price: 0,
+            condition: "",
+        },
+    });
+
+    const handleFormSubmit = async (data: SellBookFormData) => {
+        await onSubmit(data);
+        reset();
+    };
 
     return (
-        <div className="mx-auto w-full max-w-4xl px-4 py-8 md:px-6 md:py-12">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="mx-auto w-full max-w-5xl px-4 py-8 md:px-6 md:py-12">
+            {/* Header */}
             <div className="mb-8">
-                <h1 className="text-3xl font-bold tracking-tight">
+                <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
                     Sell Your Book
                 </h1>
 
-                <p className="mt-2 text-muted-foreground">
-                    Add your book details and create a listing to sell it.
+                <p className="mt-2 max-w-2xl text-muted-foreground">
+                    Add your book information, set a price, and list it for
+                    other students to buy.
                 </p>
             </div>
 
-            <Card>
-                <CardHeader>
+            <Card className="shadow-sm">
+                <CardHeader className="border-b">
                     <CardTitle>Book Information</CardTitle>
 
                     <CardDescription>
-                        Provide some basic information about the book.
+                        Provide accurate information about the book.
                     </CardDescription>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="pt-6">
                     <form
-                        onSubmit={handleSubmit(onSubmit)}
+                        onSubmit={handleSubmit(handleFormSubmit)}
                         className="space-y-8"
                     >
-                        {/* Book Information */}
-                        <div className="grid gap-6 md:grid-cols-2">
+                        {/* Basic Information */}
+                        <div className="space-y-6">
+                            <div>
+                                <h2 className="text-lg font-semibold">
+                                    Basic Information
+                                </h2>
 
-                            {/* Title */}
-                            <div className="space-y-2">
-                                <Label htmlFor="title">
-                                    Book Title
-                                </Label>
-
-                                <Input
-                                    id="title"
-                                    placeholder="e.g. Clean Code"
-                                    {...register("title")}
-                                />
+                                <p className="text-sm text-muted-foreground">
+                                    Enter the basic details of your book.
+                                </p>
                             </div>
 
-                            {/* Author */}
-                            <div className="space-y-2">
-                                <Label htmlFor="author">
-                                    Author
-                                </Label>
+                            <div className="grid gap-6 md:grid-cols-2">
+                                {/* Title */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="title">
+                                        Book Title
+                                    </Label>
 
-                                <Input
-                                    id="author"
-                                    placeholder="e.g. Robert C. Martin"
-                                    {...register("author")}
-                                />
-                            </div>
+                                    <Input
+                                        id="title"
+                                        placeholder="e.g. Clean Code"
+                                        {...register("title", {
+                                            required:
+                                                "Book title is required",
+                                        })}
+                                    />
+                                </div>
 
-                            {/* Category */}
-                            <div className="space-y-2">
-                                <Label htmlFor="category">
-                                    Category
-                                </Label>
+                                {/* Author */}
+                                <div className="space-y-2">
+                                    <Label htmlFor="author">
+                                        Author
+                                    </Label>
 
-                                <Controller
-                                    name="category"
-                                    control={control}
-                                    render={({ field }) => (
-                                        <Select
-                                            value={field.value}
-                                            onValueChange={field.onChange}
-                                        >
-                                            <SelectTrigger id="category">
-                                                <SelectValue placeholder="Select category" />
-                                            </SelectTrigger>
+                                    <Input
+                                        id="author"
+                                        placeholder="e.g. Robert C. Martin"
+                                        {...register("author", {
+                                            required:
+                                                "Author name is required",
+                                        })}
+                                    />
+                                </div>
 
-                                            <SelectContent>
-                                                <SelectItem value="programming">
-                                                    Programming
-                                                </SelectItem>
+                                {/* Category */}
+                                <div className="space-y-2">
+                                    <Label>Category</Label>
 
-                                                <SelectItem value="engineering">
-                                                    Engineering
-                                                </SelectItem>
+                                    <Controller
+                                        name="category"
+                                        control={control}
+                                        rules={{
+                                            required:
+                                                "Please select a category",
+                                        }}
+                                        render={({ field }) => (
+                                            <Select
+                                                value={field.value ?? ""}
+                                                onValueChange={field.onChange}
+                                            >
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select category" />
+                                                </SelectTrigger>
 
-                                                <SelectItem value="business">
-                                                    Business
-                                                </SelectItem>
+                                                <SelectContent>
+                                                    <SelectItem value="programming">
+                                                        Programming
+                                                    </SelectItem>
 
-                                                <SelectItem value="science">
-                                                    Science
-                                                </SelectItem>
+                                                    <SelectItem value="engineering">
+                                                        Engineering
+                                                    </SelectItem>
 
-                                                <SelectItem value="mathematics">
-                                                    Mathematics
-                                                </SelectItem>
+                                                    <SelectItem value="business">
+                                                        Business
+                                                    </SelectItem>
 
-                                                <SelectItem value="other">
-                                                    Other
-                                                </SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    )}
-                                />
-                            </div>
+                                                    <SelectItem value="science">
+                                                        Science
+                                                    </SelectItem>
 
-                            {/* Language */}
-                            <div className="space-y-2">
-                                <Label htmlFor="language">
-                                    Language
-                                </Label>
+                                                    <SelectItem value="mathematics">
+                                                        Mathematics
+                                                    </SelectItem>
 
-                                <Controller
-                                    name="language"
-                                    control={control}
-                                    render={({ field }) => (
-                                        <Select
-                                            value={field.value}
-                                            onValueChange={field.onChange}
-                                        >
-                                            <SelectTrigger id="language">
-                                                <SelectValue placeholder="Select language" />
-                                            </SelectTrigger>
+                                                    <SelectItem value="other">
+                                                        Other
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        )}
+                                    />
+                                </div>
 
-                                            <SelectContent>
-                                                <SelectItem value="english">
-                                                    English
-                                                </SelectItem>
+                                {/* Language */}
+                                <div className="space-y-2">
+                                    <Label>Language</Label>
 
-                                                <SelectItem value="bangla">
-                                                    Bangla
-                                                </SelectItem>
+                                    <Controller
+                                        name="language"
+                                        control={control}
+                                        rules={{
+                                            required:
+                                                "Please select a language",
+                                        }}
+                                        render={({ field }) => (
+                                            <Select
+                                                value={field.value ?? ""}
+                                                onValueChange={field.onChange}
+                                            >
+                                                <SelectTrigger className="w-full">
+                                                    <SelectValue placeholder="Select language" />
+                                                </SelectTrigger>
 
-                                                <SelectItem value="other">
-                                                    Other
-                                                </SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    )}
-                                />
+                                                <SelectContent>
+                                                    <SelectItem value="english">
+                                                        English
+                                                    </SelectItem>
+
+                                                    <SelectItem value="bangla">
+                                                        Bangla
+                                                    </SelectItem>
+
+                                                    <SelectItem value="other">
+                                                        Other
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        )}
+                                    />
+                                </div>
                             </div>
                         </div>
 
                         {/* Description */}
-                        <div className="space-y-2">
-                            <Label htmlFor="description">
-                                Book Description
-                            </Label>
+                        <div className="space-y-6 border-t pt-8">
+                            <div>
+                                <h2 className="text-lg font-semibold">
+                                    Description
+                                </h2>
 
-                            <Textarea
-                                id="description"
-                                placeholder="Write a short description about the book..."
-                                className="min-h-32 resize-none"
-                                {...register("description")}
-                            />
+                                <p className="text-sm text-muted-foreground">
+                                    Tell buyers a little about the book.
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="description">
+                                    Book Description
+                                </Label>
+
+                                <Textarea
+                                    id="description"
+                                    placeholder="Write a short description about the book..."
+                                    className="min-h-32 resize-none"
+                                    {...register("description", {
+                                        required:
+                                            "Book description is required",
+                                    })}
+                                />
+                            </div>
                         </div>
 
                         {/* Cover Image */}
-                        <div className="space-y-2">
-                            <Label htmlFor="coverImage">
-                                Cover Image
-                            </Label>
+                        <div className="space-y-6 border-t pt-8">
+                            <div>
+                                <h2 className="text-lg font-semibold">
+                                    Book Cover
+                                </h2>
 
-                            <Input
-                                id="coverImage"
-                                type="file"
-                                accept="image/*"
-                                {...register("coverImage")}
-                            />
+                                <p className="text-sm text-muted-foreground">
+                                    Upload a clear image of the book cover.
+                                </p>
+                            </div>
 
-                            <p className="text-xs text-muted-foreground">
-                                Upload a clear image of the book cover.
-                            </p>
+                            <div className="space-y-2">
+                                <Label htmlFor="coverImage">
+                                    Cover Image
+                                </Label>
+
+                                <Input
+                                    id="coverImage"
+                                    type="file"
+                                    accept="image/*"
+                                    {...register("coverImage", {
+                                        required:
+                                            "Book cover image is required",
+                                    })}
+                                />
+
+                                <p className="text-xs text-muted-foreground">
+                                    JPG, PNG or WEBP. Use a clear image for
+                                    better visibility.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Selling Information */}
-                        <div className="border-t pt-8">
-                            <div className="mb-6">
+                        <div className="space-y-6 border-t pt-8">
+                            <div>
                                 <h2 className="text-lg font-semibold">
                                     Selling Information
                                 </h2>
 
                                 <p className="text-sm text-muted-foreground">
-                                    Tell buyers about the condition and price.
+                                    Set the price and condition of your book.
                                 </p>
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2">
-
                                 {/* Price */}
                                 <div className="space-y-2">
                                     <Label htmlFor="price">
@@ -230,28 +305,41 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                         type="number"
                                         min="0"
                                         step="1"
-                                        placeholder="e.g. 450 BDT"
+                                        placeholder="450"
                                         {...register("price", {
+                                            required:
+                                                "Price is required",
                                             valueAsNumber: true,
+                                            min: {
+                                                value: 0,
+                                                message:
+                                                    "Price cannot be negative",
+                                            },
                                         })}
                                     />
+
+                                    <p className="text-xs text-muted-foreground">
+                                        Enter price in BDT.
+                                    </p>
                                 </div>
 
                                 {/* Condition */}
                                 <div className="space-y-2">
-                                    <Label htmlFor="condition">
-                                        Book Condition
-                                    </Label>
+                                    <Label>Book Condition</Label>
 
                                     <Controller
                                         name="condition"
                                         control={control}
+                                        rules={{
+                                            required:
+                                                "Please select book condition",
+                                        }}
                                         render={({ field }) => (
                                             <Select
-                                                value={field.value}
+                                                value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger id="condition">
+                                                <SelectTrigger className="w-full">
                                                     <SelectValue placeholder="Select condition" />
                                                 </SelectTrigger>
 
@@ -284,19 +372,28 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                         </div>
 
                         {/* Submit */}
-                        <div className="flex justify-end pt-6">
+                        <div className="flex flex-col-reverse gap-3 border-t pt-8 sm:flex-row sm:justify-end">
+
                             <Button
                                 type="submit"
                                 size="lg"
-                                className="min-w-40 cursor-pointer bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                                disabled={isSubmitting}
+                                className="cursor-pointer bg-emerald-700 px-8 text-white hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
                             >
-                                List Book for Sale
+                                {isSubmitting ? (
+                                    <>
+                                        <span className="mr-2 size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                        Listing...
+                                    </>
+                                ) : (
+                                    "List Book for Sale"
+                                )}
                             </Button>
                         </div>
                     </form>
                 </CardContent>
             </Card>
-        </div>
+        </motion.div>
     );
 };
 
