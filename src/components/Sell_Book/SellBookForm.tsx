@@ -18,16 +18,20 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useForm } from "react-hook-form";
+
+import { Controller, useForm } from "react-hook-form";
 import { SellBookFormData } from "../../../Types/SellBookFormData";
-;
 
 type SellBookFormProps = {
     onSubmit: (data: SellBookFormData) => void;
 };
 
 const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
-    const { register, handleSubmit } = useForm<SellBookFormData>();
+    const {
+        register,
+        handleSubmit,
+        control,
+    } = useForm<SellBookFormData>();
 
     return (
         <div className="mx-auto w-full max-w-4xl px-4 py-8 md:px-6 md:py-12">
@@ -57,8 +61,12 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                     >
                         {/* Book Information */}
                         <div className="grid gap-6 md:grid-cols-2">
+
+                            {/* Title */}
                             <div className="space-y-2">
-                                <Label htmlFor="title">Book Title</Label>
+                                <Label htmlFor="title">
+                                    Book Title
+                                </Label>
 
                                 <Input
                                     id="title"
@@ -67,8 +75,11 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                 />
                             </div>
 
+                            {/* Author */}
                             <div className="space-y-2">
-                                <Label htmlFor="author">Author</Label>
+                                <Label htmlFor="author">
+                                    Author
+                                </Label>
 
                                 <Input
                                     id="author"
@@ -77,61 +88,92 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                 />
                             </div>
 
+                            {/* Category */}
                             <div className="space-y-2">
-                                <Label htmlFor="category">Category</Label>
+                                <Label htmlFor="category">
+                                    Category
+                                </Label>
 
-                                <Select>
-                                    <SelectTrigger id="category">
-                                        <SelectValue placeholder="Select category" />
-                                    </SelectTrigger>
+                                <Controller
+                                    name="category"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Select
+                                            value={field.value}
+                                            onValueChange={field.onChange}
+                                        >
+                                            <SelectTrigger id="category">
+                                                <SelectValue placeholder="Select category" />
+                                            </SelectTrigger>
 
-                                    <SelectContent>
-                                        <SelectItem value="programming">
-                                            Programming
-                                        </SelectItem>
-                                        <SelectItem value="engineering">
-                                            Engineering
-                                        </SelectItem>
-                                        <SelectItem value="business">
-                                            Business
-                                        </SelectItem>
-                                        <SelectItem value="science">
-                                            Science
-                                        </SelectItem>
-                                        <SelectItem value="mathematics">
-                                            Mathematics
-                                        </SelectItem>
-                                        <SelectItem value="other">
-                                            Other
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                            <SelectContent>
+                                                <SelectItem value="programming">
+                                                    Programming
+                                                </SelectItem>
+
+                                                <SelectItem value="engineering">
+                                                    Engineering
+                                                </SelectItem>
+
+                                                <SelectItem value="business">
+                                                    Business
+                                                </SelectItem>
+
+                                                <SelectItem value="science">
+                                                    Science
+                                                </SelectItem>
+
+                                                <SelectItem value="mathematics">
+                                                    Mathematics
+                                                </SelectItem>
+
+                                                <SelectItem value="other">
+                                                    Other
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    )}
+                                />
                             </div>
 
+                            {/* Language */}
                             <div className="space-y-2">
-                                <Label htmlFor="language">Language</Label>
+                                <Label htmlFor="language">
+                                    Language
+                                </Label>
 
-                                <Select>
-                                    <SelectTrigger id="language">
-                                        <SelectValue placeholder="Select language" />
-                                    </SelectTrigger>
+                                <Controller
+                                    name="language"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <Select
+                                            value={field.value}
+                                            onValueChange={field.onChange}
+                                        >
+                                            <SelectTrigger id="language">
+                                                <SelectValue placeholder="Select language" />
+                                            </SelectTrigger>
 
-                                    <SelectContent>
-                                        <SelectItem value="english">
-                                            English
-                                        </SelectItem>
-                                        <SelectItem value="bangla">
-                                            Bangla
-                                        </SelectItem>
-                                        
-                                        <SelectItem value="other">
-                                            Other
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                            <SelectContent>
+                                                <SelectItem value="english">
+                                                    English
+                                                </SelectItem>
+
+                                                <SelectItem value="bangla">
+                                                    Bangla
+                                                </SelectItem>
+
+                                                <SelectItem value="other">
+                                                    Other
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    )}
+                                />
                             </div>
                         </div>
 
+                        {/* Description */}
                         <div className="space-y-2">
                             <Label htmlFor="description">
                                 Book Description
@@ -163,7 +205,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             </p>
                         </div>
 
-                        {/* Listing Information */}
+                        {/* Selling Information */}
                         <div className="border-t pt-8">
                             <div className="mb-6">
                                 <h2 className="text-lg font-semibold">
@@ -176,8 +218,12 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             </div>
 
                             <div className="grid gap-6 md:grid-cols-2">
+
+                                {/* Price */}
                                 <div className="space-y-2">
-                                    <Label htmlFor="price">Price</Label>
+                                    <Label htmlFor="price">
+                                        Price
+                                    </Label>
 
                                     <Input
                                         id="price"
@@ -191,34 +237,48 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     />
                                 </div>
 
+                                {/* Condition */}
                                 <div className="space-y-2">
                                     <Label htmlFor="condition">
                                         Book Condition
                                     </Label>
 
-                                    <Select>
-                                        <SelectTrigger id="condition">
-                                            <SelectValue placeholder="Select condition" />
-                                        </SelectTrigger>
+                                    <Controller
+                                        name="condition"
+                                        control={control}
+                                        render={({ field }) => (
+                                            <Select
+                                                value={field.value}
+                                                onValueChange={field.onChange}
+                                            >
+                                                <SelectTrigger id="condition">
+                                                    <SelectValue placeholder="Select condition" />
+                                                </SelectTrigger>
 
-                                        <SelectContent>
-                                            <SelectItem value="new">
-                                                New
-                                            </SelectItem>
-                                            <SelectItem value="like-new">
-                                                Like New
-                                            </SelectItem>
-                                            <SelectItem value="good">
-                                                Good
-                                            </SelectItem>
-                                            <SelectItem value="fair">
-                                                Fair
-                                            </SelectItem>
-                                            <SelectItem value="poor">
-                                                Poor
-                                            </SelectItem>
-                                        </SelectContent>
-                                    </Select>
+                                                <SelectContent>
+                                                    <SelectItem value="new">
+                                                        New
+                                                    </SelectItem>
+
+                                                    <SelectItem value="like-new">
+                                                        Like New
+                                                    </SelectItem>
+
+                                                    <SelectItem value="good">
+                                                        Good
+                                                    </SelectItem>
+
+                                                    <SelectItem value="fair">
+                                                        Fair
+                                                    </SelectItem>
+
+                                                    <SelectItem value="poor">
+                                                        Poor
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        )}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -228,7 +288,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             <Button
                                 type="submit"
                                 size="lg"
-                                className="min-w-40 bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
+                                className="min-w-40 cursor-pointer bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
                             >
                                 List Book for Sale
                             </Button>
