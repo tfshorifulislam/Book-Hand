@@ -1,14 +1,11 @@
 import { bookDetails } from "@/actions/book.Details";
-import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-} from "lucide-react";
-import Link from "next/link";
-
 import BookActions from "@/components/book-details/book-actions";
 import BookCover from "@/components/book-details/book-cover";
 import BookInfo from "@/components/book-details/book-info";
 import SellerCard from "@/components/book-details/seller-card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 type BookDetailsPageProps = {
   params: Promise<{
@@ -26,10 +23,10 @@ const BookDetailsPage = async ({
   const { book, seller, price, condition, status } = data.data;
 
   return (
-    <main className="min-h-screen bg-background mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      
 
-        {/* Back */}
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+        {/* Back Button */}
         <div className="mb-8">
           <Button
             variant="ghost"
@@ -44,9 +41,9 @@ const BookDetailsPage = async ({
           </Button>
         </div>
 
-        {/* Main */}
-        <section className="grid items-start gap-10 lg:grid-cols-[420px_minmax(0,1fr)] xl:gap-16">
-
+        {/* Book Details */}
+        <section className="grid items-start gap-10 rounded-3xl border bg-card p-5 shadow-sm sm:p-8 lg:grid-cols-[380px_minmax(0,1fr)] lg:gap-14 lg:p-10 xl:grid-cols-[420px_minmax(0,1fr)]">
+          
           {/* Cover */}
           <BookCover
             title={book.title}
@@ -54,7 +51,7 @@ const BookDetailsPage = async ({
           />
 
           {/* Content */}
-          <div>
+          <div className="min-w-0">
             <BookInfo
               book={book}
               price={price}
@@ -68,9 +65,8 @@ const BookDetailsPage = async ({
 
         {/* Seller */}
         <SellerCard seller={seller} />
+      </div>
 
-     
-    </main>
   );
 };
 
