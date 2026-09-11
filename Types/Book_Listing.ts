@@ -1,8 +1,9 @@
 export type BookListing = {
     id: string;
-
+    condition: string;
+    price: number;
     book: {
-        id:string;
+        id: string;
         title: string;
         author: string;
         coverImage: string
@@ -11,8 +12,8 @@ export type BookListing = {
     };
 
     seller: {
-        id:string;
-        name:string;
+        id: string;
+        name: string;
         image: string | null;
     }
 

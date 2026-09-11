@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 import { SellBookFormData } from "../../Types/SellBookFormData";
 
 export const sellBook = async (data: SellBookFormData) => {
-    
+
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -22,6 +22,7 @@ export const sellBook = async (data: SellBookFormData) => {
             headers: {
                 "Content-Type": "application/json",
                 "x-user-id": session.user.id,
+                "x-internal-secret": process.env.BACKEND_INTERNAL_SECRET!,
             },
 
             body: JSON.stringify(data),
