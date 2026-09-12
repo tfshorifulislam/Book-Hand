@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const HeroLeft = () => {
     return (
-        <div className="max-w-2xl">
+        <div className="max-w-2xl text-center md:text-left">
 
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm font-medium shadow-sm">
                 <span className="h-2 w-2 rounded-full bg-emerald-700" />
@@ -23,14 +23,14 @@ const HeroLeft = () => {
             </h1>
 
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg mx-auto md:mx-0">
                 The trusted peer-to-peer textbook marketplace built exclusively for
                 university students. Save money on textbooks, connect with students
                 around you, and give your old books a second life.
             </p>
 
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-row justify-center gap-3 md:justify-start">
                 <Link href='/books'>
                     <Button
                         size="lg"
@@ -54,7 +54,7 @@ const HeroLeft = () => {
             </div>
 
 
-            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t pt-6">
+            <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-3 border-t pt-6 md:justify-start">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <ShieldCheck className="h-4 w-4 text-foreground" />
                     Safe & trusted
