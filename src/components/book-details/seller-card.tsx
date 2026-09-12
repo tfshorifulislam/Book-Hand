@@ -15,9 +15,9 @@ type SellerCardProps = {
 const SellerCard = ({ seller }: SellerCardProps) => {
   return (
     <section>
-      <div className="flex items-center justify-between rounded-xl border border-border bg-card p-4 sm:p-5">
-        <div className="flex items-center gap-3">
-          <div className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-emerald-50 dark:bg-emerald-950">
+      <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-3 sm:gap-4 sm:p-5">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-emerald-50 dark:bg-emerald-950 sm:size-11">
             {seller.image ? (
               <Image
                 src={seller.image}
@@ -27,15 +27,15 @@ const SellerCard = ({ seller }: SellerCardProps) => {
                 className="size-full object-cover"
               />
             ) : (
-              <UserRound className="size-5 text-emerald-600 dark:text-emerald-400" />
+              <UserRound className="size-4 text-emerald-600 dark:text-emerald-400 sm:size-5" />
             )}
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-foreground">{seller.name}</p>
-            <p className="mt-0.5 flex items-center gap-1.5 truncate text-xs text-muted-foreground">
+            <p className="truncate text-sm font-semibold text-foreground">{seller.name}</p>
+            <span className="inline-flex items-center gap-1 truncate text-xs text-muted-foreground">
               <Mail className="size-3 shrink-0" />
               {seller.email}
-            </p>
+            </span>
           </div>
         </div>
         <Button
