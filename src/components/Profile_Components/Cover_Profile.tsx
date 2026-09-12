@@ -18,7 +18,7 @@ const CoverProfile = ({ user }: CoverProfileProps) => {
                     className="aspect-4/1 w-full rounded-lg object-cover md:rounded-xl"
                 />
 
-                <div className="absolute bottom-0 left-1/2 z-50 size-20 -translate-x-1/2 translate-y-1/2 overflow-hidden rounded-full border-2 border-background bg-background md:size-30 md:border-4">
+                <div className="absolute bottom-0 left-1/2 z-50 size-20 -translate-x-1/2 translate-y-1/2 overflow-hidden rounded-full border-2 dark:border-black border-white bg-white md:size-30 md:border-4">
                     <Image
                         fill
                         alt="Profile image"

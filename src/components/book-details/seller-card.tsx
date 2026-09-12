@@ -28,14 +28,14 @@ const SellerCard = ({ seller }: SellerCardProps) => {
       {/* Card */}
       <div className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-300 hover:shadow-lg hover:shadow-black/5">
         {/* Top accent bar */}
-        <div className="h-1 w-full bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600" />
+        <div className="h-1 w-full bg-linear-to-r from-emerald-500 via-emerald-600 to-emerald-700 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600" />
 
         <div className="flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
           {/* Seller Info */}
           <div className="flex items-center gap-4">
             {/* Avatar */}
             <div className="relative size-16 shrink-0">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 p-[2px]">
+              <div className="absolute inset-0 rounded-full bg-linear-to-br from-emerald-500 to-emerald-600 p-0.5">
                 <div className="flex size-full items-center justify-center overflow-hidden rounded-full bg-background">
                   {seller.image ? (
                     <Image
