@@ -1,10 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import {
-  BookOpen,
-  Globe2,
-  Tag,
-  UserRound,
-} from "lucide-react";
+import { BookOpen, Globe2, Tag, UserRound } from "lucide-react";
 
 type BookInfoProps = {
   book: {
@@ -28,77 +23,55 @@ const BookInfo = ({
   return (
     <div className="min-w-0">
       {/* Badges */}
-      <div className="flex flex-wrap items-center gap-2.5">
+      <div className="flex flex-wrap items-center gap-2">
         <Badge
           variant="secondary"
-          className="gap-1.5 rounded-full border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-400"
+          className="rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400"
         >
-          <Tag className="size-3.5" />
           {book.category}
         </Badge>
-
         <Badge
           variant="outline"
-          className="rounded-full border-emerald-200 bg-emerald-50/50 px-3.5 py-1.5 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400"
+          className="rounded-full border-emerald-200 text-emerald-700 dark:border-emerald-800 dark:text-emerald-400"
         >
           {status}
         </Badge>
       </div>
 
       {/* Title */}
-      <h1 className="mt-6 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+      <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
         {book.title}
       </h1>
 
       {/* Author */}
-      <p className="mt-4 flex items-center gap-2.5 text-lg text-muted-foreground">
-        <span className="flex size-8 items-center justify-center rounded-full bg-muted">
-          <UserRound className="size-4" />
-        </span>
+      <p className="mt-2.5 flex items-center gap-2 text-sm text-muted-foreground">
+        <UserRound className="size-4" />
         {book.author}
       </p>
 
-      {/* Divider */}
-      <div className="my-8 h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
-
-      {/* Info Cards */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-        <InfoCard
-          icon={<BookOpen className="size-5 text-emerald-600 dark:text-emerald-400" />}
-          label="Condition"
-          value={condition}
-        />
-
-        <InfoCard
-          icon={<Globe2 className="size-5 text-emerald-600 dark:text-emerald-400" />}
-          label="Language"
-          value={book.language}
-        />
-
-        <InfoCard
-          icon={<Tag className="size-5 text-emerald-600 dark:text-emerald-400" />}
-          label="Category"
-          value={book.category}
-        />
+      {/* Price */}
+      <div className="mt-6 inline-flex items-baseline gap-1.5 rounded-xl bg-emerald-50 px-5 py-3 dark:bg-emerald-950/50">
+        <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">৳</span>
+        <span className="text-3xl font-bold tracking-tight text-emerald-700 dark:text-emerald-400">
+          {price}
+        </span>
       </div>
 
-      {/* Price Section */}
-      <div className="mt-8 overflow-hidden rounded-2xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50 via-emerald-50/80 to-transparent p-6 dark:border-emerald-800/60 dark:from-emerald-950/50 dark:via-emerald-950/30 dark:to-transparent">
-        <p className="text-sm font-medium text-emerald-700/70 dark:text-emerald-400/70">
-          Selling price
-        </p>
-        <p className="mt-2 text-4xl font-bold tracking-tight text-emerald-700 dark:text-emerald-400">
-          ৳{price}
-        </p>
+      {/* Divider */}
+      <div className="my-7 h-px bg-border" />
+
+      {/* Meta */}
+      <div className="grid grid-cols-3 gap-3">
+        <MetaItem icon={<BookOpen className="size-4" />} label="Condition" value={condition} />
+        <MetaItem icon={<Globe2 className="size-4" />} label="Language" value={book.language} />
+        <MetaItem icon={<Tag className="size-4" />} label="Category" value={book.category} />
       </div>
 
       {/* Description */}
       {book.description && (
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold tracking-tight">
-            About this book
-          </h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+        <div className="mt-8">
+          <h2 className="text-lg font-semibold text-foreground">About this book</h2>
+          <p className="mt-3 leading-relaxed text-sm text-muted-foreground">
             {book.description}
           </p>
         </div>
@@ -107,24 +80,22 @@ const BookInfo = ({
   );
 };
 
-type InfoCardProps = {
+const MetaItem = ({
+  icon,
+  label,
+  value,
+}: {
   icon: React.ReactNode;
   label: string;
   value: string;
-};
-
-const InfoCard = ({ icon, label, value }: InfoCardProps) => {
+}) => {
   return (
-    <div className="group rounded-xl border border-border/60 bg-card p-4 transition-all duration-200 hover:border-emerald-200 hover:shadow-sm dark:hover:border-emerald-800">
-      <div className="mb-3 rounded-lg bg-emerald-50 p-2 size-fit dark:bg-emerald-950">
+    <div className="rounded-xl border border-border bg-card p-3">
+      <div className="flex items-center gap-1.5 text-muted-foreground">
         {icon}
+        <span className="text-xs">{label}</span>
       </div>
-      <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-        {label}
-      </p>
-      <p className="mt-1 truncate font-semibold text-foreground">
-        {value}
-      </p>
+      <p className="mt-1.5 truncate text-sm font-medium text-foreground">{value}</p>
     </div>
   );
 };

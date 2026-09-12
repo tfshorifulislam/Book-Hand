@@ -7,24 +7,17 @@ type BookCoverProps = {
 
 const BookCover = ({ title, coverImage }: BookCoverProps) => {
   return (
-    <div className="w-full">
-      <div className="group relative mx-auto max-w-sm">
-        {/* Glow effect */}
-        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-emerald-600/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-
-        {/* Cover container */}
-        <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-lg shadow-black/5 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-black/10 group-hover:-translate-y-1">
-          <div className="relative aspect-[3/4]">
-            <Image
-              src={coverImage || "/book-placeholder.png"}
-              alt={title}
-              fill
-              priority
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            />
-            {/* Subtle overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-          </div>
+    <div className="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[500px]">
+      <div className="rounded-3xl bg-gradient-to-br from-neutral-100 via-neutral-50 to-neutral-100 p-4 sm:p-5 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border/60 bg-card shadow-2xl shadow-neutral-900/10 dark:shadow-black/30">
+          <Image
+            src={coverImage || "/book.png"}
+            alt={title}
+            fill
+            priority
+            sizes="(max-width: 640px) 320px, (max-width: 768px) 380px, (max-width: 1024px) 440px, 500px"
+            className="object-cover"
+          />
         </div>
       </div>
     </div>
