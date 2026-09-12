@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function FinalCTA() {
   return (
@@ -25,22 +26,26 @@ export function FinalCTA() {
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button
-                size="lg"
-                className="group cursor-pointer rounded-md bg-white px-6 text-emerald-700 hover:bg-emerald-50 dark:text-emerald-700"
-              >
-                <BookOpen className="mr-2 h-4 w-4" />
-                Get Started Free
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+              <Link href='/sell-book'>
+                <Button
+                  size="lg"
+                  className="group cursor-pointer rounded-md bg-white px-6 text-emerald-700 hover:bg-emerald-50 dark:text-emerald-700"
+                >
+                  <BookOpen className="mr-2 h-4 w-4" />
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
 
-              <Button
-                size="lg"
-                variant="outline"
-                className="cursor-pointer rounded-md border-emerald-500/30 bg-emerald-600/20 px-6 text-white hover:bg-emerald-600/30 hover:text-white"
-              >
-                Browse Books
-              </Button>
+              <Link href='/books'>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="cursor-pointer rounded-md border-emerald-500/30 bg-emerald-600/20 px-6 text-white hover:bg-emerald-600/30 hover:text-white"
+                >
+                  Browse Books
+                </Button>
+              </Link>
             </div>
 
             <p className="mt-6 text-sm text-emerald-200">

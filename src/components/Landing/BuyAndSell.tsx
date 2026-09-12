@@ -1,5 +1,6 @@
 import { ShoppingBag, Tag, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function BuyAndSell() {
   return (
@@ -44,13 +45,15 @@ export function BuyAndSell() {
               and get it delivered or pick it up on campus.
             </p>
 
-            <Button
-              size="lg"
-              className="mt-6 group/btn cursor-pointer rounded-md bg-emerald-700 px-6 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
-            >
-              Start Shopping
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Button>
+            <Link href='/books'>
+              <Button
+                size="lg"
+                className="mt-6 group/btn cursor-pointer rounded-md bg-emerald-700 px-6 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+              >
+                Start Shopping
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Button>
+            </Link>
           </div>
 
           {/* Sell Card */}
@@ -69,14 +72,16 @@ export function BuyAndSell() {
               need them.
             </p>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="mt-6 group/btn cursor-pointer rounded-md px-6"
-            >
-              List a Book
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Button>
+            <Link href='/sell-book'>
+              <Button
+                size="lg"
+                variant="outline"
+                className="mt-6 group/btn cursor-pointer rounded-md px-6"
+              >
+                List a Book
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Button>
+            </Link>
           </div>
 
         </div>
