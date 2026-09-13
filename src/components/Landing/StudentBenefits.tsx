@@ -31,7 +31,7 @@ const benefits = [
 
 export function StudentBenefits() {
   return (
-    <section className="relative w-full overflow-hidden border-y bg-muted/30 py-20 md:py-28">
+    <section className="relative mt-20 w-full overflow-hidden bg-muted/30 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
