@@ -4,33 +4,32 @@ import CoverProfile from "@/components/Profile_Components/Cover_Profile";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
-
-type Props = {
-    params: Promise<{
-        userId: string
-    }>
-}
-
-
-const ProfilePage = async ({ params }: Props) => {
-
-    const userInfo = await auth.api.getSession({
-        headers: await headers()
+const ProfilePage = async () => {
+    const session = await auth.api.getSession({
+        headers: await headers(),
     });
 
-    const { userId } = await params;
+    const user = session?.user;
 
-    const item = await getUserBooks(userId);
-    const user = userInfo?.user;
+    if (!user) {
+        return null;
+    }
+
+    const booksData = await getUserBooks(user.id);
+    const books = booksData?.listings ?? [];
 
     return (
-        <div className="mx-auto">
-            <CoverProfile
-                user={user}
-            />
+        <div className="mx-auto max-w-7xl">
+            <CoverProfile user={user} />
 
-            <BooksCard
-                item={item} />
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {books.map((item) => (
+                    <BooksCard
+                        key={item.id}
+                        item={item}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
