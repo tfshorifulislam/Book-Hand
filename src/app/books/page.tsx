@@ -15,6 +15,7 @@ import { BookOpen, Search } from "lucide-react";
 type Props = {
     searchParams: Promise<{
         page?: string;
+         search?: string;
     }>;
 };
 
@@ -49,10 +50,11 @@ function getPageNumbers(currentPage: number, totalPages: number): (number | "ell
 
 const BooksPage = async ({ searchParams }: Props) => {
     const params = await searchParams;
+    const search = params.search?.trim() || "";
 
     const currentPage = Math.max(Number(params.page) || 1, 1);
 
-    const booksData = await getBooks(currentPage, 12);
+    const booksData = await getBooks(currentPage, 12,  search);
 
     const items: BookListing[] = booksData?.data ?? [];
     const pagination = booksData?.pagination;

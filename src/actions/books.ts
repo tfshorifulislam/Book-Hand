@@ -17,9 +17,7 @@ export const getBooks = async (
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?${params.toString()}`,
         {
-            next: {
-                revalidate: 60,
-            },
+            cache: "no-store",
         }
     );
 
