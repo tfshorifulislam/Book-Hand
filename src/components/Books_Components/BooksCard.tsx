@@ -18,8 +18,8 @@ const BooksCard = async ({ item }: Props) => {
         headers: await headers(),
     });
 
-    const isOwnListing = user?.user?.id === item.seller.id;
-    const profileUrl = isOwnListing ? "/profile" : `/profile/${item.seller.id}`;
+    const isOwnListing = user?.user?.id === item?.seller?.id;
+    const profileUrl = isOwnListing ? "/profile" : `/profile/${item.seller?.id}`;
 
     return (
         <Card className="group overflow-hidden border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
