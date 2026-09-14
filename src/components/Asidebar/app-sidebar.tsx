@@ -53,21 +53,21 @@ const data = {
       url: "/books",
       icon: BookOpen,
     },
-    {
-      title: "My Library",
-      url: "/library",
-      icon: Library,
-    },
+    // {
+    //   title: "My Library",
+    //   url: "/library",
+    //   icon: Library,
+    // },
     {
       title: "Wishlist",
       url: "/wishlist",
       icon: Heart,
     },
-    {
-      title: "My Orders",
-      url: "/orders",
-      icon: ShoppingBag,
-    },
+    // {
+    //   title: "My Orders",
+    //   url: "/orders",
+    //   icon: ShoppingBag,
+    // },
     {
       title: "Sell a Book",
       url: "/sell-book",
