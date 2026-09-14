@@ -30,7 +30,7 @@ export function BuyAndSell() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2">
 
           {/* Buy Card */}
-          <div className="group relative overflow-hidden rounded-2xl border bg-background p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div className="group relative rounded-2xl border bg-background p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="flex size-14 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-950/40">
               <ShoppingBag className="size-7 text-emerald-700 dark:text-emerald-500" />
             </div>
@@ -57,7 +57,7 @@ export function BuyAndSell() {
           </div>
 
           {/* Sell Card */}
-          <div className="group relative overflow-hidden rounded-2xl border bg-background p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <div className="group relative rounded-2xl border bg-background p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="flex size-14 items-center justify-center rounded-2xl border bg-muted/50">
               <Tag className="size-7" />
             </div>

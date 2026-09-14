@@ -7,13 +7,7 @@ export function FinalCTA() {
     <section className="w-full py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="relative overflow-hidden rounded-3xl bg-emerald-700 dark:bg-emerald-600 px-8 py-16 text-center sm:px-16 sm:py-20">
-
-          {/* Background decoration */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -left-20 -top-20 size-64 rounded-full bg-emerald-600/30 blur-3xl" />
-            <div className="absolute -bottom-20 -right-20 size-64 rounded-full bg-emerald-800/40 blur-3xl" />
-          </div>
+        <div className="relative rounded-3xl bg-emerald-700 dark:bg-emerald-600 px-8 py-16 text-center sm:px-16 sm:py-20">
 
           <div className="relative mx-auto max-w-2xl">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">

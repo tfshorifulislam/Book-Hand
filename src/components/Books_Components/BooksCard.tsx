@@ -18,11 +18,13 @@ import { toast } from "@/components/ui/toast";
 type Props = {
     item: BookListing;
     canDelete?: boolean;
+    userId: string;
 };
 
 const BooksCard = ({
     item,
     canDelete = false,
+    userId
 }: Props) => {
     const router = useRouter();
 
@@ -30,7 +32,12 @@ const BooksCard = ({
 
     const [deleting, setDeleting] = useState(false);
 
-    const profileUrl = `/profile/${item.seller?.id}`;
+    const isOwner = userId === item.seller?.id;
+
+    const profileUrl = isOwner
+        ? "/profile"
+        : `/profile/${item.seller?.id}`;
+
 
     const handleDelete = async () => {
         try {
@@ -52,7 +59,7 @@ const BooksCard = ({
                 type: "error",
             });
             console.log(error);
-            
+
         } finally {
             setDeleting(false);
         }
@@ -61,7 +68,7 @@ const BooksCard = ({
 
     return (
         <>
-            <Card className="group overflow-hidden border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
+            <Card className="group border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20">
 
                 {/* Cover Image */}
                 <div className="relative aspect-3/2 bg-muted">
@@ -70,7 +77,7 @@ const BooksCard = ({
                         alt={item.book.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg"
                     />
 
                     {/* Condition */}

@@ -47,7 +47,7 @@ const Loading = () => {
                     {[1, 2, 3].map((item) => (
                         <div
                             key={item}
-                            className="overflow-hidden rounded-xl border"
+                            className=" rounded-xl border"
                         >
                             <Skeleton className="h-48 w-full" />
 

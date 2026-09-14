@@ -4,7 +4,7 @@ import { ForSellers } from "./ForSellers";
 
 export function HowItWorks() {
   return (
-    <section className="w-full overflow-hidden bg-muted/20 py-20 md:py-28">
+    <section className="w-full bg-muted/20 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">

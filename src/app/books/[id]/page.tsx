@@ -18,7 +18,7 @@ const BookDetailsPage = async ({ params }: BookDetailsPageProps) => {
   const { book, seller, price, condition, status } = data.data;
 
   return (
-    <div className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-10 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <Link
         href="/books"
         className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
@@ -41,7 +41,9 @@ const BookDetailsPage = async ({ params }: BookDetailsPageProps) => {
             condition={condition}
             status={status}
           />
+
           <BookActions sellerId={seller.id} />
+          
         </div>
       </div>
 

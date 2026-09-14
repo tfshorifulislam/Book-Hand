@@ -11,9 +11,10 @@ import {
 import { AppSidebar } from "@/components/Asidebar/app-sidebar"
 import { ThemeProvider } from "@/components/theme-provider/theme-provider"
 import { NavigationBar } from "@/components/Navbar_Components/NavigationBar"
-import SmoothScroll from "@/components/shared/SmoothScroll"
+
 import { Footer } from "@/components/Footer/Footer"
 import { Toaster } from "@/components/ui/toast"
+import SmoothScroll from "@/components/shared/SmoothScroll"
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -30,12 +31,12 @@ export default function RootLayout({
 }: LayoutProps<"/">) {
   return (
     <html className={`${inter.className} h-full antialiased`}
-    lang="en"
-    suppressHydrationWarning
+      lang="en"
+      suppressHydrationWarning
     >
       <body className="min-h-full">
 
-        <SmoothScroll />
+
 
         <ThemeProvider
           attribute="class"
@@ -55,7 +56,8 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
-         <Toaster />
+        <Toaster />
+        <SmoothScroll />
       </body>
     </html>
   )

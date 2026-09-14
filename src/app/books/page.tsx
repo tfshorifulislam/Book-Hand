@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/pagination";
 import { BookListing } from "../../../Types/Book_Listing";
 import { BookOpen, Search } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 type Props = {
     searchParams: Promise<{
         page?: string;
-         search?: string;
+        search?: string;
     }>;
 };
 
@@ -49,12 +51,18 @@ function getPageNumbers(currentPage: number, totalPages: number): (number | "ell
 }
 
 const BooksPage = async ({ searchParams }: Props) => {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    const userId = session?.user?.id;
+
     const params = await searchParams;
     const search = params.search?.trim() || "";
 
     const currentPage = Math.max(Number(params.page) || 1, 1);
 
-    const booksData = await getBooks(currentPage, 12,  search);
+    const booksData = await getBooks(currentPage, 12, search);
 
     const items: BookListing[] = booksData?.data ?? [];
     const pagination = booksData?.pagination;
@@ -65,7 +73,7 @@ const BooksPage = async ({ searchParams }: Props) => {
     const pageNumbers = getPageNumbers(currentPage, totalPages);
 
     return (
-        <div className="mx-auto w-full max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
+        <div className="mx-auto w-full min-h-screen max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
             {/* Header */}
             <div className="mb-10 space-y-2">
                 <div className="flex items-center gap-3">
@@ -105,7 +113,10 @@ const BooksPage = async ({ searchParams }: Props) => {
             {items.length > 0 && (
                 <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {items.map((item) => (
-                        <BooksCard key={item.id} item={item} />
+                        <BooksCard
+                            userId={userId}
+                            key={item.id}
+                            item={item} />
                     ))}
                 </div>
             )}

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
-    <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background px-6">
+    <main className="relative flex min-h-screen w-full items-center justify-center bg-background px-6">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-muted/40 blur-3xl" />
@@ -34,7 +34,7 @@ export default function NotFound() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="rounded-xl px-6"
+              className="rounded-xl px-6 bg-emerald-700 hover:bg-emerald-600"
             >
               <Link href="/">
                 Back to Home

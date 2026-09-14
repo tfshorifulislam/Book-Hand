@@ -31,7 +31,7 @@ const benefits = [
 
 export function StudentBenefits() {
   return (
-    <section className="relative mt-20 w-full overflow-hidden bg-muted/30 py-20 md:py-28">
+    <section className="relative mt-20 w-full bg-muted/30 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -55,7 +55,7 @@ export function StudentBenefits() {
         </div>
 
         {/* Stats */}
-        <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border bg-background">
+        <div className="mx-auto mt-14 max-w-4xl  rounded-2xl border bg-background">
           <div className="grid grid-cols-1 divide-y sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {stats.map((stat) => (
               <motion.div
@@ -92,7 +92,7 @@ export function StudentBenefits() {
                   delay: index * 0.08,
                 }}
                 whileHover={{ y: -5 }}
-                className="group relative overflow-hidden rounded-2xl border bg-background p-6 transition-shadow duration-300 hover:shadow-lg"
+                className="group relative rounded-2xl border bg-background p-6 transition-shadow duration-300 hover:shadow-lg"
               >
                 {/* Number */}
                 <span className="absolute right-5 top-5 text-xs font-medium text-muted-foreground/50">

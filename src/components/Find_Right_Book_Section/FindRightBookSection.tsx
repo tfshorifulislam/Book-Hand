@@ -30,7 +30,7 @@ const FindRightBookSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
         >
-            <section className="relative w-full overflow-hidden">
+            <section className="relative w-full">
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: "url('/boog-bg.jpg')" }}
