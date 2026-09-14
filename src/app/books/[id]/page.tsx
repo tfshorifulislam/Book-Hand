@@ -14,44 +14,58 @@ type BookDetailsPageProps = {
 
 const BookDetailsPage = async ({ params }: BookDetailsPageProps) => {
   const { id } = await params;
+
   const data = await bookDetails(id);
+
   const { book, seller, price, condition, status } = data.data;
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <Link
-        href="/books"
-        className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
-      >
-        <ArrowLeft className="size-4" />
-        Back to books
-      </Link>
+    <main className="bg-background mx-auto w-full max-w-7xl min-h-screen">
+      <div className=" px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
 
-      <div className="grid items-start gap-10 sm:gap-14 lg:grid-cols-[1fr_1.1fr]">
-        {/* Cover - Left side */}
-        <div className="flex justify-center lg:justify-end">
-          <BookCover title={book.title} coverImage={book.coverImage} />
-        </div>
+        {/* Back */}
+        <Link
+          href="/books"
+          className="group mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+        >
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+          Back to books
+        </Link>
 
-        {/* Info + Actions - Right side */}
-        <div className="min-w-0 space-y-6">
-          <BookInfo
-            book={book}
-            price={price}
-            condition={condition}
-            status={status}
-          />
+        {/* Main Product */}
+        <section className="overflow-hidden rounded-3xl border border-border/60 bg-card shadow-sm">
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
 
-          <BookActions sellerId={seller.id} />
-          
-        </div>
+            {/* Cover */}
+            <div className="flex items-center justify-center border-b border-border/60 bg-muted/20 p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-14">
+              <BookCover
+                title={book.title}
+                coverImage={book.coverImage}
+              />
+            </div>
+
+            {/* Details */}
+            <div className="flex flex-col p-6 sm:p-10 lg:p-12">
+              <BookInfo
+                book={book}
+                price={price}
+                condition={condition}
+                status={status}
+              />
+
+              <div className="mt-auto pt-8">
+                <BookActions sellerId={seller.id} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Seller */}
+        <section className="mt-10">
+          <SellerCard seller={seller} />
+        </section>
       </div>
-
-      {/* Seller - Full width below main content */}
-      <div className="mt-10">
-        <SellerCard seller={seller} />
-      </div>
-    </div>
+    </main>
   );
 };
 
