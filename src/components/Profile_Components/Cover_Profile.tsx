@@ -7,7 +7,7 @@ type CoverProfileProps = {
 
 const CoverProfile = ({ user }: CoverProfileProps) => {
     return (
-        <div className="mx-auto my-5 max-w-7xl px-4 pt-3 md:px-6">
+        <div className="mx-auto my-5 pt-3">
 
             <div className="relative w-full">
                 <Image

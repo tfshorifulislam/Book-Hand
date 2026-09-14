@@ -19,7 +19,7 @@ const ProfilePage = async () => {
     const books = booksData?.listings ?? [];
 
     return (
-        <div className="mx-auto max-w-7xl ">
+        <div className="mx-auto max-w-7xl px-4  md:px-6">
             <CoverProfile user={user} />
 
             <div className="my-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -27,6 +27,7 @@ const ProfilePage = async () => {
                     <BooksCard
                         key={item.id}
                         item={item}
+                        canDelete={true}
                     />
                 ))}
             </div>
