@@ -10,10 +10,10 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
 import { BookListing } from "../../../Types/Book_Listing";
 import { deleteBookListing } from "@/actions/delete.Post";
 import DeleteBookDialog from "@/components/Books_Components/DeleteBookDialog";
+import { toast } from "@/components/ui/toast";
 
 type Props = {
     item: BookListing;
@@ -40,13 +40,24 @@ const BooksCard = ({
 
             setDeleteDialogOpen(false);
 
+            toast.add({
+                title: "Book deleted successfully",
+                type: "success",
+            });
+
             router.refresh();
         } catch (error) {
-            console.error("Delete error:", error);
+            toast.add({
+                title: "Delete failed",
+                type: "error",
+            });
+            console.log(error);
+            
         } finally {
             setDeleting(false);
         }
     };
+
 
     return (
         <>
@@ -173,7 +184,7 @@ const BooksCard = ({
                 </CardFooter>
             </Card>
 
-          
+
             <DeleteBookDialog
                 open={deleteDialogOpen}
                 onOpenChange={setDeleteDialogOpen}

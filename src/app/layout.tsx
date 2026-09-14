@@ -13,6 +13,7 @@ import { ThemeProvider } from "@/components/theme-provider/theme-provider"
 import { NavigationBar } from "@/components/Navbar_Components/NavigationBar"
 import SmoothScroll from "@/components/shared/SmoothScroll"
 import { Footer } from "@/components/Footer/Footer"
+import { Toaster } from "@/components/ui/toast"
 
 const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -54,6 +55,7 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
+         <Toaster />
       </body>
     </html>
   )
