@@ -99,7 +99,7 @@ const BooksCard = ({
                             <h3
                                 className="
                                     line-clamp-2
-                                    min-h-[3rem]
+                                    min-h-12
                                     text-base
                                     font-semibold
                                     leading-6
