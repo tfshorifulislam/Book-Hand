@@ -74,7 +74,7 @@ export function NavUser() {
               </span>
             </div>
 
-            <ChevronsUpDownIcon className="ml-auto size-4" />
+            {/* <ChevronsUpDownIcon className="ml-auto size-4" /> */}
           </DropdownMenuTrigger>
 
           <DropdownMenuContent
