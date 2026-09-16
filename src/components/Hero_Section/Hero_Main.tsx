@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 
 const HeroMain = () => {
     return (
-        <section className="w-full">
+        <section className="overflow-hidden py-12 sm:py-16 lg:py-24">
             <div
-                className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 py-10 md:py-16 lg:py-20 px-4 md:px-6" >
+                className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8" >
 
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}

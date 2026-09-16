@@ -5,7 +5,6 @@ import {
     Lock,
     User,
     ShieldCheck,
-    Palette,
     ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
@@ -34,12 +33,6 @@ const settingsItems = [
         title: "Privacy",
         description: "Control your profile visibility and privacy preferences.",
         href: "/settings/privacy",
-    },
-    {
-        icon: Palette,
-        title: "Appearance",
-        description: "Customize the look and feel of your BookHand experience.",
-        href: "/settings/appearance",
     },
 ];
 
