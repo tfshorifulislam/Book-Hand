@@ -9,15 +9,7 @@ const HeroRight = () => {
                 height={700}
                 alt="Books"
                 priority
-                className="
-                    h-auto
-                    w-[280px]
-                    sm:w-[360px]
-                    md:w-[420px]
-                    lg:w-[520px]
-                    xl:w-[600px]
-                "
-            />
+                className="h-auto w-70 sm:w-90 md:w-105 lg:w-130 xl:w-150" />
         </div>
     );
 };
