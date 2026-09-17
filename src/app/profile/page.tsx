@@ -6,6 +6,7 @@ import { headers } from "next/headers";
 import {
     Pagination,
     PaginationContent,
+    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
@@ -17,6 +18,39 @@ type ProfilePageProps = {
         page?: string;
     }>;
 };
+
+function getPageNumbers(
+    currentPage: number,
+    totalPages: number
+): (number | "ellipsis")[] {
+    if (totalPages <= 7) {
+        return Array.from(
+            { length: totalPages },
+            (_, i) => i + 1
+        );
+    }
+
+    const pages: (number | "ellipsis")[] = [1];
+
+    if (currentPage > 3) {
+        pages.push("ellipsis");
+    }
+
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(totalPages - 1, currentPage + 1);
+
+    for (let i = start; i <= end; i++) {
+        pages.push(i);
+    }
+
+    if (currentPage < totalPages - 2) {
+        pages.push("ellipsis");
+    }
+
+    pages.push(totalPages);
+
+    return pages;
+}
 
 const ProfilePage = async ({
     searchParams,
@@ -33,7 +67,7 @@ const ProfilePage = async ({
 
     const params = await searchParams;
 
-    const page = Math.max(
+    const currentPage = Math.max(
         Number(params.page) || 1,
         1
     );
@@ -42,12 +76,19 @@ const ProfilePage = async ({
 
     const booksData = await getUserBooks(
         user.id,
-        page,
+        currentPage,
         limit
     );
 
     const books = booksData?.listings ?? [];
     const pagination = booksData?.pagination;
+
+    const totalPages = pagination?.totalPages ?? 1;
+
+    const pageNumbers = getPageNumbers(
+        currentPage,
+        totalPages
+    );
 
     return (
         <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -65,7 +106,65 @@ const ProfilePage = async ({
                         ))}
                     </div>
 
-                    {/* Pagination এখানে বসবে */}
+                    {totalPages > 1 && (
+                        <Pagination className="mb-20">
+                            <PaginationContent>
+                                {/* Previous */}
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        href={
+                                            currentPage > 1
+                                                ? `/profile?page=${currentPage - 1}`
+                                                : "#"
+                                        }
+                                        className={
+                                            currentPage === 1
+                                                ? "pointer-events-none opacity-50"
+                                                : ""
+                                        }
+                                    />
+                                </PaginationItem>
+
+                                {/* Page Numbers */}
+                                {pageNumbers.map((page, index) =>
+                                    page === "ellipsis" ? (
+                                        <PaginationItem
+                                            key={`ellipsis-${index}`}
+                                        >
+                                            <PaginationEllipsis />
+                                        </PaginationItem>
+                                    ) : (
+                                        <PaginationItem key={page}>
+                                            <PaginationLink
+                                                href={`/profile?page=${page}`}
+                                                isActive={
+                                                    page === currentPage
+                                                }
+                                            >
+                                                {page}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    )
+                                )}
+
+                                {/* Next */}
+                                <PaginationItem>
+                                    <PaginationNext
+                                        href={
+                                            currentPage < totalPages
+                                                ? `/profile?page=${currentPage + 1}`
+                                                : "#"
+                                        }
+                                        className={
+                                            currentPage === totalPages
+                                                ? "pointer-events-none opacity-50"
+                                                : ""
+                                        }
+                                    />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
+                    )}
                 </>
             ) : (
                 <div className="my-20 flex min-h-75 flex-col items-center justify-center rounded-xl border border-dashed bg-muted/20 text-center">
@@ -78,44 +177,6 @@ const ProfilePage = async ({
                     </p>
                 </div>
             )}
-
-            {/* pagination add system */};
-            {pagination && pagination.totalPages > 1 && (
-                <Pagination className="mb-20">
-                    <PaginationContent>
-                        {pagination.page > 1 && (
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    href={`/profile?page=${pagination.page - 1}`}
-                                />
-                            </PaginationItem>
-                        )}
-
-                        {Array.from(
-                            { length: pagination.totalPages },
-                            (_, index) => index + 1
-                        ).map((pageNumber) => (
-                            <PaginationItem key={pageNumber}>
-                                <PaginationLink
-                                    href={`/profile?page=${pageNumber}`}
-                                    isActive={pageNumber === pagination.page}
-                                >
-                                    {pageNumber}
-                                </PaginationLink>
-                            </PaginationItem>
-                        ))}
-
-                        {pagination.page < pagination.totalPages && (
-                            <PaginationItem>
-                                <PaginationNext
-                                    href={`/profile?page=${pagination.page + 1}`}
-                                />
-                            </PaginationItem>
-                        )}
-                    </PaginationContent>
-                </Pagination>
-            )}
-
         </div>
     );
 };
