@@ -14,6 +14,7 @@ import BookCardImage from "./BookCardImage";
 import BookCardSeller from "./BookCardSeller";
 import BookCardFooter from "./BookCardFooter";
 import Link from "next/link";
+import { Heart } from "lucide-react";
 
 type Props = {
     item: BookListing;
@@ -82,13 +83,23 @@ const BooksCard = ({
 
                     {/* Book Info */}
                     <div className="min-w-0 space-y-1.5">
-                        <Link href={`/books/${item.id}`}>
-                            <h3
-                                className="line-clamp-2 min-h-12 text-base font-semibold leading-6 tracking-tight transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400"
+                        <div className="flex items-start justify-between gap-3">
+                            <Link
+                                href={`/books/${item.id}`}
+                                className="min-w-0 flex-1"
                             >
-                                {item.book.title}
-                            </h3>
-                        </Link>
+                                <h3 className="line-clamp-2 min-h-12 text-base font-semibold leading-6 tracking-tight transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                                    {item.book.title}
+                                </h3>
+                            </Link>
+
+                            <button
+                                type="button"
+                                className="shrink-0 rounded-full p-1.5 transition-colors hover:bg-muted cursor-pointer"
+                            >
+                                <Heart className="size-5" />
+                            </button>
+                        </div>
 
                         <p className="truncate text-sm text-muted-foreground">
                             by {item.book.author}
