@@ -57,10 +57,7 @@ function getPageNumbers(
     return pages;
 }
 
-const BooksContent = async ({
-    currentPage,
-    search,
-}: BooksContentProps) => {
+const BooksContent = async ({ currentPage, search, }: BooksContentProps) => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });

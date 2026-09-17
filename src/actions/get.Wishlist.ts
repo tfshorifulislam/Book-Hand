@@ -2,8 +2,24 @@
 
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { BookListing } from "../../Types/Book_Listing";
 
-export const getWishlist = async () => {
+
+type WishlistItem = {
+    id: string;
+    userId: string;
+    listingId: string;
+    createdAt: string;
+    listing: BookListing;
+};
+
+type WishlistResponse = {
+    success: boolean;
+    message?: string;
+    data: WishlistItem[];
+};
+
+export const getWishlist = async (): Promise<WishlistResponse> => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -21,7 +37,8 @@ export const getWishlist = async () => {
             method: "GET",
             headers: {
                 "x-user-id": session.user.id,
-                "x-internal-secret":process.env.BACKEND_INTERNAL_SECRET!,
+                "x-internal-secret":
+                    process.env.BACKEND_INTERNAL_SECRET!,
             },
             cache: "no-store",
         }
