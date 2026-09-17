@@ -23,12 +23,14 @@ type Props = {
     item: BookListing;
     canDelete?: boolean;
     userId?: string;
+    onSavedChange?: (listingId: string) => void;
 };
 
 const BooksCard = ({
     item,
     canDelete = false,
     userId,
+    onSavedChange,
 }: Props) => {
     const router = useRouter();
 
@@ -84,11 +86,14 @@ const BooksCard = ({
 
     const handleSavePost = async () => {
         const previousState = isSaved;
+
         setIsSaved(!previousState);
 
         try {
             if (previousState) {
                 await deleteSavedBook(item.id);
+
+                onSavedChange?.(item.id);
             } else {
                 await saveBook(item.id);
             }
