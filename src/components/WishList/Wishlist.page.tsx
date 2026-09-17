@@ -15,14 +15,11 @@ type Props = {
 };
 
 const WishlistPage = ({ initialWishlist }: Props) => {
+
     const [wishlist, setWishlist] = useState<WishlistItem[]>(initialWishlist);
 
     const handleRemove = (listingId: string) => {
-        setWishlist((prev) =>
-            prev.filter(
-                (item) => item.listing.id !== listingId
-            )
-        );
+        setWishlist((prev) => prev.filter( (item) => item.listing.id !== listingId));
     };
 
     return (
