@@ -66,7 +66,7 @@ const BooksCard = ({
     return (
         <>
             <Card
-                className="group overflow-hidden border-border/60 bg-card py-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20"
+                className="group overflow-hidden border-border/60 bg-card py-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 "
             >
                 {/* Image */}
                 <BookCardImage
