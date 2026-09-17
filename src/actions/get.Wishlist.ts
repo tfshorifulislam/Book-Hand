@@ -21,8 +21,7 @@ export const getWishlist = async () => {
             method: "GET",
             headers: {
                 "x-user-id": session.user.id,
-                "x-internal-secret":
-                    process.env.BACKEND_INTERNAL_SECRET!,
+                "x-internal-secret":process.env.BACKEND_INTERNAL_SECRET!,
             },
             cache: "no-store",
         }
