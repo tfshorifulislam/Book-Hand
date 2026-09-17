@@ -68,35 +68,25 @@ const BooksContent = async ({
     const userId = session?.user?.id;
 
 
-    const booksData = await getBooks(
-        currentPage,
-        12,
-        search
-    );
+    const booksData = await getBooks( currentPage, 12, search );
 
-    const items: BookListing[] =
-        booksData?.data ?? [];
+    const items: BookListing[] = booksData?.data ?? [];
 
     const pagination = booksData?.pagination;
 
-    const totalPages =
-        pagination?.totalPages ?? 1;
+    const totalPages = pagination?.totalPages ?? 1;
 
-    const totalCount =
-        pagination?.total ?? items.length;
+    const totalCount = pagination?.total ?? items.length;
 
-    const pageNumbers = getPageNumbers(
-        currentPage,
-        totalPages
-    );
+    const pageNumbers = getPageNumbers( currentPage, totalPages );
 
     return (
         <div className="mx-auto min-h-screen w-full max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
             {/* Header */}
             <div className="mb-10 space-y-2">
                 <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50">
-                        <BookOpen className="size-5 text-emerald-600 dark:text-emerald-400" />
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-700 dark:bg-emerald-500">
+                        <BookOpen className="size-5 text-white dark:text-black" />
                     </div>
 
                     <div>

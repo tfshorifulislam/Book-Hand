@@ -61,22 +61,7 @@ const BookCardFooter = ({
                     render={
                         <Link href={`/books/${id}`} />
                     }
-                    className="
-                        h-9
-                        gap-1.5
-                        rounded-lg
-                        bg-emerald-600
-                        px-3.5
-                        text-white
-                        shadow-sm
-                        transition-all
-                        hover:bg-emerald-700
-                        hover:shadow-md
-                        dark:bg-emerald-500
-                        dark:text-black
-                        dark:hover:bg-emerald-400
-                    "
-                >
+                    className="h-9 gap-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 px-3.5 text-white shadow-sm transition-all hover:shadow-md dark:bg-emerald-500  dark:text-black dark:hover:bg-emerald-400">
                     Details
                     <ArrowUpRight className="size-3.5" />
                 </Button>

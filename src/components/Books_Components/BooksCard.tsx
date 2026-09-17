@@ -66,20 +66,7 @@ const BooksCard = ({
     return (
         <>
             <Card
-                className="
-                    group
-                    overflow-hidden
-                    border-border/60
-                    bg-card
-                    py-0
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:border-emerald-500/30
-                    hover:shadow-xl
-                    hover:shadow-black/5
-                    dark:hover:shadow-black/20
-                "
+                className="group overflow-hidden border-border/60 bg-card py-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20"
             >
                 {/* Image */}
                 <BookCardImage
@@ -97,17 +84,7 @@ const BooksCard = ({
                     <div className="min-w-0 space-y-1.5">
                         <Link href={`/books/${item.id}`}>
                             <h3
-                                className="
-                                    line-clamp-2
-                                    min-h-12
-                                    text-base
-                                    font-semibold
-                                    leading-6
-                                    tracking-tight
-                                    transition-colors
-                                    group-hover:text-emerald-600
-                                    dark:group-hover:text-emerald-400
-                                "
+                                className="line-clamp-2 min-h-12 text-base font-semibold leading-6 tracking-tight transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400"
                             >
                                 {item.book.title}
                             </h3>
