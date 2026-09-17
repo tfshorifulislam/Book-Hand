@@ -67,7 +67,7 @@ const UserIdProfilePage = async ({
     1
   );
 
-  const limit = 10;
+  const limit = 8;
 
   const [userInfo, booksData] = await Promise.all([
     userProfile(userId),

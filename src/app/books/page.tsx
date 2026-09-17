@@ -13,6 +13,8 @@ import { BookListing } from "../../../Types/Book_Listing";
 import { BookOpen, Search } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { Suspense } from "react";
+import BooksLoading from "@/components/Books_Components/BooksLoading";
 
 type Props = {
     searchParams: Promise<{
@@ -73,111 +75,115 @@ const BooksPage = async ({ searchParams }: Props) => {
     const pageNumbers = getPageNumbers(currentPage, totalPages);
 
     return (
-        <div className="mx-auto w-full min-h-screen max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
-            {/* Header */}
-            <div className="mb-10 space-y-2">
-                <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50">
-                        <BookOpen className="size-5 text-emerald-600 dark:text-emerald-400" />
+        <Suspense
+            fallback={<BooksLoading />}
+        >
+            <div className="mx-auto w-full min-h-screen max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
+                {/* Header */}
+                <div className="mb-10 space-y-2">
+                    <div className="flex items-center gap-3">
+                        <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100 dark:bg-emerald-900/50">
+                            <BookOpen className="size-5 text-emerald-600 dark:text-emerald-400" />
+                        </div>
+                        <div>
+                            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                                Browse Books
+                            </h1>
+                        </div>
                     </div>
-                    <div>
-                        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                            Browse Books
-                        </h1>
-                    </div>
-                </div>
-                <p className="text-muted-foreground">
-                    Discover books from sellers across the marketplace
-                    {totalCount > 0 && (
-                        <span className="ml-1 font-medium text-foreground">
-                            &middot; {totalCount} {totalCount === 1 ? "book" : "books"} available
-                        </span>
-                    )}
-                </p>
-            </div>
-
-            {/* Empty State */}
-            {items.length === 0 && (
-                <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/30 px-6 py-20 text-center">
-                    <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-muted">
-                        <Search className="size-6 text-muted-foreground" />
-                    </div>
-                    <h3 className="text-lg font-semibold">No books found</h3>
-                    <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-                        There are no books available at the moment. Check back later or try a different page.
+                    <p className="text-muted-foreground">
+                        Discover books from sellers across the marketplace
+                        {totalCount > 0 && (
+                            <span className="ml-1 font-medium text-foreground">
+                                &middot; {totalCount} {totalCount === 1 ? "book" : "books"} available
+                            </span>
+                        )}
                     </p>
                 </div>
-            )}
 
-            {/* Books Grid */}
-            {items.length > 0 && (
-                <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {items.map((item) => (
-                        <BooksCard
-                            userId={userId}
-                            key={item.id}
-                            item={item} />
-                    ))}
-                </div>
-            )}
+                {/* Empty State */}
+                {items.length === 0 && (
+                    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/30 px-6 py-20 text-center">
+                        <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-muted">
+                            <Search className="size-6 text-muted-foreground" />
+                        </div>
+                        <h3 className="text-lg font-semibold">No books found</h3>
+                        <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+                            There are no books available at the moment. Check back later or try a different page.
+                        </p>
+                    </div>
+                )}
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-                <Pagination className="mt-12">
-                    <PaginationContent>
-                        {/* Previous */}
-                        <PaginationItem>
-                            <PaginationPrevious
-                                href={
-                                    currentPage > 1
-                                        ? `/books?page=${currentPage - 1}`
-                                        : "#"
-                                }
-                                className={
-                                    currentPage === 1
-                                        ? "pointer-events-none opacity-50"
-                                        : ""
-                                }
-                            />
-                        </PaginationItem>
+                {/* Books Grid */}
+                {items.length > 0 && (
+                    <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {items.map((item) => (
+                            <BooksCard
+                                userId={userId}
+                                key={item.id}
+                                item={item} />
+                        ))}
+                    </div>
+                )}
 
-                        {/* Page Numbers */}
-                        {pageNumbers.map((page, index) =>
-                            page === "ellipsis" ? (
-                                <PaginationItem key={`ellipsis-${index}`}>
-                                    <PaginationEllipsis />
-                                </PaginationItem>
-                            ) : (
-                                <PaginationItem key={page}>
-                                    <PaginationLink
-                                        href={`/books?page=${page}`}
-                                        isActive={page === currentPage}
-                                    >
-                                        {page}
-                                    </PaginationLink>
-                                </PaginationItem>
-                            )
-                        )}
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <Pagination className="mt-12">
+                        <PaginationContent>
+                            {/* Previous */}
+                            <PaginationItem>
+                                <PaginationPrevious
+                                    href={
+                                        currentPage > 1
+                                            ? `/books?page=${currentPage - 1}`
+                                            : "#"
+                                    }
+                                    className={
+                                        currentPage === 1
+                                            ? "pointer-events-none opacity-50"
+                                            : ""
+                                    }
+                                />
+                            </PaginationItem>
 
-                        {/* Next */}
-                        <PaginationItem>
-                            <PaginationNext
-                                href={
-                                    currentPage < totalPages
-                                        ? `/books?page=${currentPage + 1}`
-                                        : "#"
-                                }
-                                className={
-                                    currentPage === totalPages
-                                        ? "pointer-events-none opacity-50"
-                                        : ""
-                                }
-                            />
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
-            )}
-        </div>
+                            {/* Page Numbers */}
+                            {pageNumbers.map((page, index) =>
+                                page === "ellipsis" ? (
+                                    <PaginationItem key={`ellipsis-${index}`}>
+                                        <PaginationEllipsis />
+                                    </PaginationItem>
+                                ) : (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            href={`/books?page=${page}`}
+                                            isActive={page === currentPage}
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                )
+                            )}
+
+                            {/* Next */}
+                            <PaginationItem>
+                                <PaginationNext
+                                    href={
+                                        currentPage < totalPages
+                                            ? `/books?page=${currentPage + 1}`
+                                            : "#"
+                                    }
+                                    className={
+                                        currentPage === totalPages
+                                            ? "pointer-events-none opacity-50"
+                                            : ""
+                                    }
+                                />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                )}
+            </div>
+        </Suspense>
     );
 };
 
