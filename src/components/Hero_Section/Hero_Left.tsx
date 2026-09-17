@@ -34,10 +34,10 @@ const HeroLeft = () => {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-nowrap items-center justify-center gap-3 md:justify-start">
-                <Link href="/books" className="shrink-0">
+                <Link href="/books" className="shrink-0 ">
                     <Button
                         size="lg"
-                        className="group h-11 rounded-md bg-emerald-700 px-4 text-sm text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400 sm:px-6 sm:text-base"
+                        className="group h-11 rounded-md bg-emerald-700 px-4 text-sm text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400 sm:px-6 sm:text-base cursor-pointer"
                     >
                         <BookOpen className="mr-2 h-4 w-4 shrink-0" />
 
@@ -51,7 +51,7 @@ const HeroLeft = () => {
                     <Button
                         size="lg"
                         variant="outline"
-                        className="h-11 rounded-md px-4 text-sm sm:px-6 sm:text-base"
+                        className="h-11 rounded-md px-4 text-sm sm:px-6 sm:text-base cursor-pointer"
                     >
                         Sell a Book
                     </Button>

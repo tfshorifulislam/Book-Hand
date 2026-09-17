@@ -16,10 +16,12 @@ type UserBooksResponse = {
 };
 
 export async function getUserBooks(
-    userId: string
+    userId: string,
+    page: number = 1,
+    limit: number = 10
 ): Promise<UserBooksResponse> {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/profile/${userId}/books`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/profile/${userId}/books?page=${page}&limit=${limit}`,
         {
             next: {
                 revalidate: 60,
