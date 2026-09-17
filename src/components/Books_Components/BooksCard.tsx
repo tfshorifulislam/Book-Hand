@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Card } from "@/components/ui/card";
 import { BookListing } from "../../../Types/Book_Listing";
@@ -15,6 +15,9 @@ import BookCardSeller from "./BookCardSeller";
 import BookCardFooter from "./BookCardFooter";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { saveBook } from "@/actions/save.post";
+import { deleteSavedBook } from "@/actions/delete.save.post";
+import { getSavedBook } from "@/actions/get.Save.Books";
 
 type Props = {
     item: BookListing;
@@ -31,12 +34,27 @@ const BooksCard = ({
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [deleting, setDeleting] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
 
     const isOwner = userId === item.seller?.id;
 
     const profileUrl = isOwner
         ? "/profile"
         : `/profile/${item.seller?.id}`;
+
+    useEffect(() => {
+        const checkSavedBook = async () => {
+            try {
+                const data = await getSavedBook(item.id);
+
+                setIsSaved(data.isSaved);
+            } catch (error) {
+                console.error("Get saved book error:", error);
+            }
+        };
+
+        checkSavedBook();
+    }, [item.id]);
 
     const handleDelete = async () => {
         try {
@@ -63,6 +81,29 @@ const BooksCard = ({
             setDeleting(false);
         }
     };
+
+    const handleSavePost = async () => {
+        const previousState = isSaved;
+        setIsSaved(!previousState);
+
+        try {
+            if (previousState) {
+                await deleteSavedBook(item.id);
+            } else {
+                await saveBook(item.id);
+            }
+        } catch (error) {
+            console.error("Save post error:", error);
+
+            setIsSaved(previousState);
+
+            toast.add({
+                title: "Something went wrong",
+                type: "error",
+            });
+        }
+    };
+
 
     return (
         <>
@@ -95,9 +136,15 @@ const BooksCard = ({
 
                             <button
                                 type="button"
-                                className="shrink-0 rounded-full p-1.5 transition-colors hover:bg-muted cursor-pointer"
+                                onClick={handleSavePost}
+                                className="shrink-0 cursor-pointer rounded-full p-1.5 transition-colors hover:bg-muted"
                             >
-                                <Heart className="size-5" />
+                                <Heart
+                                    className={`size-5 transition-colors ${isSaved
+                                        ? "fill-emerald-700 text-emerald-700"
+                                        : "text-muted-foreground"
+                                        }`}
+                                />
                             </button>
                         </div>
 

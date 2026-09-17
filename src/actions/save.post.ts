@@ -13,13 +13,13 @@ export async function saveBook(listingId: string) {
   }
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/books/${listingId}/save`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books/${listingId}/save`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-user-id": session.user.id,
-        "x-internal-secret": process.env.INTERNAL_SECRET!,
+        "x-internal-secret": process.env.BACKEND_INTERNAL_SECRET!,
       },
       cache: "no-store",
     }
