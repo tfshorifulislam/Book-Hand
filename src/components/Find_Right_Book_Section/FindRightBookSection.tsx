@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ArrowRight, Search } from "lucide-react";
@@ -5,6 +6,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { motion } from "motion/react";
 
 const FindRightBookSection = () => {
   const router = useRouter();
@@ -26,7 +28,13 @@ const FindRightBookSection = () => {
   return (
     <section className="w-full py-14 md:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-lg border bg-muted/20">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-lg border bg-muted/20"
+        >
           {/* Decorative circles */}
           <div className="absolute -right-24 -top-24 size-72 rounded-full border border-foreground/5" />
           <div className="absolute -bottom-32 -left-20 size-64 rounded-full border border-emerald-700/10" />
@@ -34,31 +42,53 @@ const FindRightBookSection = () => {
           <div className="relative px-6 py-12 sm:px-10 sm:py-14 md:px-16 md:py-16">
             <div className="mx-auto max-w-3xl text-center">
               {/* Label */}
-              <div className="mb-4 flex items-center justify-center gap-2">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                className="mb-4 flex items-center justify-center gap-2"
+              >
                 <span className="size-1.5 rounded-full bg-emerald-700" />
 
                 <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                   Find your textbook
                 </span>
-              </div>
+              </motion.div>
 
               {/* Heading */}
-              <h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl md:text-5xl">
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl md:text-5xl"
+              >
                 Find the right book.
                 <br />
                 <span className="text-muted-foreground/40">
                   Start with a simple search.
                 </span>
-              </h2>
+              </motion.h2>
 
               {/* Description */}
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base"
+              >
                 Search books by title, author, or ISBN and discover affordable
                 textbooks from other students.
-              </p>
+              </motion.p>
 
               {/* Search */}
-              <form
+              <motion.form
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 }}
                 onSubmit={handleSearch}
                 className="mx-auto mt-7 flex max-w-2xl flex-col gap-2.5 sm:flex-row"
               >
@@ -81,15 +111,21 @@ const FindRightBookSection = () => {
                   Search
                   <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Button>
-              </form>
+              </motion.form>
 
               {/* Bottom hint */}
-              <p className="mt-4 text-[11px] text-muted-foreground/60">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.35 }}
+                className="mt-4 text-[11px] text-muted-foreground/60"
+              >
                 Search by book title, author name, or ISBN
-              </p>
+              </motion.p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
