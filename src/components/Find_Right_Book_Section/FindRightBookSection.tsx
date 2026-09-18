@@ -26,7 +26,7 @@ const FindRightBookSection = () => {
   return (
     <section className="w-full py-14 md:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl border bg-muted/20">
+        <div className="relative overflow-hidden rounded-lg border bg-muted/20">
           {/* Decorative circles */}
           <div className="absolute -right-24 -top-24 size-72 rounded-full border border-foreground/5" />
           <div className="absolute -bottom-32 -left-20 size-64 rounded-full border border-emerald-700/10" />
