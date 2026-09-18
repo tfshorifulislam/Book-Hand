@@ -283,7 +283,6 @@ User
  │
  └── Account
 
-
 ### User
 
 Stores user account and profile information.
