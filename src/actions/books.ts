@@ -5,14 +5,15 @@ import { headers } from "next/headers";
 
 export const getBooks = async (
     page = 1,
-    limit = 12
+    limit = 12,
+     search = ""
 ) => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?page=${page}&limit=${limit}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`,
         {
             method: "GET",
 
@@ -29,10 +30,7 @@ export const getBooks = async (
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(
-            data?.message ||
-                "Failed to fetch books"
-        );
+        throw new Error( data?.message || "Failed to fetch books" );
     }
 
     return data;

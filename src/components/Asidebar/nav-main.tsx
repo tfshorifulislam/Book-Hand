@@ -40,7 +40,7 @@ export function NavMain({
         )}
       />
 
-      <SidebarMenu className="space-y-1">
+      <SidebarMenu className="space-y-2">
         {items.map((item) => {
           const Icon = item.icon;
 
@@ -56,7 +56,7 @@ export function NavMain({
                 isActive={isActive}
                 className={cn(
                   "group",
-                  "h-12 rounded-xl",
+                  "h-10 rounded-lg",
                   "transition-all duration-200",
 
                   isCollapsed
