@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -41,85 +40,93 @@ const benefits = [
 
 export function StudentBenefits() {
   return (
-    <section className="relative w-full py-24 md:py-32">
+    <section className="relative w-full py-20 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="grid gap-10 border-b pb-14 lg:grid-cols-[1fr_0.7fr] lg:items-end">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="grid gap-8 border-b pb-16 md:gap-12 md:pb-20 lg:grid-cols-[1fr_0.65fr] lg:items-end"
+        >
+          <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="flex size-6 items-center justify-center rounded-full bg-emerald-700 text-[10px] font-bold text-white">
+              <span className="flex size-7 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white">
                 +
               </span>
 
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Why students choose BookHand
               </span>
             </div>
 
-            <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl lg:text-7xl">
               A simpler way to
               <br />
               <span className="text-muted-foreground/40">
                 buy and sell books.
               </span>
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-md text-sm leading-7 text-muted-foreground lg:justify-self-end"
-          >
+          <p className="max-w-md text-sm leading-7 text-muted-foreground lg:justify-self-end">
             Everything is designed around students — from finding affordable
             textbooks to selling the books sitting unused on your shelf.
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           className="grid border-b sm:grid-cols-3"
         >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.1,
+              }}
               className={[
-                "flex items-center justify-between py-7 sm:block sm:py-8",
+                "py-9 sm:py-10",
                 index !== 0
-                  ? "border-t sm:border-l sm:border-t-0 sm:pl-8"
+                  ? "border-t sm:border-l sm:border-t-0 sm:pl-10"
                   : "",
               ].join(" ")}
             >
-              <span className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              <span className="block text-4xl font-semibold tracking-tight sm:text-5xl">
                 {stat.value}
               </span>
 
-              <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground sm:mt-2 sm:block">
+              <span className="mt-2 block text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
                 {stat.label}
               </span>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
         {/* Benefits */}
-        <div className="mt-20">
-          <div className="mb-8 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+        <div className="mt-24 md:mt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10 flex items-center justify-between"
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               What you get
             </p>
 
-            <div className="hidden h-px w-32 bg-border sm:block" />
-          </div>
+            <div className="hidden h-px w-40 bg-border sm:block" />
+          </motion.div>
 
           <div className="divide-y border-y">
             {benefits.map((benefit, index) => {
@@ -128,38 +135,43 @@ export function StudentBenefits() {
               return (
                 <motion.div
                   key={benefit.title}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
+                    duration: 0.6,
+                    delay: index * 0.12,
+                    ease: "easeOut",
                   }}
-                  className="group grid gap-6 py-8 md:grid-cols-[80px_1fr_1.2fr_auto] md:items-center md:gap-10 md:py-10"
+                  className="group grid gap-7 py-10 md:grid-cols-[70px_64px_1fr_auto] md:items-center md:gap-8 md:py-14 lg:grid-cols-[90px_72px_1fr_48px] lg:gap-10"
                 >
                   {/* Number */}
-                  <span className="text-xs font-medium text-muted-foreground/50">
+                  <span className="font-mono text-xs text-muted-foreground/40">
                     {benefit.number}
                   </span>
 
                   {/* Icon */}
-                  <div className="flex size-12 items-center justify-center rounded-full border transition-all duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white">
+                  <motion.div
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex size-14 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white"
+                  >
                     <Icon className="size-5" />
-                  </div>
+                  </motion.div>
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                    <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                       {benefit.title}
                     </h3>
 
-                    <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
+                    <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
                       {benefit.description}
                     </p>
                   </div>
 
                   {/* Arrow */}
-                  <div className="flex size-10 items-center justify-center rounded-full border transition-all duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white">
+                  <div className="hidden size-11 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white md:flex">
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
                   </div>
                 </motion.div>
@@ -169,13 +181,19 @@ export function StudentBenefits() {
         </div>
 
         {/* Bottom Accent */}
-        <div className="mt-14 flex items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-16 flex items-center justify-between md:mt-20"
+        >
           <div className="h-1.5 w-16 rounded-full bg-emerald-700" />
 
-          <p className="text-xs text-muted-foreground">
+          <p className="text-[11px] text-muted-foreground">
             Built for students, by simplicity.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

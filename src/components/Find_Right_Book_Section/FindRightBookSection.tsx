@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ArrowRight, Search } from "lucide-react";
@@ -26,30 +25,43 @@ const FindRightBookSection = () => {
   };
 
   return (
-    <section className="w-full py-14 md:py-20">
+    <section className="w-full py-20 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-lg border bg-muted/20"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="relative overflow-hidden rounded-xl border bg-muted/20"
         >
           {/* Decorative circles */}
-          <div className="absolute -right-24 -top-24 size-72 rounded-full border border-foreground/5" />
-          <div className="absolute -bottom-32 -left-20 size-64 rounded-full border border-emerald-700/10" />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute -right-28 -top-28 size-80 rounded-full border border-foreground/5"
+          />
 
-          <div className="relative px-6 py-12 sm:px-10 sm:py-14 md:px-16 md:py-16">
-            <div className="mx-auto max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="absolute -bottom-36 -left-24 size-72 rounded-full border border-emerald-700/10"
+          />
+
+          <div className="relative px-6 py-16 sm:px-10 sm:py-20 md:px-16 md:py-24">
+            <div className="mx-auto max-w-4xl text-center">
               {/* Label */}
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: 0.1 }}
-                className="mb-4 flex items-center justify-center gap-2"
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-6 flex items-center justify-center gap-3"
               >
-                <span className="size-1.5 rounded-full bg-emerald-700" />
+                <span className="size-2 rounded-full bg-emerald-700" />
 
                 <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                   Find your textbook
@@ -58,11 +70,11 @@ const FindRightBookSection = () => {
 
               {/* Heading */}
               <motion.h2
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="text-3xl font-semibold tracking-[-0.04em] sm:text-4xl md:text-5xl"
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl"
               >
                 Find the right book.
                 <br />
@@ -73,11 +85,11 @@ const FindRightBookSection = () => {
 
               {/* Description */}
               <motion.p
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base"
+                transition={{ duration: 0.55, delay: 0.25 }}
+                className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base"
               >
                 Search books by title, author, or ISBN and discover affordable
                 textbooks from other students.
@@ -85,28 +97,29 @@ const FindRightBookSection = () => {
 
               {/* Search */}
               <motion.form
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.25 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
                 onSubmit={handleSearch}
-                className="mx-auto mt-7 flex max-w-2xl flex-col gap-2.5 sm:flex-row"
+                className="mx-auto mt-9 flex max-w-3xl flex-col gap-3 sm:flex-row"
               >
                 <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Search className="absolute left-5 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
 
                   <Input
                     type="search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by title, author, or ISBN..."
-                    className="h-11 w-full rounded-md border bg-background pl-11 pr-4 text-sm"
+                    className="h-14 w-full rounded-lg border bg-background pl-13 pr-5 text-sm sm:text-base"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="group h-11 cursor-pointer rounded-md bg-emerald-700 px-6 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                  size="lg"
+                  className="group h-14 cursor-pointer rounded-lg bg-emerald-700 px-8 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
                 >
                   Search
                   <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -118,8 +131,8 @@ const FindRightBookSection = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.35 }}
-                className="mt-4 text-[11px] text-muted-foreground/60"
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="mt-5 text-[11px] text-muted-foreground/60"
               >
                 Search by book title, author name, or ISBN
               </motion.p>

@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 
 const faqs = [
   {
@@ -34,20 +37,26 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="w-full py-14 md:py-20">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+    <section className="w-full py-20 sm:py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-14 grid gap-8 md:mb-16 md:grid-cols-[1fr_0.6fr] md:items-end md:gap-12"
+        >
           <div>
-            <div className="mb-3 flex items-center gap-2">
-              <span className="size-1.5 rounded-full bg-emerald-700" />
+            <div className="mb-6 flex items-center gap-3">
+              <span className="size-2 rounded-full bg-emerald-700" />
 
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 FAQ
               </span>
             </div>
 
-            <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl md:text-5xl">
+            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
               Questions,
               <br />
               <span className="text-muted-foreground/40">
@@ -56,54 +65,96 @@ export function FAQ() {
             </h2>
           </div>
 
-          <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-            Find quick answers to common questions.
+          <p className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
+            Find quick answers to common questions about buying, selling, and
+            using Book Hand.
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ */}
-        <div className="divide-y border-y">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.08,
+              },
+            },
+          }}
+          className="divide-y border-y"
+        >
           {faqs.map((faq, index) => (
-            <details key={faq.question} className="group">
-              <summary className="flex cursor-pointer list-none items-center gap-5 py-5 md:py-6 [&::-webkit-details-marker]:hidden">
-                {/* Number */}
-                <span className="w-6 shrink-0 font-mono text-[10px] text-muted-foreground/40">
+            <motion.details
+              key={faq.question}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 25,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.5,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              className="group"
+            >
+              {/* Question */}
+              <summary className="flex cursor-pointer list-none items-center gap-6 py-7 md:py-8 [&::-webkit-details-marker]:hidden">
+                <span className="w-8 shrink-0 font-mono text-xs text-muted-foreground/40">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
-                {/* Question */}
-                <span className="flex-1 text-left text-base font-medium tracking-tight md:text-lg">
+                <span className="flex-1 text-left text-lg font-semibold tracking-tight sm:text-xl md:text-2xl">
                   {faq.question}
                 </span>
 
-                {/* Icon */}
-                <span className="relative flex size-8 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-colors duration-200 group-hover:border-emerald-700 group-hover:text-emerald-700">
-                  <span className="absolute h-px w-3 bg-current" />
-                  <span className="absolute h-3 w-px bg-current transition-transform duration-200 group-open:rotate-90" />
+                {/* Plus / Minus */}
+                <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-all duration-300 group-hover:border-emerald-700 group-open:border-emerald-700 group-open:bg-emerald-700 group-open:text-white">
+                  <span className="absolute h-px w-3.5 bg-current" />
+
+                  <span className="absolute h-3.5 w-px bg-current transition-transform duration-300 group-open:rotate-90" />
                 </span>
               </summary>
 
-              <div className="grid grid-cols-[24px_1fr_32px] gap-5 pb-6 md:pb-7">
-                <span />
+              {/* Animated Answer */}
+              <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out group-open:grid-rows-[1fr] group-open:opacity-100">
+                <div className="min-h-0 overflow-hidden">
+                  <div className="grid grid-cols-[32px_1fr_40px] gap-6 pb-8 md:pb-9">
+                    <span />
 
-                <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base">
-                  {faq.answer}
-                </p>
+                    <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
+                      {faq.answer}
+                    </p>
 
-                <span />
+                    <span />
+                  </div>
+                </div>
               </div>
-            </details>
+            </motion.details>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom */}
-        <div className="mt-5 flex items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 flex items-center justify-between"
+        >
           <span className="text-[11px] text-muted-foreground">
             Still have questions?
           </span>
 
-          <div className="h-1 w-10 rounded-full bg-emerald-700" />
-        </div>
+          <div className="h-1.5 w-14 rounded-full bg-emerald-700" />
+        </motion.div>
       </div>
     </section>
   );
