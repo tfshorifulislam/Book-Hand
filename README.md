@@ -274,14 +274,14 @@ You are now ready to use BookHand.
 The main database entities include:
 
 User
-│
-├── BookListing
-│       │
-│       └── Book
-│
-├── Session
-│
-└── Account
+ │
+ ├── BookListing
+ │       │
+ │       └── Book
+ │
+ ├── Session
+ │
+ └── Account
 
 
 ### User
