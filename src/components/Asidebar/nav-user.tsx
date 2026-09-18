@@ -21,7 +21,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { authClient, useSession } from "@/lib/auth-client"
-import { ChevronsUpDownIcon, LogOutIcon, } from "lucide-react"
+import { LogOutIcon, } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export function NavUser() {
