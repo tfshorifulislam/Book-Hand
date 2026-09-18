@@ -1,18 +1,36 @@
-import Link from "next/link"
+
+import Link from "next/link";
+import { BookOpen } from "lucide-react";
 
 export function Logo() {
-    return (
-        <Link
-            href="/"
-            className="group flex items-center gap-2"
-        >
-            <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-700 text-sm font-bold text-white transition-all group-hover:scale-105 dark:bg-emerald-500 dark:text-black">
-                B
-            </div>
+  return (
+    <Link
+      href="/"
+      className="group flex items-center gap-2.5 outline-none"
+      aria-label="BookHand home"
+    >
+      <div
+        className="
+          flex size-8 shrink-0 items-center justify-center
+          rounded-lg
+          bg-emerald-700
+          text-white
+          shadow-sm
+          transition-all duration-200
+          group-hover:scale-105
+          group-hover:shadow-md
+          dark:bg-emerald-500
+          dark:text-black
+        "
+      >
+        <BookOpen className="size-[17px] stroke-[2.2]" />
+      </div>
 
-            <span className="hidden text-base font-bold tracking-tight sm:block">
-                BookHand
-            </span>
-        </Link>
-    )
+      <div className="hidden sm:block">
+        <span className="text-[15px] font-bold tracking-tight">
+          BookHand
+        </span>
+      </div>
+    </Link>
+  );
 }
