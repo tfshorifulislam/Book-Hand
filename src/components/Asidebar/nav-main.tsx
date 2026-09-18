@@ -1,74 +1,120 @@
-"use client"
+
+"use client";
 
 import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  useSidebar,
+} from "@/components/ui/sidebar";
 
-import type { LucideIcon } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string
-    url: string
-    icon?: LucideIcon
-  }[]
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+  }[];
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const { state } = useSidebar();
+
+  const isCollapsed = state === "collapsed";
 
   return (
-    <SidebarGroup>
-      <div className="w-full border-b my-4" />
+    <SidebarGroup className="px-2">
+      {/* Divider */}
+      <div
+        className={cn(
+          "h-px bg-sidebar-border/40",
+          isCollapsed
+            ? "mx-auto mb-5 mt-4 w-7"
+            : "mb-5 mt-4 w-full"
+        )}
+      />
 
       <SidebarMenu className="space-y-1">
         {items.map((item) => {
-          const Icon = item.icon
+          const Icon = item.icon;
+
           const isActive =
             item.url === "/"
               ? pathname === "/"
-              : pathname.startsWith(item.url)
+              : pathname.startsWith(item.url);
 
           return (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 tooltip={item.title}
                 isActive={isActive}
-                render={
-                  <Link
-                    href={item.url}
-                    className={cn(
-                      "relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200",
-                      "before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-5 before:w-0.5 before:rounded-full before:bg-emerald-700 before:opacity-0 before:transition-opacity dark:before:bg-emerald-500",
-                      isActive
-                        ? "bg-sidebar-accent text-sidebar-accent-foreground before:opacity-100"
-                        : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground",
-                    )}
-                  />
-                }
-              >
-                {Icon && (
-                  <Icon
-                    className={cn(
-                      "h-4 w-4 shrink-0 transition-colors",
-                      isActive
-                        ? "text-emerald-700 dark:text-emerald-500"
-                        : "text-sidebar-foreground/60",
-                    )}
-                  />
+                className={cn(
+                  "group",
+                  "h-12 rounded-xl",
+                  "transition-all duration-200",
+
+                  isCollapsed
+                    ? "mx-auto w-12 justify-center px-0"
+                    : "w-full px-3",
+
+                  "hover:bg-sidebar-accent/60",
+
+                  isActive && "bg-sidebar-accent"
                 )}
-                <span>{item.title}</span>
+              >
+                <Link
+                  href={item.url}
+                  className={cn(
+                    "flex h-full items-center",
+
+                    isCollapsed
+                      ? "w-full justify-center"
+                      : "w-full gap-3.5"
+                  )}
+                >
+                  {Icon && (
+                    <Icon
+                      className={cn(
+                        "shrink-0",
+                        "size-6",
+                        "stroke-[1.8]",
+                        "transition-all duration-200",
+
+                        isActive
+                          ? "text-foreground"
+                          : "text-muted-foreground group-hover:text-foreground",
+
+                        isActive && "scale-[1.02]"
+                      )}
+                    />
+                  )}
+
+                  {!isCollapsed && (
+                    <span
+                      className={cn(
+                        "truncate text-[15px]",
+                        "tracking-[-0.01em]",
+
+                        isActive
+                          ? "font-semibold text-foreground"
+                          : "font-medium text-muted-foreground"
+                      )}
+                    >
+                      {item.title}
+                    </span>
+                  )}
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          )
+          );
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

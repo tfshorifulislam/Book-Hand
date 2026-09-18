@@ -13,6 +13,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 import {
@@ -34,6 +35,7 @@ const data = {
       logo: (
         <FaBookOpenReader className="size-5 text-emerald-700 dark:text-emerald-500" />
       ),
+      hoverLogo: <SidebarTrigger />,
       plan: "Buy & Sell Books",
     },
   ],
