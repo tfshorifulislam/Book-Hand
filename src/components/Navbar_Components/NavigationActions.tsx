@@ -1,75 +1,182 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Search, X } from "lucide-react"
+import { useState } from "react";
+import { Search, X, Plus, Menu } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { SidebarTrigger } from "../ui/sidebar"
-import { ThemeToggle } from "../theme-provider/ThemeToggle"
-import { AvatarDropdown } from "../shared/Avatar"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SidebarTrigger } from "../ui/sidebar";
+import { ThemeToggle } from "../theme-provider/ThemeToggle";
+import { AvatarDropdown } from "../shared/Avatar";
 
+interface NavigationActionsProps {
+  isLoggedIn: boolean;
+}
 
-interface NavigationActionsProps { isLoggedIn: boolean }
+export function NavigationActions({
+  isLoggedIn,
+}: NavigationActionsProps) {
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-export function NavigationActions({ isLoggedIn, }: NavigationActionsProps) {
-    
-    const [showMobileSearch, setShowMobileSearch] = useState(false)
+  if (!isLoggedIn) {
+    return null;
+  }
 
-    if (!isLoggedIn) {
-        return null
-    }
+  return (
+    <>
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        {/* Desktop Sell Button */}
+        <Button
+          asChild
+          size="sm"
+          className="
+            hidden
+            h-9
+            rounded-lg
+            bg-emerald-700
+            px-3.5
+            text-xs
+            font-semibold
+            text-white
+            shadow-sm
+            transition-all
+            hover:bg-emerald-800
+            hover:shadow-md
+            dark:bg-emerald-500
+            dark:text-black
+            dark:hover:bg-emerald-400
+            sm:inline-flex
+          "
+        >
+          <a href="/sell-book">
+            <Plus className="mr-1.5 size-3.5" />
+            Sell a Book
+          </a>
+        </Button>
 
-    return (
-        <>
-            <div className="flex items-center gap-3">
-                {/* Mobile Search */}
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
-                    onClick={() => setShowMobileSearch(!showMobileSearch)}
-                    aria-label="Search"
-                >
-                    {showMobileSearch ? (
-                        <X className="size-4" />
-                    ) : (
-                        <Search className="size-4" />
-                    )}
-                </Button>
+        {/* Mobile Search */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="
+            size-9
+            rounded-lg
+            text-muted-foreground
+            hover:bg-muted
+            hover:text-foreground
+            lg:hidden
+          "
+          onClick={() => setShowMobileSearch((prev) => !prev)}
+          aria-label={
+            showMobileSearch ? "Close search" : "Search books"
+          }
+        >
+          {showMobileSearch ? (
+            <X className="size-[17px]" />
+          ) : (
+            <Search className="size-[17px]" />
+          )}
+        </Button>
 
-                {/* Theme */}
-                <ThemeToggle />
+        {/* Theme */}
+        <div className="flex size-9 items-center justify-center">
+          <ThemeToggle />
+        </div>
 
-                {/* Profile */}
-                <div
-                    className="hidden size-9 rounded-xl bg-background transition-all hover:bg-muted md:flex"
-                    aria-label="Profile"
-                >
-                    <AvatarDropdown />
-                </div>
+        {/* Desktop Avatar */}
+        <div
+          className="
+            hidden
+            size-9
+            items-center
+            justify-center
+            rounded-lg
+            border
+            border-transparent
+            transition-colors
+            hover:border-border
+            hover:bg-muted
+            md:flex
+          "
+        >
+          <AvatarDropdown />
+        </div>
 
-                {/* Mobile Sidebar */}
-                <div className="relative flex size-9 items-center justify-center rounded-xl border bg-background transition-colors hover:bg-muted md:hidden">
-                    <SidebarTrigger />
-                </div>
-            </div>
+        {/* Mobile Sidebar */}
+        <div
+          className="
+            flex size-9
+            items-center
+            justify-center
+            rounded-lg
+            border
+            bg-background
+            transition-colors
+            hover:bg-muted
+            md:hidden
+          "
+        >
+          <SidebarTrigger>
+            <Menu className="size-[17px]" />
+          </SidebarTrigger>
+        </div>
+      </div>
 
-            {/* Mobile Search Bar */}
-            {showMobileSearch && (
-                <div className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur-xl md:hidden">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+      {/* Mobile Search */}
+      {showMobileSearch && (
+        <div
+          className="
+            absolute
+            left-0
+            right-0
+            top-[calc(100%+8px)]
+            mx-1
+            rounded-xl
+            border
+            border-border/70
+            bg-background/95
+            p-2.5
+            shadow-lg
+            backdrop-blur-xl
+            lg:hidden
+          "
+        >
+          <form
+            action="/books"
+            className="relative"
+          >
+            <Search
+              className="
+                absolute
+                left-3
+                top-1/2
+                size-4
+                -translate-y-1/2
+                text-muted-foreground
+              "
+            />
 
-                        <Input
-                            autoFocus
-                            type="search"
-                            placeholder="Search books, authors..."
-                            className="h-10 rounded-xl bg-muted/40 pl-9 pr-4 shadow-none focus-visible:bg-background"
-                        />
-                    </div>
-                </div>
-            )}
-        </>
-    )
+            <Input
+              autoFocus
+              type="search"
+              name="search"
+              placeholder="Search books, authors..."
+              className="
+                h-10
+                rounded-lg
+                border-border/60
+                bg-muted/40
+                pl-9
+                pr-3
+                shadow-none
+                focus-visible:bg-background
+                focus-visible:ring-2
+                focus-visible:ring-emerald-500/10
+              "
+            />
+          </form>
+        </div>
+      )}
+    </>
+  );
 }
