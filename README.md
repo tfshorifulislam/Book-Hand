@@ -1,36 +1,209 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 BookHand
 
-## Getting Started
+> A student-focused online marketplace for buying and selling used university textbooks.
 
-First, run the development server:
+BookHand is a full-stack web application designed to help university students easily buy and sell their used textbooks.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Students can list books they no longer need, while other students can discover, search, save, and purchase books at affordable prices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔐 Authentication
+- Email & password authentication
+- Google authentication
+- Secure session management with Better Auth
+- Password reset via email
+- Multi-session support
+- Protected user-specific routes
 
-## Learn More
+### 📚 Books Marketplace
+- Browse available books
+- Search books by title and author
+- Pagination
+- Book details page
+- Book condition and pricing
+- Seller information
+- Book categories and languages
+- Cover image upload
 
-To learn more about Next.js, take a look at the following resources:
+### ❤️ Wishlist
+- Save books for later
+- View saved books
+- Remove books from wishlist
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👤 User Profiles
+- Personal profile
+- Public seller profiles
+- View books listed by a seller
+- Seller avatar and profile information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 💰 Sell a Book
+- Create a new book listing
+- Upload book cover
+- Set price
+- Select book condition
+- Add description
+- Select category and language
+- Delete your own listings
 
-## Deploy on Vercel
+### 🎨 UI / UX
+- Responsive design
+- Mobile-friendly navigation
+- Dark / Light theme
+- shadcn/ui components
+- Tailwind CSS
+- Smooth animations
+- Clean marketplace-focused interface
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🛠️ Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Motion
+- Next.js Image
+- Better Auth
+
+### Backend
+
+- Node.js
+- Express.js
+- TypeScript
+- REST API
+
+### Database
+
+- PostgreSQL
+- Prisma ORM
+
+### Authentication
+
+- Better Auth
+- Google OAuth
+- Email & Password
+
+### Other Tools
+
+- ImgBB for image hosting
+- Git & GitHub
+- Postman for API testing
+
+---
+
+## 🏗️ Architecture
+
+BookHand follows a separated frontend and backend architecture.
+
+```text
+┌──────────────────────┐
+│      Next.js         │
+│      Frontend        │
+└──────────┬───────────┘
+           │
+           │ REST API
+           ▼
+┌──────────────────────┐
+│      Express.js      │
+│       Backend        │
+└──────────┬───────────┘
+           │
+           │ Prisma
+           ▼
+┌──────────────────────┐
+│      PostgreSQL      │
+│       Database       │
+└──────────────────────┘
+
+Authentication is handled by Better Auth on the Next.js side, while protected backend requests are verified through internal server-to-server headers.
+
+📁 Project Structure
+
+# Frontend
+
+book-hand/
+├── src/
+│   ├── app/
+│   │   ├── books/
+│   │   ├── profile/
+│   │   ├── sell-book/
+│   │   ├── wishlist/
+│   │   └── ...
+│   │
+│   ├── components/
+│   │   ├── Auth/
+│   │   ├── Navbar/
+│   │   ├── Sidebar/
+│   │   ├── Books/
+│   │   ├── shared/
+│   │   └── ui/
+│   │
+│   ├── lib/
+│   │   ├── auth.ts
+│   │   ├── auth-client.ts
+│   │   └── ...
+│   │
+│   └── actions/
+│
+├── public/
+├── prisma/
+├── package.json
+└── README.md
+
+# Backend
+
+backend-book-hand/
+├── src/
+│   ├── Controllers/
+│   ├── Services/
+│   ├── Routes/
+│   ├── Middleware/
+│   ├── lib/
+│   └── server.ts
+│
+├── prisma/
+├── package.json
+└── ...
+
+🗄️ Database
+
+The main database entities include:
+User
+ │
+ ├── BookListing
+ │       │
+ │       └── Book
+ │
+ ├── Session
+ │
+ └── Account
+
+ Main Models
+User
+Stores user account and profile information.
+Book
+Stores book information such as:
+- Title
+- Author
+- Description
+- Cover image
+- Category
+- Language
+- Publication date
+BookListing
+Stores marketplace-specific information:
+- Seller
+- Book
+- Price
+- Condition
+- Description
+- Status
+- Created date
+- Updated date
