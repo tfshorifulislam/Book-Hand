@@ -17,7 +17,6 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 import { saveBook } from "@/actions/save.post";
 import { deleteSavedBook } from "@/actions/delete.save.post";
-import { getSavedBook } from "@/actions/get.Save.Books";
 
 type Props = {
     item: BookListing;
@@ -36,7 +35,7 @@ const BooksCard = ({
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [deleting, setDeleting] = useState(false);
-    const [isSaved, setIsSaved] = useState(false);
+    const [isSaved, setIsSaved] = useState(item.isSaved);
 
     const isOwner = userId === item.seller?.id;
 
@@ -44,19 +43,6 @@ const BooksCard = ({
         ? "/profile"
         : `/profile/${item.seller?.id}`;
 
-    useEffect(() => {
-        const checkSavedBook = async () => {
-            try {
-                const data = await getSavedBook(item.id);
-
-                setIsSaved(data.isSaved);
-            } catch (error) {
-                console.error("Get saved book error:", error);
-            }
-        };
-
-        checkSavedBook();
-    }, [item.id]);
 
     const handleDelete = async () => {
         try {

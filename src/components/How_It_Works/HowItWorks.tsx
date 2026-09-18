@@ -4,7 +4,7 @@ import { ForSellers } from "./ForSellers";
 
 export function HowItWorks() {
   return (
-    <section className="w-full bg-muted/20 py-20 md:py-28">
+    <section className="w-full py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -30,7 +30,7 @@ export function HowItWorks() {
         {/* Process */}
         <div className="mt-16 space-y-10 md:mt-20 md:space-y-14">
           {/* Buyer */}
-          <div className="relative rounded-3xl border bg-background p-5 shadow-sm sm:p-8 md:p-10">
+          <div className="relative rounded-3xl border bg-background p-5 sm:p-8 md:p-10">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-500">
@@ -58,7 +58,7 @@ export function HowItWorks() {
           </div>
 
           {/* Seller */}
-          <div className="relative rounded-3xl border bg-background p-5 shadow-sm sm:p-8 md:p-10">
+          <div className="relative rounded-3xl border bg-background p-5 sm:p-8 md:p-10">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-500">

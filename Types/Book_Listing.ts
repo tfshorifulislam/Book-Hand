@@ -17,5 +17,6 @@ export type BookListing = {
         image: string | null;
     }
 
+    isSaved: boolean;
 
 }

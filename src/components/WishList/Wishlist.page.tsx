@@ -19,7 +19,7 @@ const WishlistPage = ({ initialWishlist }: Props) => {
     const [wishlist, setWishlist] = useState<WishlistItem[]>(initialWishlist);
 
     const handleRemove = (listingId: string) => {
-        setWishlist((prev) => prev.filter( (item) => item.listing.id !== listingId));
+        setWishlist((prev) => prev.filter((item) => item.listing.id !== listingId));
     };
 
     return (
@@ -45,7 +45,10 @@ const WishlistPage = ({ initialWishlist }: Props) => {
                     {wishlist.map((item) => (
                         <BooksCard
                             key={item.id}
-                            item={item.listing}
+                            item={{
+                                ...item.listing,
+                                isSaved: true,
+                            }}
                             onSavedChange={handleRemove}
                         />
                     ))}

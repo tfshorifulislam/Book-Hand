@@ -1,34 +1,39 @@
 "use server";
 
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+
 export const getBooks = async (
     page = 1,
-    limit = 10,
-    search = ""
+    limit = 12
 ) => {
-    const params = new URLSearchParams({
-        page: String(page),
-        limit: String(limit),
+    const session = await auth.api.getSession({
+        headers: await headers(),
     });
 
-    if (search.trim()) {
-        params.set("search", search.trim());
-    }
-
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?${params.toString()}`,
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?page=${page}&limit=${limit}`,
         {
+            method: "GET",
+
+            headers: {
+                ...(session?.user?.id && {
+                    "x-user-id": session.user.id,
+                }),
+            },
+
             cache: "no-store",
         }
     );
 
-    if (!res.ok) {
-        const error = await res.text();
+    const data = await response.json();
 
-        console.log("BOOK API STATUS:", res.status);
-        console.log("BOOK API RESPONSE:", error);
-
-        throw new Error(`Failed to fetch books: ${res.status}`);
+    if (!response.ok) {
+        throw new Error(
+            data?.message ||
+                "Failed to fetch books"
+        );
     }
 
-    return res.json();
+    return data;
 };
