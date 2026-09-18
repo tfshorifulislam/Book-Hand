@@ -54,7 +54,7 @@ function useSidebar() {
 }
 
 function SidebarProvider({
-  defaultOpen = false,
+  defaultOpen = true,
   open: openProp,
   onOpenChange: setOpenProp,
   className,
@@ -230,7 +230,7 @@ function Sidebar({
         data-slot="sidebar-container"
         data-side={side}
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)] md:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:-left-(--sidebar-width) data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:-right-(--sidebar-width) md:flex",
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
@@ -242,7 +242,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className=" flex size-full flex-col bg-background/95 backdrop-blur-xl group-data-[variant=floating]:rounded-xl group-data-[variant=floating]:shadow-lg group-data-[variant=floating]:shadow-black/5 group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-border/60"
+          className=" flex size-full flex-col bg-background/95 backdrop-blur-xl group-data-[variant=floating]:rounded-xl group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-border/60"
         >
           {children}
         </div>

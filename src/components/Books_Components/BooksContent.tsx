@@ -178,15 +178,8 @@ const BooksContent = async ({ currentPage, search, }: BooksContentProps) => {
                                 <PaginationItem key={page}>
                                     <PaginationLink
                                         href={`/books?page=${page}${search
-                                            ? `&search=${encodeURIComponent(
-                                                search
-                                            )}`
-                                            : ""
-                                            }`}
-                                        isActive={
-                                            page === currentPage
-                                        }
-                                    >
+                                            ? `&search=${encodeURIComponent( search )}` : "" }`}
+                                        isActive={ page === currentPage } >
                                         {page}
                                     </PaginationLink>
                                 </PaginationItem>
@@ -196,22 +189,11 @@ const BooksContent = async ({ currentPage, search, }: BooksContentProps) => {
                         {/* Next */}
                         <PaginationItem>
                             <PaginationNext
-                                href={
-                                    currentPage < totalPages
+                                href={ currentPage < totalPages
                                         ? `/books?page=${currentPage + 1
-                                        }${search
-                                            ? `&search=${encodeURIComponent(
-                                                search
-                                            )}`
-                                            : ""
-                                        }`
-                                        : "#"
+                                        }${search ? `&search=${encodeURIComponent( search )}` : "" }` : "#"
                                 }
-                                className={
-                                    currentPage === totalPages
-                                        ? "pointer-events-none opacity-50"
-                                        : ""
-                                }
+                                className={ currentPage === totalPages ? "pointer-events-none opacity-50" : "" }
                             />
                         </PaginationItem>
                     </PaginationContent>
