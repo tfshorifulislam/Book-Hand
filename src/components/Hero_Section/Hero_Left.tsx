@@ -15,11 +15,10 @@ const HeroLeft = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="text-4xl font-semibold tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
-        Find your{" "}
-        <span className="text-emerald-700 dark:text-emerald-500">
-          next book.
-        </span>
+      <h1
+        className="text-4xl font-semibold tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
+          
+        Find your next book.
 
         <span className="mt-2 block text-muted-foreground/45">
           Give your old books a new home.

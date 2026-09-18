@@ -101,6 +101,7 @@ export function AppSidebar({
         </SidebarFooter>
 
         <SidebarRail />
+        
       </Sidebar>
     </motion.div>
   );
