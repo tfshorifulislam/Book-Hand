@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
 
@@ -11,9 +11,9 @@ import { Footer } from "@/components/Footer/Footer";
 import { Toaster } from "@/components/ui/toast";
 import SmoothScroll from "@/components/shared/SmoothScroll";
 
-const jakarta = Plus_Jakarta_Sans({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-manrope",
   display: "swap",
   weight: ["400", "500", "600", "700", "800"],
 });
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} antialiased`}
+      className={`${manrope.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-background font-sans">
