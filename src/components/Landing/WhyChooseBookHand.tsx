@@ -1,82 +1,109 @@
-import { ShieldCheck, Banknote, Clock, Users } from "lucide-react";
+import { Banknote, Clock, ShieldCheck, Users } from "lucide-react";
 
 const features = [
   {
     icon: ShieldCheck,
     title: "Verified Listings",
     description:
-      "Every book listing is reviewed to ensure accuracy and quality so you know exactly what you are getting.",
+      "Clear and accurate book details help you know what you are buying.",
   },
   {
     icon: Banknote,
-    title: "Save Big",
+    title: "Save More",
     description:
-      "Buy textbooks at a fraction of retail price directly from fellow students on your campus.",
+      "Find affordable textbooks directly from students instead of paying retail prices.",
   },
   {
     icon: Clock,
-    title: "Fast & Easy",
+    title: "Quick & Simple",
     description:
-      "List or find a book in under 2 minutes with our simple, streamlined process.",
+      "Find a book or create a listing in just a few simple steps.",
   },
   {
     icon: Users,
-    title: "Student Network",
+    title: "Student Community",
     description:
-      "Connect with students from your university and nearby campuses who share your courses.",
+      "Connect with students looking for the same books and courses.",
   },
 ];
 
 export function WhyChooseBookHand() {
   return (
-    <section className="w-full py-20 md:py-28">
+    <section className="w-full py-14 md:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-10 flex flex-col gap-5 md:mb-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <span className="size-1.5 rounded-full bg-emerald-700" />
 
-        {/* Heading */}
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-            Why BookHand
-          </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                Why BookHand
+              </span>
+            </div>
 
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Built for Students,{" "}
-            <span className="text-emerald-700 dark:text-emerald-500">
-              by Students
-            </span>
-          </h2>
+            <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl md:text-5xl">
+              Made for students.
+              <br />
+              <span className="text-muted-foreground/40">
+                Built around simplicity.
+              </span>
+            </h2>
+          </div>
 
-          <p className="mt-4 text-muted-foreground">
-            We built BookHand to solve the problems every university student
-            faces when dealing with expensive textbooks.
+          <p className="max-w-sm text-sm leading-6 text-muted-foreground">
+            Everything you need to buy and sell textbooks without the usual
+            hassle.
           </p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => {
+        {/* Features */}
+        <div className="grid overflow-hidden rounded-lg border sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((feature, index) => {
             const Icon = feature.icon;
 
             return (
               <div
                 key={feature.title}
-                className="group relative rounded-2xl border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className={[
+                  "group relative min-h-62.5 p-6 md:p-7",
+                  "border-b last:border-b-0 sm:odd:border-r",
+                  "lg:border-b-0 lg:border-r lg:last:border-r-0",
+                ].join(" ")}
               >
-                <div className="flex size-12 items-center justify-center rounded-xl border bg-emerald-50 dark:bg-emerald-950/40">
-                  <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
+                {/* Number */}
+                <div className="flex items-center justify-between">
+                  <div className="flex size-10 items-center justify-center rounded-lg border bg-background">
+                    <Icon className="size-4 text-emerald-700" />
+                  </div>
+
+                  <span className="font-mono text-[10px] text-muted-foreground/40">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
 
-                <h3 className="mt-5 text-lg font-semibold">
-                  {feature.title}
-                </h3>
+                <div className="mt-12">
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {feature.title}
+                  </h3>
 
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {feature.description}
-                </p>
+                  <p className="mt-2 max-w-xs text-sm leading-6 text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
             );
           })}
         </div>
 
+        {/* Bottom accent */}
+        <div className="mt-5 flex items-center justify-between">
+          <span className="text-[11px] text-muted-foreground">
+            Simple tools. Better textbook access.
+          </span>
+
+          <div className="h-1 w-10 rounded-full bg-emerald-700" />
+        </div>
       </div>
     </section>
   );
