@@ -8,16 +8,34 @@ import { Input } from "@/components/ui/input"
 import { SidebarTrigger } from "../ui/sidebar"
 import { ThemeToggle } from "../theme-provider/ThemeToggle"
 import { AvatarDropdown } from "../shared/Avatar"
+import { useRouter } from "next/navigation"
 
 
 interface NavigationActionsProps { isLoggedIn: boolean }
 
 export function NavigationActions({ isLoggedIn, }: NavigationActionsProps) {
-    
+
     const [showMobileSearch, setShowMobileSearch] = useState(false)
+    const [search, setSearch] = useState('');
+    const router = useRouter()
 
     if (!isLoggedIn) {
         return null
+    }
+
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const value = search.trim();
+
+        if (!value) {
+            router.push('/books');
+            setShowMobileSearch(false);
+            return;
+        };
+
+        router.push(`/books?search=${encodeURIComponent(value)}`);
+        setShowMobileSearch(false);
     }
 
     return (
@@ -28,7 +46,7 @@ export function NavigationActions({ isLoggedIn, }: NavigationActionsProps) {
                     variant="ghost"
                     size="icon"
                     className="size-9 rounded-xl text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
-                    onClick={() => setShowMobileSearch(!showMobileSearch)}
+                    onClick={() => setShowMobileSearch((prev) => !prev)}
                     aria-label="Search"
                 >
                     {showMobileSearch ? (
@@ -58,16 +76,18 @@ export function NavigationActions({ isLoggedIn, }: NavigationActionsProps) {
             {/* Mobile Search Bar */}
             {showMobileSearch && (
                 <div className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-2xl border bg-background/95 p-3 shadow-lg backdrop-blur-xl md:hidden">
-                    <div className="relative">
+                    <form onSubmit={handleSearch} className="relative">
                         <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                         <Input
                             autoFocus
                             type="search"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search books, authors..."
                             className="h-10 rounded-xl bg-muted/40 pl-9 pr-4 shadow-none focus-visible:bg-background"
                         />
-                    </div>
+                    </form>
                 </div>
             )}
         </>
