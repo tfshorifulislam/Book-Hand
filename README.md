@@ -123,6 +123,7 @@ Authentication is handled by Better Auth on the Next.js side, while protected ba
 
 ### Frontend
 
+```text
 book-hand/
 ├── src/
 │   ├── app/
@@ -152,9 +153,6 @@ book-hand/
 ├── package.json
 └── README.md
 
-
-### Backend
-
 backend-book-hand/
 ├── src/
 │   ├── Controllers/
@@ -167,7 +165,6 @@ backend-book-hand/
 ├── prisma/
 ├── package.json
 └── ...
-
 
 ## 🚀 Setup
 
@@ -273,15 +270,55 @@ You are now ready to use BookHand.
 
 The main database entities include:
 
+## 🗄️ Database Structure
+
+BookHand uses PostgreSQL with Prisma ORM.
+
+```text
 User
- │
- ├── BookListing
- │       │
- │       └── Book
- │
- ├── Session
- │
- └── Account
+├── id
+├── name
+├── email
+├── emailVerified
+├── image
+├── createdAt
+└── updatedAt
+    │
+    ├── Account
+    │   ├── id
+    │   ├── userId
+    │   ├── providerId
+    │   ├── accountId
+    │   └── issuer
+    │
+    ├── Session
+    │   ├── id
+    │   ├── userId
+    │   ├── token
+    │   ├── expiresAt
+    │   └── ...
+    │
+    └── BookListing
+        ├── id
+        ├── bookId
+        ├── sellerId
+        ├── price
+        ├── condition
+        ├── description
+        ├── status
+        ├── createdAt
+        └── updatedAt
+            │
+            └── Book
+                ├── id
+                ├── title
+                ├── author
+                ├── description
+                ├── coverImage
+                ├── category
+                ├── language
+                ├── publishedAt
+                └── updatedAt
 
 ### User
 
