@@ -20,8 +20,7 @@ const faqs = [
   },
   {
     question: "Is creating an account free?",
-    answer:
-      "Yes. Creating an account on Book Hand is completely free.",
+    answer: "Yes. Creating an account on Book Hand is completely free.",
   },
   {
     question: "How do I find a specific book?",
@@ -45,27 +44,27 @@ export function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 grid gap-8 md:mb-16 md:grid-cols-[1fr_0.6fr] md:items-end md:gap-12"
+          className="mb-14 space-y-6"
         >
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700" />
+              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 FAQ
               </span>
             </div>
 
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Questions,
-              <br />
-              <span className="text-muted-foreground/40">
-                answered simply.
+              <span className="text-emerald-700 dark:text-emerald-500">
+                Questions,
               </span>
+              <br />
+              <span className="text-foreground">answered simply.</span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-muted-foreground">
             Find quick answers to common questions about buying, selling, and
             using Book Hand.
           </p>
@@ -116,7 +115,7 @@ export function FAQ() {
                 </span>
 
                 {/* Plus / Minus */}
-                <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-all duration-300 group-hover:border-emerald-700 group-open:border-emerald-700 group-open:bg-emerald-700 group-open:text-white">
+                <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-all duration-300 group-hover:border-emerald-700 group-hover:text-emerald-700 group-open:border-emerald-700 group-open:bg-emerald-700 group-open:text-white dark:group-hover:border-emerald-500 dark:group-hover:text-emerald-500 dark:group-open:border-emerald-500 dark:group-open:bg-emerald-500 dark:group-open:text-black">
                   <span className="absolute h-px w-3.5 bg-current" />
 
                   <span className="absolute h-3.5 w-px bg-current transition-transform duration-300 group-open:rotate-90" />
@@ -153,7 +152,7 @@ export function FAQ() {
             Still have questions?
           </span>
 
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700" />
+          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
         </motion.div>
       </div>
     </section>
