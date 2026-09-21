@@ -9,18 +9,16 @@ const HeroLeft = () => {
       <div className="mb-5 inline-flex items-center gap-2">
         <span className="size-1.5 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
           Built for university students
         </span>
       </div>
 
       {/* Heading */}
-      <h1
-        className="text-4xl font-semibold tracking-[-0.045em] text-foreground sm:text-5xl lg:text-6xl">
-          
+      <h1 className="text-4xl font-semibold tracking-[-0.045em] text-emerald-700 dark:text-emerald-500 sm:text-5xl lg:text-6xl">
         Find your next book.
 
-        <span className="mt-2 block text-muted-foreground/45">
+        <span className="mt-2 block text-foreground">
           Give your old books a new home.
         </span>
       </h1>
@@ -49,7 +47,7 @@ const HeroLeft = () => {
           <Button
             size="lg"
             variant="outline"
-            className="h-11 cursor-pointer rounded-md px-4 text-sm sm:px-6"
+            className="h-11 cursor-pointer rounded-md border-emerald-700/30 px-4 text-sm hover:bg-emerald-700/5 hover:text-emerald-700 dark:border-emerald-500/30 dark:hover:bg-emerald-500/5 dark:hover:text-emerald-500 sm:px-6"
           >
             Sell a Book
           </Button>
