@@ -48,7 +48,7 @@ const FindRightBookSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="absolute -bottom-36 -left-24 size-72 rounded-full border border-emerald-700/10"
+            className="absolute -bottom-36 -left-24 size-72 rounded-full border border-emerald-700/10 dark:border-emerald-500/10"
           />
 
           <div className="relative px-6 py-16 sm:px-10 sm:py-20 md:px-16 md:py-24">
@@ -61,9 +61,9 @@ const FindRightBookSection = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mb-6 flex items-center justify-center gap-3"
               >
-                <span className="size-2 rounded-full bg-emerald-700" />
+                <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                   Find your textbook
                 </span>
               </motion.div>
@@ -76,9 +76,11 @@ const FindRightBookSection = () => {
                 transition={{ duration: 0.6, delay: 0.15 }}
                 className="text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl"
               >
-                Find the right book.
+                <span className="text-emerald-700 dark:text-emerald-500">
+                  Find the right book.
+                </span>
                 <br />
-                <span className="text-muted-foreground/40">
+                <span className="text-foreground">
                   Start with a simple search.
                 </span>
               </motion.h2>
@@ -105,14 +107,14 @@ const FindRightBookSection = () => {
                 className="mx-auto mt-9 flex max-w-3xl flex-col gap-3 sm:flex-row"
               >
                 <div className="relative flex-1">
-                  <Search className="absolute left-5 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
+                  <Search className="absolute left-5 top-1/2 size-5 -translate-y-1/2 text-emerald-700 dark:text-emerald-500" />
 
                   <Input
                     type="search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by title, author, or ISBN..."
-                    className="h-14 w-full rounded-lg border bg-background pl-13 pr-5 text-sm sm:text-base"
+                    className="h-14 w-full rounded-lg border bg-background pl-13 pr-5 text-sm focus-visible:border-emerald-700 focus-visible:ring-emerald-700/20 sm:text-base dark:focus-visible:border-emerald-500 dark:focus-visible:ring-emerald-500/20"
                   />
                 </div>
 
