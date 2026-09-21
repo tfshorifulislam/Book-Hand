@@ -14,27 +14,29 @@ export function BuyAndSell() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 grid gap-8 md:mb-16 md:grid-cols-[1fr_0.6fr] md:items-end md:gap-12"
+          className="mb-14 space-y-6"
         >
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700" />
+              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 BookHand Marketplace
               </span>
             </div>
 
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Find a book.
+              <span className="text-emerald-700 dark:text-emerald-500">
+                Find a book.
+              </span>
               <br />
-              <span className="text-muted-foreground/40">
+              <span className="text-foreground">
                 Give one a new home.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-muted-foreground">
             Buy affordable textbooks from students or sell the books you no
             longer need.
           </p>
@@ -49,27 +51,27 @@ export function BuyAndSell() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
             whileHover={{ y: -3 }}
-            className="group relative min-h-[430px] overflow-hidden bg-emerald-700 p-8 text-white sm:p-10 md:min-h-[470px] md:p-12"
+            className="group relative min-h-[430px] overflow-hidden bg-emerald-700 p-8 text-white sm:p-10 md:min-h-[470px] md:p-12 dark:bg-emerald-500 dark:text-black"
           >
             {/* Decorative circle */}
             <motion.div
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.7 }}
-              className="absolute -right-24 -top-24 size-80 rounded-full border border-white/10"
+              className="absolute -right-24 -top-24 size-80 rounded-full border border-white/10 dark:border-black/10"
             />
 
             {/* Number */}
-            <div className="absolute right-8 top-8 flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10">
+            <div className="absolute right-8 top-8 flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 dark:border-black/15 dark:bg-black/10">
               <span className="text-[11px] font-medium">01</span>
             </div>
 
             {/* Icon */}
-            <div className="relative flex size-14 items-center justify-center rounded-xl bg-white text-emerald-700">
+            <div className="relative flex size-14 items-center justify-center rounded-xl bg-white text-emerald-700 dark:bg-black dark:text-emerald-500">
               <BookOpen className="size-6" />
             </div>
 
             <div className="relative mt-20 max-w-lg">
-              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-white/60 dark:text-black/55">
                 For readers
               </p>
 
@@ -77,7 +79,7 @@ export function BuyAndSell() {
                 Buy your next book.
               </h3>
 
-              <p className="mt-4 max-w-md text-sm leading-7 text-white/65 sm:text-base">
+              <p className="mt-4 max-w-md text-sm leading-7 text-white/65 sm:text-base dark:text-black/60">
                 Discover affordable textbooks listed by students. Find what
                 you need without paying full retail prices.
               </p>
@@ -86,13 +88,13 @@ export function BuyAndSell() {
             {/* CTA */}
             <Link
               href="/books"
-              className="group/cta absolute bottom-8 left-8 right-8 flex items-center justify-between border-t border-white/20 pt-5 text-sm font-medium sm:bottom-10 sm:left-10 sm:right-10 md:bottom-12 md:left-12 md:right-12"
+              className="group/cta absolute bottom-8 left-8 right-8 flex items-center justify-between border-t border-white/20 pt-5 text-sm font-medium sm:bottom-10 sm:left-10 sm:right-10 md:bottom-12 md:left-12 md:right-12 dark:border-black/15"
             >
               <span className="transition-transform duration-300 group-hover/cta:translate-x-1">
                 Browse books
               </span>
 
-              <span className="flex size-11 items-center justify-center rounded-full bg-white text-emerald-700 transition-all duration-300 group-hover/cta:rotate-45 group-hover/cta:scale-110">
+              <span className="flex size-11 items-center justify-center rounded-full bg-white text-emerald-700 transition-all duration-300 group-hover/cta:rotate-45 group-hover/cta:scale-110 dark:bg-black dark:text-emerald-500">
                 <ArrowUpRight className="size-4" />
               </span>
             </Link>
@@ -123,11 +125,11 @@ export function BuyAndSell() {
 
             {/* Icon */}
             <div className="relative flex size-14 items-center justify-center rounded-xl border bg-background">
-              <Tag className="size-6 text-emerald-700" />
+              <Tag className="size-6 text-emerald-700 dark:text-emerald-500" />
             </div>
 
             <div className="relative mt-20 max-w-lg">
-              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 For sellers
               </p>
 
@@ -150,7 +152,7 @@ export function BuyAndSell() {
                 Sell a book
               </span>
 
-              <span className="flex size-11 items-center justify-center rounded-full border bg-background transition-all duration-300 group-hover/cta:rotate-45 group-hover/cta:scale-110 group-hover/cta:border-emerald-700 group-hover/cta:bg-emerald-700 group-hover/cta:text-white">
+              <span className="flex size-11 items-center justify-center rounded-full border bg-background transition-all duration-300 group-hover/cta:rotate-45 group-hover/cta:scale-110 group-hover/cta:border-emerald-700 group-hover/cta:bg-emerald-700 group-hover/cta:text-white dark:group-hover/cta:border-emerald-500 dark:group-hover/cta:bg-emerald-500 dark:group-hover/cta:text-black">
                 <ArrowUpRight className="size-4" />
               </span>
             </Link>
@@ -169,7 +171,7 @@ export function BuyAndSell() {
             Simple buying. Direct selling.
           </span>
 
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700" />
+          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
         </motion.div>
       </div>
     </section>
