@@ -40,27 +40,29 @@ export function WhyChooseBookHand() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 grid gap-8 md:mb-16 md:grid-cols-[1fr_0.6fr] md:items-end md:gap-12"
+          className="mb-14 space-y-6"
         >
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700" />
+              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 Why BookHand
               </span>
             </div>
 
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Made for students.
+              <span className="text-emerald-700 dark:text-emerald-500">
+                Made for students.
+              </span>
               <br />
-              <span className="text-muted-foreground/40">
+              <span className="text-foreground">
                 Built around simplicity.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-muted-foreground">
             Everything you need to buy and sell textbooks without the usual
             hassle.
           </p>
@@ -93,9 +95,9 @@ export function WhyChooseBookHand() {
                   <motion.div
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.2 }}
-                    className="flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-emerald-700"
+                    className="flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-emerald-700 dark:group-hover:border-emerald-500"
                   >
-                    <Icon className="size-5 text-emerald-700" />
+                    <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
                   </motion.div>
 
                   <span className="font-mono text-[11px] text-muted-foreground/40">
@@ -105,7 +107,7 @@ export function WhyChooseBookHand() {
 
                 {/* Content */}
                 <div className="mt-20">
-                  <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">
+                  <h3 className="text-xl font-semibold tracking-tight sm:text-2xl text-emerald-700 dark:text-emerald-500">
                     {feature.title}
                   </h3>
 
@@ -115,7 +117,7 @@ export function WhyChooseBookHand() {
                 </div>
 
                 {/* Hover line */}
-                <div className="absolute bottom-0 left-7 h-0.5 w-0 bg-emerald-700 transition-all duration-300 group-hover:w-12 md:left-8" />
+                <div className="absolute bottom-0 left-7 h-0.5 w-0 bg-emerald-700 transition-all duration-300 group-hover:w-12 dark:bg-emerald-500 md:left-8" />
               </motion.div>
             );
           })}
@@ -136,7 +138,7 @@ export function WhyChooseBookHand() {
             Simple tools. Better textbook access.
           </span>
 
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700" />
+          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
         </motion.div>
       </div>
     </section>
