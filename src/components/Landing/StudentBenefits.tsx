@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -48,29 +49,31 @@ export function StudentBenefits() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="grid gap-8 border-b pb-16 md:gap-12 md:pb-20 lg:grid-cols-[1fr_0.65fr] lg:items-end"
+          className="mb-14 space-y-6"
         >
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="flex size-7 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white">
+              <span className="flex size-7 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white dark:bg-emerald-500 dark:text-black">
                 +
               </span>
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 Why students choose BookHand
               </span>
             </div>
 
             <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl lg:text-7xl">
-              A simpler way to
+              <span className="text-emerald-700 dark:text-emerald-500">
+                A simpler way to
+              </span>
               <br />
-              <span className="text-muted-foreground/40">
+              <span className="text-foreground">
                 buy and sell books.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground lg:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-muted-foreground">
             Everything is designed around students — from finding affordable
             textbooks to selling the books sitting unused on your shelf.
           </p>
@@ -121,7 +124,7 @@ export function StudentBenefits() {
             transition={{ duration: 0.5 }}
             className="mb-10 flex items-center justify-between"
           >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
               What you get
             </p>
 
@@ -154,9 +157,9 @@ export function StudentBenefits() {
                   <motion.div
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.2 }}
-                    className="flex size-14 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white"
+                    className="flex size-14 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 dark:group-hover:border-emerald-500"
                   >
-                    <Icon className="size-5" />
+                    <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
                   </motion.div>
 
                   {/* Content */}
@@ -171,7 +174,7 @@ export function StudentBenefits() {
                   </div>
 
                   {/* Arrow */}
-                  <div className="hidden size-11 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white md:flex">
+                  <div className="hidden size-11 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white dark:group-hover:border-emerald-500 dark:group-hover:bg-emerald-500 dark:group-hover:text-black md:flex">
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
                   </div>
                 </motion.div>
@@ -188,7 +191,7 @@ export function StudentBenefits() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16 flex items-center justify-between md:mt-20"
         >
-          <div className="h-1.5 w-16 rounded-full bg-emerald-700" />
+          <div className="h-1.5 w-16 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
           <p className="text-[11px] text-muted-foreground">
             Built for students, by simplicity.
