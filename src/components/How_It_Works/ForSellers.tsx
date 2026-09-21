@@ -1,3 +1,4 @@
+
 import {
   BookOpen,
   Upload,
@@ -34,7 +35,7 @@ export function ForSellers() {
       {/* Header */}
       <div className="mb-8 flex items-center gap-3">
         <div className="rounded-lg border p-2">
-          <BookOpen className="size-5" />
+          <BookOpen className="size-5 text-emerald-700 dark:text-emerald-500" />
         </div>
 
         <div>
@@ -59,8 +60,8 @@ export function ForSellers() {
               className="group relative rounded-2xl border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="flex items-start justify-between">
-                <div className="flex size-12 items-center justify-center rounded-xl border">
-                  <Icon className="size-5" />
+                <div className="flex size-12 items-center justify-center rounded-xl border border-emerald-700 dark:border-emerald-500">
+                  <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
                 </div>
 
                 <span className="text-4xl font-bold text-muted-foreground/20">
@@ -68,7 +69,7 @@ export function ForSellers() {
                 </span>
               </div>
 
-              <h4 className="mt-6 text-lg font-semibold">
+              <h4 className="mt-6 text-lg font-semibold text-emerald-700 dark:text-emerald-500">
                 {item.title}
               </h4>
 

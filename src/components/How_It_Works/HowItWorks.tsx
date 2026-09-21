@@ -1,3 +1,4 @@
+
 "use client";
 
 import { ArrowDown } from "lucide-react";
@@ -15,27 +16,30 @@ export function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 grid gap-8 md:mb-16 md:grid-cols-[1fr_0.6fr] md:items-end md:gap-12"
+          className="mb-14 space-y-6"
         >
+
           <div>
             <div className="mb-6 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700" />
+              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                 How It Works
               </span>
             </div>
 
             <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Buy or sell books.
+              <span className="text-emerald-700 dark:text-emerald-500">
+                Find a book.
+              </span>
               <br />
-              <span className="text-muted-foreground/40">
-                It&apos;s that simple.
+              <span className="text-foreground">
+                Sell one when you&apos;re done.
               </span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
+          <p className="max-w-md text-sm leading-7 text-muted-foreground">
             A simple way to find affordable textbooks or pass your old books
             on to someone who needs them.
           </p>
@@ -57,7 +61,7 @@ export function HowItWorks() {
               </span>
 
               <div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                   For Buyers
                 </span>
 
@@ -87,7 +91,7 @@ export function HowItWorks() {
           className="flex h-20 items-center justify-center"
         >
           <div className="relative flex size-10 items-center justify-center rounded-full border bg-background">
-            <ArrowDown className="size-4 text-emerald-700" />
+            <ArrowDown className="size-4 text-emerald-700 dark:text-emerald-500" />
 
             <span className="absolute -bottom-5 left-1/2 h-5 w-px -translate-x-1/2 bg-border" />
           </div>
@@ -113,11 +117,11 @@ export function HowItWorks() {
               </span>
 
               <div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
                   For Sellers
                 </span>
 
-                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl">
+                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl text-emerald-700 dark:text-emerald-500">
                   Give your old books a new home
                 </h3>
               </div>
@@ -145,7 +149,7 @@ export function HowItWorks() {
             Simple steps. Better textbook access.
           </span>
 
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700" />
+          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
         </motion.div>
       </div>
     </section>
