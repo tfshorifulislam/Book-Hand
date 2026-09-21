@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ArrowDown } from "lucide-react";
@@ -18,7 +17,6 @@ export function HowItWorks() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mb-14 space-y-6"
         >
-
           <div>
             <div className="mb-6 flex items-center gap-3">
               <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
@@ -121,7 +119,7 @@ export function HowItWorks() {
                   For Sellers
                 </span>
 
-                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl text-emerald-700 dark:text-emerald-500">
+                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl">
                   Give your old books a new home
                 </h3>
               </div>
