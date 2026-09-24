@@ -2,75 +2,87 @@ import { ArrowRight, BookOpen, ShieldCheck, Users } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 
+const highlights = [
+  { icon: ShieldCheck, label: "Safe & trusted" },
+  { icon: Users, label: "Student community" },
+  { icon: BookOpen, label: "University textbooks" },
+] as const;
+
 const HeroLeft = () => {
   return (
-    <div className="w-full max-w-2xl text-center md:text-left">
-      {/* Label */}
-      <div className="mb-5 inline-flex items-center gap-2">
-        <span className="size-1.5 rounded-full bg-emerald-700 dark:bg-emerald-500" />
-
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+    <div className="w-full max-w-xl text-center lg:text-left">
+      <div className="mb-6 flex items-center justify-center gap-3 lg:justify-start">
+        <span
+          className="font-mono text-xs tabular-nums tracking-wide text-muted-foreground"
+          aria-hidden
+        >
+          01
+        </span>
+        <span className="h-px w-8 bg-border" aria-hidden />
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
           Built for university students
         </span>
       </div>
 
-      {/* Heading */}
-      <h1 className="text-4xl font-semibold tracking-[-0.045em] text-emerald-700 dark:text-emerald-500 sm:text-5xl lg:text-6xl">
-        Find your next book.
+      <p className="mb-2 text-sm font-medium text-muted-foreground">
+        BookHand
+      </p>
 
-        <span className="mt-2 block text-foreground">
+      <h1
+        id="hero-heading"
+        className="text-[1.75rem] font-bold leading-[1.12] tracking-[-0.03em] sm:text-4xl lg:text-[2.625rem] lg:leading-[1.1]"
+      >
+        <span className="text-emerald-700 dark:text-emerald-500">
+          Find your next book.
+        </span>
+        <span className="mt-1.5 block text-foreground">
           Give your old books a new home.
         </span>
       </h1>
 
-      {/* Description */}
-      <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base md:mx-0">
+      <p className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base lg:mx-0">
         A simple marketplace for university students to buy affordable
         textbooks, sell books they no longer need, and connect with other
         students.
       </p>
 
-      {/* Actions */}
-      <div className="mt-7 flex flex-nowrap items-center justify-center gap-3 md:justify-start">
-        <Link href="/books" className="shrink-0">
+      <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start">
+        <Link href="/books" className="sm:shrink-0">
           <Button
             size="lg"
-            className="group h-11 cursor-pointer rounded-md bg-emerald-700 px-4 text-sm text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400 sm:px-6"
+            className="group h-11 w-full cursor-pointer rounded-lg bg-emerald-700 px-5 text-sm text-white hover:bg-emerald-600 sm:w-auto sm:px-6 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
           >
             <BookOpen className="mr-2 size-4" />
             Browse Books
-            <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Button>
         </Link>
 
-        <Link href="/sell-book" className="shrink-0">
+        <Link href="/sell-book" className="sm:shrink-0">
           <Button
             size="lg"
             variant="outline"
-            className="h-11 cursor-pointer rounded-md border-emerald-700/30 px-4 text-sm hover:bg-emerald-700/5 hover:text-emerald-700 dark:border-emerald-500/30 dark:hover:bg-emerald-500/5 dark:hover:text-emerald-500 sm:px-6"
+            className="h-11 w-full cursor-pointer rounded-lg border-border px-5 text-sm hover:border-emerald-700/35 hover:bg-emerald-700/[0.04] hover:text-emerald-800 sm:w-auto sm:px-6 dark:hover:border-emerald-500/35 dark:hover:bg-emerald-500/[0.06] dark:hover:text-emerald-400"
           >
             Sell a Book
           </Button>
         </Link>
       </div>
 
-      {/* Highlights */}
-      <div className="mt-9 flex flex-wrap justify-center gap-x-6 gap-y-3 border-t pt-5 md:justify-start">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <ShieldCheck className="size-4 text-emerald-700 dark:text-emerald-500" />
-          Safe & trusted
-        </div>
-
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Users className="size-4 text-emerald-700 dark:text-emerald-500" />
-          Student community
-        </div>
-
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <BookOpen className="size-4 text-emerald-700 dark:text-emerald-500" />
-          University textbooks
-        </div>
-      </div>
+      <ul className="mt-10 flex flex-col gap-3 border-t border-border/80 pt-8 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-2 lg:justify-start">
+        {highlights.map(({ icon: Icon, label }) => (
+          <li
+            key={label}
+            className="flex items-center justify-center gap-2 text-xs text-muted-foreground lg:justify-start"
+          >
+            <Icon
+              className="size-3.5 shrink-0 text-emerald-700/90 dark:text-emerald-500/90"
+              aria-hidden
+            />
+            {label}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
