@@ -37,7 +37,7 @@ const HeroRight = () => {
 
           <div className="relative aspect-[16/10] overflow-hidden bg-muted/20">
             <Image
-              src="/book2.1.png"
+              src="/book.jpg"
               alt="BookHand marketplace preview showing book listings for students"
               fill
               priority
