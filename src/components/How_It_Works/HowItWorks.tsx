@@ -84,7 +84,7 @@ function StepFlow({ label, steps }: StepFlowProps) {
       <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">
         <span className="h-px w-10 bg-border" />
 
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
           {label}
         </span>
 
@@ -163,8 +163,8 @@ export function HowItWorks() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-20 sm:py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="w-full py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
@@ -176,15 +176,15 @@ export function HowItWorks() {
           }}
           className="mx-auto max-w-2xl text-center"
         >
-          <div className="mb-6 flex items-center justify-center gap-3">
+          <div className="mb-4 flex items-center justify-center gap-3">
             <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
               Simple by design
             </span>
           </div>
 
-          <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]">
+          <h2 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
             <span className="text-emerald-700 dark:text-emerald-500">
               How BookHand
             </span>
@@ -192,17 +192,17 @@ export function HowItWorks() {
             <span className="block text-foreground">works.</span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base">
+          <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base">
             Everything you need to buy or sell university textbooks, without
             the hassle.
           </p>
         </motion.div>
 
         {/* Flows */}
-        <div className="mx-auto mt-14 w-full max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-3xl">
+        <div className="mx-auto mt-10 w-full max-w-2xl sm:mt-12 lg:max-w-3xl">
           <StepFlow label="For Buyers" steps={buyerSteps} />
 
-          <div className="mt-14 lg:mt-20">
+          <div className="mt-12 lg:mt-16">
             <StepFlow label="For Sellers" steps={sellerSteps} />
           </div>
         </div>

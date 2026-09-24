@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -32,44 +31,51 @@ const data = {
   teams: [
     {
       name: "BookHand",
-      logo: (
-        <FaBookOpenReader className="size-5 text-emerald-700 dark:text-emerald-500" />
-      ),
+      logo: <FaBookOpenReader className="size-4.5 stroke-[2.2]" />,
       hoverLogo: <SidebarTrigger />,
-      plan: "Buy & Sell Books",
     },
   ],
 
-  navMain: [
+  navGroups: [
     {
-      title: "Home",
-      url: "/",
-      icon: Home,
+      label: "Main",
+      items: [
+        {
+          title: "Home",
+          url: "/",
+          icon: Home,
+        },
+        {
+          title: "Browse Books",
+          url: "/books",
+          icon: BookOpen,
+        },
+        {
+          title: "Wishlist",
+          url: "/wishlist",
+          icon: Heart,
+        },
+        {
+          title: "Sell a Book",
+          url: "/sell-book",
+          icon: PlusCircle,
+        },
+      ],
     },
     {
-      title: "Browse Books",
-      url: "/books",
-      icon: BookOpen,
-    },
-    {
-      title: "Wishlist",
-      url: "/wishlist",
-      icon: Heart,
-    },
-    {
-      title: "Sell a Book",
-      url: "/sell-book",
-      icon: PlusCircle,
-    },
-    {
-      title: "My Profile",
-      url: "/profile",
-      icon: UserRound,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: Settings,
+      label: "Account",
+      items: [
+        {
+          title: "My Profile",
+          url: "/profile",
+          icon: UserRound,
+        },
+        {
+          title: "Settings",
+          url: "/settings",
+          icon: Settings,
+        },
+      ],
     },
   ],
 };
@@ -85,7 +91,6 @@ export function AppSidebar({
     >
       <Sidebar
         collapsible="icon"
-        variant="floating"
         {...props}
       >
         <SidebarHeader>
@@ -93,10 +98,10 @@ export function AppSidebar({
         </SidebarHeader>
 
         <SidebarContent>
-          <NavMain items={data.navMain} />
+          <NavMain groups={data.navGroups} />
         </SidebarContent>
 
-        <SidebarFooter>
+        <SidebarFooter className="border-t p-2 pt-3">
           <NavUser />
         </SidebarFooter>
 

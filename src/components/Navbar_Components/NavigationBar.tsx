@@ -22,7 +22,7 @@ export function NavigationBar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <header className="sticky top-0 left-0 right-0 z-50 w-full bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto max-w-7xl px-4 pt-3 md:px-6">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between rounded-lg border bg-background/95 px-3 shadow-sm">
 
             <Logo />

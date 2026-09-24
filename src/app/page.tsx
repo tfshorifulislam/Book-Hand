@@ -9,7 +9,7 @@ import { FAQ } from "@/components/Landing/FAQ";
 
 const page = () => {
   return (
-    <div className="mx-auto max-w-7xl">
+    <>
       <HeroMain />
       <FindRightBookSection />
       <WhyChooseBookHand />
@@ -18,7 +18,7 @@ const page = () => {
       <BuyAndSell />
       <FinalCTA />
       <FAQ />
-    </div>
+    </>
   );
 };
 

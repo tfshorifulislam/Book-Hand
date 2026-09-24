@@ -10,8 +10,8 @@ export function FinalCTA() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-20 sm:py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="w-full py-14 sm:py-16 lg:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export function FinalCTA() {
               <div className="flex items-center justify-center gap-3">
                 <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
                   Start with BookHand
                 </span>
               </div>
@@ -52,7 +52,7 @@ export function FinalCTA() {
                 delay: reducedMotion ? 0 : 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="mt-6 text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]"
+              className="mt-4 text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl"
             >
               <span className="text-emerald-700 dark:text-emerald-500">
                 Ready to find
@@ -71,7 +71,7 @@ export function FinalCTA() {
                 delay: reducedMotion ? 0 : 0.16,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base"
+              className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base"
             >
               Buy the textbooks you need, sell the ones you no longer use, and
               make your university life a little easier.
@@ -120,7 +120,7 @@ export function FinalCTA() {
                 duration: 0.5,
                 delay: reducedMotion ? 0 : 0.34,
               }}
-              className="mt-10 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60"
+              className="mt-8 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60"
             >
               Buy
               <span className="mx-2 text-emerald-700/60 dark:text-emerald-500/60">•</span>

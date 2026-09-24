@@ -21,24 +21,25 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { authClient, useSession } from "@/lib/auth-client"
-import { LogOutIcon, } from "lucide-react"
+import { LogOutIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
 
 export function NavUser() {
   const router = useRouter();
 
-
   const { data } = useSession()
   const user = data?.user;
 
-  const { isMobile } = useSidebar()
+  const { isMobile, state } = useSidebar()
 
   if (!user) {
     return null
   }
 
+  const isCollapsed = state === "collapsed"
   const firstLetter = user.name?.trim().charAt(0).toUpperCase() || "U";
-
+  const userEmail = user.email ?? "";
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -53,28 +54,38 @@ export function NavUser() {
             render={
               <SidebarMenuButton
                 size="lg"
-                className="aria-expanded:bg-muted"
+                className={cn(
+                  "py-1.5 aria-expanded:bg-muted",
+                  isCollapsed && "justify-center px-0"
+                )}
               />
             }
           >
-            <Avatar className="size-8">
+            <Avatar className={cn("size-9", isCollapsed && "size-8")}>
               <AvatarImage
                 src={user.image || undefined}
                 alt={user.name}
               />
 
-              <AvatarFallback>
+              <AvatarFallback className="font-medium">
                 {firstLetter}
               </AvatarFallback>
             </Avatar>
 
-            <div className="grid flex-1 text-left text-sm leading-tight">
+            <div
+              className={cn(
+                "grid min-w-0 flex-1 text-left text-sm leading-tight",
+                isCollapsed && "hidden"
+              )}
+            >
               <span className="truncate font-medium">
                 {user.name}
               </span>
-            </div>
 
-            {/* <ChevronsUpDownIcon className="ml-auto size-4" /> */}
+              <span className="truncate text-xs text-muted-foreground">
+                {userEmail}
+              </span>
+            </div>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent
@@ -85,21 +96,25 @@ export function NavUser() {
           >
             <DropdownMenuGroup>
               <DropdownMenuLabel className="p-0 font-normal">
-                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                  <Avatar className="size-8">
+                <div className="flex items-center gap-3 px-1 py-1.5 text-left text-sm">
+                  <Avatar className="size-9">
                     <AvatarImage
                       src={user.image || undefined}
                       alt={user.name}
                     />
 
-                    <AvatarFallback>
+                    <AvatarFallback className="font-medium">
                       {firstLetter}
                     </AvatarFallback>
                   </Avatar>
 
-                  <div className="grid flex-1 text-left text-sm leading-tight">
+                  <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
                     <span className="truncate font-medium">
                       {user.name}
+                    </span>
+
+                    <span className="truncate text-xs text-muted-foreground">
+                      {userEmail}
                     </span>
                   </div>
                 </div>
@@ -110,7 +125,7 @@ export function NavUser() {
 
             <DropdownMenuItem
               onClick={handleLogout}
-              variant="destructive"
+              className="text-muted-foreground hover:text-foreground"
             >
               <LogOutIcon />
               Log out

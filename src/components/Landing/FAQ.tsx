@@ -46,9 +46,9 @@ export function FAQ() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-20 sm:py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-20">
+    <section className="w-full py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-16">
           {/* Heading */}
           <motion.div
             initial={reducedMotion ? false : { opacity: 0, y: 20 }}
@@ -60,15 +60,15 @@ export function FAQ() {
             }}
             className="lg:sticky lg:top-24 lg:self-start"
           >
-            <div className="mb-6 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
                 FAQ
               </span>
             </div>
 
-            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]">
+            <h2 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
               <span className="text-emerald-700 dark:text-emerald-500">
                 Frequently asked
               </span>
@@ -76,7 +76,7 @@ export function FAQ() {
               <span className="block text-foreground">questions.</span>
             </h2>
 
-            <p className="mt-5 max-w-sm text-[0.9375rem] leading-7 text-muted-foreground sm:text-base">
+            <p className="mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base">
               Everything you need to know about buying, selling, and using
               BookHand.
             </p>

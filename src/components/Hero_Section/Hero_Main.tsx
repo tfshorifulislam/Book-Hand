@@ -10,8 +10,8 @@ const HeroMain = () => {
 
   return (
     <section className="border-b border-border/50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-12 py-14 sm:gap-14 sm:py-16 lg:grid-cols-[28rem_minmax(0,1fr)] lg:gap-14 lg:py-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[28rem_minmax(0,1fr)] lg:gap-14 lg:py-28">
           <motion.div
             initial={reducedMotion ? false : { opacity: 0, y: 20 }}
             animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}

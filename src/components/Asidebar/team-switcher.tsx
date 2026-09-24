@@ -1,4 +1,3 @@
-
 "use client";
 
 import * as React from "react";
@@ -10,6 +9,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
+import { cn } from "@/lib/utils";
+
 export function TeamSwitcher({
   teams,
 }: {
@@ -17,7 +18,6 @@ export function TeamSwitcher({
     name: string;
     logo: React.ReactNode;
     hoverLogo?: React.ReactNode;
-    plan: string;
   }[];
 }) {
   const { state } = useSidebar();
@@ -34,55 +34,44 @@ export function TeamSwitcher({
     <SidebarMenu>
       <SidebarMenuItem>
         <div
-          className={`flex w-full items-center ${
-            isCollapsed ? "justify-center" : "justify-between"
-          }`}
+          className={cn(
+            "flex w-full items-center gap-2 px-1 py-1",
+            isCollapsed && "justify-center px-0"
+          )}
         >
           <div
-            className={`flex min-w-0 items-center ${
-              isCollapsed ? "justify-center" : "gap-2"
-            }`}
+            className={cn(
+              "flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-700 text-white shadow-sm dark:bg-emerald-500 dark:text-black",
+              isCollapsed && "group cursor-pointer"
+            )}
           >
-            <div
-              className={`group flex size-8 shrink-0 items-center justify-center rounded-lg ${
-                isCollapsed ? "cursor-pointer" : ""
-              }`}
-            >
-              {isCollapsed ? (
-                <>
-                  {/* BookHand Logo */}
-                  <div className="flex size-8 items-center justify-center group-hover:hidden">
-                    {activeTeam.logo}
-                  </div>
-
-                  {/* Open Sidebar Button */}
-                  <div className="hidden size-8 items-center justify-center group-hover:flex">
-                    {activeTeam.hoverLogo}
-                  </div>
-                </>
-              ) : (
-                <div className="flex size-8 items-center justify-center">
+            {isCollapsed ? (
+              <>
+                <div className="flex size-full items-center justify-center group-hover:hidden">
                   {activeTeam.logo}
                 </div>
-              )}
-            </div>
 
-            {!isCollapsed && (
-              <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
-                <span className="truncate text-[15px] font-semibold">
-                  {activeTeam.name}
-                </span>
-
-                <span className="truncate text-xs text-muted-foreground">
-                  {activeTeam.plan}
-                </span>
+                <div className="hidden size-full items-center justify-center group-hover:flex">
+                  {activeTeam.hoverLogo}
+                </div>
+              </>
+            ) : (
+              <div className="flex size-full items-center justify-center">
+                {activeTeam.logo}
               </div>
             )}
           </div>
 
-          {/* Open → Collapse button */}
           {!isCollapsed && (
-            <SidebarTrigger className="ml-auto size-8 shrink-0 rounded-lg text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground" />
+            <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
+              <span className="truncate text-[15px] font-bold tracking-tight">
+                {activeTeam.name}
+              </span>
+            </div>
+          )}
+
+          {!isCollapsed && (
+            <SidebarTrigger className="ml-auto size-8 shrink-0 rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" />
           )}
         </div>
       </SidebarMenuItem>
