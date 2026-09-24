@@ -1,52 +1,65 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
 
 const faqs = [
   {
-    question: "What is Book Hand?",
+    question: "What is BookHand?",
     answer:
-      "Book Hand is a platform where you can buy affordable used books, sell books you no longer need, and give books a second life.",
+      "BookHand is a marketplace built for university students to buy and sell textbooks they need or no longer use.",
   },
   {
-    question: "How can I sell my books?",
+    question: "How do I find a book?",
     answer:
-      "Simply create an account, add your book details, upload photos, set your price, and publish your listing.",
+      "You can browse available listings or search by book title, author, category, or other available details.",
   },
   {
-    question: "Can I buy used books on Book Hand?",
+    question: "How do I sell my book?",
     answer:
-      "Yes. You can explore available books, check their details and condition, and contact the seller to purchase the book.",
+      "Create a listing with the book details, price, condition, and photos. Once published, other students can discover your listing.",
   },
   {
-    question: "Is creating an account free?",
-    answer: "Yes. Creating an account on Book Hand is completely free.",
+    question: "Can I save books for later?",
+    answer:
+      "Yes. You can save interesting books to your wishlist and come back to them later.",
   },
   {
-    question: "How do I find a specific book?",
+    question: "Are the books new or used?",
     answer:
-      "You can use the search feature to find books by title, author, category, or other relevant information.",
+      "BookHand primarily focuses on student-to-student textbook listings, so availability and condition depend on each individual listing.",
   },
   {
-    question: "Can I edit or remove my book listing?",
+    question: "How do I contact a seller?",
     answer:
-      "Yes. You can manage your listings from your account and update or remove a listing whenever you want.",
+      "You can use the available communication options on a listing to connect with the seller and discuss the purchase.",
   },
 ];
 
 export function FAQ() {
+  const reducedMotion = useReducedMotion();
+
   return (
     <section className="w-full py-20 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 space-y-6"
-        >
-          <div>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-20">
+          {/* Heading */}
+          <motion.div
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.55,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="lg:sticky lg:top-24 lg:self-start"
+          >
             <div className="mb-6 flex items-center gap-3">
               <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
@@ -55,105 +68,62 @@ export function FAQ() {
               </span>
             </div>
 
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
+            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]">
               <span className="text-emerald-700 dark:text-emerald-500">
-                Questions,
+                Frequently asked
               </span>
-              <br />
-              <span className="text-foreground">answered simply.</span>
+
+              <span className="block text-foreground">questions.</span>
             </h2>
-          </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground">
-            Find quick answers to common questions about buying, selling, and
-            using Book Hand.
-          </p>
-        </motion.div>
+            <p className="mt-5 max-w-sm text-[0.9375rem] leading-7 text-muted-foreground sm:text-base">
+              Everything you need to know about buying, selling, and using
+              BookHand.
+            </p>
+          </motion.div>
 
-        {/* FAQ */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.08,
-              },
-            },
-          }}
-          className="divide-y border-y"
-        >
-          {faqs.map((faq, index) => (
-            <motion.details
-              key={faq.question}
-              variants={{
-                hidden: {
-                  opacity: 0,
-                  y: 25,
-                },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    ease: "easeOut",
-                  },
-                },
-              }}
-              className="group"
-            >
-              {/* Question */}
-              <summary className="flex cursor-pointer list-none items-center gap-6 py-7 md:py-8 [&::-webkit-details-marker]:hidden">
-                <span className="w-8 shrink-0 font-mono text-xs text-muted-foreground/40">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+          {/* Accordion */}
+          <motion.div
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 0.55,
+              delay: reducedMotion ? 0 : 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="min-w-0"
+          >
+            <div className="border-t border-border">
+              <Accordion
+                defaultValue={[faqs[0].question]}
+                className="w-full"
+              >
+                {faqs.map((faq) => (
+                  <AccordionItem key={faq.question} value={faq.question}>
+                    <AccordionTrigger className="gap-6 py-6 text-base font-semibold tracking-tight hover:no-underline sm:text-lg md:py-7 group-aria-expanded/accordion-trigger:[&_[data-slot=accordion-trigger-icon]]:text-emerald-700 dark:group-aria-expanded/accordion-trigger:[&_[data-slot=accordion-trigger-icon]]:text-emerald-500">
+                      <span className="flex-1 text-left group-aria-expanded/accordion-trigger:text-emerald-700 dark:group-aria-expanded/accordion-trigger:text-emerald-500">
+                        {faq.question}
+                      </span>
+                    </AccordionTrigger>
 
-                <span className="flex-1 text-left text-lg font-semibold tracking-tight sm:text-xl md:text-2xl">
-                  {faq.question}
-                </span>
+                    <AccordionContent className="text-muted-foreground [&>div]:pb-6 [&>div]:pr-10 sm:[&>div]:pr-14">
+                      <p className="max-w-2xl text-sm leading-7 sm:text-base sm:leading-8">
+                        {faq.answer}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
 
-                {/* Plus / Minus */}
-                <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-all duration-300 group-hover:border-emerald-700 group-hover:text-emerald-700 group-open:border-emerald-700 group-open:bg-emerald-700 group-open:text-white dark:group-hover:border-emerald-500 dark:group-hover:text-emerald-500 dark:group-open:border-emerald-500 dark:group-open:bg-emerald-500 dark:group-open:text-black">
-                  <span className="absolute h-px w-3.5 bg-current" />
+            <p className="mt-8 flex items-center gap-2.5 text-[11px] text-muted-foreground">
+              <span className="size-1.5 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-                  <span className="absolute h-3.5 w-px bg-current transition-transform duration-300 group-open:rotate-90" />
-                </span>
-              </summary>
-
-              {/* Animated Answer */}
-              <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out group-open:grid-rows-[1fr] group-open:opacity-100">
-                <div className="min-h-0 overflow-hidden">
-                  <div className="grid grid-cols-[32px_1fr_40px] gap-6 pb-8 md:pb-9">
-                    <span />
-
-                    <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
-                      {faq.answer}
-                    </p>
-
-                    <span />
-                  </div>
-                </div>
-              </div>
-            </motion.details>
-          ))}
-        </motion.div>
-
-        {/* Bottom */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 flex items-center justify-between"
-        >
-          <span className="text-[11px] text-muted-foreground">
-            Still have questions?
-          </span>
-
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
-        </motion.div>
+              Still have questions? We&apos;re here to help.
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
