@@ -1,154 +1,211 @@
 "use client";
 
-import { ArrowDown } from "lucide-react";
-import { motion } from "motion/react";
-import { ForBuyers } from "./ForBuyers";
-import { ForSellers } from "./ForSellers";
+import {
+  BookOpen,
+  Check,
+  MessageCircle,
+  Plus,
+  Search,
+  Users,
+} from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
+
+type Step = {
+  number: string;
+  icon: typeof Search;
+  title: string;
+  description: string;
+};
+
+type StepFlowProps = {
+  label: string;
+  steps: Step[];
+};
+
+const buyerSteps: Step[] = [
+  {
+    number: "01",
+    icon: Search,
+    title: "Search",
+    description:
+      "Find the textbook you need by title, author, category, or course.",
+  },
+  {
+    number: "02",
+    icon: BookOpen,
+    title: "Discover",
+    description:
+      "Compare available books, prices, and seller information.",
+  },
+  {
+    number: "03",
+    icon: MessageCircle,
+    title: "Connect",
+    description: "Contact the seller and arrange the purchase.",
+  },
+];
+
+const sellerSteps: Step[] = [
+  {
+    number: "01",
+    icon: Plus,
+    title: "List your book",
+    description: "Add your book's details, price, and photos in minutes.",
+  },
+  {
+    number: "02",
+    icon: Users,
+    title: "Reach students",
+    description:
+      "Your listing becomes visible to students looking for that book.",
+  },
+  {
+    number: "03",
+    icon: Check,
+    title: "Sell",
+    description:
+      "Connect with an interested student and complete the sale.",
+  },
+];
+
+function StepFlow({ label, steps }: StepFlowProps) {
+  const reducedMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+      whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.55,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">
+        <span className="h-px w-10 bg-border" />
+
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+          {label}
+        </span>
+
+        <span className="h-px w-10 bg-border" />
+      </div>
+
+      <div className="relative">
+        {/* Mobile connector */}
+        <motion.span
+          aria-hidden
+          initial={reducedMotion ? false : { opacity: 0 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          className="absolute bottom-0 left-6 top-0 w-px bg-border lg:hidden"
+        />
+
+        {/* Desktop connector */}
+        <motion.span
+          aria-hidden
+          initial={reducedMotion ? false : { scaleX: 0 }}
+          whileInView={reducedMotion ? undefined : { scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.7,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="absolute left-[8.7rem] right-[8.7rem] top-6 hidden h-px origin-left bg-border lg:block"
+        />
+
+        <ol className="relative lg:grid lg:grid-cols-3 lg:gap-10">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+
+            return (
+              <motion.li
+                key={step.number}
+                initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.5,
+                  delay: reducedMotion ? 0 : 0.1 + index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative flex items-start gap-4 pb-10 last:pb-0 lg:block lg:pb-0 lg:text-center"
+              >
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-border bg-background transition-colors hover:border-emerald-700/50 dark:bg-background dark:hover:border-emerald-500/50">
+                  <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
+                </div>
+
+                <div className="lg:mt-6">
+                  <span className="font-mono text-[11px] text-muted-foreground/60">
+                    {step.number}
+                  </span>
+
+                  <h4 className="mt-1 text-base font-semibold tracking-tight sm:text-lg">
+                    {step.title}
+                  </h4>
+
+                  <p className="mt-1.5 max-w-xs text-sm leading-6 text-muted-foreground">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.li>
+            );
+          })}
+        </ol>
+      </div>
+    </motion.div>
+  );
+}
 
 export function HowItWorks() {
+  const reducedMotion = useReducedMotion();
+
   return (
     <section className="w-full py-20 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 space-y-6"
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.55,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mx-auto max-w-2xl text-center"
         >
-          <div>
-            <div className="mb-6 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+          <div className="mb-6 flex items-center justify-center gap-3">
+            <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
-                How It Works
-              </span>
-            </div>
-
-            <h2 className="max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              <span className="text-emerald-700 dark:text-emerald-500">
-                Find a book.
-              </span>
-              <br />
-              <span className="text-foreground">
-                Sell one when you&apos;re done.
-              </span>
-            </h2>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+              Simple by design
+            </span>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground">
-            A simple way to find affordable textbooks or pass your old books
-            on to someone who needs them.
+          <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]">
+            <span className="text-emerald-700 dark:text-emerald-500">
+              How BookHand
+            </span>
+
+            <span className="block text-foreground">works.</span>
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base">
+            Everything you need to buy or sell university textbooks, without
+            the hassle.
           </p>
         </motion.div>
 
-        {/* Buyer */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="overflow-hidden rounded-xl border"
-        >
-          {/* Buyer Header */}
-          <div className="flex items-center justify-between border-b px-6 py-6 sm:px-8 md:px-10 md:py-7">
-            <div className="flex items-center gap-5">
-              <span className="font-mono text-[11px] text-muted-foreground/40">
-                01
-              </span>
+        {/* Flows */}
+        <div className="mx-auto mt-14 w-full max-w-2xl sm:mt-16 lg:mt-20 lg:max-w-3xl">
+          <StepFlow label="For Buyers" steps={buyerSteps} />
 
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
-                  For Buyers
-                </span>
-
-                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl">
-                  Find your next textbook
-                </h3>
-              </div>
-            </div>
+          <div className="mt-14 lg:mt-20">
+            <StepFlow label="For Sellers" steps={sellerSteps} />
           </div>
-
-          {/* Buyer Content */}
-          <div className="p-6 sm:p-9 md:p-12">
-            <ForBuyers />
-          </div>
-        </motion.div>
-
-        {/* Connector */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: 0.15,
-            ease: "easeOut",
-          }}
-          className="flex h-20 items-center justify-center"
-        >
-          <div className="relative flex size-10 items-center justify-center rounded-full border bg-background">
-            <ArrowDown className="size-4 text-emerald-700 dark:text-emerald-500" />
-
-            <span className="absolute -bottom-5 left-1/2 h-5 w-px -translate-x-1/2 bg-border" />
-          </div>
-        </motion.div>
-
-        {/* Seller */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.65,
-            delay: 0.1,
-            ease: "easeOut",
-          }}
-          className="overflow-hidden rounded-xl border"
-        >
-          {/* Seller Header */}
-          <div className="flex items-center justify-between border-b px-6 py-6 sm:px-8 md:px-10 md:py-7">
-            <div className="flex items-center gap-5">
-              <span className="font-mono text-[11px] text-muted-foreground/40">
-                02
-              </span>
-
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
-                  For Sellers
-                </span>
-
-                <h3 className="mt-1.5 text-xl font-semibold tracking-tight sm:text-2xl">
-                  Give your old books a new home
-                </h3>
-              </div>
-            </div>
-          </div>
-
-          {/* Seller Content */}
-          <div className="p-6 sm:p-9 md:p-12">
-            <ForSellers />
-          </div>
-        </motion.div>
-
-        {/* Bottom Accent */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: 0.25,
-          }}
-          className="mt-8 flex items-center justify-between"
-        >
-          <span className="text-[11px] text-muted-foreground">
-            Simple steps. Better textbook access.
-          </span>
-
-          <div className="h-1.5 w-14 rounded-full bg-emerald-700 dark:bg-emerald-500" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
