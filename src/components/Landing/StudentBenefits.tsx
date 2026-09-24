@@ -1,202 +1,141 @@
-
 "use client";
 
-import {
-  Wallet,
-  MapPin,
-  MessageCircle,
-  ArrowUpRight,
-} from "lucide-react";
-import { motion } from "motion/react";
+import { BadgeDollarSign, Search, Users, Wallet } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
-const stats = [
-  { value: "2.5K+", label: "Books Listed" },
-  { value: "500+", label: "Students" },
-  { value: "15+", label: "Universities" },
-];
+type Benefit = {
+  number: string;
+  icon: typeof Wallet;
+  title: string;
+  description: string;
+};
 
-const benefits = [
+const benefits: Benefit[] = [
   {
     number: "01",
     icon: Wallet,
-    title: "Keep every rupee",
+    title: "Save Money",
     description:
-      "Sell your books without commission, hidden fees, or unnecessary charges.",
+      "Find affordable used textbooks instead of paying full retail prices.",
   },
   {
     number: "02",
-    icon: MapPin,
-    title: "Meet on campus",
+    icon: BadgeDollarSign,
+    title: "Sell What You No Longer Need",
     description:
-      "Find students nearby and arrange a simple pickup around your campus.",
+      "Turn old textbooks into extra money by listing them for other students.",
   },
   {
     number: "03",
-    icon: MessageCircle,
-    title: "Talk directly",
+    icon: Search,
+    title: "Find Books Faster",
     description:
-      "Chat with buyers and sellers, ask questions, negotiate, and arrange meetups.",
+      "Search for textbooks by title, author, category, or course.",
+  },
+  {
+    number: "04",
+    icon: Users,
+    title: "Connect With Students",
+    description:
+      "Discover books from other students within a focused university marketplace.",
   },
 ];
 
 export function StudentBenefits() {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <section className="relative w-full py-20 sm:py-24 md:py-32">
+    <section className="w-full py-20 sm:py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-14 space-y-6"
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.55,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
         >
-          <div>
+          <div className="max-w-2xl">
             <div className="mb-6 flex items-center gap-3">
-              <span className="flex size-7 items-center justify-center rounded-full bg-emerald-700 text-[11px] font-bold text-white dark:bg-emerald-500 dark:text-black">
-                +
-              </span>
+              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
 
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
-                Why students choose BookHand
+                Student-first
               </span>
             </div>
 
-            <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[2.625rem]">
               <span className="text-emerald-700 dark:text-emerald-500">
-                A simpler way to
+                Built around
               </span>
-              <br />
-              <span className="text-foreground">
-                buy and sell books.
-              </span>
+
+              <span className="block text-foreground">student needs.</span>
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-muted-foreground">
-            Everything is designed around students — from finding affordable
-            textbooks to selling the books sitting unused on your shelf.
+          <p className="max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base md:pb-1 md:text-right">
+            BookHand makes buying and selling university textbooks simpler,
+            more affordable, and more convenient.
           </p>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="grid border-b sm:grid-cols-3"
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.1,
-              }}
-              className={[
-                "py-9 sm:py-10",
-                index !== 0
-                  ? "border-t sm:border-l sm:border-t-0 sm:pl-10"
-                  : "",
-              ].join(" ")}
-            >
-              <span className="block text-4xl font-semibold tracking-tight sm:text-5xl">
-                {stat.value}
-              </span>
-
-              <span className="mt-2 block text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground">
-                {stat.label}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
-
         {/* Benefits */}
-        <div className="mt-24 md:mt-28">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mb-10 flex items-center justify-between"
-          >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
-              What you get
-            </p>
-
-            <div className="hidden h-px w-40 bg-border sm:block" />
-          </motion.div>
-
-          <div className="divide-y border-y">
+        <div className="mt-12 overflow-hidden rounded-xl border border-border sm:mt-14">
+          <ul className="grid md:grid-cols-2">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
 
               return (
-                <motion.div
-                  key={benefit.title}
-                  initial={{ opacity: 0, y: 35 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
+                <motion.li
+                  key={benefit.number}
+                  initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+                  whileInView={
+                    reducedMotion ? undefined : { opacity: 1, y: 0 }
+                  }
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{
-                    duration: 0.6,
-                    delay: index * 0.12,
-                    ease: "easeOut",
+                    duration: 0.5,
+                    delay: reducedMotion ? 0 : index * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="group grid gap-7 py-10 md:grid-cols-[70px_64px_1fr_auto] md:items-center md:gap-8 md:py-14 lg:grid-cols-[90px_72px_1fr_48px] lg:gap-10"
+                  className={[
+                    "group relative p-7 sm:p-9 md:p-12",
+                    index === 0 && "border-b md:border-r",
+                    index === 1 && "border-b",
+                    index === 2 && "border-b md:border-b-0 md:border-r",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                 >
-                  {/* Number */}
-                  <span className="font-mono text-xs text-muted-foreground/40">
-                    {benefit.number}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background transition-colors group-hover:border-emerald-700/50 dark:bg-background dark:group-hover:border-emerald-500/50">
+                      <Icon className="size-4 text-emerald-700 dark:text-emerald-500" />
+                    </div>
 
-                  {/* Icon */}
-                  <motion.div
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex size-14 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 dark:group-hover:border-emerald-500"
-                  >
-                    <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
-                  </motion.div>
+                    <span className="h-px flex-1 bg-border transition-colors group-hover:bg-emerald-700/30 dark:group-hover:bg-emerald-500/30" />
 
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                      {benefit.title}
-                    </h3>
-
-                    <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
-                      {benefit.description}
-                    </p>
+                    <span className="font-mono text-[11px] text-muted-foreground/40">
+                      {benefit.number}
+                    </span>
                   </div>
 
-                  {/* Arrow */}
-                  <div className="hidden size-11 items-center justify-center rounded-full border transition-colors duration-300 group-hover:border-emerald-700 group-hover:bg-emerald-700 group-hover:text-white dark:group-hover:border-emerald-500 dark:group-hover:bg-emerald-500 dark:group-hover:text-black md:flex">
-                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
-                  </div>
-                </motion.div>
+                  <h3 className="mt-7 text-xl font-semibold tracking-tight sm:text-2xl">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="mt-2 max-w-sm text-sm leading-7 text-muted-foreground sm:text-base">
+                    {benefit.description}
+                  </p>
+
+                  <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-emerald-700 transition-all duration-300 group-hover:w-10 dark:bg-emerald-500 md:left-12" />
+                </motion.li>
               );
             })}
-          </div>
+          </ul>
         </div>
-
-        {/* Bottom Accent */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 flex items-center justify-between md:mt-20"
-        >
-          <div className="h-1.5 w-16 rounded-full bg-emerald-700 dark:bg-emerald-500" />
-
-          <p className="text-[11px] text-muted-foreground">
-            Built for students, by simplicity.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
