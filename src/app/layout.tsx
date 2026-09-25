@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 
@@ -11,16 +11,34 @@ import { Footer } from "@/components/Footer/Footer";
 import { Toaster } from "@/components/ui/toast";
 import SmoothScroll from "@/components/shared/SmoothScroll";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-inter",
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "BookHand",
-  description: "Buy & Sell Books",
+  title: {
+    default: "BookHand",
+    template: "%s | BookHand",
+  },
+  description:
+    "BookHand is a marketplace for university students to buy, sell, and discover affordable textbooks.",
+  keywords: [
+    "BookHand",
+    "university books",
+    "textbook marketplace",
+    "buy books",
+    "sell books",
+    "student marketplace",
+  ],
+  authors: [{ name: "BookHand" }],
+  creator: "BookHand",
+  applicationName: "BookHand",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -29,10 +47,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} antialiased`}
+      className={`${inter.className} antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background font-sans">
+      <body className="min-h-screen bg-[#fafaf9] font-sans text-zinc-900 dark:bg-[#0a0a0a] dark:text-zinc-100">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -40,15 +58,20 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
+
             <AppSidebar />
 
-            <SidebarInset className="min-w-0">
+            <SidebarInset className="min-w-0 bg-transparent">
               <div className="flex min-h-screen flex-col">
+                
                 <NavigationBar />
 
-                <main className="flex-1">{children}</main>
+                <main
+                  className="flex-1">{children}
+                </main>
 
                 <Footer />
+
               </div>
             </SidebarInset>
           </SidebarProvider>
