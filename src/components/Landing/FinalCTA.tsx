@@ -17,19 +17,11 @@ export function FinalCTA() {
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="
-            relative overflow-hidden rounded-2xl
-            border border-border
-            bg-background
-            px-6 py-16 text-center
-            sm:px-12 sm:py-20
-          "
+          className="relative overflow-hidden rounded-2xl border border-border bg-background px-6 py-16 text-center sm:px-12 sm:py-20"
         >
-          {/* Accent */}
           <span className="absolute inset-x-0 top-0 mx-auto h-0.5 w-20 bg-[#FF9100]" />
 
           <div className="mx-auto max-w-2xl">
-            {/* Label */}
             <motion.div
               initial={reducedMotion ? false : { opacity: 0, y: 12 }}
               whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -44,7 +36,6 @@ export function FinalCTA() {
               </span>
             </motion.div>
 
-            {/* Heading */}
             <motion.h2
               initial={reducedMotion ? false : { opacity: 0, y: 15 }}
               whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -52,29 +43,21 @@ export function FinalCTA() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
-              <span className="text-[#FF9100]">
-                Ready to find
-              </span>{" "}
+              <span className="text-[#FF9100]">Ready to find</span>{" "}
               your next book?
             </motion.h2>
 
-            {/* Description */}
             <motion.p
               initial={reducedMotion ? false : { opacity: 0, y: 15 }}
               whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="
-                mx-auto mt-5 max-w-md
-                text-sm leading-7 text-muted-foreground
-                sm:text-base
-              "
+              className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base"
             >
-              Buy the textbooks you need, sell the ones you no longer use,
-              and make university life a little easier.
+              Buy the textbooks you need, sell the ones you no longer use, and
+              make university life a little easier.
             </motion.p>
 
-            {/* Actions */}
             <motion.div
               initial={reducedMotion ? false : { opacity: 0, y: 15 }}
               whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -85,14 +68,7 @@ export function FinalCTA() {
               <Link href="/books">
                 <Button
                   size="lg"
-                  className="
-                    group h-11 w-full rounded-lg
-                    bg-[#FF9100]
-                    px-6 text-sm text-white
-                    hover:bg-[#EB7D00]
-                    sm:w-auto
-                    dark:text-black
-                  "
+                  className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm text-white hover:bg-[#EB7D00] sm:w-auto dark:text-black"
                 >
                   <BookOpen className="mr-2 size-4" />
                   Browse Books
@@ -104,42 +80,24 @@ export function FinalCTA() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="
-                    h-11 w-full rounded-lg
-                    border-border
-                    px-6 text-sm
-                    transition-colors
-                    hover:border-[#FF9100]/40
-                    hover:bg-[#FF9100]/5
-                    hover:text-[#EB7D00]
-                    sm:w-auto
-                  "
+                  className="h-11 w-full rounded-lg border-border px-6 text-sm transition-colors hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00] sm:w-auto"
                 >
                   Sell a Book
                 </Button>
               </Link>
             </motion.div>
 
-            {/* Keywords */}
             <motion.div
               initial={reducedMotion ? false : { opacity: 0 }}
               whileInView={reducedMotion ? undefined : { opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.25 }}
-              className="
-                mt-8 flex items-center justify-center gap-3
-                text-[11px] font-medium uppercase
-                tracking-[0.18em] text-muted-foreground/60
-              "
+              className="mt-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/60"
             >
               <span>Buy</span>
-
               <span className="text-[#FF9100]/60">•</span>
-
               <span>Sell</span>
-
               <span className="text-[#FF9100]/60">•</span>
-
               <span>Discover</span>
             </motion.div>
           </div>

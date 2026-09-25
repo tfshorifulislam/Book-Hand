@@ -54,7 +54,6 @@ export function FAQ() {
   return (
     <section className="w-full py-20 sm:py-24">
       <div className="mx-auto max-w-370 px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -74,9 +73,7 @@ export function FAQ() {
 
           <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Got questions?
-            <span className="block text-[#FF9100]">
-              We have answers.
-            </span>
+            <span className="block text-[#FF9100]">We have answers.</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
@@ -85,7 +82,6 @@ export function FAQ() {
           </p>
         </motion.div>
 
-        {/* FAQ */}
         <div className="mt-14 grid gap-4 md:grid-cols-2">
           {faqs.map((faq, index) => (
             <motion.div
@@ -101,38 +97,15 @@ export function FAQ() {
               <Accordion>
                 <AccordionItem
                   value={faq.number}
-                  className="
-                    h-full rounded-2xl
-                    border border-border
-                    bg-card px-5
-                    transition-colors
-                    hover:border-[#FF9100]/40
-                    sm:px-6
-                  "
+                  className="h-full rounded-2xl border border-border bg-card px-5 transition-colors hover:border-[#FF9100]/40 sm:px-6"
                 >
                   <AccordionTrigger className="gap-4 py-6 text-left hover:no-underline">
                     <div className="flex min-w-0 items-center gap-4">
-                      <span
-                        className="
-                          flex size-9 shrink-0 items-center justify-center
-                          rounded-lg
-                          border border-[#FF9100]/20
-                          bg-[#FF9100]/10
-                          font-mono text-[10px] font-semibold
-                          text-[#EB7D00]
-                        "
-                      >
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#FF9100]/20 bg-[#FF9100]/10 font-mono text-[10px] font-semibold text-[#EB7D00]">
                         {faq.number}
                       </span>
 
-                      <span
-                        className="
-                          text-sm font-semibold leading-6
-                          transition-colors
-                          group-data-[state=open]:text-[#EB7D00]
-                          sm:text-base
-                        "
-                      >
+                      <span className="text-sm font-semibold leading-6 transition-colors group-data-[state=open]:text-[#EB7D00] sm:text-base">
                         {faq.question}
                       </span>
                     </div>
@@ -147,7 +120,6 @@ export function FAQ() {
           ))}
         </div>
 
-        {/* Bottom */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 15 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}

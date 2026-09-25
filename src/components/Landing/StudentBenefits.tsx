@@ -53,7 +53,6 @@ export function StudentBenefits() {
   return (
     <section className="w-full py-20 sm:py-24">
       <div className="mx-auto max-w-370 px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -82,7 +81,6 @@ export function StudentBenefits() {
           </p>
         </motion.div>
 
-        {/* Benefits */}
         <ul className="mt-12 grid overflow-hidden rounded-2xl border md:grid-cols-2">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
@@ -109,14 +107,7 @@ export function StudentBenefits() {
                   .join(" ")}
               >
                 <div className="flex items-center gap-3">
-                  <div
-                    className="
-                      flex size-10 shrink-0 items-center justify-center
-                      rounded-lg border bg-background
-                      transition-colors
-                      group-hover:border-[#FF9100]/50
-                    "
-                  >
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors group-hover:border-[#FF9100]/50">
                     <Icon className="size-4 text-[#EB7D00]" />
                   </div>
 
@@ -135,15 +126,7 @@ export function StudentBenefits() {
                   {benefit.description}
                 </p>
 
-                <span
-                  className="
-                    absolute bottom-0 left-7 h-0.5 w-0
-                    bg-[#FF9100]
-                    transition-all duration-300
-                    group-hover:w-10
-                    sm:left-9 md:left-12
-                  "
-                />
+                <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-[#FF9100] transition-all duration-300 group-hover:w-10 sm:left-9 md:left-12" />
               </motion.li>
             );
           })}
