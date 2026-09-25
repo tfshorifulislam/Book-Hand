@@ -71,15 +71,13 @@ export function HowItWorks() {
           transition={{ duration: 0.55 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
             Simple by design
           </p>
 
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             How BookHand{" "}
-            <span className="text-[#FF9100] dark:text-[#FF9100]">
-              works.
-            </span>
+            <span className="text-[#FF9100]">works.</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
