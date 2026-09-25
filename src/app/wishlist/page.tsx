@@ -6,9 +6,15 @@ import { headers } from "next/headers";
 const Page = async () => {
     const wishlistData = await getWishlist();
 
-    const userId = await auth.api.getSession({
+    const session = await auth.api.getSession({
         headers: await headers()
     });
+
+    if (!session) {
+        return null;
+    }
+
+    const userId = session?.user?.id
 
     return (
         <WishlistPage
