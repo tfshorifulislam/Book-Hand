@@ -33,12 +33,12 @@ const HeroMain = () => {
                     width={1000}
                     height={1000}
                     priority
-                    className="w-[680px] max-w-[90vw] object-contain opacity-[0.16] dark:opacity-[0.07]"
+                    className="w-170 max-w-[90vw] object-contain opacity-[0.16] dark:opacity-[0.07]"
                 />
             </motion.div>
 
             {/* Soft center light */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF9100]/[0.08] blur-[100px] dark:bg-[#FF9100]/[0.05]" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-105-translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF9100]/8 blur-[100px] dark:bg-[#FF9100]/5" />
 
             {/* Top accent */}
             <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-px w-40 -translate-x-1/2 bg-[#FF9100]/50" />
