@@ -13,11 +13,8 @@ type Props = {
     profileUrl: string;
 };
 
-const BookCardSeller = ({
-    sellerName,
-    sellerImage,
-    profileUrl,
-}: Props) => {
+const BookCardSeller = ({ sellerName, sellerImage, profileUrl, }: Props) => {
+    console.log(sellerName)
     return (
         <Link
             href={profileUrl}

@@ -1,17 +1,9 @@
 import { getUserBooks } from "@/actions/user.Post.get";
 import BooksCard from "@/components/Books_Components/BooksCard";
 import CoverProfile from "@/components/Profile_Components/Cover_Profile";
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination";
 
 type ProfilePageProps = {
     searchParams: Promise<{
@@ -24,10 +16,7 @@ function getPageNumbers(
     totalPages: number
 ): (number | "ellipsis")[] {
     if (totalPages <= 7) {
-        return Array.from(
-            { length: totalPages },
-            (_, i) => i + 1
-        );
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
     const pages: (number | "ellipsis")[] = [1];
@@ -52,56 +41,42 @@ function getPageNumbers(
     return pages;
 }
 
-const ProfilePage = async ({
-    searchParams,
-}: ProfilePageProps) => {
+const ProfilePage = async ({ searchParams }: ProfilePageProps) => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
-    const user = session?.user;
-
-    if (!user) {
+    if (!session?.user) {
         return null;
     }
 
-    const params = await searchParams;
-
-    const currentPage = Math.max(
-        Number(params.page) || 1,
-        1
-    );
-
-    const limit = 10;
+    const { page } = await searchParams;
+    const currentPage = Math.max(Number(page) || 1, 1);
+    const limit = 9;
 
     const booksData = await getUserBooks(
-        user.id,
+        session?.user?.id,
         currentPage,
         limit
     );
 
     const books = booksData?.listings ?? [];
-    const pagination = booksData?.pagination;
+    const totalPages = booksData?.pagination?.totalPages ?? 1;
 
-    const totalPages = pagination?.totalPages ?? 1;
-
-    const pageNumbers = getPageNumbers(
-        currentPage,
-        totalPages
-    );
+    const pageNumbers = getPageNumbers(currentPage, totalPages);
 
     return (
         <div className="mx-auto max-w-7xl px-4 md:px-6">
-            <CoverProfile user={user} />
+            <CoverProfile user={session.user} />
 
             {books.length > 0 ? (
                 <>
-                    <div className="my-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <div className="my-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {books.map((item) => (
                             <BooksCard
                                 key={item.id}
                                 item={item}
-                                canDelete={true}
+                                canDelete
                             />
                         ))}
                     </div>
@@ -109,7 +84,6 @@ const ProfilePage = async ({
                     {totalPages > 1 && (
                         <Pagination className="mb-20">
                             <PaginationContent>
-                                {/* Previous */}
                                 <PaginationItem>
                                     <PaginationPrevious
                                         href={
@@ -120,12 +94,11 @@ const ProfilePage = async ({
                                         className={
                                             currentPage === 1
                                                 ? "pointer-events-none opacity-50"
-                                                : ""
+                                                : undefined
                                         }
                                     />
                                 </PaginationItem>
 
-                                {/* Page Numbers */}
                                 {pageNumbers.map((page, index) =>
                                     page === "ellipsis" ? (
                                         <PaginationItem
@@ -137,9 +110,7 @@ const ProfilePage = async ({
                                         <PaginationItem key={page}>
                                             <PaginationLink
                                                 href={`/profile?page=${page}`}
-                                                isActive={
-                                                    page === currentPage
-                                                }
+                                                isActive={page === currentPage}
                                             >
                                                 {page}
                                             </PaginationLink>
@@ -147,7 +118,6 @@ const ProfilePage = async ({
                                     )
                                 )}
 
-                                {/* Next */}
                                 <PaginationItem>
                                     <PaginationNext
                                         href={
@@ -158,7 +128,7 @@ const ProfilePage = async ({
                                         className={
                                             currentPage === totalPages
                                                 ? "pointer-events-none opacity-50"
-                                                : ""
+                                                : undefined
                                         }
                                     />
                                 </PaginationItem>
@@ -167,7 +137,7 @@ const ProfilePage = async ({
                     )}
                 </>
             ) : (
-                <div className="my-20 flex min-h-75 flex-col items-center justify-center rounded-xl border border-dashed bg-muted/20 text-center">
+                <div className="my-20 flex min-h-75 flex-col items-center justify-center rounded-xl border border-dashed text-center">
                     <h2 className="text-xl font-semibold">
                         No books listed yet
                     </h2>

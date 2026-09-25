@@ -25,11 +25,7 @@ type Props = {
     onSavedChange?: (listingId: string) => void;
 };
 
-const BooksCard = ({
-    item,
-    canDelete = false,
-    userId,
-    onSavedChange,
+const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
 }: Props) => {
     const router = useRouter();
 
@@ -134,7 +130,7 @@ const BooksCard = ({
                     </p>
 
                     <BookCardSeller
-                        sellerName={item.seller?.name}
+                        sellerName={item?.seller?.name}
                         sellerImage={item.seller?.image}
                         profileUrl={profileUrl}
                     />
