@@ -1,5 +1,9 @@
+
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { Mail, UserRound, ExternalLink } from "lucide-react";
+import { useSession } from "@/lib/auth-client";
+import { ExternalLink, Mail, UserRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,43 +17,47 @@ type SellerCardProps = {
 };
 
 const SellerCard = ({ seller }: SellerCardProps) => {
+  const { data: session } = useSession();
+
+  const profileHref =
+    session?.user?.id === seller.id
+      ? "/profile"
+      : `/profile/${seller.id}`;
+
   return (
-    <section>
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-card p-3 sm:gap-4 sm:p-5">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-950 sm:size-11">
-            {seller.image ? (
-              <Image
-                src={seller.image}
-                alt={seller.name}
-                width={44}
-                height={44}
-                className="size-full object-cover"
-              />
-            ) : (
-              <UserRound className="size-4 text-emerald-600 dark:text-emerald-400 sm:size-5" />
-            )}
-          </div>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-foreground">{seller.name}</p>
-            <span className="inline-flex items-center gap-1 truncate text-xs text-muted-foreground">
-              <Mail className="size-3 shrink-0" />
-              {seller.email}
-            </span>
-          </div>
+    <div className="flex items-center justify-between gap-4 rounded-xl border p-4">
+      <div className="flex min-w-0 items-center gap-3">
+        <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-emerald-100 dark:bg-emerald-950">
+          {seller.image ? (
+            <Image
+              src={seller.image}
+              alt={seller.name}
+              width={48}
+              height={48}
+              className="size-full object-cover"
+            />
+          ) : (
+            <UserRound className="size-5 text-emerald-600 dark:text-emerald-400" />
+          )}
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="shrink-0 gap-1.5 hover:border-emerald-300 hover:text-emerald-700 dark:hover:border-emerald-700 dark:hover:text-emerald-400"
-        >
-          <Link href={`/profile/${seller.id}`} className="flex items-center gap-1.5">
-            Profile
-            <ExternalLink className="size-3" />
-          </Link>
-        </Button>
+
+        <div className="min-w-0">
+          <p className="truncate font-semibold">{seller.name}</p>
+
+          <p className="mt-1 flex items-center gap-1.5 truncate text-sm text-muted-foreground">
+            <Mail className="size-3.5 shrink-0" />
+            {seller.email}
+          </p>
+        </div>
       </div>
-    </section>
+
+      <Link href={profileHref}>
+        <Button variant="outline" size="sm" className="shrink-0">
+          View Profile
+          <ExternalLink className="ml-1.5 size-3.5" />
+        </Button>
+      </Link>
+    </div>
   );
 };
 
