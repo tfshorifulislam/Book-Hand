@@ -23,6 +23,7 @@ type Props = {
 };
 
 const ChangePassword = ({ isGoogleUser }: Props) => {
+
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,12 +34,12 @@ const ChangePassword = ({ isGoogleUser }: Props) => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const passwordsMatch =
-        newPassword === confirmPassword;
+    const passwordsMatch = newPassword === confirmPassword;
 
     const handleSubmit = async (
         event: React.FormEvent<HTMLFormElement>
     ) => {
+
         event.preventDefault();
 
         if (!passwordsMatch) {
@@ -49,24 +50,18 @@ const ChangePassword = ({ isGoogleUser }: Props) => {
             setIsLoading(true);
 
             if (isGoogleUser) {
-                await setPassword({
-                    newPassword,
-                });
+                await setPassword({ newPassword, });
             } else {
-                await changePassword({
-                    currentPassword,
-                    newPassword,
-                });
+                await changePassword({ currentPassword, newPassword, });
             }
 
             setCurrentPassword("");
             setNewPassword("");
             setConfirmPassword("");
+
         } catch (error) {
-            console.error(
-                "Password operation failed:",
-                error
-            );
+            console.error("Password operation failed:", error);
+            
         } finally {
             setIsLoading(false);
         }

@@ -2,8 +2,7 @@ import { getAuthProvider } from "@/actions/get-auth-provider";
 import ChangePassword from "@/components/ChangePassword/ChangePassword";
 
 const PasswordPage = async () => {
-    const { isGoogleUser, hasCredentialAccount } =
-        await getAuthProvider();
+    const { isGoogleUser, hasCredentialAccount } = await getAuthProvider();
 
     return (
         <ChangePassword

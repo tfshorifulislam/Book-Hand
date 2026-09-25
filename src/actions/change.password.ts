@@ -12,10 +12,8 @@ type SetPasswordData = {
     newPassword: string;
 };
 
-export const changePassword = async ({
-    currentPassword,
-    newPassword,
-}: ChangePasswordData) => {
+export const changePassword = async ({ currentPassword, newPassword, }: ChangePasswordData) => {
+
     try {
         return await auth.api.changePassword({
             headers: await headers(),
@@ -25,6 +23,7 @@ export const changePassword = async ({
                 revokeOtherSessions: true,
             },
         });
+
     } catch (error) {
         console.error("Change password error:", error);
 
@@ -36,9 +35,10 @@ export const changePassword = async ({
     }
 };
 
-export const setPassword = async ({
-    newPassword,
-}: SetPasswordData) => {
+
+
+export const setPassword = async ({ newPassword, }: SetPasswordData) => {
+    
     try {
         return await auth.api.setPassword({
             headers: await headers(),

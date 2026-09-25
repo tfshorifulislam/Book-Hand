@@ -1,13 +1,14 @@
 
 import React from "react";
 import {
-    Bell,
+    // Bell,
     Lock,
     User,
-    ShieldCheck,
+    // ShieldCheck,
     ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
+import AccountDeleteModal from "@/components/Account.Delete.Modal/AccountDeleteModal";
 
 const settingsItems = [
     {
@@ -22,18 +23,18 @@ const settingsItems = [
         description: "Update your password and manage your account security.",
         href: "/settings/security",
     },
-    {
-        icon: Bell,
-        title: "Notifications",
-        description: "Choose how you want to receive notifications from BookHand.",
-        href: "/settings/notifications",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Privacy",
-        description: "Control your profile visibility and privacy preferences.",
-        href: "/settings/privacy",
-    },
+    // {
+    //     icon: Bell,
+    //     title: "Notifications",
+    //     description: "Choose how you want to receive notifications from BookHand.",
+    //     href: "/settings/notifications",
+    // },
+    // {
+    //     icon: ShieldCheck,
+    //     title: "Privacy",
+    //     description: "Control your profile visibility and privacy preferences.",
+    //     href: "/settings/privacy",
+    // },
 ];
 
 const SettingsPage = () => {
@@ -108,12 +109,8 @@ const SettingsPage = () => {
                                 </p>
                             </div>
 
-                            <button
-                                type="button"
-                                className="w-full rounded-lg border border-destructive/30 px-4 py-2 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10 sm:w-auto"
-                            >
-                                Delete account
-                            </button>
+                            <AccountDeleteModal />
+                            
                         </div>
                     </div>
                 </div>

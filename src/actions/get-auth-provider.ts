@@ -24,8 +24,5 @@ export const getAuthProvider = async () => {
         (account) => account.providerId === "credential"
     );
 
-    return {
-        isGoogleUser,
-        hasCredentialAccount,
-    };
+    return { isGoogleUser, hasCredentialAccount, };
 };
