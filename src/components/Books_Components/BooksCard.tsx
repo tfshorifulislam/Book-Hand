@@ -1,22 +1,22 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { Heart } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
-import { BookListing } from "../../../Types/Book_Listing";
-
-import { deleteBookListing } from "@/actions/delete.Post";
-import DeleteBookDialog from "@/components/Books_Components/DeleteBookDialog";
 import { toast } from "@/components/ui/toast";
 
+import { BookListing } from "../../../Types/Book_Listing";
+import { deleteBookListing } from "@/actions/delete.Post";
+import { saveBook } from "@/actions/save.post";
+import { deleteSavedBook } from "@/actions/delete.save.post";
+
+import DeleteBookDialog from "@/components/Books_Components/DeleteBookDialog";
 import BookCardImage from "./BookCardImage";
 import BookCardSeller from "./BookCardSeller";
 import BookCardFooter from "./BookCardFooter";
-import Link from "next/link";
-import { Heart } from "lucide-react";
-import { saveBook } from "@/actions/save.post";
-import { deleteSavedBook } from "@/actions/delete.save.post";
 
 type Props = {
     item: BookListing;
@@ -43,13 +43,11 @@ const BooksCard = ({
         ? "/profile"
         : `/profile/${item.seller?.id}`;
 
-
     const handleDelete = async () => {
         try {
             setDeleting(true);
 
             await deleteBookListing(item.id);
-
             setDeleteDialogOpen(false);
 
             toast.add({
@@ -78,7 +76,6 @@ const BooksCard = ({
         try {
             if (previousState) {
                 await deleteSavedBook(item.id);
-
                 onSavedChange?.(item.id);
             } else {
                 await saveBook(item.id);
@@ -95,13 +92,9 @@ const BooksCard = ({
         }
     };
 
-
     return (
         <>
-            <Card
-                className="group overflow-hidden border-border/60 bg-card py-0 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 "
-            >
-                {/* Image */}
+            <Card className="group overflow-hidden py-0 transition-transform hover:-translate-y-1">
                 <BookCardImage
                     id={item.id}
                     title={item.book.title}
@@ -110,48 +103,42 @@ const BooksCard = ({
                     category={item.book.category}
                 />
 
-                {/* Content */}
-                <div className="space-y-4 p-4">
+                <div className="p-4">
+                    <div className="flex items-start justify-between gap-3">
+                        <Link
+                            href={`/books/${item.id}`}
+                            className="min-w-0 flex-1"
+                        >
+                            <h3 className="line-clamp-2 text-base font-semibold transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                                {item.book.title}
+                            </h3>
+                        </Link>
 
-                    {/* Book Info */}
-                    <div className="min-w-0 space-y-1.5">
-                        <div className="flex items-start justify-between gap-3">
-                            <Link
-                                href={`/books/${item.id}`}
-                                className="min-w-0 flex-1"
-                            >
-                                <h3 className="line-clamp-2 min-h-12 text-base font-semibold leading-6 tracking-tight transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
-                                    {item.book.title}
-                                </h3>
-                            </Link>
-
-                            <button
-                                type="button"
-                                onClick={handleSavePost}
-                                className="shrink-0 cursor-pointer rounded-full p-1.5 transition-colors hover:bg-muted"
-                            >
-                                <Heart
-                                    className={`size-5 transition-colors ${isSaved
+                        <button
+                            type="button"
+                            onClick={handleSavePost}
+                            className="shrink-0 cursor-pointer p-1.5"
+                        >
+                            <Heart
+                                className={`size-5 ${
+                                    isSaved
                                         ? "fill-emerald-700 text-emerald-700"
                                         : "text-muted-foreground"
-                                        }`}
-                                />
-                            </button>
-                        </div>
-
-                        <p className="truncate text-sm text-muted-foreground">
-                            by {item.book.author}
-                        </p>
+                                }`}
+                            />
+                        </button>
                     </div>
 
-                    {/* Seller */}
+                    <p className="mt-1 truncate text-sm text-muted-foreground">
+                        by {item.book.author}
+                    </p>
+
                     <BookCardSeller
                         sellerName={item.seller?.name}
                         sellerImage={item.seller?.image}
                         profileUrl={profileUrl}
                     />
 
-                    {/* Footer */}
                     <BookCardFooter
                         id={item.id}
                         price={item.price}
@@ -162,7 +149,6 @@ const BooksCard = ({
                 </div>
             </Card>
 
-            {/* Delete Dialog */}
             <DeleteBookDialog
                 open={deleteDialogOpen}
                 onOpenChange={setDeleteDialogOpen}
