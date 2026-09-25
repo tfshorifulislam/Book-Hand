@@ -1,8 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from "next/link";
 import { Heart } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
@@ -25,7 +25,11 @@ type Props = {
     onSavedChange?: (listingId: string) => void;
 };
 
-const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
+const BooksCard = ({
+    item,
+    canDelete = false,
+    userId,
+    onSavedChange,
 }: Props) => {
     const router = useRouter();
 
@@ -95,7 +99,17 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
 
     return (
         <>
-            <Card className="group overflow-hidden py-0 transition-transform hover:-translate-y-1">
+            <Card
+                className="
+                    group overflow-hidden py-0
+                    border-border/70
+                    bg-card
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-[#FF9100]/40
+                    hover:shadow-md
+                "
+            >
                 <BookCardImage
                     id={item.id}
                     title={item.book.title}
@@ -110,7 +124,15 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
                             href={`/books/${item.id}`}
                             className="min-w-0 flex-1"
                         >
-                            <h3 className="line-clamp-2 text-base font-semibold transition-colors group-hover:text-[#EB7D00] dark:group-hover:text-[#EB7D00]">
+                            <h3
+                                className="
+                                    line-clamp-2
+                                    text-base font-semibold
+                                    leading-6
+                                    transition-colors
+                                    group-hover:text-[#EB7D00]
+                                "
+                            >
                                 {item.book.title}
                             </h3>
                         </Link>
@@ -118,23 +140,34 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
                         <button
                             type="button"
                             onClick={handleSavePost}
-                            className="shrink-0 cursor-pointer p-1.5"
+                            aria-label={
+                                isSaved ? "Remove from wishlist" : "Save book"
+                            }
+                            className="
+                                shrink-0 rounded-lg p-2
+                                text-muted-foreground
+                                transition-all duration-200
+                                hover:bg-[#FF9100]/10
+                                hover:text-[#EB7D00]
+                                active:scale-90
+                            "
                         >
                             <Heart
-                                className={`size-5 ${isSaved
-                                    ? "fill-[#FF9100] text-[#FF9100]"
-                                    : "text-muted-foreground"
-                                    }`}
+                                className={`size-5 transition-all duration-200 ${
+                                    isSaved
+                                        ? "fill-[#FF9100] text-[#FF9100]"
+                                        : ""
+                                }`}
                             />
                         </button>
                     </div>
 
-                    <p className="mt-1 truncate text-sm text-muted-foreground">
+                    <p className="my-2 truncate text-sm text-muted-foreground">
                         by {item.book.author}
                     </p>
 
                     <BookCardSeller
-                        sellerName={item?.seller?.name}
+                        sellerName={item.seller?.name}
                         sellerImage={item.seller?.image}
                         profileUrl={profileUrl}
                     />

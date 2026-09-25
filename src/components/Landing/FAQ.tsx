@@ -54,6 +54,7 @@ export function FAQ() {
   return (
     <section className="w-full py-20 sm:py-24">
       <div className="mx-auto max-w-370 px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -62,18 +63,18 @@ export function FAQ() {
           className="mx-auto max-w-2xl text-center"
         >
           <div className="flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-[#EB7D00] dark:bg-[#FF9100]" />
+            <span className="size-2 rounded-full bg-[#EB7D00]" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9100] dark:text-[#FF9100]">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#EB7D00]">
               FAQ
             </span>
 
-            <span className="size-2 rounded-full bg-[#EB7D00] dark:bg-[#FF9100]" />
+            <span className="size-2 rounded-full bg-[#EB7D00]" />
           </div>
 
           <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Got questions?
-            <span className="block text-[#FF9100] dark:text-[#FF9100]">
+            <span className="block text-[#FF9100]">
               We have answers.
             </span>
           </h2>
@@ -84,6 +85,7 @@ export function FAQ() {
           </p>
         </motion.div>
 
+        {/* FAQ */}
         <div className="mt-14 grid gap-4 md:grid-cols-2">
           {faqs.map((faq, index) => (
             <motion.div
@@ -99,15 +101,38 @@ export function FAQ() {
               <Accordion>
                 <AccordionItem
                   value={faq.number}
-                  className="h-full rounded-2xl border border-border bg-card px-5 transition-colors hover:border-[#EB7D00]/40 dark:hover:border-[#FF9100]/40 sm:px-6"
+                  className="
+                    h-full rounded-2xl
+                    border border-border
+                    bg-card px-5
+                    transition-colors
+                    hover:border-[#FF9100]/40
+                    sm:px-6
+                  "
                 >
                   <AccordionTrigger className="gap-4 py-6 text-left hover:no-underline">
                     <div className="flex min-w-0 items-center gap-4">
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#EB7D00]/20 bg-emerald-50 font-mono text-[10px] font-semibold text-[#FF9100] dark:border-[#FF9100]/20 dark:bg-emerald-950/40 dark:text-[#EB7D00]">
+                      <span
+                        className="
+                          flex size-9 shrink-0 items-center justify-center
+                          rounded-lg
+                          border border-[#FF9100]/20
+                          bg-[#FF9100]/10
+                          font-mono text-[10px] font-semibold
+                          text-[#EB7D00]
+                        "
+                      >
                         {faq.number}
                       </span>
 
-                      <span className="text-sm font-semibold leading-6 transition-colors group-data-[state=open]:text-[#FF9100] sm:text-base dark:group-data-[state=open]:text-[#FF9100]">
+                      <span
+                        className="
+                          text-sm font-semibold leading-6
+                          transition-colors
+                          group-data-[state=open]:text-[#EB7D00]
+                          sm:text-base
+                        "
+                      >
                         {faq.question}
                       </span>
                     </div>
@@ -122,6 +147,7 @@ export function FAQ() {
           ))}
         </div>
 
+        {/* Bottom */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 15 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -129,17 +155,17 @@ export function FAQ() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-10 flex items-center justify-center gap-3 text-center text-sm"
         >
-          <span className="h-px w-8 bg-[#EB7D00]/40 dark:bg-[#FF9100]/40" />
+          <span className="h-px w-8 bg-[#FF9100]/40" />
 
           <span className="text-muted-foreground">
             Still have questions?
           </span>
 
-          <span className="font-medium text-[#FF9100] dark:text-[#FF9100]">
+          <span className="font-medium text-[#EB7D00]">
             We&apos;re here to help.
           </span>
 
-          <span className="h-px w-8 bg-[#EB7D00]/40 dark:bg-[#FF9100]/40" />
+          <span className="h-px w-8 bg-[#FF9100]/40" />
         </motion.div>
       </div>
     </section>
