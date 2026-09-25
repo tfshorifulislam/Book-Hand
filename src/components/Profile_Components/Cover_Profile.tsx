@@ -1,15 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Pencil } from "lucide-react";
 
 import { User } from "../../../Types/user_type";
 import { Button } from "@/components/ui/button";
+import { useSession } from "@/lib/auth-client";
 
 type CoverProfileProps = {
     user: User | null | undefined;
 };
 
 const CoverProfile = ({ user }: CoverProfileProps) => {
+    const { data: session } = useSession();
+
+    const isOwnProfile = !!session?.user?.id && session.user.id === user?.id;
+
     return (
         <div className="mx-auto my-5 pt-3">
             <div className="relative w-full">
@@ -40,15 +47,17 @@ const CoverProfile = ({ user }: CoverProfileProps) => {
                     {user?.email}
                 </p>
 
-                <Link href="/settings/profile" className="mt-4">
-                    <Button
-                        variant="outline"
-                        className="h-9 cursor-pointer gap-2 rounded-lg"
-                    >
-                        <Pencil className="size-4" />
-                        Edit Profile
-                    </Button>
-                </Link>
+                {isOwnProfile && (
+                    <Link href="/settings/profile" className="mt-4">
+                        <Button
+                            variant="outline"
+                            className="h-9 cursor-pointer gap-2 rounded-lg"
+                        >
+                            <Pencil className="size-4" />
+                            Edit Profile
+                        </Button>
+                    </Link>
+                )}
             </div>
         </div>
     );

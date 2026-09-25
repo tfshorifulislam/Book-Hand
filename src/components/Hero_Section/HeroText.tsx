@@ -52,29 +52,29 @@ const HeroSectionText = () => {
         marketplace.
       </p>
 
-    {/* Actions */}
-<div className="mt-9 flex flex-row items-center justify-center gap-2 sm:gap-3">
-    <Link href="/books">
-        <Button
+      {/* Actions */}
+      <div className="mt-9 flex flex-row items-center justify-center gap-2 sm:gap-3">
+        <Link href="/books">
+          <Button
             size="lg"
             className="group h-10 cursor-pointer rounded-lg bg-[#FF9100] px-4 text-xs font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#EB7D00] sm:h-12 sm:px-7 sm:text-sm dark:text-black"
-        >
+          >
             <BookOpen className="mr-1.5 size-3.5 sm:mr-2 sm:size-4" />
             Browse Books
             <ArrowRight className="ml-1.5 size-3.5 transition-transform duration-200 group-hover:translate-x-1 sm:ml-2 sm:size-4" />
-        </Button>
-    </Link>
+          </Button>
+        </Link>
 
-    <Link href="/sell-book">
-        <Button
+        <Link href="/sell-book">
+          <Button
             size="lg"
             variant="outline"
             className="h-10 cursor-pointer rounded-lg border-border bg-background/60 px-4 text-xs font-semibold backdrop-blur-sm transition-all duration-200 hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00] sm:h-12 sm:px-7 sm:text-sm"
-        >
+          >
             Sell a Book
-        </Button>
-    </Link>
-</div>
+          </Button>
+        </Link>
+      </div>
 
       {/* Highlights */}
       <div className="mx-auto mt-12 flex max-w-2xl flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-border/70 pt-6">

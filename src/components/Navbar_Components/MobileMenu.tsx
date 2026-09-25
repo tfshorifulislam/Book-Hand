@@ -161,26 +161,6 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
 
                 {/* Body */}
                 <div className="flex-1 overflow-y-auto px-4 py-5">
-                    {isLoggedIn && (
-                        <form
-                            onSubmit={handleSearch}
-                            role="search"
-                            aria-label="Search books"
-                            className="relative mb-6"
-                        >
-                            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-
-                            <Input
-                                type="search"
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Search books, authors..."
-                                aria-label="Search books"
-                                className="h-10 rounded-lg bg-muted/40 pl-9 pr-4 text-sm shadow-none focus-visible:bg-background"
-                            />
-                        </form>
-                    )}
-
                     <SectionLabel>Navigation</SectionLabel>
 
                     <div className="mt-3 flex flex-col gap-1">
@@ -288,17 +268,21 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                                     </AvatarFallback>
                                 </Avatar>
 
-                                <div className="min-w-0">
-                                    <p className="truncate text-sm font-semibold text-foreground">
-                                        {user?.name || "Account"}
-                                    </p>
-
-                                    {user?.email && (
-                                        <p className="truncate text-xs text-muted-foreground">
-                                            {user.email}
+                                <Link
+                                    onClick={close}
+                                    href='/profile'>
+                                    <div className="min-w-0">
+                                        <p className="truncate text-sm font-semibold text-foreground">
+                                            {user?.name || "Account"}
                                         </p>
-                                    )}
-                                </div>
+
+                                        {user?.email && (
+                                            <p className="truncate text-xs text-muted-foreground">
+                                                {user.email}
+                                            </p>
+                                        )}
+                                    </div>
+                                </Link>
                             </div>
                         )}
                     </div>

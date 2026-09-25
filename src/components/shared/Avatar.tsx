@@ -17,6 +17,7 @@ import {
 
 import { useRouter } from "next/navigation"
 import { authClient, useSession } from "@/lib/auth-client"
+import Link from "next/link"
 
 export function AvatarDropdown() {
 
@@ -60,13 +61,18 @@ export function AvatarDropdown() {
         className="w-48"
       >
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-          </DropdownMenuItem>
+          <Link href='/profile'>
+            <DropdownMenuItem>
+              Profile
+            </DropdownMenuItem>
+          </Link>
 
-          <DropdownMenuItem>
-            Settings
-          </DropdownMenuItem>
+          <Link href='/settings'>
+            <DropdownMenuItem>
+              Settings
+            </DropdownMenuItem>
+          </Link>
+
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />
