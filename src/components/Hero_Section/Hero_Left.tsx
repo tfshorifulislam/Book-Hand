@@ -13,7 +13,7 @@ const HeroLeft = () => {
   return (
     <div className="max-w-xl text-center lg:text-left">
 
-      <div className="mb-4 flex items-center justify-center gap-3 lg:justify-start">
+      <div className="mb-6 flex items-center justify-center gap-3 lg:justify-start">
 
         <span className="font-mono text-xs text-muted-foreground">01</span>
 
@@ -38,7 +38,7 @@ const HeroLeft = () => {
       </h1>
 
 
-      <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base lg:mx-0">
+      <p className="mx-auto mt-5 max-w-md text-[0.9375rem] leading-7 text-muted-foreground sm:text-base lg:mx-0">
         A simple marketplace for university students to buy affordable
         textbooks, sell books they no longer need, and connect with other
         students.

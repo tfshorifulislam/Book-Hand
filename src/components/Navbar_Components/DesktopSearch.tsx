@@ -23,16 +23,22 @@ export function DesktopSearch() {
     };
 
     return (
-        <div className="absolute left-1/2 hidden w-full max-w-sm -translate-x-1/2 lg:block lg:max-w-md">
-            <form onSubmit={handleSearch} className="relative">
-                <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="hidden lg:block">
+            <form
+                onSubmit={handleSearch}
+                role="search"
+                aria-label="Search books"
+                className="relative"
+            >
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
                     type="search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search books, authors..."
-                    className="h-9 rounded-lg border-muted bg-muted/40 pl-9 pr-4 text-sm shadow-none transition-all focus-visible:bg-background focus-visible:ring-1"
+                    aria-label="Search books"
+                    className="h-9 w-44 rounded-lg border-border bg-muted/30 pl-9 pr-4 text-sm shadow-none transition-all duration-150 focus-visible:w-52 focus-visible:bg-background dark:border-input dark:bg-muted/30"
                 />
             </form>
         </div>

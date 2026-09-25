@@ -19,7 +19,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="size-9 rounded-xl border bg-background transition-colors hover:bg-muted"
+      className="size-9 rounded-lg border bg-background transition-colors hover:bg-muted"
     >
       <Sun className="size-4.25 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 
