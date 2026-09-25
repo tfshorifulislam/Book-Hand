@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { BuyBooksCard } from "./BuyBooksCard";
+import { SellBooksCard } from "./SellBooksCard";
 
 
 
