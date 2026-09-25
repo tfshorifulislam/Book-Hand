@@ -34,12 +34,15 @@ export function NavigationBar() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-md"
         >
-            <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:h-[68px] lg:px-8">
+            <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:h-17 lg:px-8">
                 <div className="min-w-0 flex-1">
+
                     <DesktopSearch />
+
                 </div>
 
                 <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+
                     <ThemeToggle />
 
                     {user ? (
