@@ -62,18 +62,18 @@ export function FAQ() {
           className="mx-auto max-w-2xl text-center"
         >
           <div className="flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-emerald-600 dark:bg-emerald-500" />
+            <span className="size-2 rounded-full bg-[#EB7D00] dark:bg-[#FF9100]" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9100] dark:text-[#FF9100]">
               FAQ
             </span>
 
-            <span className="size-2 rounded-full bg-emerald-600 dark:bg-emerald-500" />
+            <span className="size-2 rounded-full bg-[#EB7D00] dark:bg-[#FF9100]" />
           </div>
 
           <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Got questions?
-            <span className="block text-emerald-700 dark:text-emerald-500">
+            <span className="block text-[#FF9100] dark:text-[#FF9100]">
               We have answers.
             </span>
           </h2>
@@ -99,15 +99,15 @@ export function FAQ() {
               <Accordion>
                 <AccordionItem
                   value={faq.number}
-                  className="h-full rounded-2xl border border-border bg-card px-5 transition-colors hover:border-emerald-600/40 dark:hover:border-emerald-500/40 sm:px-6"
+                  className="h-full rounded-2xl border border-border bg-card px-5 transition-colors hover:border-[#EB7D00]/40 dark:hover:border-[#FF9100]/40 sm:px-6"
                 >
                   <AccordionTrigger className="gap-4 py-6 text-left hover:no-underline">
                     <div className="flex min-w-0 items-center gap-4">
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-emerald-600/20 bg-emerald-50 font-mono text-[10px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-950/40 dark:text-emerald-400">
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#EB7D00]/20 bg-emerald-50 font-mono text-[10px] font-semibold text-[#FF9100] dark:border-[#FF9100]/20 dark:bg-emerald-950/40 dark:text-[#EB7D00]">
                         {faq.number}
                       </span>
 
-                      <span className="text-sm font-semibold leading-6 transition-colors group-data-[state=open]:text-emerald-700 sm:text-base dark:group-data-[state=open]:text-emerald-500">
+                      <span className="text-sm font-semibold leading-6 transition-colors group-data-[state=open]:text-[#FF9100] sm:text-base dark:group-data-[state=open]:text-[#FF9100]">
                         {faq.question}
                       </span>
                     </div>
@@ -129,17 +129,17 @@ export function FAQ() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-10 flex items-center justify-center gap-3 text-center text-sm"
         >
-          <span className="h-px w-8 bg-emerald-600/40 dark:bg-emerald-500/40" />
+          <span className="h-px w-8 bg-[#EB7D00]/40 dark:bg-[#FF9100]/40" />
 
           <span className="text-muted-foreground">
             Still have questions?
           </span>
 
-          <span className="font-medium text-emerald-700 dark:text-emerald-500">
+          <span className="font-medium text-[#FF9100] dark:text-[#FF9100]">
             We&apos;re here to help.
           </span>
 
-          <span className="h-px w-8 bg-emerald-600/40 dark:bg-emerald-500/40" />
+          <span className="h-px w-8 bg-[#EB7D00]/40 dark:bg-[#FF9100]/40" />
         </motion.div>
       </div>
     </section>

@@ -18,7 +18,7 @@ type StepFlowProps = {
 const colors = [
     {
         box: "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/40",
-        icon: "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-400",
+        icon: "border-emerald-200 bg-emerald-100 text-[#FF9100] dark:border-emerald-800 dark:bg-emerald-900/50 dark:text-[#EB7D00]",
     },
     {
         box: "border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40",
@@ -44,7 +44,7 @@ const StepFlow = ({ label, steps }: StepFlowProps) => {
             >
                 <span className="h-px w-8 bg-border" />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
                     {label}
                 </span>
 

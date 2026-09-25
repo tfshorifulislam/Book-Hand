@@ -59,8 +59,8 @@ export function NavMain({
                     className={cn(
                       "group h-10 rounded-lg px-3 transition-all duration-200",
                       "hover:bg-muted hover:text-foreground",
-                      "data-active:bg-emerald-700/10 data-active:text-emerald-700",
-                      "dark:data-active:bg-emerald-500/10 dark:data-active:text-emerald-400",
+                      "data-active:bg-[#FF9100]/10 data-active:text-[#FF9100]",
+                      "dark:data-active:bg-[#FF9100]/10 dark:data-active:text-[#EB7D00]",
                       isCollapsed && "mx-auto w-12 justify-center px-0"
                     )}
                   >
@@ -76,7 +76,7 @@ export function NavMain({
                           className={cn(
                             "size-4 shrink-0 stroke-[1.8] transition-colors duration-200",
                             active
-                              ? "text-emerald-700 dark:text-emerald-400"
+                              ? "text-[#FF9100] dark:text-[#EB7D00]"
                               : "text-muted-foreground group-hover:text-foreground"
                           )}
                         />
@@ -99,7 +99,7 @@ export function NavMain({
                         <span
                           aria-hidden
                           className={cn(
-                            "absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-emerald-700 transition-opacity duration-200 dark:bg-emerald-500",
+                            "absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-[#FF9100] transition-opacity duration-200 dark:bg-[#FF9100]",
                             active ? "opacity-100" : "opacity-0"
                           )}
                         />

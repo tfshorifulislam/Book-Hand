@@ -23,7 +23,7 @@ const BookInfo = ({
     return (
         <div>
             <div className="flex flex-wrap gap-2">
-                <Badge className="bg-emerald-600 text-white">
+                <Badge className="bg-[#EB7D00] text-white">
                     {book.category}
                 </Badge>
 
@@ -41,7 +41,7 @@ const BookInfo = ({
 
             <div className="mt-6">
                 <p className="text-sm text-muted-foreground">Price</p>
-                <p className="text-3xl font-bold text-emerald-600">
+                <p className="text-3xl font-bold text-[#EB7D00]">
                     ৳{price}
                 </p>
             </div>

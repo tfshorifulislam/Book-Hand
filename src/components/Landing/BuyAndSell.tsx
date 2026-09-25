@@ -49,15 +49,15 @@ export function BuyAndSell() {
           className="mx-auto max-w-2xl text-center"
         >
           <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+            <span className="size-2 rounded-full bg-[#FF9100] dark:bg-[#FF9100]" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
               BookHand Marketplace
             </span>
           </div>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            <span className="text-emerald-700 dark:text-emerald-500">
+            <span className="text-[#FF9100] dark:text-[#FF9100]">
               Find a book.
             </span>{" "}
             Give one a new home.
@@ -97,7 +97,7 @@ export function BuyAndSell() {
                     className="flex items-center gap-3 border-b p-3 last:border-0"
                   >
                     <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted">
-                      <BookMarked className="size-4 text-emerald-700 dark:text-emerald-500" />
+                      <BookMarked className="size-4 text-[#FF9100] dark:text-[#FF9100]" />
                     </div>
 
                     <div className="min-w-0">
@@ -115,7 +115,7 @@ export function BuyAndSell() {
                         {book.condition}
                       </span>
 
-                      <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-500">
+                      <p className="text-sm font-semibold text-[#FF9100] dark:text-[#FF9100]">
                         {book.price}
                       </p>
                     </div>
@@ -149,7 +149,7 @@ export function BuyAndSell() {
                     </span>
 
                     {field.live ? (
-                      <span className="flex items-center gap-1.5 text-sm font-medium text-emerald-700 dark:text-emerald-500">
+                      <span className="flex items-center gap-1.5 text-sm font-medium text-[#FF9100] dark:text-[#FF9100]">
                         <BadgeCheck className="size-3.5" />
                         {field.value}
                       </span>
@@ -157,7 +157,7 @@ export function BuyAndSell() {
                       <span
                         className={
                           field.highlight
-                            ? "text-sm font-medium text-emerald-700 dark:text-emerald-500"
+                            ? "text-sm font-medium text-[#FF9100] dark:text-[#FF9100]"
                             : "truncate text-sm font-medium"
                         }
                       >
@@ -212,11 +212,11 @@ function MarketplaceCard({
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4">
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background">
-              <Icon className="size-4 text-emerald-700 dark:text-emerald-500" />
+              <Icon className="size-4 text-[#FF9100] dark:text-[#FF9100]" />
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
                 {label}
               </p>
 
@@ -246,7 +246,7 @@ function MarketplaceCard({
             className={
               outline
                 ? "group h-11 w-full rounded-lg"
-                : "group h-11 w-full rounded-lg bg-emerald-700 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                : "group h-11 w-full rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
             }
           >
             {button}

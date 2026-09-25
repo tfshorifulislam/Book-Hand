@@ -42,18 +42,18 @@ const FindRightBookSection = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-8 bg-emerald-700/30 dark:bg-emerald-500/30" />
+            <span className="h-px w-8 bg-[#FF9100]/30 dark:bg-[#FF9100]/30" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FF9100] dark:text-[#FF9100]">
               Find your textbook
             </span>
 
-            <span className="h-px w-8 bg-emerald-700/30 dark:bg-emerald-500/30" />
+            <span className="h-px w-8 bg-[#FF9100]/30 dark:bg-[#FF9100]/30" />
           </div>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Find the right book.
-            <span className="block text-emerald-700 dark:text-emerald-500">
+            <span className="block text-[#FF9100] dark:text-[#FF9100]">
               For your course.
             </span>
           </h2>
@@ -85,14 +85,14 @@ const FindRightBookSection = () => {
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search by title, author, or ISBN..."
-                  className="h-12 border-0 bg-muted/40 pl-11 shadow-none focus-visible:ring-2 focus-visible:ring-emerald-700/20 dark:bg-muted/30 dark:focus-visible:ring-emerald-500/20"
+                  className="h-12 border-0 bg-muted/40 pl-11 shadow-none focus-visible:ring-2 focus-visible:ring-[#FF9100]/20 dark:bg-muted/30 dark:focus-visible:ring-[#FF9100]/20"
                 />
               </div>
 
               <Button
                 type="submit"
                 size="lg"
-                className="h-12 rounded-xl bg-emerald-700 px-7 text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                className="h-12 rounded-xl bg-[#FF9100] px-7 text-white hover:bg-[#EB7D00] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
               >
                 Search
                 <ArrowRight className="ml-2 size-4" />
@@ -110,7 +110,7 @@ const FindRightBookSection = () => {
                   onClick={() =>
                     router.push(`/books?search=${encodeURIComponent(item)}`)
                   }
-                  className="cursor-pointer font-medium text-foreground/70 underline underline-offset-4 hover:text-emerald-700 dark:hover:text-emerald-500"
+                  className="cursor-pointer font-medium text-foreground/70 underline underline-offset-4 hover:text-[#FF9100] dark:hover:text-[#FF9100]"
                 >
                   {item}
                 </button>
@@ -123,7 +123,7 @@ const FindRightBookSection = () => {
             <button
               type="button"
               onClick={() => router.push("/sell-book")}
-              className="font-medium text-foreground underline underline-offset-4 hover:text-emerald-700 dark:hover:text-emerald-500"
+              className="font-medium text-foreground underline underline-offset-4 hover:text-[#FF9100] dark:hover:text-[#FF9100]"
             >
               List one instead.
             </button>

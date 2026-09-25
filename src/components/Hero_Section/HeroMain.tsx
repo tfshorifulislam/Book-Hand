@@ -8,20 +8,20 @@ const HeroMain = () => {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative mx-auto flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#f5faf7] px-6 dark:bg-zinc-950">
+    <section className="relative mx-auto flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#fffaf3] px-6 dark:bg-[#100d09]">
       {/* Background grid */}
       <div
-        className="absolute inset-0 opacity-40 dark:opacity-[0.08]"
+        className="absolute inset-0 opacity-40 dark:opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(16,185,129,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(16,185,129,0.08) 1px, transparent 1px)",
+            "linear-gradient(to right, rgba(255,145,0,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,145,0,0.08) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           maskImage:
             "linear-gradient(to bottom, black 0%, transparent 85%)",
         }}
       />
 
-      {/* Main glow */}
+      {/* Main orange glow */}
       <motion.div
         animate={
           reducedMotion
@@ -36,10 +36,10 @@ const HeroMain = () => {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -right-40 -top-40 size-150 rounded-full bg-emerald-300/20 blur-3xl dark:bg-emerald-700/10"
+        className="absolute -right-40 -top-40 size-150 rounded-full bg-[#FF9100]/10 blur-3xl dark:bg-[#FF9100]/10"
       />
 
-      {/* Secondary glow */}
+      {/* Secondary orange glow */}
       <motion.div
         animate={
           reducedMotion
@@ -54,11 +54,11 @@ const HeroMain = () => {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute -bottom-48 -left-40 size-125 rounded-full bg-emerald-200/20 blur-3xl dark:bg-emerald-900/10"
+        className="absolute -bottom-48 -left-40 size-125 rounded-full bg-[#EB7D00]/8 blur-3xl dark:bg-[#EB7D00]/8"
       />
 
-      {/* Center light */}
-      <div className="absolute left-1/2 top-1/2 size-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-100/30 blur-3xl dark:bg-emerald-950/20" />
+      {/* Center warm light */}
+      <div className="absolute left-1/2 top-1/2 size-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FFB84D]/10 blur-3xl dark:bg-[#FF9100]/5" />
 
       {/* Content */}
       <motion.div

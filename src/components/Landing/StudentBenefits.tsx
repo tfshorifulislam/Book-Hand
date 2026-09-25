@@ -62,15 +62,15 @@ export function StudentBenefits() {
         >
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+              <span className="size-2 rounded-full bg-[#FF9100] dark:bg-[#FF9100]" />
 
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
                 Student-first
               </span>
             </div>
 
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              <span className="text-emerald-700 dark:text-emerald-500">
+              <span className="text-[#FF9100] dark:text-[#FF9100]">
                 Built around
               </span>{" "}
               student needs.
@@ -109,11 +109,11 @@ export function StudentBenefits() {
                   .join(" ")}
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors group-hover:border-emerald-700/50 dark:group-hover:border-emerald-500/50">
-                    <Icon className="size-4 text-emerald-700 dark:text-emerald-500" />
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors group-hover:border-[#FF9100]/50 dark:group-hover:border-[#FF9100]/50">
+                    <Icon className="size-4 text-[#FF9100] dark:text-[#FF9100]" />
                   </div>
 
-                  <span className="h-px flex-1 bg-border transition-colors group-hover:bg-emerald-700/30 dark:group-hover:bg-emerald-500/30" />
+                  <span className="h-px flex-1 bg-border transition-colors group-hover:bg-[#FF9100]/30 dark:group-hover:bg-[#FF9100]/30" />
 
                   <span className="font-mono text-[11px] text-muted-foreground/40">
                     {benefit.number}
@@ -128,7 +128,7 @@ export function StudentBenefits() {
                   {benefit.description}
                 </p>
 
-                <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-emerald-700 transition-all duration-300 group-hover:w-10 dark:bg-emerald-500 sm:left-9 md:left-12" />
+                <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-[#FF9100] transition-all duration-300 group-hover:w-10 dark:bg-[#FF9100] sm:left-9 md:left-12" />
               </motion.li>
             );
           })}

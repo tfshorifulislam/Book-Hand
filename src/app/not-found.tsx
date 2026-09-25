@@ -34,7 +34,7 @@ export default function NotFound() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="rounded-xl px-6 bg-emerald-700 hover:bg-emerald-600"
+              className="rounded-xl px-6 bg-[#FF9100] hover:bg-[#EB7D00]"
             >
               <Link href="/">
                 Back to Home

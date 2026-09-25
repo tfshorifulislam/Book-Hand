@@ -19,7 +19,7 @@ export function FinalCTA() {
           transition={{ duration: 0.5 }}
           className="relative overflow-hidden rounded-2xl border bg-background px-6 py-16 text-center sm:px-12 sm:py-20"
         >
-          <span className="absolute inset-x-0 top-0 mx-auto h-0.5 w-20 bg-emerald-700 dark:bg-emerald-500" />
+          <span className="absolute inset-x-0 top-0 mx-auto h-0.5 w-20 bg-[#FF9100] dark:bg-[#FF9100]" />
 
           <div className="mx-auto max-w-2xl">
             <motion.div
@@ -29,9 +29,9 @@ export function FinalCTA() {
               transition={{ duration: 0.4 }}
               className="flex items-center justify-center gap-3"
             >
-              <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+              <span className="size-2 rounded-full bg-[#FF9100] dark:bg-[#FF9100]" />
 
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
                 Start with BookHand
               </span>
             </motion.div>
@@ -43,7 +43,7 @@ export function FinalCTA() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
-              <span className="text-emerald-700 dark:text-emerald-500">
+              <span className="text-[#FF9100] dark:text-[#FF9100]">
                 Ready to find
               </span>{" "}
               your next book?
@@ -70,7 +70,7 @@ export function FinalCTA() {
               <Link href="/books">
                 <Button
                   size="lg"
-                  className="group h-11 w-full rounded-lg bg-emerald-700 px-6 text-sm text-white hover:bg-emerald-600 sm:w-auto dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                  className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm text-white hover:bg-[#EB7D00] sm:w-auto dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
                 >
                   <BookOpen className="mr-2 size-4" />
                   Browse Books
@@ -82,7 +82,7 @@ export function FinalCTA() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-11 w-full rounded-lg px-6 text-sm hover:border-emerald-700/40 hover:bg-emerald-700/5 hover:text-emerald-800 sm:w-auto dark:hover:border-emerald-500/40 dark:hover:bg-emerald-500/5 dark:hover:text-emerald-400"
+                  className="h-11 w-full rounded-lg px-6 text-sm hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-emerald-800 sm:w-auto dark:hover:border-[#FF9100]/40 dark:hover:bg-[#FF9100]/5 dark:hover:text-[#EB7D00]"
                 >
                   Sell a Book
                 </Button>
@@ -97,11 +97,11 @@ export function FinalCTA() {
               className="mt-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/60"
             >
               <span>Buy</span>
-              <span className="text-emerald-700/60 dark:text-emerald-500/60">
+              <span className="text-[#FF9100]/60 dark:text-[#FF9100]/60">
                 •
               </span>
               <span>Sell</span>
-              <span className="text-emerald-700/60 dark:text-emerald-500/60">
+              <span className="text-[#FF9100]/60 dark:text-[#FF9100]/60">
                 •
               </span>
               <span>Discover</span>

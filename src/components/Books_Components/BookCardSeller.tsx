@@ -18,7 +18,7 @@ const BookCardSeller = ({ sellerName, sellerImage, profileUrl, }: Props) => {
     return (
         <Link
             href={profileUrl}
-            className="flex items-center gap-3 rounded-xl border border-border/50 bg-muted/30 p-2.5 transition-all duration-200 hover:border-emerald-600/30 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20"
+            className="flex items-center gap-3 rounded-xl border border-border/50 bg-muted/30 p-2.5 transition-all duration-200 hover:border-[#EB7D00]/30 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20"
         >
             <Avatar className="size-9">
                 <AvatarImage
@@ -28,12 +28,12 @@ const BookCardSeller = ({ sellerName, sellerImage, profileUrl, }: Props) => {
 
                 <AvatarFallback
                     className="
-                        bg-emerald-700
+                        bg-[#FF9100]
                         text-xs
                         font-semibold
                         text-white
                         dark:text-black
-                        dark:bg-emerald-500
+                        dark:bg-[#FF9100]
                     "
                 >
                     {sellerName?.charAt(0).toUpperCase() || "U"}

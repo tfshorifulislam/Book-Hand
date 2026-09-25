@@ -67,8 +67,8 @@ const SettingsPage = () => {
                                 }`}
                             >
                         
-                                <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border bg-muted/40 transition-colors group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10">
-                                    <Icon className="size-5 text-muted-foreground transition-colors group-hover:text-emerald-600" />
+                                <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border bg-muted/40 transition-colors group-hover:border-[#FF9100]/30 group-hover:bg-[#FF9100]/10">
+                                    <Icon className="size-5 text-muted-foreground transition-colors group-hover:text-[#EB7D00]" />
                                 </div>
 
                                 {/* Content */}

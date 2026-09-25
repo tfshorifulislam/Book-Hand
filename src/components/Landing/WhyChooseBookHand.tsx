@@ -55,8 +55,8 @@ const benefits: Benefit[] = [
 const colorStyles = {
   emerald: {
     box: "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/40",
-    icon: "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-400",
-    line: "bg-emerald-500",
+    icon: "border-emerald-200 bg-emerald-100 text-[#FF9100] dark:border-emerald-800 dark:bg-emerald-900/60 dark:text-[#EB7D00]",
+    line: "bg-[#FF9100]",
   },
   blue: {
     box: "border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40",
@@ -94,14 +94,14 @@ export function WhyChooseBookHand() {
             whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500"
+            className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]"
           >
             The BookHand difference
           </motion.p>
 
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             Everything students need.
-            <span className="block text-emerald-700 dark:text-emerald-500">
+            <span className="block text-[#FF9100] dark:text-[#FF9100]">
               All in one place.
             </span>
           </h2>

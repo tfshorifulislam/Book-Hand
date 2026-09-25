@@ -110,7 +110,7 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
                             href={`/books/${item.id}`}
                             className="min-w-0 flex-1"
                         >
-                            <h3 className="line-clamp-2 text-base font-semibold transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                            <h3 className="line-clamp-2 text-base font-semibold transition-colors group-hover:text-[#EB7D00] dark:group-hover:text-[#EB7D00]">
                                 {item.book.title}
                             </h3>
                         </Link>
@@ -122,7 +122,7 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
                         >
                             <Heart
                                 className={`size-5 ${isSaved
-                                    ? "fill-emerald-700 text-emerald-700"
+                                    ? "fill-[#FF9100] text-[#FF9100]"
                                     : "text-muted-foreground"
                                     }`}
                             />

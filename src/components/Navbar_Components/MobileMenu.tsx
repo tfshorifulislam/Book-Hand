@@ -88,7 +88,7 @@ function NavRow({
             className={cn(
                 "flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2",
                 active
-                    ? "bg-emerald-700/10 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
+                    ? "bg-[#FF9100]/10 text-[#FF9100] dark:bg-[#FF9100]/10 dark:text-[#EB7D00]"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
         >
@@ -149,7 +149,7 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                         className="flex items-center gap-2.5 text-foreground transition-colors"
                         aria-label="BookHand home"
                     >
-                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black">
+                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#FF9100] text-white dark:bg-[#FF9100] dark:text-black">
                             <FaBookOpenReader className="size-[18px] stroke-[2.2]" />
                         </span>
 
@@ -206,7 +206,7 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                             icon={NAV_ICONS[sellItem.href]}
                             active={isLinkActive(pathname, sellItem.href)}
                             onClick={close}
-                            iconClassName="text-emerald-700 dark:text-emerald-400"
+                            iconClassName="text-[#FF9100] dark:text-[#EB7D00]"
                         >
                             {sellItem.title}
                         </NavRow>

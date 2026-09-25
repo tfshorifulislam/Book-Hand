@@ -135,7 +135,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
               </Field>
               <Field>
                 <Button
-                  className="bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black hover:bg-emerald-600 dark:hover:bg-emerald-400 cursor-pointer"
+                  className="bg-[#FF9100] text-white dark:bg-[#FF9100] dark:text-black hover:bg-[#EB7D00] dark:hover:bg-[#EB7D00] cursor-pointer"
                   type="submit">
                   {loading
                     ? "Logging in..."

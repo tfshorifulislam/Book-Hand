@@ -22,7 +22,7 @@ const HeroSectionText = () => {
 
       {/* Heading */}
       <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-        <span className="text-emerald-700 dark:text-emerald-500">
+        <span className="text-[#FF9100] dark:text-[#FF9100]">
           Find your next book.
         </span>
 
@@ -43,7 +43,7 @@ const HeroSectionText = () => {
         <Link href="/books">
           <Button
             size="lg"
-            className="group h-11 w-full rounded-lg bg-emerald-700 px-6 text-sm text-white hover:bg-emerald-600 sm:w-auto dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+            className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm text-white hover:bg-[#EB7D00] sm:w-auto dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00] cursor-pointer"
           >
             <BookOpen className="mr-2 size-4" />
             Browse Books
@@ -55,7 +55,7 @@ const HeroSectionText = () => {
           <Button
             size="lg"
             variant="outline"
-            className="h-11 w-full rounded-lg px-6 text-sm sm:w-auto"
+            className="h-11 w-full rounded-lg px-6 text-sm sm:w-auto cursor-pointer"
           >
             Sell a Book
           </Button>
@@ -69,7 +69,7 @@ const HeroSectionText = () => {
             key={label}
             className="flex items-center gap-2 text-xs text-muted-foreground"
           >
-            <Icon className="size-3.5 text-emerald-700 dark:text-emerald-500" />
+            <Icon className="size-3.5 text-[#FF9100] dark:text-[#FF9100]" />
             {label}
           </li>
         ))}

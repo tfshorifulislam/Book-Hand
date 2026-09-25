@@ -37,7 +37,7 @@ const SellerCard = ({ seller }: SellerCardProps) => {
               className="size-full object-cover"
             />
           ) : (
-            <UserRound className="size-5 text-emerald-600 dark:text-emerald-400" />
+            <UserRound className="size-5 text-[#EB7D00] dark:text-[#EB7D00]" />
           )}
         </div>
 
