@@ -13,7 +13,6 @@ import {
     Settings,
     UserPlus,
     UserRound,
-    X,
     type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +25,6 @@ import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-provider/ThemeToggle";
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
     SheetTitle,
@@ -144,7 +142,7 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                 </SheetDescription>
 
                 {/* Header */}
-                <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
+                <div className="flex h-16 shrink-0 items-center border-b border-border px-4">
                     <Link
                         href="/"
                         onClick={close}
@@ -159,19 +157,6 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                             BookHand
                         </span>
                     </Link>
-
-                    <SheetClose
-                        render={
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="size-9 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
-                            >
-                                <X className="size-4" />
-                                <span className="sr-only">Close menu</span>
-                            </Button>
-                        }
-                    />
                 </div>
 
                 {/* Body */}
