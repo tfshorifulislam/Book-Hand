@@ -25,13 +25,14 @@ const buyerSteps = [
     icon: BookOpen,
     title: "Discover",
     description:
-      "Compare available books, prices, and seller information.",
+      "Compare available books, prices, conditions, and seller information.",
   },
   {
     number: "03",
     icon: MessageCircle,
     title: "Connect",
-    description: "Contact the seller and arrange the purchase.",
+    description:
+      "Contact the seller, discuss the details, and arrange the purchase.",
   },
 ];
 
@@ -40,21 +41,22 @@ const sellerSteps = [
     number: "01",
     icon: Plus,
     title: "List your book",
-    description: "Add your book's details, price, and photos in minutes.",
+    description:
+      "Add your book details, condition, price, and photos in minutes.",
   },
   {
     number: "02",
     icon: Users,
     title: "Reach students",
     description:
-      "Your listing becomes visible to students looking for that book.",
+      "Your listing becomes visible to students looking for that textbook.",
   },
   {
     number: "03",
     icon: Check,
     title: "Sell",
     description:
-      "Connect with an interested student and complete the sale.",
+      "Connect with an interested student and complete the transaction.",
   },
 ];
 
@@ -69,24 +71,24 @@ export function HowItWorks() {
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mx-auto max-w-2xl text-center"
+          className="max-w-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
-            Simple by design
+            How it works
           </p>
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            How BookHand{" "}
-            <span className="text-[#FF9100]">works.</span>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            Simple from start
+            <span className="text-[#FF9100]"> to finish.</span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
-            Everything you need to buy or sell university textbooks, without
-            the hassle.
+          <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
+            Whether you're looking for a book or selling one, BookHand keeps
+            the process simple.
           </p>
         </motion.div>
 
-        <div className="mt-14 space-y-14">
+        <div className="mt-16 space-y-20">
           <StepFlow label="For Buyers" steps={buyerSteps} />
           <StepFlow label="For Sellers" steps={sellerSteps} />
         </div>

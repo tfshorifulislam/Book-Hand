@@ -55,7 +55,7 @@ const benefits: Benefit[] = [
 const colorStyles = {
   emerald: {
     box: "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/40",
-    icon: "border-emerald-200 bg-emerald-100 text-[#FF9100] dark:border-emerald-800 dark:bg-emerald-900/60 dark:text-[#EB7D00]",
+    icon: "border-emerald-200 bg-emerald-100 text-[#FF9100] dark:border-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-400",
     line: "bg-[#FF9100]",
   },
   blue: {
