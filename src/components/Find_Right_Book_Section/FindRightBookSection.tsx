@@ -1,26 +1,12 @@
 "use client";
 
-import {
-  ArrowRight,
-  BookOpen,
-  Briefcase,
-  Code2,
-  Search,
-  Wrench,
-} from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-
-const categories = [
-  { name: "Calculus", query: "Calculus", count: "1,200+", icon: BookOpen },
-  { name: "Computer Science", query: "Computer Science", count: "860+", icon: Code2 },
-  { name: "Engineering", query: "Engineering", count: "750+", icon: Wrench },
-  { name: "Business", query: "Business", count: "640+", icon: Briefcase },
-];
 
 const exampleSearches = [
   "Calculus",
@@ -52,150 +38,115 @@ const FindRightBookSection = () => {
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section className="w-full py-24 sm:py-28">
+      <div className="mx-auto w-full max-w-370 px-6 lg:px-10">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
-            duration: 0.55,
+            duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto max-w-3xl text-center"
         >
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+          {/* Eyebrow */}
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-emerald-700/30 dark:bg-emerald-500/30" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-500">
               Find your textbook
             </span>
+
+            <span className="h-px w-8 bg-emerald-700/30 dark:bg-emerald-500/30" />
           </div>
 
-          <h2 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
-            <span className="text-emerald-700 dark:text-emerald-500">
-              Find the right book.
+          {/* Heading */}
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Find the right book.
+            <span className="mt-1 block text-emerald-700 dark:text-emerald-500">
+              For your course.
             </span>
-
-            <span className="block text-foreground">For your course.</span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base">
-            Search thousands of university textbooks by title, author, category,
-            or course and find the books you need at student-friendly prices.
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+            Search university textbooks by title, author, subject, or ISBN.
+            Find what you need without spending more than you have to.
           </p>
         </motion.div>
 
-        {/* Search */}
+        {/* Search Box */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{
-            duration: 0.55,
+            duration: 0.6,
             delay: reducedMotion ? 0 : 0.08,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="mx-auto mt-10 w-full max-w-3xl sm:mt-12"
+          className="mx-auto mt-10 w-full max-w-4xl sm:mt-12"
         >
-          <motion.div
-            whileHover={reducedMotion ? undefined : { y: -2 }}
-            transition={{
-              duration: 0.4,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="rounded-xl border border-border bg-background p-2 shadow-lg sm:p-2.5"
-          >
+          <div className="rounded-2xl border border-border bg-card p-2 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-2.5">
             <form
               onSubmit={handleSearch}
               className="flex flex-col gap-2 sm:flex-row"
             >
+              {/* Input */}
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-emerald-700 dark:text-emerald-500" />
+                <Search className="absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
                 <Input
                   type="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search by title, author, or ISBN..."
-                  className="h-11 w-full rounded-lg border bg-background pl-11 pr-4 text-sm focus-visible:border-emerald-700 focus-visible:ring-emerald-700/20 dark:focus-visible:border-emerald-500 dark:focus-visible:ring-emerald-500/20"
+                  className="h-12 rounded-xl border-0 bg-muted/40 pl-11 pr-4 text-sm shadow-none focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-emerald-700/20 dark:bg-muted/30 dark:focus-visible:ring-emerald-500/20"
                 />
               </div>
 
+              {/* Search Button */}
               <Button
                 type="submit"
                 size="lg"
-                className="group h-11 cursor-pointer rounded-lg bg-emerald-700 px-6 text-sm text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
+                className="group h-12 rounded-xl bg-emerald-700 px-7 text-sm font-semibold text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400"
               >
                 Search
                 <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Button>
             </form>
 
-            <div className="mt-2.5 flex flex-wrap items-center justify-center gap-2 border-t border-border pt-2.5">
-              <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted-foreground/70">
+            {/* Popular Searches */}
+            <div className="mt-2 flex flex-wrap items-center gap-2 px-1 pb-1 pt-2">
+              <span className="mr-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
                 Popular
               </span>
 
-              {exampleSearches.map((search) => (
+              {exampleSearches.map((item) => (
                 <button
-                  key={search}
+                  key={item}
                   type="button"
-                  onClick={() => handleChip(search)}
-                  className="cursor-pointer rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-emerald-700/40 hover:text-emerald-700 dark:hover:border-emerald-500/40 dark:hover:text-emerald-500"
+                  onClick={() => handleChip(item)}
+                  className="rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:border-emerald-700/40 hover:bg-emerald-700/5 hover:text-emerald-700 dark:hover:border-emerald-500/40 dark:hover:bg-emerald-500/5 dark:hover:text-emerald-500 cursor-pointer"
                 >
-                  {search}
+                  {item}
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
+
+     
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            Can&apos;t find your book?{" "}
+            <button
+              type="button"
+              onClick={() => router.push("/sell-book")}
+              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-emerald-700 dark:hover:text-emerald-500"
+            >
+              List one instead.
+            </button>
+          </p>
         </motion.div>
-
-        {/* Categories */}
-        <ul className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
-          {categories.map((category, index) => {
-            const Icon = category.icon;
-
-            return (
-              <li key={category.name}>
-                <motion.button
-                  type="button"
-                  onClick={() => handleChip(category.query)}
-                  initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-                  whileInView={
-                    reducedMotion ? undefined : { opacity: 1, y: 0 }
-                  }
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: reducedMotion ? 0 : index * 0.06,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="group w-full cursor-pointer rounded-xl border border-border bg-background p-5 text-left transition-colors hover:border-emerald-700/40 hover:bg-muted/20 dark:hover:border-emerald-500/40"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex size-9 items-center justify-center rounded-lg border border-border bg-muted/40 transition-colors group-hover:border-emerald-700/40 dark:group-hover:border-emerald-500/40">
-                      <Icon className="size-4 text-emerald-700 dark:text-emerald-500" />
-                    </div>
-
-                    <span className="font-mono text-[11px] text-muted-foreground/40">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <p className="mt-3 text-sm font-semibold tracking-tight text-foreground">
-                    {category.name}
-                  </p>
-
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {category.count} books
-                  </p>
-                </motion.button>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );
