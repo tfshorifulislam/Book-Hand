@@ -86,7 +86,7 @@ const UserIdProfilePage = async ({
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 md:px-6">
+    <div className="mx-auto max-w-370 px-4 md:px-6">
       <CoverProfile user={user} />
 
       {books.length > 0 ? (

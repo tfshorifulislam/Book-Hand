@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     "sell books",
     "student marketplace",
   ],
-  authors: [{ name: "BookHand" }],
-  creator: "BookHand",
+  authors: [{ name: "Shoriful Islam" }],
+  creator: "Shoriful Islam",
   applicationName: "BookHand",
   robots: {
     index: true,
@@ -63,7 +63,7 @@ export default function RootLayout({
 
             <SidebarInset className="min-w-0 bg-transparent">
               <div className="flex min-h-screen flex-col">
-                
+
                 <NavigationBar />
 
                 <main

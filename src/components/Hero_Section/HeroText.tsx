@@ -10,70 +10,93 @@ import {
 import { Button } from "../ui/button";
 
 const highlights = [
-  { icon: ShieldCheck, label: "Safe & trusted" },
-  { icon: Users, label: "Student community" },
-  { icon: BookOpenCheck, label: "University textbooks" },
+  {
+    icon: ShieldCheck,
+    label: "Safe & trusted",
+  },
+  {
+    icon: Users,
+    label: "Student community",
+  },
+  {
+    icon: BookOpenCheck,
+    label: "University textbooks",
+  },
 ];
 
 const HeroSectionText = () => {
   return (
-    <div className="w-full max-w-3xl text-center">
-      
+    <div className="mx-auto w-full max-w-4xl text-center">
+      {/* Eyebrow */}
+      <div className="mb-7 inline-flex items-center gap-2 rounded-lg border border-[#FF9100]/20 bg-background/60 px-3.5 py-2 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+        <span className="size-1.5 rounded-full bg-[#FF9100]" />
+        Built for university students
+      </div>
 
       {/* Heading */}
-      <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-        <span className="text-[#FF9100] dark:text-[#FF9100]">
+      <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-7xl">
+        <span className="block text-[#FF9100]">
           Find your next book.
         </span>
 
         <span className="mt-2 block text-foreground">
-          Give your old books a new home.
+          Give your old books
+          <br className="hidden sm:block" /> a new home.
         </span>
       </h1>
 
       {/* Description */}
-      <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-        A simple marketplace for university students to buy affordable
-        textbooks, sell books they no longer need, and connect with other
-        students.
+      <p className="mx-auto mt-7 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
+        Buy affordable university textbooks, sell the books you no
+        longer need, and connect with students in one simple
+        marketplace.
       </p>
 
-      {/* Buttons */}
-      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-        <Link href="/books">
-          <Button
+      {/* Actions */}
+   <div className="mt-9 flex flex-row items-center justify-center gap-3">
+    <Link href="/books">
+        <Button
             size="lg"
-            className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm text-white hover:bg-[#EB7D00] sm:w-auto dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00] cursor-pointer"
-          >
+            className="group h-12 cursor-pointer rounded-lg bg-[#FF9100] px-7 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#EB7D00] dark:text-black"
+        >
             <BookOpen className="mr-2 size-4" />
             Browse Books
-            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-0.5" />
-          </Button>
-        </Link>
+            <ArrowRight className="ml-2 size-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </Button>
+    </Link>
 
-        <Link href="/sell-book">
-          <Button
+    <Link href="/sell-book">
+        <Button
             size="lg"
             variant="outline"
-            className="h-11 w-full rounded-lg px-6 text-sm sm:w-auto cursor-pointer"
-          >
+            className="h-12 cursor-pointer rounded-lg border-border bg-background/60 px-7 text-sm font-semibold backdrop-blur-sm transition-all duration-200 hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+        >
             Sell a Book
-          </Button>
-        </Link>
-      </div>
+        </Button>
+    </Link>
+</div>
 
       {/* Highlights */}
-      <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 border-t border-border pt-6">
-        {highlights.map(({ icon: Icon, label }) => (
-          <li
+      <div className="mx-auto mt-12 flex max-w-2xl flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-border/70 pt-6">
+        {highlights.map(({ icon: Icon, label }, index) => (
+          <div
             key={label}
             className="flex items-center gap-2 text-xs text-muted-foreground"
           >
-            <Icon className="size-3.5 text-[#FF9100] dark:text-[#FF9100]" />
-            {label}
-          </li>
+            <Icon className="size-3.5 text-[#FF9100]" />
+            <span>{label}</span>
+
+            {index < highlights.length - 1 && (
+              <span className="ml-5 hidden h-1 w-1 rounded-full bg-border sm:block" />
+            )}
+          </div>
         ))}
-      </ul>
+      </div>
+
+      {/* Bottom micro copy */}
+      <p className="mt-7 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/50">
+        Buy · Sell · Connect
+      </p>
     </div>
   );
 };

@@ -25,7 +25,7 @@ const WishlistPage = ({ initialWishlist, userId }: Props) => {
     };
 
     return (
-        <main className="mx-auto min-h-screen w-full max-w-7xl px-4 py-10 md:px-6 md:py-16 lg:py-20">
+        <main className="mx-auto min-h-screen w-full max-w-370 px-4 py-10 md:px-6 md:py-16 lg:py-20">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold tracking-tight">
                     My Wishlist

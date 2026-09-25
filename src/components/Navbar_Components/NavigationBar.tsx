@@ -34,7 +34,7 @@ export function NavigationBar() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="sticky top-0 z-50 w-full border-b border-emerald-900/10 bg-background/90 backdrop-blur-xl dark:border-[#FF9100]/10"
     >
-      <div className="mx-auto flex h-16 max-w-370 items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:h-17 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-370 items-center gap-3 px-4 md:px-6 lg:h-17">
         <div className="min-w-0 flex-1">
           <DesktopSearch />
         </div>

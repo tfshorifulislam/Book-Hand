@@ -11,34 +11,34 @@ type Benefit = {
 };
 
 const benefits: Benefit[] = [
-  {
-    image: "/student.jpg",
-    title: "Built for Students",
-    description:
-      "A marketplace designed around university textbooks and student budgets — not a generic classifieds site.",
-    detail: "Tuned for campus life",
-  },
-  {
-    image: "/affordablebooks.jpg",
-    title: "Affordable Books",
-    description:
-      "Find used textbooks for less than retail, and sell old copies when your course ends.",
-    detail: "Priced for students",
-  },
-  {
-    image: "/buyandsell.jpg",
-    title: "Buy & Sell Easily",
-    description:
-      "List a book in minutes and find exactly what you need for your upcoming courses.",
-    detail: "Fast, no paperwork",
-  },
-  {
-    image: "/trustedstudentcommunity.jpg",
-    title: "Trusted Student Community",
-    description:
-      "Buy and sell alongside verified students in one focused, trustworthy marketplace.",
-    detail: "Students only",
-  },
+    {
+        image: "/student.jpg",
+        title: "Built for Students",
+        description:
+            "BookHand is built specifically around the way university students find, use, and exchange textbooks. Instead of searching through large general marketplaces where books are mixed with unrelated products, students can explore a focused marketplace made for their academic needs. Whether you are starting a new semester, looking for a required textbook, or trying to pass on books from previous courses, BookHand keeps the experience simple and relevant to student life.",
+        detail: "Made for campus life",
+    },
+    {
+        image: "/affordablebooks.jpg",
+        title: "Save More on Textbooks",
+        description:
+            "Buying textbooks every semester can quickly become expensive, especially when some books are only needed for a limited period. BookHand gives students an easier way to discover used textbooks at more affordable prices instead of always buying new copies. At the same time, students who have finished their courses can sell books they no longer need and recover part of what they originally spent.",
+        detail: "Student-friendly prices",
+    },
+    {
+        image: "/buyandsell.jpg",
+        title: "Buy & Sell With Ease",
+        description:
+            "BookHand keeps the buying and selling process straightforward from beginning to end. Buyers can browse listings, search for specific books, view important details such as condition and price, and decide which listing fits their needs. Sellers can create a listing by adding the book information, condition, price, and photos, making it easier for other students to discover and contact them.",
+        detail: "Simple from start to finish",
+    },
+    {
+        image: "/trustedstudentcommunity.jpg",
+        title: "Connect With Students",
+        description:
+            "Books are more useful when they can move from one student to another, and BookHand is designed to make that connection easier. Students can discover books listed by other members of the university community and communicate directly with sellers about availability, condition, price, and other details. It creates a focused environment where students can buy and sell books with people who understand their needs.",
+        detail: "Student-to-student marketplace",
+    },
 ];
 
 export function WhyChooseBookHand() {
@@ -90,17 +90,17 @@ export function WhyChooseBookHand() {
                   reducedMotion
                     ? false
                     : {
-                        opacity: 0,
-                        y: 35,
-                      }
+                      opacity: 0,
+                      y: 35,
+                    }
                 }
                 whileInView={
                   reducedMotion
                     ? undefined
                     : {
-                        opacity: 1,
-                        y: 0,
-                      }
+                      opacity: 1,
+                      y: 0,
+                    }
                 }
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{
@@ -108,9 +108,8 @@ export function WhyChooseBookHand() {
                   delay: index * 0.08,
                   ease: "easeOut",
                 }}
-                className={`grid items-center gap-8 border-t py-12 md:grid-cols-2 md:gap-16 lg:py-16 ${
-                  reversed ? "md:[&>div:first-child]:order-2" : ""
-                }`}
+                className={`grid items-center gap-8 border-t py-12 md:grid-cols-2 md:gap-16 lg:py-16 ${reversed ? "md:[&>div:first-child]:order-2" : ""
+                  }`}
               >
                 {/* Text */}
                 <motion.div
@@ -118,17 +117,17 @@ export function WhyChooseBookHand() {
                     reducedMotion
                       ? false
                       : {
-                          opacity: 0,
-                          x: reversed ? 25 : -25,
-                        }
+                        opacity: 0,
+                        x: reversed ? 25 : -25,
+                      }
                   }
                   whileInView={
                     reducedMotion
                       ? undefined
                       : {
-                          opacity: 1,
-                          x: 0,
-                        }
+                        opacity: 1,
+                        x: 0,
+                      }
                   }
                   viewport={{ once: true }}
                   transition={{
@@ -161,19 +160,19 @@ export function WhyChooseBookHand() {
                     reducedMotion
                       ? false
                       : {
-                          opacity: 0,
-                          scale: 0.96,
-                          x: reversed ? -25 : 25,
-                        }
+                        opacity: 0,
+                        scale: 0.96,
+                        x: reversed ? -25 : 25,
+                      }
                   }
                   whileInView={
                     reducedMotion
                       ? undefined
                       : {
-                          opacity: 1,
-                          scale: 1,
-                          x: 0,
-                        }
+                        opacity: 1,
+                        scale: 1,
+                        x: 0,
+                      }
                   }
                   viewport={{ once: true }}
                   transition={{
