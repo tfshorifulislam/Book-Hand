@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { updateProfile } from "@/actions/profile.update";
 import { uploadImage } from "@/lib/upload.imageBB";
+import { useRouter } from "next/navigation";
 
 type Props = {
     name?: string | null;
@@ -28,7 +29,7 @@ const UpdateProfilePage = ({
     const [image, setImage] = useState(initialImage ?? "");
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-
+    const router = useRouter()
     const nameChanged = name !== (initialName ?? "");
     const emailChanged = email !== (initialEmail ?? "");
     const imageChanged = selectedFile !== null;
@@ -48,7 +49,7 @@ const UpdateProfilePage = ({
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        
+
         event.preventDefault();
         if (!hasChanges) return;
 
@@ -78,8 +79,8 @@ const UpdateProfilePage = ({
             console.log("Update data:", data);
 
             await updateProfile(data);
-
             console.log("Profile updated");
+            router.push('/profile');
         } catch (error) {
             console.error("Profile update failed:", error);
         } finally {
