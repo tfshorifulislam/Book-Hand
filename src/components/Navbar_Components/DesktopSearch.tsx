@@ -14,33 +14,28 @@ export function DesktopSearch() {
 
         const value = search.trim();
 
-        if (!value) {
-            router.push("/books");
-            return;
-        }
+        setSearch("");
 
-        router.push(`/books?search=${encodeURIComponent(value)}`);
+        router.push( value ? `/books?search=${encodeURIComponent(value)}` : "/books" );
     };
 
     return (
-        <div className="hidden lg:block">
-            <form
-                onSubmit={handleSearch}
-                role="search"
-                aria-label="Search books"
-                className="relative"
-            >
-                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <form
+            onSubmit={handleSearch}
+            role="search"
+            aria-label="Search books"
+            className="relative w-full"
+        >
+            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
-                <Input
-                    type="search"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search books, authors..."
-                    aria-label="Search books"
-                    className="h-9 w-44 rounded-lg border-border bg-muted/30 pl-9 pr-4 text-sm shadow-none transition-all duration-150 focus-visible:w-52 focus-visible:bg-background dark:border-input dark:bg-muted/30"
-                />
-            </form>
-        </div>
+            <Input
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search books, authors..."
+                aria-label="Search books"
+                className="h-10 w-full rounded-lg border-border bg-muted/30 pl-9 pr-4 text-sm shadow-none focus-visible:bg-background"
+            />
+        </form>
     );
 }
