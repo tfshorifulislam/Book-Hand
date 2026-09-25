@@ -246,8 +246,8 @@ function MarketplaceCard({
             variant={outline ? "outline" : "default"}
             className={
               outline
-                ? "group h-11 w-full rounded-lg border-border hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
-                : "group h-11 w-full rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:text-black"
+                ? "group cursor-pointer h-11 w-full rounded-lg border-border hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+                : "group h-11 w-full rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:text-black cursor-pointer"
             }
           >
             {button}

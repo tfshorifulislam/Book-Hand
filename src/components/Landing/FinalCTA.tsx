@@ -68,7 +68,7 @@ export function FinalCTA() {
               <Link href="/books">
                 <Button
                   size="lg"
-                  className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm text-white hover:bg-[#EB7D00] sm:w-auto dark:text-black"
+                  className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm cursor-pointer text-white hover:bg-[#EB7D00] sm:w-auto dark:text-black"
                 >
                   <BookOpen className="mr-2 size-4" />
                   Browse Books
@@ -80,7 +80,7 @@ export function FinalCTA() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-11 w-full rounded-lg border-border px-6 text-sm transition-colors hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00] sm:w-auto"
+                  className="h-11 cursor-pointer w-full rounded-lg border-border px-6 text-sm transition-colors hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00] sm:w-auto"
                 >
                   Sell a Book
                 </Button>
