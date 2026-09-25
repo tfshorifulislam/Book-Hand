@@ -24,7 +24,17 @@ import { Controller, useForm } from "react-hook-form";
 import { SellBookFormData } from "../../../Types/SellBookFormData";
 
 type SellBookFormProps = {
-    onSubmit: (data: SellBookFormData) => Promise<void>;
+    onSubmit: (data: SellBookFormData) => Promise<boolean>;
+};
+
+const defaultValues: SellBookFormData = {
+    title: "",
+    author: "",
+    category: "",
+    language: "",
+    description: "",
+    price: 0,
+    condition: "",
 };
 
 const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
@@ -35,20 +45,15 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
         reset,
         formState: { isSubmitting },
     } = useForm<SellBookFormData>({
-        defaultValues: {
-            title: "",
-            author: "",
-            category: "",
-            language: "",
-            description: "",
-            price: 0,
-            condition: "",
-        },
+        defaultValues,
     });
 
     const handleFormSubmit = async (data: SellBookFormData) => {
-        await onSubmit(data);
-        reset();
+        const success = await onSubmit(data);
+
+        if (success) {
+            reset(defaultValues);
+        }
     };
 
     return (
@@ -61,25 +66,28 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
             {/* Header */}
             <div className="mb-10">
                 <div className="mb-5 flex items-center gap-3">
-                    <span className="size-2 rounded-full bg-[#FF9100] dark:bg-[#FF9100]" />
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FF9100] dark:text-[#FF9100]">
+                    <span className="size-2 rounded-full bg-[#FF9100]" />
+
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FF9100]">
                         Sell a Book
                     </span>
                 </div>
 
                 <h1 className="text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl">
-                    <span className="text-[#FF9100] dark:text-[#FF9100]">
+                    <span className="text-[#FF9100]">
                         Give your book
                     </span>
+
                     <br />
+
                     <span className="text-foreground">
                         a new home.
                     </span>
                 </h1>
 
                 <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
-                    Add your book information, set a price, and list it for
-                    other students to buy.
+                    Add your book information, set a price, and list it
+                    for other students to buy.
                 </p>
             </div>
 
@@ -121,7 +129,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     <Input
                                         id="title"
                                         placeholder="e.g. Clean Code"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20 dark:focus-visible:border-[#FF9100] dark:focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
                                         {...register("title", {
                                             required:
                                                 "Book title is required",
@@ -138,7 +146,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     <Input
                                         id="author"
                                         placeholder="e.g. Robert C. Martin"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20 dark:focus-visible:border-[#FF9100] dark:focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
                                         {...register("author", {
                                             required:
                                                 "Author name is required",
@@ -162,7 +170,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20 dark:focus:border-[#FF9100] dark:focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
                                                     <SelectValue placeholder="Select category" />
                                                 </SelectTrigger>
 
@@ -170,18 +178,23 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                     <SelectItem value="programming">
                                                         Programming
                                                     </SelectItem>
+
                                                     <SelectItem value="engineering">
                                                         Engineering
                                                     </SelectItem>
+
                                                     <SelectItem value="business">
                                                         Business
                                                     </SelectItem>
+
                                                     <SelectItem value="science">
                                                         Science
                                                     </SelectItem>
+
                                                     <SelectItem value="mathematics">
                                                         Mathematics
                                                     </SelectItem>
+
                                                     <SelectItem value="other">
                                                         Other
                                                     </SelectItem>
@@ -207,7 +220,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20 dark:focus:border-[#FF9100] dark:focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
                                                     <SelectValue placeholder="Select language" />
                                                 </SelectTrigger>
 
@@ -215,9 +228,11 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                     <SelectItem value="english">
                                                         English
                                                     </SelectItem>
+
                                                     <SelectItem value="bangla">
                                                         Bangla
                                                     </SelectItem>
+
                                                     <SelectItem value="other">
                                                         Other
                                                     </SelectItem>
@@ -229,8 +244,8 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                             </div>
                         </div>
 
+                        {/* Description + Cover */}
                         <div className="grid gap-6 md:grid-cols-2">
-
                             {/* Description */}
                             <div className="space-y-6 border-t pt-10">
                                 <div>
@@ -244,25 +259,24 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label
-                                        htmlFor="description"
-                                        className="text-sm font-medium"
-                                    >
+                                    <Label htmlFor="description">
                                         Book Description
                                     </Label>
 
                                     <Textarea
                                         id="description"
                                         placeholder="Describe the book's condition, edition, highlights, or anything buyers should know..."
-                                        className="min-h-40 resize-none rounded-lg border-border bg-background px-4 py-3 text-sm leading-6 shadow-none transition-colors placeholder:text-muted-foreground/60 focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/15 dark:focus-visible:border-[#FF9100] dark:focus-visible:ring-[#FF9100]/15"
+                                        className="min-h-40 resize-none rounded-lg border-border bg-background px-4 py-3 text-sm leading-6 shadow-none focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/15"
                                         {...register("description", {
-                                            required: "Book description is required",
+                                            required:
+                                                "Book description is required",
                                         })}
                                     />
 
                                     <div className="flex items-center justify-between px-1">
                                         <p className="text-xs text-muted-foreground">
-                                            A clear description helps buyers understand your book better.
+                                            A clear description helps buyers
+                                            understand your book better.
                                         </p>
 
                                         <span className="text-[11px] text-muted-foreground/60">
@@ -294,21 +308,22 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
 
                                     <label
                                         htmlFor="coverImage"
-                                        className="group flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20   text-center transition-all duration-300 hover:border-[#FF9100]/50 hover:bg-[#FF9100]/3 dark:hover:border-[#FF9100]/50 dark:hover:bg-[#FF9100]/3"
+                                        className="group flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20 text-center transition-all duration-300 hover:border-[#FF9100]/50 hover:bg-[#FF9100]/3"
                                     >
-                                        <div className="mb-4 flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-[#FF9100]/40 dark:group-hover:border-[#FF9100]/40">
+                                        <div className="mb-4 flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-[#FF9100]/40">
                                             <svg
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 strokeWidth="1.7"
-                                                className="size-5 text-muted-foreground transition-colors duration-300 group-hover:text-[#FF9100] dark:group-hover:text-[#FF9100]"
+                                                className="size-5 text-muted-foreground transition-colors duration-300 group-hover:text-[#FF9100]"
                                             >
                                                 <path
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
                                                     d="M12 16V4m0 0L8 8m4-4 4 4"
                                                 />
+
                                                 <path
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
@@ -326,7 +341,8 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                         </span>
 
                                         <span className="mt-3 text-[11px] text-muted-foreground/70">
-                                            JPG, PNG or WEBP · Clear images work best
+                                            JPG, PNG or WEBP · Clear images work
+                                            best
                                         </span>
 
                                         <Input
@@ -335,14 +351,15 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                             accept="image/*"
                                             className="sr-only"
                                             {...register("coverImage", {
-                                                required: "Book cover image is required",
+                                                required:
+                                                    "Book cover image is required",
                                             })}
                                         />
                                     </label>
 
                                     <p className="px-1 text-xs text-muted-foreground">
-                                        Use a clear front-cover image so buyers can easily identify the
-                                        book.
+                                        Use a clear front-cover image so buyers
+                                        can easily identify the book.
                                     </p>
                                 </div>
                             </div>
@@ -373,7 +390,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                         min="0"
                                         step="1"
                                         placeholder="450"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20 dark:focus-visible:border-[#FF9100] dark:focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
                                         {...register("price", {
                                             required:
                                                 "Price is required",
@@ -407,7 +424,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20 dark:focus:border-[#FF9100] dark:focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
                                                     <SelectValue placeholder="Select condition" />
                                                 </SelectTrigger>
 
@@ -415,15 +432,19 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                     <SelectItem value="new">
                                                         New
                                                     </SelectItem>
+
                                                     <SelectItem value="like-new">
                                                         Like New
                                                     </SelectItem>
+
                                                     <SelectItem value="good">
                                                         Good
                                                     </SelectItem>
+
                                                     <SelectItem value="fair">
                                                         Fair
                                                     </SelectItem>
+
                                                     <SelectItem value="poor">
                                                         Poor
                                                     </SelectItem>
@@ -441,7 +462,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="cursor-pointer rounded-md bg-[#FF9100] px-8 text-white hover:bg-[#EB7D00] disabled:cursor-not-allowed disabled:opacity-70 dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
+                                className="cursor-pointer rounded-lg bg-[#FF9100] px-8 text-white hover:bg-[#EB7D00] disabled:cursor-not-allowed disabled:opacity-70 dark:text-black"
                             >
                                 {isSubmitting ? (
                                     <>

@@ -6,32 +6,55 @@ import { headers } from "next/headers";
 export const getBooks = async (
     page = 1,
     limit = 12,
-     search = ""
+    search = ""
 ) => {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
+    try {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
 
-    const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/books?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`,
-        {
-            method: "GET",
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-            headers: {
-                ...(session?.user?.id && {
-                    "x-user-id": session.user.id,
-                }),
-            },
-
-            cache: "no-store",
+        if (!backendUrl) {
+            throw new Error("Backend URL is not configured");
         }
-    );
 
-    const data = await response.json();
+        const url = new URL("/api/books", backendUrl);
 
-    if (!response.ok) {
-        throw new Error( data?.message || "Failed to fetch books" );
+        url.searchParams.set("page", String(page));
+        url.searchParams.set("limit", String(limit));
+        url.searchParams.set("search", search.trim());
+
+        const requestHeaders: HeadersInit = {};
+
+        if (session?.user?.id) {
+            requestHeaders["x-user-id"] = session.user.id;
+        }
+
+        const response = await fetch(url.toString(), {
+            method: "GET",
+            headers: requestHeaders,
+            cache: "no-store",
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Books API Error:", {
+                status: response.status,
+                statusText: response.statusText,
+                data,
+            });
+
+            throw new Error(
+                data?.message ||
+                `Failed to fetch books (${response.status})`
+            );
+        }
+
+        return data;
+    } catch (error) {
+        console.error("GetBooks Error:", error);
+        throw error;
     }
-
-    return data;
 };
