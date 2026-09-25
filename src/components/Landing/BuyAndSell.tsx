@@ -7,6 +7,7 @@ import {
   BookOpen,
   Search,
   Tag,
+  type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
@@ -41,6 +42,7 @@ export function BuyAndSell() {
   return (
     <section className="w-full py-20 sm:py-24">
       <div className="mx-auto max-w-370 px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -49,17 +51,15 @@ export function BuyAndSell() {
           className="mx-auto max-w-2xl text-center"
         >
           <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-[#FF9100] dark:bg-[#FF9100]" />
+            <span className="size-2 rounded-full bg-[#FF9100]" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
               BookHand Marketplace
             </span>
           </div>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            <span className="text-[#FF9100] dark:text-[#FF9100]">
-              Find a book.
-            </span>{" "}
+            <span className="text-[#FF9100]">Find a book.</span>{" "}
             Give one a new home.
           </h2>
 
@@ -69,6 +69,7 @@ export function BuyAndSell() {
           </p>
         </motion.div>
 
+        {/* Cards */}
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {/* Buy */}
           <MarketplaceCard
@@ -96,8 +97,8 @@ export function BuyAndSell() {
                     key={book.title}
                     className="flex items-center gap-3 border-b p-3 last:border-0"
                   >
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-muted">
-                      <BookMarked className="size-4 text-[#FF9100] dark:text-[#FF9100]" />
+                    <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-[#FF9100]/10">
+                      <BookMarked className="size-4 text-[#EB7D00]" />
                     </div>
 
                     <div className="min-w-0">
@@ -115,7 +116,7 @@ export function BuyAndSell() {
                         {book.condition}
                       </span>
 
-                      <p className="text-sm font-semibold text-[#FF9100] dark:text-[#FF9100]">
+                      <p className="text-sm font-semibold text-[#EB7D00]">
                         {book.price}
                       </p>
                     </div>
@@ -149,7 +150,7 @@ export function BuyAndSell() {
                     </span>
 
                     {field.live ? (
-                      <span className="flex items-center gap-1.5 text-sm font-medium text-[#FF9100] dark:text-[#FF9100]">
+                      <span className="flex items-center gap-1.5 text-sm font-medium text-[#EB7D00]">
                         <BadgeCheck className="size-3.5" />
                         {field.value}
                       </span>
@@ -157,7 +158,7 @@ export function BuyAndSell() {
                       <span
                         className={
                           field.highlight
-                            ? "text-sm font-medium text-[#FF9100] dark:text-[#FF9100]"
+                            ? "text-sm font-medium text-[#EB7D00]"
                             : "truncate text-sm font-medium"
                         }
                       >
@@ -180,7 +181,7 @@ type MarketplaceCardProps = {
   label: string;
   title: string;
   description: string;
-  icon: typeof BookOpen;
+  icon: LucideIcon;
   href: string;
   button: string;
   outline?: boolean;
@@ -211,12 +212,12 @@ function MarketplaceCard({
       <div className="border-b p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background">
-              <Icon className="size-4 text-[#FF9100] dark:text-[#FF9100]" />
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-[#FF9100]/10">
+              <Icon className="size-4 text-[#EB7D00]" />
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
                 {label}
               </p>
 
@@ -245,8 +246,8 @@ function MarketplaceCard({
             variant={outline ? "outline" : "default"}
             className={
               outline
-                ? "group h-11 w-full rounded-lg"
-                : "group h-11 w-full rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
+                ? "group h-11 w-full rounded-lg border-border hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+                : "group h-11 w-full rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:text-black"
             }
           >
             {button}
