@@ -1,79 +1,45 @@
 "use client";
 
-import {
-  GraduationCap,
-  Repeat,
-  ShieldCheck,
-  Wallet,
-  type LucideIcon,
-} from "lucide-react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 
 type Benefit = {
-  icon: LucideIcon;
+  image: string;
   title: string;
   description: string;
   detail: string;
-  color: keyof typeof colorStyles;
 };
 
 const benefits: Benefit[] = [
   {
-    icon: GraduationCap,
+    image: "/student.jpg",
     title: "Built for Students",
     description:
       "A marketplace designed around university textbooks and student budgets — not a generic classifieds site.",
     detail: "Tuned for campus life",
-    color: "emerald",
   },
   {
-    icon: Wallet,
+    image: "/affordablebooks.jpg",
     title: "Affordable Books",
     description:
       "Find used textbooks for less than retail, and sell old copies when your course ends.",
     detail: "Priced for students",
-    color: "blue",
   },
   {
-    icon: Repeat,
+    image: "/buyandsell.jpg",
     title: "Buy & Sell Easily",
     description:
       "List a book in minutes and find exactly what you need for your upcoming courses.",
     detail: "Fast, no paperwork",
-    color: "violet",
   },
   {
-    icon: ShieldCheck,
+    image: "/trustedstudentcommunity.jpg",
     title: "Trusted Student Community",
     description:
       "Buy and sell alongside verified students in one focused, trustworthy marketplace.",
     detail: "Students only",
-    color: "amber",
   },
 ];
-
-const colorStyles = {
-  emerald: {
-    box: "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/40",
-    icon: "border-emerald-200 bg-emerald-100 text-[#FF9100] dark:border-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-400",
-    line: "bg-[#FF9100]",
-  },
-  blue: {
-    box: "border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40",
-    icon: "border-blue-200 bg-blue-100 text-blue-700 dark:border-blue-800 dark:bg-blue-900/60 dark:text-blue-400",
-    line: "bg-blue-500",
-  },
-  violet: {
-    box: "border-violet-200 bg-violet-50 dark:border-violet-900 dark:bg-violet-950/40",
-    icon: "border-violet-200 bg-violet-100 text-violet-700 dark:border-violet-800 dark:bg-violet-900/60 dark:text-violet-400",
-    line: "bg-violet-500",
-  },
-  amber: {
-    box: "border-amber-200 bg-amber-50 dark:border-amber-900 dark:bg-amber-950/40",
-    icon: "border-amber-200 bg-amber-100 text-amber-700 dark:border-amber-800 dark:bg-amber-900/60 dark:text-amber-400",
-    line: "bg-amber-500",
-  },
-};
 
 export function WhyChooseBookHand() {
   const reducedMotion = useReducedMotion();
@@ -94,14 +60,14 @@ export function WhyChooseBookHand() {
             whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="text-xs font-semibold uppercase tracking-[0.18em] text-[#FF9100] dark:text-[#FF9100]"
+            className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]"
           >
             The BookHand difference
           </motion.p>
 
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             Everything students need.
-            <span className="block text-[#FF9100] dark:text-[#FF9100]">
+            <span className="block text-[#FF9100]">
               All in one place.
             </span>
           </h2>
@@ -115,8 +81,6 @@ export function WhyChooseBookHand() {
         {/* Benefits */}
         <div className="mt-14">
           {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-            const styles = colorStyles[benefit.color];
             const reversed = index % 2 === 1;
 
             return (
@@ -126,17 +90,17 @@ export function WhyChooseBookHand() {
                   reducedMotion
                     ? false
                     : {
-                      opacity: 0,
-                      y: 35,
-                    }
+                        opacity: 0,
+                        y: 35,
+                      }
                 }
                 whileInView={
                   reducedMotion
                     ? undefined
                     : {
-                      opacity: 1,
-                      y: 0,
-                    }
+                        opacity: 1,
+                        y: 0,
+                      }
                 }
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{
@@ -144,19 +108,27 @@ export function WhyChooseBookHand() {
                   delay: index * 0.08,
                   ease: "easeOut",
                 }}
-                className={`grid items-center gap-8 border-t py-12 md:grid-cols-2 md:gap-16 lg:py-16 ${reversed ? "md:[&>div:first-child]:order-2" : ""
-                  }`}
+                className={`grid items-center gap-8 border-t py-12 md:grid-cols-2 md:gap-16 lg:py-16 ${
+                  reversed ? "md:[&>div:first-child]:order-2" : ""
+                }`}
               >
                 {/* Text */}
                 <motion.div
-                  initial={reducedMotion ? false : { opacity: 0, x: reversed ? 25 : -25 }}
+                  initial={
+                    reducedMotion
+                      ? false
+                      : {
+                          opacity: 0,
+                          x: reversed ? 25 : -25,
+                        }
+                  }
                   whileInView={
                     reducedMotion
                       ? undefined
                       : {
-                        opacity: 1,
-                        x: 0,
-                      }
+                          opacity: 1,
+                          x: 0,
+                        }
                   }
                   viewport={{ once: true }}
                   transition={{
@@ -178,30 +150,30 @@ export function WhyChooseBookHand() {
                   </p>
 
                   <div className="mt-6 flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                    <span className={`h-px w-6 ${styles.line}`} />
+                    <span className="h-px w-6 bg-[#FF9100]" />
                     {benefit.detail}
                   </div>
                 </motion.div>
 
-                {/* Visual */}
+                {/* Image */}
                 <motion.div
                   initial={
                     reducedMotion
                       ? false
                       : {
-                        opacity: 0,
-                        scale: 0.94,
-                        x: reversed ? -25 : 25,
-                      }
+                          opacity: 0,
+                          scale: 0.96,
+                          x: reversed ? -25 : 25,
+                        }
                   }
                   whileInView={
                     reducedMotion
                       ? undefined
                       : {
-                        opacity: 1,
-                        scale: 1,
-                        x: 0,
-                      }
+                          opacity: 1,
+                          scale: 1,
+                          x: 0,
+                        }
                   }
                   viewport={{ once: true }}
                   transition={{
@@ -209,22 +181,25 @@ export function WhyChooseBookHand() {
                     delay: index * 0.08 + 0.15,
                     ease: "easeOut",
                   }}
-                  className={`flex min-h-56 items-center justify-center rounded-2xl border p-8 sm:min-h-64 ${styles.box}`}
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-muted/20"
                 >
-                  <motion.div
-                    whileHover={
-                      reducedMotion
-                        ? undefined
-                        : {
-                          scale: 1.06,
-                          rotate: 2,
-                        }
-                    }
-                    transition={{ duration: 0.25 }}
-                    className={`flex size-24 items-center justify-center rounded-2xl border ${styles.icon}`}
-                  >
-                    <Icon className="size-10" strokeWidth={1.7} />
-                  </motion.div>
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={benefit.image}
+                      alt={benefit.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
+
+                    <div className="absolute inset-0 bg-black/5 transition-colors duration-300 group-hover:bg-black/0" />
+
+                    <div className="absolute bottom-4 left-4">
+                      <span className="rounded-lg border border-white/20 bg-black/50 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                        {benefit.detail}
+                      </span>
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             );
