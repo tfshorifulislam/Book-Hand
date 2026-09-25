@@ -6,12 +6,14 @@ import { StudentBenefits } from "@/components/Landing/StudentBenefits";
 import { BuyAndSell } from "@/components/Landing/BuyAndSell";
 import { FinalCTA } from "@/components/Landing/FinalCTA";
 import { FAQ } from "@/components/Landing/FAQ";
+import PopulerBooks from "@/components/PopulerBooks/Populer.Books";
 
 const page = () => {
   return (
     <>
       <HeroMain />
       <FindRightBookSection />
+      <PopulerBooks />
       <WhyChooseBookHand />
       <HowItWorks />
       <StudentBenefits />

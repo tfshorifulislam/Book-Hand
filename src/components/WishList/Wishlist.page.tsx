@@ -12,9 +12,11 @@ type WishlistItem = {
 
 type Props = {
     initialWishlist: WishlistItem[];
+    userId: string;
 };
 
-const WishlistPage = ({ initialWishlist }: Props) => {
+
+const WishlistPage = ({ initialWishlist, userId }: Props) => {
 
     const [wishlist, setWishlist] = useState<WishlistItem[]>(initialWishlist);
 
@@ -49,6 +51,7 @@ const WishlistPage = ({ initialWishlist }: Props) => {
                                 ...item.listing,
                                 isSaved: true,
                             }}
+                            userId={userId}
                             onSavedChange={handleRemove}
                         />
                     ))}

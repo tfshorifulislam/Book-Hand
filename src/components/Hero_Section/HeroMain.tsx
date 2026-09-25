@@ -8,7 +8,7 @@ const HeroMain = () => {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative mx-auto flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#fffaf3] px-6 dark:bg-[#100d09]">
+    <section className="relative mx-auto flex min-h-[70vh] items-center justify-center overflow-hidden bg-[#fffaf3] px-6 dark:bg-[#100d09] py-10 md:py-0">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-40 dark:opacity-[0.06]"

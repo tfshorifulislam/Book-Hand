@@ -183,7 +183,7 @@ export function WhyChooseBookHand() {
                   }}
                   className="group relative overflow-hidden rounded-2xl border border-border bg-muted/20"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-16/10 overflow-hidden">
                     <Image
                       src={benefit.image}
                       alt={benefit.title}
