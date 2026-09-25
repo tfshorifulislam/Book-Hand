@@ -21,7 +21,7 @@ const BookActions = ({ sellerId }: BookActionsProps) => {
         <div className="flex gap-3">
             <Button
                 size="lg"
-                className="gap-2 bg-[#EB7D00] text-white hover:bg-[#FF9100] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
+                className="cursor-pointer gap-2 bg-[#EB7D00] text-white hover:bg-[#FF9100] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
             >
                 <MessageCircle className="size-4" />
                 Contact Seller
@@ -31,7 +31,7 @@ const BookActions = ({ sellerId }: BookActionsProps) => {
                 <Button
                     size="lg"
                     variant="outline"
-                    className="gap-2 text-[#FF9100] hover:bg-emerald-50 dark:text-[#EB7D00] dark:hover:bg-emerald-950"
+                    className="cursor-pointer gap-2 text-[#FF9100] hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
                 >
                     <User className="size-4" />
                     View Seller
