@@ -8,12 +8,16 @@ type ChangePasswordData = {
     newPassword: string;
 };
 
+type SetPasswordData = {
+    newPassword: string;
+};
+
 export const changePassword = async ({
     currentPassword,
     newPassword,
 }: ChangePasswordData) => {
     try {
-        await auth.api.changePassword({
+        return await auth.api.changePassword({
             headers: await headers(),
             body: {
                 currentPassword,
@@ -21,14 +25,34 @@ export const changePassword = async ({
                 revokeOtherSessions: true,
             },
         });
-
-        return {
-            success: true,
-            message: "Password changed successfully",
-        };
     } catch (error) {
         console.error("Change password error:", error);
 
-        throw new Error("Failed to change password");
+        throw new Error(
+            error instanceof Error
+                ? error.message
+                : "Failed to change password"
+        );
+    }
+};
+
+export const setPassword = async ({
+    newPassword,
+}: SetPasswordData) => {
+    try {
+        return await auth.api.setPassword({
+            headers: await headers(),
+            body: {
+                newPassword,
+            },
+        });
+    } catch (error) {
+        console.error("Set password error:", error);
+
+        throw new Error(
+            error instanceof Error
+                ? error.message
+                : "Failed to set password"
+        );
     }
 };
