@@ -7,12 +7,13 @@ import {
   Plus,
   Search,
   Users,
+  type LucideIcon,
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 type Step = {
   number: string;
-  icon: typeof Search;
+  icon: LucideIcon;
   title: string;
   description: string;
 };
@@ -68,94 +69,104 @@ const sellerSteps: Step[] = [
   },
 ];
 
+const colors = [
+  {
+    box: "border-emerald-200 bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950/40",
+    icon: "border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-400",
+  },
+  {
+    box: "border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40",
+    icon: "border-blue-200 bg-blue-100 text-blue-700 dark:border-blue-800 dark:bg-blue-900/50 dark:text-blue-400",
+  },
+  {
+    box: "border-violet-200 bg-violet-50 dark:border-violet-900 dark:bg-violet-950/40",
+    icon: "border-violet-200 bg-violet-100 text-violet-700 dark:border-violet-800 dark:bg-violet-900/50 dark:text-violet-400",
+  },
+];
+
 function StepFlow({ label, steps }: StepFlowProps) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <motion.div
-      initial={reducedMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 0.55,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
-      <div className="mb-8 flex items-center justify-center gap-4 lg:mb-10">
-        <span className="h-px w-10 bg-border" />
+    <div>
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0, y: 15 }}
+        whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mb-8 flex items-center justify-center gap-3"
+      >
+        <span className="h-px w-8 bg-border" />
 
         <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
           {label}
         </span>
 
-        <span className="h-px w-10 bg-border" />
-      </div>
+        <span className="h-px w-8 bg-border" />
+      </motion.div>
 
-      <div className="relative">
-        {/* Mobile connector */}
-        <motion.span
-          aria-hidden
-          initial={reducedMotion ? false : { opacity: 0 }}
-          whileInView={reducedMotion ? undefined : { opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="absolute bottom-0 left-6 top-0 w-px bg-border lg:hidden"
-        />
+      <ol className="grid gap-4 lg:grid-cols-3">
+        {steps.map((step, index) => {
+          const Icon = step.icon;
+          const color = colors[index];
 
-        {/* Desktop connector */}
-        <motion.span
-          aria-hidden
-          initial={reducedMotion ? false : { scaleX: 0 }}
-          whileInView={reducedMotion ? undefined : { scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.7,
-            delay: 0.15,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="absolute left-[8.7rem] right-[8.7rem] top-6 hidden h-px origin-left bg-border lg:block"
-        />
-
-        <ol className="relative lg:grid lg:grid-cols-3 lg:gap-10">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-
-            return (
-              <motion.li
-                key={step.number}
-                initial={reducedMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.5,
-                  delay: reducedMotion ? 0 : 0.1 + index * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="relative flex items-start gap-4 pb-10 last:pb-0 lg:block lg:pb-0 lg:text-center"
+          return (
+            <motion.li
+              key={step.number}
+              initial={
+                reducedMotion
+                  ? false
+                  : {
+                      opacity: 0,
+                      y: 25,
+                    }
+              }
+              whileInView={
+                reducedMotion
+                  ? undefined
+                  : {
+                      opacity: 1,
+                      y: 0,
+                    }
+              }
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              className={`rounded-2xl border p-6 ${color.box}`}
+            >
+              <motion.div
+                whileHover={
+                  reducedMotion
+                    ? undefined
+                    : {
+                        scale: 1.05,
+                        rotate: 2,
+                      }
+                }
+                transition={{ duration: 0.2 }}
+                className={`flex size-12 items-center justify-center rounded-xl border ${color.icon}`}
               >
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-lg border border-border bg-background transition-colors hover:border-emerald-700/50 dark:bg-background dark:hover:border-emerald-500/50">
-                  <Icon className="size-5 text-emerald-700 dark:text-emerald-500" />
-                </div>
+                <Icon className="size-5" />
+              </motion.div>
 
-                <div className="lg:mt-6">
-                  <span className="font-mono text-[11px] text-muted-foreground/60">
-                    {step.number}
-                  </span>
+              <span className="mt-6 block text-xs font-medium text-muted-foreground">
+                {step.number}
+              </span>
 
-                  <h4 className="mt-1 text-base font-semibold tracking-tight sm:text-lg">
-                    {step.title}
-                  </h4>
+              <h4 className="mt-1 text-lg font-semibold tracking-tight">
+                {step.title}
+              </h4>
 
-                  <p className="mt-1.5 max-w-xs text-sm leading-6 text-muted-foreground">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.li>
-            );
-          })}
-        </ol>
-      </div>
-    </motion.div>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {step.description}
+              </p>
+            </motion.li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
 
@@ -163,48 +174,37 @@ export function HowItWorks() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-20 sm:py-24">
+      <div className="mx-auto max-w-370 px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: 0.55,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-emerald-700 dark:bg-emerald-500" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
+            Simple by design
+          </p>
 
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-500">
-              Simple by design
-            </span>
-          </div>
-
-          <h2 className="text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            How BookHand{" "}
             <span className="text-emerald-700 dark:text-emerald-500">
-              How BookHand
+              works.
             </span>
-
-            <span className="block text-foreground">works.</span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-base">
+          <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
             Everything you need to buy or sell university textbooks, without
             the hassle.
           </p>
         </motion.div>
 
         {/* Flows */}
-        <div className="mx-auto mt-10 w-full max-w-2xl sm:mt-12 lg:max-w-3xl">
+        <div className="mx-auto mt-14 max-w-370 space-y-14">
           <StepFlow label="For Buyers" steps={buyerSteps} />
-
-          <div className="mt-12 lg:mt-16">
-            <StepFlow label="For Sellers" steps={sellerSteps} />
-          </div>
+          <StepFlow label="For Sellers" steps={sellerSteps} />
         </div>
       </div>
     </section>
