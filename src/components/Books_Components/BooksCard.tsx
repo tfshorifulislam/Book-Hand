@@ -65,6 +65,11 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
     };
 
     const handleSavePost = async () => {
+        if (!userId) {
+            router.push("/auth/signin");
+            return;
+        }
+
         const previousState = isSaved;
 
         setIsSaved(!previousState);
@@ -116,11 +121,10 @@ const BooksCard = ({ item, canDelete = false, userId, onSavedChange,
                             className="shrink-0 cursor-pointer p-1.5"
                         >
                             <Heart
-                                className={`size-5 ${
-                                    isSaved
-                                        ? "fill-emerald-700 text-emerald-700"
-                                        : "text-muted-foreground"
-                                }`}
+                                className={`size-5 ${isSaved
+                                    ? "fill-emerald-700 text-emerald-700"
+                                    : "text-muted-foreground"
+                                    }`}
                             />
                         </button>
                     </div>
