@@ -1,26 +1,39 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, Search } from "lucide-react";
+import {
+    BookOpen,
+    Heart,
+    Home,
+    LogIn,
+    LogOut,
+    Menu,
+    PlusCircle,
+    Search,
+    Settings,
+    UserPlus,
+    UserRound,
+    X,
+    type LucideIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { FaBookOpenReader } from "react-icons/fa6";
 
-import SignInButton from "../Auth/SigIn_Button";
-import SignUpButton from "../Auth/SignUp_Button";
-import { AvatarDropdown } from "@/components/shared/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-provider/ThemeToggle";
 import {
     Sheet,
     SheetClose,
     SheetContent,
     SheetDescription,
-    SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
 export type NavItem = { title: string; href: string };
 
@@ -28,11 +41,64 @@ interface MobileMenuProps {
     items: NavItem[];
     sellItem: NavItem;
     isLoggedIn: boolean;
-    user: { name?: string | null; email?: string | null } | null;
+    user: { name?: string | null; email?: string | null; image?: string | null } | null;
 }
+
+const NAV_ICONS: Record<string, LucideIcon> = {
+    "/": Home,
+    "/books": BookOpen,
+    "/wishlist": Heart,
+    "/sell-book": PlusCircle,
+};
+
+const ACCOUNT_ITEMS = [
+    { title: "My Profile", href: "/profile", icon: UserRound },
+    { title: "Settings", href: "/settings", icon: Settings },
+];
 
 const isLinkActive = (pathname: string, href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+    return (
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            {children}
+        </p>
+    );
+}
+
+function NavRow({
+    href,
+    icon: Icon,
+    active,
+    iconClassName,
+    onClick,
+    children,
+}: {
+    href: string;
+    icon: LucideIcon;
+    active: boolean;
+    iconClassName?: string;
+    onClick?: () => void;
+    children: React.ReactNode;
+}) {
+    return (
+        <Link
+            href={href}
+            onClick={onClick}
+            aria-current={active ? "page" : undefined}
+            className={cn(
+                "flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2",
+                active
+                    ? "bg-emerald-700/10 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            )}
+        >
+            <Icon className={cn("size-4 shrink-0", iconClassName)} />
+            {children}
+        </Link>
+    );
+}
 
 export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProps) {
     const [open, setOpen] = useState(false);
@@ -48,6 +114,12 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
         const value = query.trim();
         router.push(value ? `/books?search=${encodeURIComponent(value)}` : "/books");
         close();
+    };
+
+    const handleLogout = async () => {
+        close();
+        await authClient.signOut();
+        router.push("/auth/signin");
     };
 
     return (
@@ -66,18 +138,50 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
             />
 
             <SheetContent side="right" className="gap-0 p-0">
-                <SheetHeader className="sr-only">
-                    <SheetTitle>Menu</SheetTitle>
-                    <SheetDescription>BookHand navigation menu</SheetDescription>
-                </SheetHeader>
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <SheetDescription className="sr-only">
+                    BookHand navigation menu
+                </SheetDescription>
 
-                <div className="flex flex-col p-4">
+                {/* Header */}
+                <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
+                    <Link
+                        href="/"
+                        onClick={close}
+                        className="flex items-center gap-2.5 text-foreground transition-colors"
+                        aria-label="BookHand home"
+                    >
+                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-emerald-700 text-white dark:bg-emerald-500 dark:text-black">
+                            <FaBookOpenReader className="size-[18px] stroke-[2.2]" />
+                        </span>
+
+                        <span className="text-base font-bold tracking-tight">
+                            BookHand
+                        </span>
+                    </Link>
+
+                    <SheetClose
+                        render={
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="size-9 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
+                            >
+                                <X className="size-4" />
+                                <span className="sr-only">Close menu</span>
+                            </Button>
+                        }
+                    />
+                </div>
+
+                {/* Body */}
+                <div className="flex-1 overflow-y-auto px-4 py-5">
                     {isLoggedIn && (
                         <form
                             onSubmit={handleSearch}
                             role="search"
                             aria-label="Search books"
-                            className="relative mb-3"
+                            className="relative mb-6"
                         >
                             <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
 
@@ -92,77 +196,127 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                         </form>
                     )}
 
-                    <nav
-                        aria-label="Mobile"
-                        className="flex flex-col gap-1"
-                    >
+                    <SectionLabel>Navigation</SectionLabel>
+
+                    <div className="mt-3 flex flex-col gap-1">
                         {items.map((item) => {
                             const active = isLinkActive(pathname, item.href);
+                            const Icon = NAV_ICONS[item.href];
 
                             return (
-                                <Link
+                                <NavRow
                                     key={item.href}
                                     href={item.href}
+                                    icon={Icon}
+                                    active={active}
                                     onClick={close}
-                                    aria-current={active ? "page" : undefined}
-                                    className={cn(
-                                        "flex h-11 items-center rounded-lg px-3 text-[15px] font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2",
-                                        active
-                                            ? "bg-emerald-700/8 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
-                                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                                    )}
                                 >
                                     {item.title}
-                                </Link>
+                                </NavRow>
                             );
                         })}
 
-                        <Link
+                        <NavRow
                             href={sellItem.href}
+                            icon={NAV_ICONS[sellItem.href]}
+                            active={isLinkActive(pathname, sellItem.href)}
                             onClick={close}
-                            className="mt-2"
+                            iconClassName="text-emerald-700 dark:text-emerald-400"
                         >
-                            <Button className="h-11 w-full cursor-pointer rounded-lg bg-emerald-700 text-sm text-white hover:bg-emerald-600 dark:bg-emerald-500 dark:text-black dark:hover:bg-emerald-400">
-                                <span className="font-medium">{sellItem.title}</span>
-                            </Button>
-                        </Link>
-                    </nav>
+                            {sellItem.title}
+                        </NavRow>
+                    </div>
+
+                    <div className="mt-8">
+                        <SectionLabel>Account</SectionLabel>
+
+                        <div className="mt-3 flex flex-col gap-1">
+                            {isLoggedIn ? (
+                                <>
+                                    {ACCOUNT_ITEMS.map((item) => {
+                                        const active = isLinkActive(pathname, item.href);
+
+                                        return (
+                                            <NavRow
+                                                key={item.href}
+                                                href={item.href}
+                                                icon={item.icon}
+                                                active={active}
+                                                onClick={close}
+                                            >
+                                                {item.title}
+                                            </NavRow>
+                                        );
+                                    })}
+
+                                    <button
+                                        type="button"
+                                        onClick={handleLogout}
+                                        className="flex min-h-11 w-full items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
+                                    >
+                                        <LogOut className="size-4 shrink-0" />
+                                        Logout
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <NavRow
+                                        href="/auth/signin"
+                                        icon={LogIn}
+                                        active={false}
+                                        onClick={close}
+                                    >
+                                        Sign In
+                                    </NavRow>
+
+                                    <NavRow
+                                        href="/auth/signup"
+                                        icon={UserPlus}
+                                        active={false}
+                                        onClick={close}
+                                    >
+                                        Sign Up
+                                    </NavRow>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
 
-                <div className="mt-auto">
-                    <Separator />
+                {/* Footer */}
+                <div className="mt-auto shrink-0 border-t border-border">
+                    <div className="p-4">
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Theme</span>
+                            <ThemeToggle />
+                        </div>
 
-                    {isLoggedIn ? (
-                        <div className="flex items-center gap-3 p-4">
-                            <AvatarDropdown />
+                        {isLoggedIn && (
+                            <div className="mt-4 flex items-center gap-3">
+                                <Avatar className="size-9 rounded-full">
+                                    <AvatarImage
+                                        src={user?.image || undefined}
+                                        alt={user?.name || "User"}
+                                    />
+                                    <AvatarFallback className="text-sm font-semibold">
+                                        {user?.name?.trim().charAt(0).toUpperCase() || "U"}
+                                    </AvatarFallback>
+                                </Avatar>
 
-                            <div className="min-w-0">
-                                <p className="truncate text-sm font-medium text-foreground">
-                                    {user?.name || "Account"}
-                                </p>
-
-                                {user?.email && (
-                                    <p className="truncate text-xs text-muted-foreground">
-                                        {user.email}
+                                <div className="min-w-0">
+                                    <p className="truncate text-sm font-semibold text-foreground">
+                                        {user?.name || "Account"}
                                     </p>
-                                )}
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-2 gap-2 p-4">
-                            <SheetClose
-                                render={
-                                    <SignInButton className="w-full" />
-                                }
-                            />
 
-                            <SheetClose
-                                render={
-                                    <SignUpButton className="w-full" />
-                                }
-                            />
-                        </div>
-                    )}
+                                    {user?.email && (
+                                        <p className="truncate text-xs text-muted-foreground">
+                                            {user.email}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </SheetContent>
         </Sheet>
