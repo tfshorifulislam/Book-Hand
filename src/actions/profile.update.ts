@@ -10,7 +10,6 @@ type UpdateProfileData = {
 };
 
 export const updateProfile = async (data: UpdateProfileData) => {
-
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -19,12 +18,14 @@ export const updateProfile = async (data: UpdateProfileData) => {
         throw new Error("Unauthorized");
     }
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/profile`,
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/profile`,
         {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "x-user-id": session.user.id,
+                "x-internal-secret": process.env.BACKEND_INTERNAL_SECRET!,
             },
             body: JSON.stringify(data),
         }
