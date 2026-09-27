@@ -57,24 +57,20 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
 
-            <AppSidebar />
 
-            <SidebarInset className="min-w-0 bg-transparent">
-              <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-screen flex-col">
 
-                <NavigationBar />
+            <NavigationBar />
 
-                <main
-                  className="flex-1">{children}
-                </main>
+            <main
+              className="flex-1">
+              {children}
+            </main>
 
-                <Footer />
+            <Footer />
 
-              </div>
-            </SidebarInset>
-          </SidebarProvider>
+          </div>
 
           <Toaster />
           <SmoothScroll />
