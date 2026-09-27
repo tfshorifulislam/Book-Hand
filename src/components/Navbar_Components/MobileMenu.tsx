@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
     BookOpen,
     Heart,
@@ -9,19 +11,15 @@ import {
     LogOut,
     Menu,
     PlusCircle,
-    Search,
     Settings,
     UserPlus,
     UserRound,
-    type LucideIcon,
 } from "lucide-react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { FaBookOpenReader } from "react-icons/fa6";
 
+import { authClient } from "@/lib/auth-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-provider/ThemeToggle";
 import {
     Sheet,
@@ -30,95 +28,40 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import { authClient } from "@/lib/auth-client";
 
-export type NavItem = { title: string; href: string };
+const navigation = [
+    { title: "Home", href: "/", icon: Home },
+    { title: "Browse Books", href: "/books", icon: BookOpen },
+    { title: "Wishlist", href: "/wishlist", icon: Heart },
+    { title: "Sell a Book", href: "/sell-book", icon: PlusCircle },
+];
 
-interface MobileMenuProps {
-    items: NavItem[];
-    sellItem: NavItem;
-    isLoggedIn: boolean;
-    user: { name?: string | null; email?: string | null; image?: string | null } | null;
-}
-
-const NAV_ICONS: Record<string, LucideIcon> = {
-    "/": Home,
-    "/books": BookOpen,
-    "/wishlist": Heart,
-    "/sell-book": PlusCircle,
-};
-
-const ACCOUNT_ITEMS = [
+const account = [
     { title: "My Profile", href: "/profile", icon: UserRound },
     { title: "Settings", href: "/settings", icon: Settings },
 ];
 
-const isLinkActive = (pathname: string, href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+type User = {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+};
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-    return (
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-            {children}
-        </p>
-    );
-}
-
-function NavRow({
-    href,
-    icon: Icon,
-    active,
-    iconClassName,
-    onClick,
-    children,
-}: {
-    href: string;
-    icon: LucideIcon;
-    active: boolean;
-    iconClassName?: string;
-    onClick?: () => void;
-    children: React.ReactNode;
-}) {
-    return (
-        <Link
-            href={href}
-            onClick={onClick}
-            aria-current={active ? "page" : undefined}
-            className={cn(
-                "flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2",
-                active
-                    ? "bg-[#FF9100]/10 text-[#FF9100] dark:bg-[#FF9100]/10 dark:text-[#EB7D00]"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-            )}
-        >
-            <Icon className={cn("size-4 shrink-0", iconClassName)} />
-            {children}
-        </Link>
-    );
-}
-
-export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProps) {
+export function MobileMenu({ user }: { user?: User | null; }) {
     const [open, setOpen] = useState(false);
-    const [query, setQuery] = useState("");
-    const router = useRouter();
     const pathname = usePathname();
+    const router = useRouter();
 
     const close = () => setOpen(false);
 
-    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const value = query.trim();
-        router.push(value ? `/books?search=${encodeURIComponent(value)}` : "/books");
-        close();
-    };
-
-    const handleLogout = async () => {
-        close();
+    const logout = async () => {
         await authClient.signOut();
+        close();
         router.push("/auth/signin");
     };
+
+    const active = (href: string) =>
+        href === "/" ? pathname === "/" : pathname.startsWith(href);
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>
@@ -127,165 +70,140 @@ export function MobileMenu({ items, sellItem, isLoggedIn, user }: MobileMenuProp
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="size-9 cursor-pointer rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground lg:hidden"
+                        className="size-9 rounded-lg lg:hidden"
                     >
                         <Menu className="size-5" />
-                        <span className="sr-only">Open menu</span>
                     </Button>
                 }
             />
 
             <SheetContent side="right" className="gap-0 p-0">
-                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <SheetTitle className="sr-only">BookHand Menu</SheetTitle>
                 <SheetDescription className="sr-only">
-                    BookHand navigation menu
+                    BookHand navigation
                 </SheetDescription>
 
                 {/* Header */}
-                <div className="flex h-16 shrink-0 items-center border-b border-border px-4">
+                <div className="flex h-16 items-center border-b px-4">
                     <Link
                         href="/"
                         onClick={close}
-                        className="flex items-center gap-2.5 text-foreground transition-colors"
-                        aria-label="BookHand home"
+                        className="flex items-center gap-2 font-bold"
                     >
-                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#FF9100] text-white dark:bg-[#FF9100] dark:text-black">
-                            <FaBookOpenReader className="size-[18px] stroke-[2.2]" />
+                        <span className="flex size-8 items-center justify-center rounded-lg bg-[#FF9100] text-white">
+                            <FaBookOpenReader className="size-4" />
                         </span>
-
-                        <span className="text-base font-bold tracking-tight">
-                            BookHand
-                        </span>
+                        BookHand
                     </Link>
                 </div>
 
-                {/* Body */}
-                <div className="flex-1 overflow-y-auto px-4 py-5">
-                    <SectionLabel>Navigation</SectionLabel>
+                {/* Navigation */}
+                <div className="flex-1 overflow-y-auto p-4">
+                    <p className="mb-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Navigation
+                    </p>
 
-                    <div className="mt-3 flex flex-col gap-1">
-                        {items.map((item) => {
-                            const active = isLinkActive(pathname, item.href);
-                            const Icon = NAV_ICONS[item.href];
-
-                            return (
-                                <NavRow
-                                    key={item.href}
-                                    href={item.href}
-                                    icon={Icon}
-                                    active={active}
-                                    onClick={close}
-                                >
-                                    {item.title}
-                                </NavRow>
-                            );
-                        })}
-
-                        <NavRow
-                            href={sellItem.href}
-                            icon={NAV_ICONS[sellItem.href]}
-                            active={isLinkActive(pathname, sellItem.href)}
-                            onClick={close}
-                            iconClassName="text-[#FF9100] dark:text-[#EB7D00]"
-                        >
-                            {sellItem.title}
-                        </NavRow>
+                    <div className="space-y-1">
+                        {navigation.map(({ title, href, icon: Icon }) => (
+                            <Link
+                                key={href}
+                                href={href}
+                                onClick={close}
+                                className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors ${active(href)
+                                    ? "bg-[#FF9100]/10 text-[#FF9100]"
+                                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                    }`}
+                            >
+                                <Icon className="size-4" />
+                                {title}
+                            </Link>
+                        ))}
                     </div>
 
-                    <div className="mt-8">
-                        <SectionLabel>Account</SectionLabel>
+                    <p className="mb-3 mt-8 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        Account
+                    </p>
 
-                        <div className="mt-3 flex flex-col gap-1">
-                            {isLoggedIn ? (
-                                <>
-                                    {ACCOUNT_ITEMS.map((item) => {
-                                        const active = isLinkActive(pathname, item.href);
-
-                                        return (
-                                            <NavRow
-                                                key={item.href}
-                                                href={item.href}
-                                                icon={item.icon}
-                                                active={active}
-                                                onClick={close}
-                                            >
-                                                {item.title}
-                                            </NavRow>
-                                        );
-                                    })}
-
-                                    <button
-                                        type="button"
-                                        onClick={handleLogout}
-                                        className="flex min-h-11 w-full items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2"
-                                    >
-                                        <LogOut className="size-4 shrink-0" />
-                                        Logout
-                                    </button>
-                                </>
-                            ) : (
-                                <>
-                                    <NavRow
-                                        href="/auth/signin"
-                                        icon={LogIn}
-                                        active={false}
+                    <div className="space-y-1">
+                        {user ? (
+                            <>
+                                {account.map(({ title, href, icon: Icon }) => (
+                                    <Link
+                                        key={href}
+                                        href={href}
                                         onClick={close}
+                                        className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors ${active(href)
+                                            ? "bg-[#FF9100]/10 text-[#FF9100]"
+                                            : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                            }`}
                                     >
-                                        Sign In
-                                    </NavRow>
+                                        <Icon className="size-4" />
+                                        {title}
+                                    </Link>
+                                ))}
 
-                                    <NavRow
-                                        href="/auth/signup"
-                                        icon={UserPlus}
-                                        active={false}
-                                        onClick={close}
-                                    >
-                                        Sign Up
-                                    </NavRow>
-                                </>
-                            )}
-                        </div>
+                                <button
+                                    onClick={logout}
+                                    className="flex min-h-11 w-full items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                                >
+                                    <LogOut className="size-4" />
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link
+                                    href="/auth/signin"
+                                    onClick={close}
+                                    className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                                >
+                                    <LogIn className="size-4" />
+                                    Sign In
+                                </Link>
+
+                                <Link
+                                    href="/auth/signup"
+                                    onClick={close}
+                                    className="flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                                >
+                                    <UserPlus className="size-4" />
+                                    Sign Up
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="mt-auto shrink-0 border-t border-border">
-                    <div className="p-4">
-                        <div className="flex items-center justify-between">
-                            <span className="text-sm font-medium">Theme</span>
-                            <ThemeToggle />
-                        </div>
-
-                        {isLoggedIn && (
-                            <div className="mt-4 flex items-center gap-3">
-                                <Avatar className="size-9 rounded-full">
-                                    <AvatarImage
-                                        src={user?.image || undefined}
-                                        alt={user?.name || "User"}
-                                    />
-                                    <AvatarFallback className="text-sm font-semibold">
-                                        {user?.name?.trim().charAt(0).toUpperCase() || "U"}
-                                    </AvatarFallback>
-                                </Avatar>
-
-                                <Link
-                                    onClick={close}
-                                    href='/profile'>
-                                    <div className="min-w-0">
-                                        <p className="truncate text-sm font-semibold text-foreground">
-                                            {user?.name || "Account"}
-                                        </p>
-
-                                        {user?.email && (
-                                            <p className="truncate text-xs text-muted-foreground">
-                                                {user.email}
-                                            </p>
-                                        )}
-                                    </div>
-                                </Link>
-                            </div>
-                        )}
+                <div className="border-t p-4">
+                    <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium">Theme</span>
+                        <ThemeToggle />
                     </div>
+
+                    {user && (
+                        <Link
+                            href="/profile"
+                            onClick={close}
+                            className="mt-4 flex items-center gap-3"
+                        >
+                            <Avatar className="size-9">
+                                <AvatarImage src={user.image || undefined} />
+                                <AvatarFallback>
+                                    {user.name?.charAt(0).toUpperCase() || "U"}
+                                </AvatarFallback>
+                            </Avatar>
+
+                            <div className="min-w-0">
+                                <p className="truncate text-sm font-semibold">
+                                    {user.name || "Account"}
+                                </p>
+                                <p className="truncate text-xs text-muted-foreground">
+                                    {user.email}
+                                </p>
+                            </div>
+                        </Link>
+                    )}
                 </div>
             </SheetContent>
         </Sheet>
