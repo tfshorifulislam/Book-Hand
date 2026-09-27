@@ -76,7 +76,7 @@ export function WhyChooseBookHand({
         {/* Header */}
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 25 }}
-          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+          whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }} 
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
