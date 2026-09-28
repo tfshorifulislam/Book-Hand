@@ -9,7 +9,7 @@ const PopularBooks = async () => {
     const books: BookListing[] = booksData.data ?? [];
 
     return (
-        <section className="w-full py-20 sm:py-24">
+        <section className="w-full py-20 sm:py-24 bg-background">
             <div className="mx-auto max-w-370 px-6 lg:px-8">
                 <div className="flex items-end justify-between gap-6">
                     <div>

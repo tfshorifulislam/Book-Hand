@@ -25,13 +25,11 @@ const FindRightBookSection = () => {
 
     const query = search.trim();
 
-    router.push(
-      query ? `/books?search=${encodeURIComponent(query)}` : "/books"
-    );
+    router.push(query ? `/books?search=${encodeURIComponent(query)}` : "/books")
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24">
+    <section className="w-full py-16 sm:py-20 lg:py-24 bg-background">
       <div className="mx-auto max-w-370 px-4 sm:px-6 lg:px-10">
         {/* Header */}
         <motion.div
@@ -42,7 +40,7 @@ const FindRightBookSection = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mb-4 flex items-center justify-center gap-2.5 sm:mb-5 sm:gap-3">
-            <span className="h-px w-6 bg-[#FF9100]/30 sm:w-8" />
+            <span className="h-px w-6 sm:w-8" />
 
             <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FF9100] sm:text-xs sm:tracking-[0.2em]">
               Find your textbook
@@ -86,7 +84,7 @@ const FindRightBookSection = () => {
                   value={search}
                   onChange={(event) => setSearch(event.target.value)}
                   placeholder="Search by title, author, or ISBN..."
-                  className="h-10 border-0 bg-muted/40 pl-9 pr-2 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-[#FF9100]/20 sm:h-11 sm:pl-11 sm:pr-3 dark:bg-muted/30"
+                  className="h-10 border-input bg-muted/40 pl-9 pr-2 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-ring/20 sm:h-11 sm:pl-11 sm:pr-3 dark:bg-muted/30"
                 />
               </div>
 

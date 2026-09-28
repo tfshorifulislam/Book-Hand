@@ -3,48 +3,48 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import HeroSectionText from "./HeroText";
+import HeroRight from "./Hero_Right";
 
 const HeroMain = () => {
-    const reducedMotion = useReducedMotion();
+  const reducedMotion = useReducedMotion();
 
-    return (
-        <section className="relative isolate flex min-h-[calc(100vh-72px)] items-center justify-center overflow-hidden bg-[#fffaf3] px-6 py-16 dark:bg-[#100d09] sm:py-20">
+  return (
+    <section className="relative isolate overflow-hidden bg-background px-6 py-16 sm:py-20 lg:min-h-[calc(100vh-72px)]">
+      {/* Background Accent */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-105 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/8 blur-[100px] dark:bg-primary/5" />
 
-            {/* Soft center light */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-105-translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF9100]/8 blur-[100px] dark:bg-[#FF9100]/5" />
+      {/* Top Accent */}
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-px w-40 -translate-x-1/2 bg-primary/50" />
 
-            {/* Top accent */}
-            <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-px w-40 -translate-x-1/2 bg-[#FF9100]/50" />
+      <motion.div
+        initial={
+          reducedMotion
+            ? false
+            : {
+                opacity: 0,
+                y: 24,
+              }
+        }
+        animate={
+          reducedMotion
+            ? undefined
+            : {
+                opacity: 1,
+                y: 0,
+              }
+        }
+        transition={{
+          duration: 0.7,
+          ease: "easeOut",
+        }}
+        className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16"
+      >
+        <HeroSectionText />
 
-            {/* Content */}
-            <motion.div
-                initial={
-                    reducedMotion
-                        ? false
-                        : {
-                            opacity: 0,
-                            y: 24,
-                        }
-                }
-                animate={
-                    reducedMotion
-                        ? undefined
-                        : {
-                            opacity: 1,
-                            y: 0,
-                        }
-                }
-                transition={{
-                    duration: 0.7,
-                    delay: 0.1,
-                    ease: "easeOut",
-                }}
-                className="relative z-10 w-full"
-            >
-                <HeroSectionText />
-            </motion.div>
-        </section>
-    );
+        <HeroRight />
+      </motion.div>
+    </section>
+  );
 };
 
 export default HeroMain;
