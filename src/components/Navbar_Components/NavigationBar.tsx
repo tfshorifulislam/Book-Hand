@@ -51,11 +51,10 @@ export function NavigationBar() {
               <Link
                 key={href}
                 href={href}
-                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                  active
-                    ? "bg-[#FF9100]/10 text-[#FF9100]"
-                    : "text-muted-foreground hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
-                }`}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${active
+                  ? "bg-[#FF9100]/10 text-[#FF9100]"
+                  : "text-muted-foreground hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+                  }`}
               >
                 {title}
               </Link>
