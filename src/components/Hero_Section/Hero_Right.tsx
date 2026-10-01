@@ -14,6 +14,7 @@ const HeroRight = () => {
       whileHover={reducedMotion ? undefined : { y: -4 }}
       className="w-full"
     >
+
       <div className="relative aspect-16/10 overflow-hidden">
         <Image
           src="/banner-image.png"
@@ -24,6 +25,7 @@ const HeroRight = () => {
           className="object-cover"
         />
       </div>
+
     </motion.div>
   );
 };
