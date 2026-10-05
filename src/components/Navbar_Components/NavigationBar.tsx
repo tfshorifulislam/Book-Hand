@@ -36,7 +36,7 @@ export function NavigationBar() {
           href="/"
           className="text-xl font-bold tracking-tight"
         >
-          Book<span className="text-[#FF9100]">Hand</span>
+          Book<span className="text-primary">Hand</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -52,8 +52,8 @@ export function NavigationBar() {
                 key={href}
                 href={href}
                 className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${active
-                  ? "bg-[#FF9100]/10 text-[#FF9100]"
-                  : "text-muted-foreground hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-primary/5 hover:text-primary"
                   }`}
               >
                 {title}

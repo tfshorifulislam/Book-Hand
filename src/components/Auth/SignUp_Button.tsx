@@ -14,7 +14,7 @@ const SignUpButton = ({ className, ...props }: SignUpButtonProps) => {
                 variant="default"
                 size="default"
                 className={[
-                    "h-9 cursor-pointer rounded-lg bg-[#FF9100] px-4 text-white hover:bg-[#EB7D00] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]",
+                    "h-9 cursor-pointer rounded-lg bg-primary px-4 text-white hover:bg-primary dark:bg-primary dark:text-black dark:hover:bg-primary",
                     className,
                 ]
                     .filter(Boolean)

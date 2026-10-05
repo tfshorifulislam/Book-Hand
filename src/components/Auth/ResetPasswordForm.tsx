@@ -149,7 +149,7 @@ export default function ResetPasswordForm() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="w-full cursor-pointer bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:bg-[#FF9100] dark:text-black dark:hover:bg-[#EB7D00]"
+                        className="w-full cursor-pointer bg-primary text-white hover:bg-primary dark:bg-primary dark:text-black dark:hover:bg-primary"
                     >
                         {loading
                             ? "Resetting..."

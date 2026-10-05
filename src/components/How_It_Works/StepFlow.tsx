@@ -66,7 +66,7 @@ const StepFlow = ({ label, steps }: StepFlowProps) => {
                 duration: 0.5,
                 delay: reducedMotion ? 0 : index * 0.08,
               }}
-              className="group relative rounded-2xl border border-border bg-background p-6 transition-colors duration-300 hover:border-[#FF9100]/40"
+              className="group relative rounded-2xl border border-border bg-background p-6 transition-colors duration-300 hover:border-primary/40"
             >
               {/* Top */}
               <div className="flex items-center justify-between">
@@ -74,7 +74,7 @@ const StepFlow = ({ label, steps }: StepFlowProps) => {
                   {step.number}
                 </span>
 
-                <div className="flex size-10 items-center justify-center rounded-lg border border-[#FF9100]/20 bg-[#FF9100]/5 text-[#EB7D00] transition-colors duration-300 group-hover:border-[#FF9100]/40 group-hover:bg-[#FF9100]/10">
+                <div className="flex size-10 items-center justify-center rounded-lg border border-primary/20 bg-primary/5 text-primary transition-colors duration-300 group-hover:border-primary/40 group-hover:bg-primary/10">
                   <Icon className="size-4" strokeWidth={1.8} />
                 </div>
               </div>
@@ -90,7 +90,7 @@ const StepFlow = ({ label, steps }: StepFlowProps) => {
 
               {/* Bottom Accent */}
               <div className="mt-7 flex items-center gap-2">
-                <span className="h-0.5 w-5 bg-[#FF9100] transition-all duration-300 group-hover:w-10" />
+                <span className="h-0.5 w-5 bg-gradient-to-r from-gradient-start to-gradient-end transition-all duration-300 group-hover:w-10" />
 
                 <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground/50">
                   Step {step.number}

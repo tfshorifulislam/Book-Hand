@@ -19,7 +19,7 @@ export function FinalCTA() {
           transition={{ duration: 0.5 }}
           className="relative overflow-hidden rounded-2xl border border-border bg-background px-6 py-16 text-center sm:px-12 sm:py-20"
         >
-          <span className="absolute inset-x-0 top-0 mx-auto h-0.5 w-20 bg-[#FF9100]" />
+          <span className="absolute inset-x-0 top-0 mx-auto h-0.5 w-20 bg-primary" />
 
           <div className="mx-auto max-w-2xl">
             <motion.div
@@ -29,9 +29,9 @@ export function FinalCTA() {
               transition={{ duration: 0.4 }}
               className="flex items-center justify-center gap-3"
             >
-              <span className="size-2 rounded-full bg-[#FF9100]" />
+              <span className="size-2 rounded-full bg-primary" />
 
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Start with BookHand
               </span>
             </motion.div>
@@ -43,7 +43,7 @@ export function FinalCTA() {
               transition={{ duration: 0.5, delay: 0.05 }}
               className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl"
             >
-              <span className="text-[#FF9100]">Ready to find</span>{" "}
+              <span className="text-primary">Ready to find</span>{" "}
               your next book?
             </motion.h2>
 
@@ -68,7 +68,7 @@ export function FinalCTA() {
               <Link href="/books">
                 <Button
                   size="lg"
-                  className="group h-11 w-full rounded-lg bg-[#FF9100] px-6 text-sm cursor-pointer text-white hover:bg-[#EB7D00] sm:w-auto dark:text-black"
+                  className="group h-11 w-full rounded-lg bg-primary px-6 text-sm cursor-pointer text-white hover:bg-primary sm:w-auto dark:text-black"
                 >
                   <BookOpen className="mr-2 size-4" />
                   Browse Books
@@ -80,7 +80,7 @@ export function FinalCTA() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-11 cursor-pointer w-full rounded-lg border-border px-6 text-sm transition-colors hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00] sm:w-auto"
+                  className="h-11 cursor-pointer w-full rounded-lg border-border px-6 text-sm transition-colors hover:border-primary/40 hover:bg-primary/5 hover:text-primary sm:w-auto"
                 >
                   Sell a Book
                 </Button>
@@ -95,9 +95,9 @@ export function FinalCTA() {
               className="mt-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground/60"
             >
               <span>Buy</span>
-              <span className="text-[#FF9100]/60">•</span>
+              <span className="text-primary/60">•</span>
               <span>Sell</span>
-              <span className="text-[#FF9100]/60">•</span>
+              <span className="text-primary/60">•</span>
               <span>Discover</span>
             </motion.div>
           </div>

@@ -98,7 +98,7 @@ export default function ForgotPasswordPage() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="bg-[#FF9100] text-white dark:bg-[#FF9100] dark:text-black hover:bg-[#EB7D00] dark:hover:bg-[#EB7D00] cursor-pointer w-full"
+                        className="bg-primary text-white dark:bg-primary dark:text-black hover:bg-primary dark:hover:bg-primary cursor-pointer w-full"
                     >
                         {loading
                             ? "Sending..."

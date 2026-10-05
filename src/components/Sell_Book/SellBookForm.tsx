@@ -66,15 +66,15 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
             {/* Header */}
             <div className="mb-10">
                 <div className="mb-5 flex items-center gap-3">
-                    <span className="size-2 rounded-full bg-[#FF9100]" />
+                    <span className="size-2 rounded-full bg-primary" />
 
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FF9100]">
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
                         Sell a Book
                     </span>
                 </div>
 
                 <h1 className="text-4xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-5xl">
-                    <span className="text-[#FF9100]">
+                    <span className="text-primary">
                         Give your book
                     </span>
 
@@ -129,7 +129,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     <Input
                                         id="title"
                                         placeholder="e.g. Clean Code"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-primary focus-visible:ring-primary/20"
                                         {...register("title", {
                                             required:
                                                 "Book title is required",
@@ -146,7 +146,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     <Input
                                         id="author"
                                         placeholder="e.g. Robert C. Martin"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-primary focus-visible:ring-primary/20"
                                         {...register("author", {
                                             required:
                                                 "Author name is required",
@@ -170,7 +170,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-primary focus:ring-primary/20">
                                                     <SelectValue placeholder="Select category" />
                                                 </SelectTrigger>
 
@@ -220,7 +220,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-primary focus:ring-primary/20">
                                                     <SelectValue placeholder="Select language" />
                                                 </SelectTrigger>
 
@@ -266,7 +266,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                     <Textarea
                                         id="description"
                                         placeholder="Describe the book's condition, edition, highlights, or anything buyers should know..."
-                                        className="min-h-40 resize-none rounded-lg border-border bg-background px-4 py-3 text-sm leading-6 shadow-none focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/15"
+                                        className="min-h-40 resize-none rounded-lg border-border bg-background px-4 py-3 text-sm leading-6 shadow-none focus-visible:border-primary focus-visible:ring-primary/15"
                                         {...register("description", {
                                             required:
                                                 "Book description is required",
@@ -308,15 +308,15 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
 
                                     <label
                                         htmlFor="coverImage"
-                                        className="group flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20 text-center transition-all duration-300 hover:border-[#FF9100]/50 hover:bg-[#FF9100]/3"
+                                        className="group flex min-h-40 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/20 text-center transition-all duration-300 hover:border-primary/50 hover:bg-primary/3"
                                     >
-                                        <div className="mb-4 flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-[#FF9100]/40">
+                                        <div className="mb-4 flex size-12 items-center justify-center rounded-xl border bg-background transition-colors duration-300 group-hover:border-primary/40">
                                             <svg
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 strokeWidth="1.7"
-                                                className="size-5 text-muted-foreground transition-colors duration-300 group-hover:text-[#FF9100]"
+                                                className="size-5 text-muted-foreground transition-colors duration-300 group-hover:text-primary"
                                             >
                                                 <path
                                                     strokeLinecap="round"
@@ -390,7 +390,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                         min="0"
                                         step="1"
                                         placeholder="450"
-                                        className="focus-visible:border-[#FF9100] focus-visible:ring-[#FF9100]/20"
+                                        className="focus-visible:border-primary focus-visible:ring-primary/20"
                                         {...register("price", {
                                             required:
                                                 "Price is required",
@@ -424,7 +424,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                                 value={field.value ?? ""}
                                                 onValueChange={field.onChange}
                                             >
-                                                <SelectTrigger className="w-full focus:border-[#FF9100] focus:ring-[#FF9100]/20">
+                                                <SelectTrigger className="w-full focus:border-primary focus:ring-primary/20">
                                                     <SelectValue placeholder="Select condition" />
                                                 </SelectTrigger>
 
@@ -462,7 +462,7 @@ const SellBookForm = ({ onSubmit }: SellBookFormProps) => {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="cursor-pointer rounded-lg bg-[#FF9100] px-8 text-white hover:bg-[#EB7D00] disabled:cursor-not-allowed disabled:opacity-70 dark:text-black"
+                                className="cursor-pointer rounded-lg bg-primary px-8 text-white hover:bg-primary disabled:cursor-not-allowed disabled:opacity-70 dark:text-black"
                             >
                                 {isSubmitting ? (
                                     <>

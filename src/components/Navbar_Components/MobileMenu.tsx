@@ -90,7 +90,7 @@ export function MobileMenu({ user }: { user?: User | null; }) {
                         onClick={close}
                         className="flex items-center gap-2 font-bold"
                     >
-                        <span className="flex size-8 items-center justify-center rounded-lg bg-[#FF9100] text-white">
+                        <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-white">
                             <FaBookOpenReader className="size-4" />
                         </span>
                         BookHand
@@ -110,7 +110,7 @@ export function MobileMenu({ user }: { user?: User | null; }) {
                                 href={href}
                                 onClick={close}
                                 className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors ${active(href)
-                                    ? "bg-[#FF9100]/10 text-[#FF9100]"
+                                    ? "bg-primary/10 text-primary"
                                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                                     }`}
                             >
@@ -133,7 +133,7 @@ export function MobileMenu({ user }: { user?: User | null; }) {
                                         href={href}
                                         onClick={close}
                                         className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm font-medium transition-colors ${active(href)
-                                            ? "bg-[#FF9100]/10 text-[#FF9100]"
+                                            ? "bg-primary/10 text-primary"
                                             : "text-muted-foreground hover:bg-muted hover:text-foreground"
                                             }`}
                                     >

@@ -106,7 +106,7 @@ const BooksCard = ({
                     bg-card
                     transition-all duration-300
                     hover:-translate-y-1
-                    hover:border-[#FF9100]/40
+                    hover:border-primary/40
                     hover:shadow-md
                 "
             >
@@ -130,9 +130,9 @@ const BooksCard = ({
                                     text-base font-semibold
                                     leading-6
                                     transition-colors
-                                    group-hover:text-[#EB7D00]
+                                    group-hover:text-primary
                                 "
-                            >
+                            > 
                                 {item.book.title}
                             </h3>
                         </Link>
@@ -147,15 +147,15 @@ const BooksCard = ({
                                 shrink-0 rounded-lg p-2
                                 text-muted-foreground
                                 transition-all duration-200
-                                hover:bg-[#FF9100]/10
-                                hover:text-[#EB7D00]
+                                hover:bg-primary/10
+                                hover:text-primary
                                 active:scale-90
                             "
                         >
                             <Heart
                                 className={`size-5 transition-all duration-200 ${
                                     isSaved
-                                        ? "fill-[#FF9100] text-[#FF9100]"
+                                        ? "fill-primary text-primary"
                                         : ""
                                 }`}
                             />

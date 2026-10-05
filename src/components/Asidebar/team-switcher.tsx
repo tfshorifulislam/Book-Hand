@@ -41,7 +41,7 @@ export function TeamSwitcher({
         >
           <div
             className={cn(
-              "flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#FF9100] text-white shadow-sm dark:bg-[#FF9100] dark:text-black",
+              "flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-white shadow-sm dark:bg-primary dark:text-black",
               isCollapsed && "group cursor-pointer"
             )}
           >

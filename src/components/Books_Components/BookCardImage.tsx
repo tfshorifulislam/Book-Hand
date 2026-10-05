@@ -32,9 +32,9 @@ const BookCardImage = ({
                 <div className="absolute left-3 top-3">
                     <Badge
                         className="
-                            border border-[#FF9100]/20
+                            border border-primary/20
                             bg-background/90
-                            text-[#EB7D00]
+                            text-primary
                             backdrop-blur-sm
                         "
                     >

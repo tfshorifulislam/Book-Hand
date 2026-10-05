@@ -45,12 +45,12 @@ export function SellBooksCard() {
       <div className="border-b p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-[#FF9100]/10">
-              <Tag className="size-4 text-[#EB7D00]" />
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-primary/10">
+              <Tag className="size-4 text-primary" />
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 For sellers
               </p>
 
@@ -83,7 +83,7 @@ export function SellBooksCard() {
                 </span>
 
                 {field.live ? (
-                  <span className="flex items-center gap-1.5 text-sm font-medium text-[#EB7D00]">
+                  <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
                     <BadgeCheck className="size-3.5" />
                     {field.value}
                   </span>
@@ -91,7 +91,7 @@ export function SellBooksCard() {
                   <span
                     className={
                       field.highlight
-                        ? "text-sm font-medium text-[#EB7D00]"
+                        ? "text-sm font-medium text-primary"
                         : "truncate text-sm font-medium"
                     }
                   >
@@ -109,7 +109,7 @@ export function SellBooksCard() {
           <Button
             size="lg"
             variant="outline"
-            className="group h-11 w-full cursor-pointer rounded-lg border-border hover:border-[#FF9100]/40 hover:bg-[#FF9100]/5 hover:text-[#EB7D00]"
+            className="group h-11 w-full cursor-pointer rounded-lg border-border hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
           >
             Sell a Book
 

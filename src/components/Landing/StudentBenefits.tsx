@@ -62,15 +62,15 @@ export function StudentBenefits() {
         >
           <div className="max-w-2xl">
             <div className="mb-4 flex items-center gap-3">
-              <span className="size-2 rounded-full bg-[#FF9100]" />
+              <span className="size-2 rounded-full bg-primary" />
 
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Student-first
               </span>
             </div>
 
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              <span className="text-[#FF9100]">Built around</span>{" "}
+              <span className="text-primary">Built around</span>{" "}
               student needs.
             </h2>
           </div>
@@ -107,11 +107,11 @@ export function StudentBenefits() {
                   .join(" ")}
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors group-hover:border-[#FF9100]/50">
-                    <Icon className="size-4 text-[#EB7D00]" />
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-background transition-colors group-hover:border-primary/50">
+                    <Icon className="size-4 text-primary" />
                   </div>
 
-                  <span className="h-px flex-1 bg-border transition-colors group-hover:bg-[#FF9100]/30" />
+                  <span className="h-px flex-1 bg-border transition-colors group-hover:bg-primary/30" />
 
                   <span className="font-mono text-[11px] text-muted-foreground/40">
                     {benefit.number}
@@ -126,7 +126,7 @@ export function StudentBenefits() {
                   {benefit.description}
                 </p>
 
-                <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-[#FF9100] transition-all duration-300 group-hover:w-10 sm:left-9 md:left-12" />
+                <span className="absolute bottom-0 left-7 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-10 sm:left-9 md:left-12" />
               </motion.li>
             );
           })}

@@ -40,12 +40,12 @@ export function BuyBooksCard() {
       <div className="border-b p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-[#FF9100]/10">
-              <BookOpen className="size-4 text-[#EB7D00]" />
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border bg-primary/10">
+              <BookOpen className="size-4 text-primary" />
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 For readers
               </p>
 
@@ -81,8 +81,8 @@ export function BuyBooksCard() {
                 key={book.title}
                 className="flex items-center gap-3 border-b p-3 last:border-0"
               >
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-[#FF9100]/10">
-                  <BookMarked className="size-4 text-[#EB7D00]" />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10">
+                  <BookMarked className="size-4 text-primary" />
                 </div>
 
                 <div className="min-w-0">
@@ -100,7 +100,7 @@ export function BuyBooksCard() {
                     {book.condition}
                   </span>
 
-                  <p className="text-sm font-semibold text-[#EB7D00]">
+                  <p className="text-sm font-semibold text-primary">
                     {book.price}
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export function BuyBooksCard() {
         <Link href="/books" className="block">
           <Button
             size="lg"
-            className="group h-11 w-full cursor-pointer rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:text-black"
+            className="group h-11 w-full cursor-pointer rounded-lg bg-primary text-white hover:bg-primary dark:text-black"
           >
             Browse Books
 

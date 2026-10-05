@@ -86,14 +86,14 @@ export function WhyChooseBookHand({
             whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center rounded-full bg-[#EB7D00]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]"
+            className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
           >
             {eyebrow}
           </motion.p>
 
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
             {heading}
-            <span className="block mt-1 text-[#FF9100]">{headingAccent}</span>
+            <span className="block mt-1 text-primary">{headingAccent}</span>
           </h2>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
@@ -161,11 +161,11 @@ export function WhyChooseBookHand({
                   className="max-w-xl flex flex-col justify-center"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#FF9100]/10 text-xs font-bold text-[#FF9100]">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-xs font-bold text-primary">
                       0{index + 1}
                     </span>
                     <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                      <span className="h-px w-6 bg-[#FF9100]" />
+                      <span className="h-px w-6 bg-primary" />
                       {benefit.detail}
                     </div>
                   </div>
@@ -218,7 +218,7 @@ export function WhyChooseBookHand({
                     delay: index * 0.08 + 0.15,
                     ease: "easeOut",
                   }}
-                  className="group relative overflow-hidden rounded-3xl border border-border/80 bg-muted/30 p-2 shadow-xl shadow-black/3 backdrop-blur-sm transition-all duration-500 hover:border-[#FF9100]/40 hover:shadow-2xl hover:shadow-[#FF9100]/5"
+                  className="group relative overflow-hidden rounded-3xl border border-border/80 bg-muted/30 p-2 shadow-xl shadow-black/3 backdrop-blur-sm transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5"
                 >
                   <div className="relative aspect-16/10 overflow-hidden rounded-2xl">
                     <Image

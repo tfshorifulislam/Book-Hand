@@ -59,7 +59,7 @@ const BookCardFooter = ({
                     size="sm"
                     nativeButton={false}
                     render={<Link href={`/books/${id}`} />}
-                    className="h-9 gap-1.5 rounded-lg bg-[#FF9100] hover:bg-[#EB7D00] px-3.5 text-white transition-all dark:bg-[#FF9100]  dark:text-black dark:hover:bg-[#EB7D00]">
+                    className="h-9 gap-1.5 rounded-lg bg-primary hover:bg-primary-hover px-3.5 text-primary-foreground transition-all">
                     Details
                     <ArrowUpRight className="size-3.5" />
                 </Button>

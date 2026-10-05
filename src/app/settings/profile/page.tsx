@@ -91,7 +91,7 @@ const UpdateProfilePage = ({
     return (
         <main className="mx-auto w-full max-w-2xl px-6 py-10">
             <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#EB7D00]">
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                     Account settings
                 </p>
 
@@ -187,7 +187,7 @@ const UpdateProfilePage = ({
                     <Button
                         type="submit"
                         disabled={!hasChanges || isLoading}
-                        className="rounded-lg bg-[#FF9100] text-white hover:bg-[#EB7D00] dark:text-black"
+                        className="rounded-lg bg-primary text-white hover:bg-primary dark:text-black"
                     >
                         {isLoading ? (
                             <>

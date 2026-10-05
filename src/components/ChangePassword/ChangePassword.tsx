@@ -70,8 +70,8 @@ const ChangePassword = ({ isGoogleUser }: Props) => {
     return (
         <div className="mx-auto my-20 w-full max-w-2xl">
             <div className="mb-8">
-                <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-[#FF9100]/10">
-                    <KeyRound className="size-5 text-[#EB7D00]" />
+                <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-primary/10">
+                    <KeyRound className="size-5 text-primary" />
                 </div>
 
                 <h2 className="text-xl font-semibold">
@@ -243,7 +243,7 @@ const ChangePassword = ({ isGoogleUser }: Props) => {
                             (!isGoogleUser &&
                                 !currentPassword)
                         }
-                        className="h-10 rounded-lg bg-[#FF9100] px-5 text-white hover:bg-[#EB7D00] dark:text-black"
+                        className="h-10 rounded-lg bg-primary px-5 text-white hover:bg-primary dark:text-black"
                     >
                         {isLoading ? (
                             <>

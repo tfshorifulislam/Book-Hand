@@ -64,8 +64,8 @@ export function HowItWorks() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-20 sm:py-24 bg-background">
-      <div className="mx-auto max-w-370 px-6 lg:px-8">
+    <section className="section-container bg-background">
+      <div className="mx-auto px-6 lg:px-8">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -73,16 +73,16 @@ export function HowItWorks() {
           transition={{ duration: 0.55 }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+          <p className="section-eyebrow inline-block">
             How it works
           </p>
 
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+          <h2 className="section-heading mt-4 text-left">
             Simple from start
-            <span className="text-[#FF9100]"> to finish.</span>
+            <span className="section-heading-gradient"> to finish.</span>
           </h2>
 
-          <p className="mt-5 max-w-lg text-sm leading-7 text-muted-foreground sm:text-base">
+          <p className="section-description mx-0 max-w-lg mt-5 text-left">
             Whether you're looking for a book or selling one, BookHand keeps
             the process simple.
           </p>

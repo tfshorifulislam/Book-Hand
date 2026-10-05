@@ -122,7 +122,7 @@ export function SignupForm({ className, ...props }: React.ComponentProps<"div">)
               <Field>
                 <Button
                   disabled={loading}
-                  className="bg-[#FF9100] text-white dark:bg-[#FF9100] dark:text-black hover:bg-[#EB7D00] dark:hover:bg-[#EB7D00] cursor-pointer"
+                  className="bg-primary text-white dark:bg-primary dark:text-black hover:bg-primary dark:hover:bg-primary cursor-pointer"
                   type="submit">
                   {loading
                     ? "Signing up..."

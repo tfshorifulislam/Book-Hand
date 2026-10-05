@@ -42,16 +42,16 @@ const FindRightBookSection = () => {
           <div className="mb-4 flex items-center justify-center gap-2.5 sm:mb-5 sm:gap-3">
             <span className="h-px w-6 sm:w-8" />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#FF9100] sm:text-xs sm:tracking-[0.2em]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary sm:text-xs sm:tracking-[0.2em]">
               Find your textbook
             </span>
 
-            <span className="h-px w-6 bg-[#FF9100]/30 sm:w-8" />
+            <span className="h-px w-6 bg-primary/30 sm:w-8" />
           </div>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Find the right book.
-            <span className="block text-[#FF9100]">
+            <span className="block text-primary">
               For your course.
             </span>
           </h2>
@@ -90,7 +90,7 @@ const FindRightBookSection = () => {
 
               <Button
                 type="submit"
-                className="cursor-pointer h-9 w-full shrink-0 rounded-lg bg-[#FF9100] px-4 text-sm font-medium text-white transition-colors hover:bg-[#EB7D00] sm:h-11 sm:w-auto sm:rounded-xl sm:px-5 dark:text-black"
+                className="cursor-pointer h-9 w-full shrink-0 rounded-lg bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary sm:h-11 sm:w-auto sm:rounded-xl sm:px-5 dark:text-black"
               >
                 Search
                 <ArrowRight className="ml-1.5 size-3.5 sm:ml-2 sm:size-4" />
@@ -112,7 +112,7 @@ const FindRightBookSection = () => {
                       `/books?search=${encodeURIComponent(item)}`
                     )
                   }
-                  className="cursor-pointer font-medium text-foreground/70 underline underline-offset-4 transition-colors hover:text-[#FF9100]"
+                  className="cursor-pointer font-medium text-foreground/70 underline underline-offset-4 transition-colors hover:text-primary"
                 >
                   {item}
                 </button>
@@ -125,7 +125,7 @@ const FindRightBookSection = () => {
             <button
               type="button"
               onClick={() => router.push("/sell-book")}
-              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-[#FF9100]"
+              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
             >
               List one instead.
             </button>

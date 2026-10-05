@@ -14,7 +14,7 @@ const HeroSectionText = () => {
 
       {/* Heading */}
       <h1 className="text-4xl font-bold leading-[1.05] tracking-[-0.035em] sm:text-5xl md:text-6xl lg:text-7xl">
-        <span className="block text-primary">
+        <span className="block bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent pb-1">
           Find a book.
         </span>
 
@@ -34,7 +34,7 @@ const HeroSectionText = () => {
         <Link href="/books">
           <Button
             size="lg"
-            className="rounded-sm bg-primary px-4 text-xs font-semibold text-primary-foreground hover:bg-primary/90 sm:px-7 sm:text-sm cursor-pointer"
+            className="btn-primary rounded-xl px-4 text-xs sm:px-7 sm:text-sm cursor-pointer"
           >
             <BookOpen className="mr-1.5 size-3.5 sm:mr-2 sm:size-4" />
 
@@ -48,7 +48,7 @@ const HeroSectionText = () => {
           <Button
             size="lg"
             variant="outline"
-            className="rounded-sm px-4 text-xs font-semibold sm:px-7 sm:text-sm cursor-pointer"
+            className="btn-secondary rounded-xl px-4 text-xs sm:px-7 sm:text-sm cursor-pointer"
           >
             Sell a Book
           </Button>

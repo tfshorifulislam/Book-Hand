@@ -78,7 +78,7 @@ const BooksContent = async ({
         <div className="mx-auto min-h-screen max-w-370 px-4 py-10 md:px-6">
             <div className="mb-10">
                 <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-[#FF9100] dark:bg-[#FF9100]">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-primary dark:bg-primary">
                         <BookOpen className="size-5 text-white dark:text-black" />
                     </div>
 

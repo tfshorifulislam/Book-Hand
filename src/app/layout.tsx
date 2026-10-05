@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/Asidebar/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider/theme-provider";
 import { NavigationBar } from "@/components/Navbar_Components/NavigationBar";
 import { Footer } from "@/components/Footer/Footer";
@@ -50,7 +48,7 @@ export default function RootLayout({
       className={`${inter.className} antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[#fafaf9] font-sans text-zinc-900 dark:bg-[#0a0a0a] dark:text-zinc-100">
+      <body className="min-h-screen bg-background font-sans text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

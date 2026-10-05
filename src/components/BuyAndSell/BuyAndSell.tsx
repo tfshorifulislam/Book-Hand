@@ -21,15 +21,15 @@ export function BuyAndSell() {
           className="mx-auto max-w-2xl text-center"
         >
           <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="size-2 rounded-full bg-[#FF9100]" />
+            <span className="size-2 rounded-full bg-primary" />
 
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               BookHand Marketplace
             </span>
           </div>
 
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            <span className="text-[#FF9100]">Find a book.</span>{" "}
+            <span className="text-primary">Find a book.</span>{" "}
             Give one a new home.
           </h2>
 

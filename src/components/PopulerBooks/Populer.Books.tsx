@@ -9,19 +9,19 @@ const PopularBooks = async () => {
     const books: BookListing[] = booksData.data ?? [];
 
     return (
-        <section className="w-full py-20 sm:py-24 bg-background">
-            <div className="mx-auto max-w-370 px-6 lg:px-8">
-                <div className="flex items-end justify-between gap-6">
+        <section className="section-container bg-background">
+            <div className="mx-auto px-6 lg:px-8">
+                <div className="flex items-end justify-between gap-6 mb-8">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#EB7D00]">
+                        <p className="section-eyebrow">
                             Popular books
                         </p>
 
-                        <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+                        <h2 className="section-heading mb-0 text-left">
                             Find your next book.
                         </h2>
 
-                        <p className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground sm:text-base">
+                        <p className="section-description mx-0 max-w-xl text-left mt-2">
                             Explore some of the latest books available on
                             BookHand.
                         </p>
@@ -29,7 +29,7 @@ const PopularBooks = async () => {
 
                     <Link
                         href="/books"
-                        className="hidden shrink-0 text-sm font-medium text-[#EB7D00] transition-colors hover:text-[#FF9100] sm:block"
+                        className="hidden shrink-0 text-sm font-bold text-primary transition-colors hover:text-primary-hover sm:block"
                     >
                         View all books →
                     </Link>
@@ -47,7 +47,7 @@ const PopularBooks = async () => {
                 <div className="mt-8 text-center sm:hidden">
                     <Link
                         href="/books"
-                        className="text-sm font-medium text-[#EB7D00] transition-colors hover:text-[#FF9100]"
+                        className="text-sm font-bold text-primary transition-colors hover:text-primary-hover"
                     >
                         View all books →
                     </Link>
