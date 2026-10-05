@@ -10,7 +10,7 @@ export function BuyAndSell() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="w-full py-20 sm:py-24 bg-background">
+    <section className="w-full py-20 sm:py-24">
       <div className="mx-auto max-w-370 px-6 lg:px-8">
         {/* Header */}
         <motion.div

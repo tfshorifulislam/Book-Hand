@@ -29,7 +29,7 @@ const FindRightBookSection = () => {
   };
 
   return (
-    <section className="w-full py-16 sm:py-20 lg:py-24 bg-background">
+    <section className="w-full py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-370 px-4 sm:px-6 lg:px-10">
         {/* Header */}
         <motion.div

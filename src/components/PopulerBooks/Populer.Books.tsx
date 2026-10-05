@@ -9,7 +9,7 @@ const PopularBooks = async () => {
     const books: BookListing[] = booksData.data ?? [];
 
     return (
-        <section className="section-container bg-background">
+        <section className="section-container">
             <div className="mx-auto px-6 lg:px-8">
                 <div className="flex items-end justify-between gap-6 mb-8">
                     <div>

@@ -71,7 +71,7 @@ export function WhyChooseBookHand({
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative w-full overflow-hidden bg-background py-20 sm:py-28">
+    <section className="relative w-full overflow-hidden py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <motion.div

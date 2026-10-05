@@ -64,7 +64,7 @@ export function HowItWorks() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="section-container bg-background">
+    <section className="section-container ">
       <div className="mx-auto px-6 lg:px-8">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}

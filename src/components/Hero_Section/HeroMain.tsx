@@ -9,7 +9,7 @@ const HeroMain = () => {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden bg-background px-6 py-16 sm:py-20">
+    <section className="relative overflow-hidden px-6 py-16 sm:py-20">
       {/* Hero Ambient Glow Effect */}
       <div className="hero-glow-wrapper" aria-hidden="true">
         <div className="hero-glow-primary animate-glow-pulse" />
