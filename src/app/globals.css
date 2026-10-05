@@ -41,6 +41,8 @@
   --color-card: var(--card);
   --color-gradient-start: var(--gradient-start);
   --color-gradient-end: var(--gradient-end);
+  --color-glow-primary: var(--glow-primary);
+  --color-glow-secondary: var(--glow-secondary);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -68,6 +70,12 @@
   /* Secondary: Purple */
   --secondary: #7c3aed;
   --secondary-foreground: #ffffff;
+
+  /* Glow Colors (derived from global CSS color tokens) */
+  --glow-primary: var(--primary);
+  --glow-secondary: var(--secondary);
+  --color-glow-primary: var(--primary);
+  --color-glow-secondary: var(--secondary);
 
   /* Muted */
   --muted: #f1f5f9;
@@ -128,6 +136,12 @@
   /* Secondary: Purple */
   --secondary: #8b5cf6;
   --secondary-foreground: #ffffff;
+
+  /* Glow Colors (derived from global CSS color tokens) */
+  --glow-primary: var(--primary);
+  --glow-secondary: var(--secondary);
+  --color-glow-primary: var(--primary);
+  --color-glow-secondary: var(--secondary);
 
   /* Muted */
   --muted: #1e293b;
@@ -226,5 +240,141 @@
   /* Form Elements */
   .input-premium {
     @apply flex w-full rounded-xl border border-input bg-background px-4 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-shadow duration-300;
+  }
+
+  /* Reusable Ambient Glow Background System */
+  .ambient-glow-wrapper {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .glow-shape {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    will-change: transform, opacity;
+    opacity: 0.12;
+    transition: opacity 0.5s ease;
+  }
+
+  .dark .glow-shape {
+    opacity: 0.22;
+  }
+
+  @media (max-width: 640px) {
+    .glow-shape {
+      opacity: 0.06;
+      filter: blur(75px);
+    }
+    .dark .glow-shape {
+      opacity: 0.10;
+    }
+  }
+
+  .glow-shape-primary {
+    background: radial-gradient(circle, var(--color-glow-primary) 0%, transparent 70%);
+  }
+
+  .glow-shape-secondary {
+    background: radial-gradient(circle, var(--color-glow-secondary) 0%, transparent 70%);
+  }
+
+  .glow-shape-ambient {
+    background: radial-gradient(circle, var(--color-gradient-start) 0%, var(--color-gradient-end) 70%, transparent 100%);
+  }
+
+  /* Hero Section Specific Glow */
+  .hero-glow-wrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-glow-primary {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 38rem;
+    height: 38rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, var(--color-glow-primary) 0%, transparent 70%);
+    filter: blur(100px);
+    opacity: 0.24;
+    will-change: transform;
+  }
+
+  .hero-glow-secondary {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 42rem;
+    height: 42rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, var(--color-glow-secondary) 0%, transparent 70%);
+    filter: blur(110px);
+    opacity: 0.22;
+    will-change: transform;
+  }
+
+  .dark .hero-glow-primary {
+    opacity: 0.32;
+  }
+
+  .dark .hero-glow-secondary {
+    opacity: 0.28;
+  }
+
+  @media (max-width: 640px) {
+    .hero-glow-primary {
+      width: 18rem;
+      height: 18rem;
+      opacity: 0.12;
+      filter: blur(60px);
+    }
+    .hero-glow-secondary {
+      width: 20rem;
+      height: 20rem;
+      opacity: 0.12;
+      filter: blur(65px);
+    }
+  }
+
+  /* Ambient Keyframe Animations */
+  @keyframes ambientGlowPulse {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(30px, -25px, 0) scale(1.06);
+    }
+    100% {
+      transform: translate3d(-20px, 20px, 0) scale(0.96);
+    }
+  }
+
+  @keyframes ambientGlowDrift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-30px, 20px, 0) scale(1.05);
+    }
+    100% {
+      transform: translate3d(25px, -15px, 0) scale(0.97);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-glow-pulse {
+      animation: ambientGlowPulse 24s ease-in-out infinite alternate;
+    }
+    .animate-glow-drift {
+      animation: ambientGlowDrift 30s ease-in-out infinite alternate;
+    }
   }
 }

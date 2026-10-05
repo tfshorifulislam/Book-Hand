@@ -48,26 +48,33 @@ export default function RootLayout({
       className={`${inter.className} antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background font-sans text-foreground">
+      <body className="relative min-h-screen bg-background font-sans text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          {/* Global Ambient Background Glow */}
+          <div className="ambient-glow-wrapper" aria-hidden="true">
+            {/* Top-left Blue glow */}
+            <div className="glow-shape glow-shape-primary animate-glow-pulse -top-24 -left-24 w-140 h-140 sm:w-200 sm:h-[50rem]" />
 
+            {/* Middle-right Purple glow */}
+            <div className="glow-shape glow-shape-secondary animate-glow-drift top-1/3 -right-24 w-[32rem] h-[32rem] sm:w-[48rem] sm:h-[48rem]" />
 
-          <div className="flex min-h-screen flex-col">
+            {/* Bottom Ambient gradient glow */}
+            <div className="glow-shape glow-shape-ambient animate-glow-pulse bottom-10 -left-12 w-[35rem] h-[35rem] sm:w-[55rem] sm:h-[55rem]" />
+          </div>
 
+          <div className="relative z-10 flex min-h-screen flex-col">
             <NavigationBar />
 
-            <main
-              className="flex-1">
+            <main className="flex-1">
               {children}
             </main>
 
             <Footer />
-
           </div>
 
           <Toaster />
